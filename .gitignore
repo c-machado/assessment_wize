@@ -1,0 +1,11 @@
+/venv
+/.idea
+*.log
+/.pytest_cache
+
+/html_reports
+reports/
+requirements.txt
+tmp/
+
+Pipfile.lock
