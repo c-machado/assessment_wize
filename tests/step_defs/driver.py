@@ -1,17 +1,14 @@
-import json
 import os
 import time
 import warnings
 
 import selenium
-import psutil
 from selenium.webdriver import DesiredCapabilities
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium import webdriver
 
-from browsermobproxy import Server
 
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.firefox.options import Options
@@ -32,61 +29,45 @@ class Driver(IDriver):
     def __init__(self):
         self.driver = None
 
-    def start(self, platform, web_browser):
-        ua_platforms = Constants.PLATFORMS_WITH_UA
-        if platform in ua_platforms:
-            self.build_driver_with_user_agent(platform, web_browser, ua_platforms)
-        elif platform == Constants.PLATFORM_MAC or platform == Constants.PLATFORM_LINUX:
-            self.build_driver_for_local(platform, web_browser)
+    def start(self, platform, web_browser, viewport):
+        if platform in Constants.PLATFORMS_WITH_UA:
+            self.build_driver_with_user_agent(platform, web_browser, viewport)
+        elif platform == Constants.PLATFORM_MAC:
+            self.build_driver_for_local(web_browser, viewport)
         # elif platform == 'WIN10':
         #     self.build_ie_driver(platform, web_browser)
-        # elif platform == Constants.PLATFORM_IOS:
-        #     self.build_driver_for_ios()
         else:
             raise Exception(f'"{platform}" is not supported')
 
-    def build_ie_driver(self, platform, web_browser):
-        if web_browser == 'ie':
-            caps = DesiredCapabilities.INTERNETEXPLORER
-            caps['acceptSslCerts'] = False
-            caps['javascriptEnabled'] = True
-            # caps.update(self.driver)
-            self.driver = webdriver.Ie(
-                executable_path=
-                "C:\\Users\\machadoca\\pyexecnetcache\\keyword\\tests\\bin\\windows\\IEDriverServer.exe",
-                capabilities=caps)
-            return self.driver
 
-    def build_driver_for_local(self, platform, web_browser):
+    def build_driver_for_local(self, web_browser, viewport):
         if web_browser == "chrome":
-            if platform == Constants.PLATFORM_LINUX:
-                self.build_chrome_driver(driver_path=Constants.LINUX_CHROME_DRIVER)
-                # self.build_chrome_driver(driver_path="tests/bin/linux/chromedriver")
-            else:
-                self.build_chrome_driver(ChromeDriverManager().install())
+            self.build_chrome_driver(ChromeDriverManager().install(), viewport)
         elif web_browser == 'firefox':
-            if platform == Constants.PLATFORM_LINUX:
-                # self.build_firefox_driver(driver_path=Constants.LINUX_FIREFOX_DRIVER)
-                self.build_firefox_driver(driver_path="tests/bin/linux/geckodriver")
-            else:
-                self.build_firefox_driver(GeckoDriverManager().install())
+            self.build_firefox_driver(GeckoDriverManager().install())
         elif web_browser == 'safari':
             self.driver = webdriver.Safari()
         warnings.filterwarnings(action="ignore", message="unclosed", category=ResourceWarning)
         return self.driver
 
-    def build_driver_with_user_agent(self, platform, web_browser, ua_platforms):
+    def build_driver_with_user_agent(self, platform, web_browser, viewport):
         for platform_id, ua in Constants.USER_AGENTS.items():
-            if platform_id == platform and platform in ua_platforms:
+            if platform_id == platform and platform in Constants.PLATFORMS_WITH_UA:
                 if web_browser in Constants.UA_BROWSERS:
-                    self.build_chrome_driver(ChromeDriverManager().install())
-                    self.driver.execute_cdp_cmd('Network.setUserAgentOverride', {"userAgent": ua})
+                    self.set_chrome_ua(ua, viewport)
                 elif web_browser == 'firefox':
-                    self.build_firefox_driver(GeckoDriverManager().install())
-                    profile = webdriver.FirefoxProfile()
-                    profile.set_preference("general.useragent.override", ua)
+                    self.set_firefox_ua(ua)
                 warnings.filterwarnings(action="ignore", message="unclosed", category=ResourceWarning)
                 return self.driver
+
+    def set_chrome_ua(self, ua, viewport):
+        self.build_chrome_driver(ChromeDriverManager().install(), viewport)
+        self.driver.execute_cdp_cmd('Network.setUserAgentOverride', {"userAgent": ua})
+
+    def set_firefox_ua(self, ua):
+        self.build_firefox_driver(GeckoDriverManager().install())
+        profile = webdriver.FirefoxProfile()
+        profile.set_preference("general.useragent.override", ua)
 
     def build_firefox_driver(self, driver_path):
         options = Options()
@@ -99,12 +80,13 @@ class Driver(IDriver):
     def driver_clear(self):
         self.driver.driver_clear()
 
-    def build_chrome_driver(self, driver_path):
+    def build_chrome_driver(self, driver_path, viewport):
         options = webdriver.ChromeOptions()
         options.add_experimental_option("prefs", {
             "download.default_directory": r"./tmp",
         })
-        # options.add_argument('window-size=1440,1080')
+        size_viewport = self.get_size(viewport)
+        options.add_argument(size_viewport)
         # options.add_argument('--start-maximized')
         # options.add_argument('--headless')
         options.add_argument('--no-sandbox')
@@ -116,11 +98,26 @@ class Driver(IDriver):
             options=options
         )
 
+    def build_ie_driver(self, web_browser):
+        if web_browser == 'ie':
+            caps = DesiredCapabilities.INTERNETEXPLORER
+            caps['acceptSslCerts'] = False
+            caps['javascriptEnabled'] = True
+            # caps.update(self.driver)
+            self.driver = webdriver.Ie(
+                executable_path=
+                "C:\\Users\\machadoca\\pyexecnetcache\\keyword\\tests\\bin\\windows\\IEDriverServer.exe",
+                capabilities=caps)
+            return self.driver
+
     def set_window_size(self, width, height):
         self.driver.set_window_size(width, height)
 
-    def get_window_size(self):
-        self.driver.get_window_size()
+    @staticmethod
+    def get_size(device):
+        for device_id, win_size in Constants.WINDOWS_SIZE.items():
+            if device_id == device:
+                return win_size
 
     def maximize_window(self):
         self.driver.maximize_window()
@@ -146,56 +143,12 @@ class Driver(IDriver):
                 options=options
             )
             return self.driver
-        # elif browser == "firefox":
         elif web_browser == "firefox":
             caps = {'browserName': 'firefox'}
             self.driver = selenium.webdriver.Remote(
                 command_executor='http://localhost:4444/wd/hub',
                 desired_capabilities=caps)
             return self.driver
-
-    # TODO: Do a research to find an option to see if the redirect is successful or not.
-    #  In the current state, the popup is blocking the redirect, so the response does not contain any useful
-    #  information. Neither the har file, so it's not possible to complete the scenario. Note: This scenario doesn't
-    #  match the user experience, it's caused because of the user agent simulation.
-    def build_driver_for_ios(self):
-        for proc in psutil.process_iter():
-            # check whether the process name matches (the process name is java, not browsermob-proxy)
-            # we need to look another way to kill the process
-            if proc.name() == "browsermob-proxy":
-                proc.kill()
-        port = {'port': 8080}
-        server = Server(
-            path="/Users/machadoca/.pyenv/versions/3.9.6/envs/chrome-env/lib/python3.9/site-packages"
-                 "/browsermob-proxy-2.1.4/bin/browsermob-proxy",
-            options=port
-        )
-        server.start()
-        time.sleep(1)
-        # Proxy is used to generate a HAR file containing the connection URLS that the MP3s are loaded from.
-        proxy = server.create_proxy()
-        time.sleep(1)
-        ua = "Mozilla/5.0 (iPhone; CPU iPhone OS 11_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) " \
-             "Version/11.0 Mobile/15E148 Safari/604.1"
-        options = webdriver.ChromeOptions()
-        options.add_argument("--user-agent=" + ua)
-        options.add_experimental_option('excludeSwitches', ['enable-logging', 'enable-automation'])
-        options.add_experimental_option("prefs", {"profile.default_content_setting_values.notifications": 1})
-        options.add_argument("--proxy-server={0}".format(proxy.proxy))  # Configure chrome options
-        caps = DesiredCapabilities.CHROME.copy()
-        caps['acceptSslCerts'] = True
-        caps["acceptInsecureCerts"] = True
-        caps['autoAcceptAlerts']: True
-        self.driver = webdriver.Chrome(
-            options=options,
-            desired_capabilities=caps,
-            executable_path=ChromeDriverManager().install()
-        )
-        proxy.new_har("myhar",
-                      options={'captureHeaders': True, 'captureContent': True, 'captureBinaryContent': True})
-        with open('ioshar.har', 'w') as har_file:
-            json.dump(proxy.har, har_file)
-        return self.driver
 
     def current_url(self):
         return self.driver.current_url

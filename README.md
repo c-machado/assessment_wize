@@ -1,4 +1,4 @@
-# Chrome-tests
+# How to set up?
 TestSuite for the download workflow in the Chrome website. This project
 has been built using Python and Pytest-BDD. All the expected behaviours
 have been documented using the Gherkin language.
