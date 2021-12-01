@@ -44,8 +44,9 @@ class Driver(IDriver):
         if web_browser == "chrome":
             self.build_chrome_driver(ChromeDriverManager().install(), viewport)
         elif web_browser == 'firefox':
-            self.build_firefox_driver(GeckoDriverManager().install())
+            self.build_firefox_driver(GeckoDriverManager().install(), viewport)
         elif web_browser == 'safari':
+
             self.driver = webdriver.Safari()
         warnings.filterwarnings(action="ignore", message="unclosed", category=ResourceWarning)
         return self.driver
@@ -69,13 +70,28 @@ class Driver(IDriver):
         profile = webdriver.FirefoxProfile()
         profile.set_preference("general.useragent.override", ua)
 
-    def build_firefox_driver(self, driver_path):
+    def build_firefox_driver(self, driver_path, viewport):
         options = Options()
-        options.add_argument('--headless')
+        # options.add_argument('--headless')
+        print('viewport firefox', viewport)
+        if viewport == 'mobile':
+            options.add_argument("--width="+ Constants.MOBILE_WIDTH)
+            options.add_argument("--height="+ Constants.MOBILE_HEIGHT)
+        elif viewport == 'tablet':
+            options.add_argument("--width="+ Constants.TABLET_WIDTH)
+            options.add_argument("--height="+ Constants.TABLET_HEIGHT)
+        elif viewport == 'desktop':
+            options.add_argument("--width="+ Constants.DESKTOP_WIDTH)
+            options.add_argument("--height="+ Constants.DESKTOP_HEIGHT)
         self.driver = webdriver.Firefox(
             executable_path=driver_path,
             options=options
         )
+        # self.driver.set_window_size(480,340)
+        # set_viewport = self.get_ff_window_size(viewport)
+        # print(set_viewport)
+        # self.driver.set_window_size(set_viewport)
+
 
     def driver_clear(self):
         self.driver.driver_clear()
@@ -85,7 +101,7 @@ class Driver(IDriver):
         options.add_experimental_option("prefs", {
             "download.default_directory": r"./tmp",
         })
-        size_viewport = self.get_size(viewport)
+        size_viewport = self.get_window_size(viewport)
         options.add_argument(size_viewport)
         # options.add_argument('--start-maximized')
         # options.add_argument('--headless')
@@ -114,10 +130,18 @@ class Driver(IDriver):
         self.driver.set_window_size(width, height)
 
     @staticmethod
-    def get_size(device):
-        for device_id, win_size in Constants.WINDOWS_SIZE.items():
-            if device_id == device:
+    def get_window_size(viewport):
+        for viewport_id, win_size in Constants.WINDOWS_SIZE.items():
+            if viewport_id == viewport:
                 return win_size
+
+    @staticmethod
+    def get_ff_window_size(viewport):
+        for viewport_id, win_size in Constants.FF_WINDOWS_SIZE.items():
+            if viewport_id.startswith(viewport):
+                print('win_ff_size', win_size)
+                return win_size
+
 
     def maximize_window(self):
         self.driver.maximize_window()

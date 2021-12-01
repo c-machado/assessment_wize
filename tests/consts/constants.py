@@ -1,5 +1,15 @@
 class Constants(object):
-
+    FF_WINDOWS_SIZE = {
+        "mobile": "360, 640",
+        "tablet": "768, 1024",
+        "desktop": "1366, 768"
+    }
+    MOBILE_HEIGHT = "640"
+    MOBILE_WIDTH = "360"
+    DESKTOP_HEIGHT = "768"
+    DESKTOP_WIDTH = "1366"
+    TABLET_HEIGHT = "1024"
+    TABLET_WIDTH = "768"
     PLATFORM_IOS = 'IOS'
     PLATFORM_MAC = 'MAC'
     PLATFORM_WIN = "WIN"
@@ -32,9 +42,9 @@ class Constants(object):
                    "Chrome/63.0.3239.111 Safari/537.36 Edge/15.15063 "
     }
     WINDOWS_SIZE = {
-        "mobile": "window-size=375,800",
+        "mobile": "window-size=414,896",
         "tablet": "window-size=600,800",
-        "desktop": "window-size=1440,1200"
+        "desktop": "window-size=1920,1080"
     }
 
 
