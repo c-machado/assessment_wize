@@ -11,6 +11,10 @@ class BasePage(object):
         # Set my local self.browser variable to be whatever browser it's passed in
         self.browser = browser
 
+    def click_tab(self, tab_locator):
+        self.browser.click_to_element(tab_locator)
+
+###########
     @staticmethod
     def get_ap_parameter(platform, channel):
         for platform_id, app_parameter in Constants.AP_WIN_PARAMETER.items():

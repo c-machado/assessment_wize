@@ -6,6 +6,8 @@ class PageLocators(object):
     # chrome_url = "https://www.google.com/"
     # chrome_url = "https://chromatica-dot-googwebreview.appspot.com"
 
+    overview = (By.CSS_SELECTOR, "[data-section='overview']")
+    ############old
     accept_tos = (By.ID, "js-accept-install")
     accept_installer = {
         "WIN": (By.ID, "js-accept-install--win"),
