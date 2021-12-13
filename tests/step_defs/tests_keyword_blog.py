@@ -8,8 +8,8 @@ from tests.pages.locators import PageLocators
 
 scenarios("../features/")
 
-# BASE_URL = 'https://blog.google'
-BASE_URL = 'https://gweb-uniblog-publish-stage.appspot.com'
+BASE_URL = 'https://blog.google/supportingnews'
+# BASE_URL = 'https://gweb-uniblog-publish-stage.appspot.com/supportingnews'
 # BASE_URL = 'https://www.google.com/'
 
 
@@ -20,9 +20,8 @@ def at_the_blog(keyword, browser, get_web_browser, get_viewport):
     print('get_viewport', get_viewport)
     browser.start(get_web_browser, get_viewport)
     browser.go_to_URL(BASE_URL + keyword)
-    # browser.set_cookie()
-    browser.go_to_URL(BASE_URL + keyword)
-    browser.refresh()
+    browser.set_cookie()
+    # browser.refresh()
     # assert False
     time.sleep(1)
 

@@ -6,23 +6,25 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-browsermob_proxy= ">=0.8.0"
-py = ">=1.10.0"
-psutil = ">=5.8.0"
+
 pytest = ">=6.2.4"
-pytest-bdd = ">=4.1.0"
-pytest-docker = "*"
-pytest-html = ">=3.1.1"
-#pytest-html-profiling = "*"
-pytest-parallel = ">=0.1.0"
-pytest-xdist = ">=2.3.0"
 selenium = ">=3.141.0"
-#docker-compose = "*"
 webdriver-manager = ">=3.4.2"
-webdriver_setup = "*"
-pytest-rerunfailures = ">=10.2"
+pytest-html = ">=3.1.1"
+pytest-bdd = "<=4.1.0"
+assertpy = "*"
+
+#browsermob_proxy= ">=0.8.0"
+#py = ">=1.10.0"
+#psutil = ">=5.8.0"
+#pytest-docker = "*"
+#pytest-html-profiling = "*"
+#pytest-parallel = ">=0.1.0"
+#pytest-xdist = ">=2.3.0"
+#docker-compose = "*"
+#pytest-rerunfailures = ">=10.2"
 #pylint = "*"
-w3lib = ""
+#w3lib = ""
 
 [requires]
 python_version = "3.9.6"
