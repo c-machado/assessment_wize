@@ -1,19 +1,16 @@
 # How to set up?
-TestSuite for the download workflow in the Chrome website. This project
-has been built using Python and Pytest-BDD. All the expected behaviours
+This project has been built using Python and Pytest-BDD. All the expected behaviours
 have been documented using the Gherkin language.
 
 
 ## What do you need?
 In order to set up this project you required: 
 
-In order to run this suite you'll need:
 1. An up-to-date version of Python 3
 1. pipenv and virtualenv, to manage the dependencies and the virtual environment   
 1. Install python with pyenv, so you can manage the installed versions
 1. Install dependencies store in the pipfile.
 
-```
 If you're unsure which Python version you have in your machine, please run the following command in your terminal:
 ```
 $ python --version
@@ -75,18 +72,28 @@ $ pyenv shell 3.9.6
 Click [here](https://github.com/pyenv/pyenv-virtualenv) to complete pyenv-virtualenv installation. 
 
 ## How to install the dependencies?
-## Always use a virtual environment to manage your packages and dependencies
+Note: Always use a virtual environment to manage your packages and dependencies
 1. Go to folder’s project
 1. Create or activate an existing virtual environment.
 ```
-$ pyenv virtualenv chrome-env
+$ pyenv virtualenv environment-name
 ```   
-The environment should be activated automatically
-3. Install pipenv, in order to manage your pipfile
+The environment should be activated automatically (once you added the variable pyenv-virtualenv):
+```
+$ pyenv versions
+```
+Otherwise, activate the environment manually:
+```
+$ pyenv shell environment-name
+```
+8. Install pip [here] (https://pip.pypa.io/en/stable/installation/)
+
+
+9. Install pipenv, in order to manage your pipfile
 ``` 
 pip install pipenv
 ```    
-4. Install the environment with the modules defined in the pipfile 
+10. Install the environment with the modules defined in the pipfile 
 ```
 $ pipenv install
 ```
@@ -94,11 +101,12 @@ $ pipenv install
 ## How to run tests?
 1. Run tests in a specific file
 ```
-$ pipenv run python3 -m pytest tests/step_defs/download_chrome_steps.py
+$ pipenv run python3 -m pytest 
 ```
-Within the file, you need to specified the feature file and the scenario to run, e.g:
+Within the test file, you need to specified the feature file and the scenario to run, e.g:
 ```
-@scenario("../features/file_name.feature", "Download Chrome")
+@scenario("../features/file_name.feature", "Download Chrome") or
+@scenarios("../features/")
 ```
 1. Run tests for a specific tag
 ```

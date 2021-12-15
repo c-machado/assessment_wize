@@ -7,6 +7,16 @@ class PageLocators(object):
     # chrome_url = "https://chromatica-dot-googwebreview.appspot.com"
 
     overview = (By.CSS_SELECTOR, "[data-section='overview']")
+    cookie_banner = (By.CSS_SELECTOR, ".cookieBarConsentButton")
+    legal_links_list = (By.CSS_SELECTOR, ".h-c-footer__link")
+    social_media_list = (By.CSS_SELECTOR, ".h-c-social__link.uni-click-tracker")
+    social_media_locators = {
+        "instagram": (By.XPATH, "//*[starts-with(@href, 'https://www.instagram.com')]"),
+        "twitter": (By.XPATH, "//a[@class='h-c-social__link uni-click-tracker' and starts-with(@href, 'https://twitter.com')]"),
+        "youtube": (By.XPATH, "//*[starts-with(@href, 'https://www.youtube.com')]"),
+        "facebook": (By.XPATH, "//*[starts-with(@href, 'https://www.facebook.com')]"),
+        "linkedin": (By.XPATH, "//*[starts-with(@href, 'https://www.linkedin.com')]"),
+    }
     ############old
     accept_tos = (By.ID, "js-accept-install")
     accept_installer = {
@@ -20,7 +30,6 @@ class PageLocators(object):
     android_page = (By.XPATH, "//a[contains(@href,'play.google.com')]")
     built_in_page_link = (By.CSS_SELECTOR, "a[href='/chrome/googlebuiltin/']")
     cookie_banner_cta = (By.CSS_SELECTOR, ".chr-cookie-banner__button button")
-    cookie_banner = (By.ID, "js-cookie-banner")
     close_cookie_cta = (By.CSS_SELECTOR, "button[ga-event-label='cookie:ok-got-it']")
     deprecated_msg_dev_mac49 = (By.ID, "hero-u-d-channel-mac49-dev")
     download_again = (By.ID, "js-download-fallback")

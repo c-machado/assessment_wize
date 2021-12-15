@@ -13,6 +13,7 @@ webdriver-manager = ">=3.4.2"
 pytest-html = ">=3.1.1"
 pytest-bdd = "<=4.1.0"
 assertpy = "*"
+pytest-xdist = ">=2.3.0"
 
 #browsermob_proxy= ">=0.8.0"
 #py = ">=1.10.0"

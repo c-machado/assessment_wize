@@ -4,6 +4,7 @@ import warnings
 
 import selenium
 # from selenium.webdriver import DesiredCapabilities
+from selenium.webdriver.common.by import By
 
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
@@ -150,12 +151,12 @@ class Driver(IDriver):
         s = Service(driver_path)
         self.driver = webdriver.Chrome(service=s,
                                        options=options)
-        device_metrics = {"width": 600,
-                          "height": 1000,
-                          "mobile": True,
-                          "deviceScaleFactor": 50
-                          }
-        self.driver.execute_cdp_cmd("Emulation.setDeviceMetricsOverride", device_metrics)
+        # device_metrics = {"width": 600,
+        #                   "height": 1000,
+        #                   "mobile": True,
+        #                   "deviceScaleFactor": 50
+        #                   }
+        # self.driver.execute_cdp_cmd("Emulation.setDeviceMetricsOverride", device_metrics)
 
     # def build_ie_driver(self, web_browser):
     #     if web_browser == 'ie':
@@ -244,8 +245,16 @@ class Driver(IDriver):
             return self.driver.find_element(*locator)
         return self.driver.find_element(*(locator[1], locator[2] % locator[0]))
 
+    def find_elements(self, *locator):
+        if locator.__len__() == 2:
+            return self.driver.find_element(*locator)
+        return self.driver.find_elements(*(locator[1], locator[2] % locator[0]))
+
     def find_element_by_id(self, locator):
         self.driver.find_element_by_id(locator)
+
+    def get_elements_list(self, locator):
+        return self.driver.find_elements(*locator)
 
     def get_elements_in_modal(self, element):
         action = ActionChains(self.driver)
@@ -320,16 +329,16 @@ class Driver(IDriver):
         self.wait_for_element_visible(*locator)
 
     def wait_for_element_clickable(self, *locator):
-        wait = WebDriverWait(self.driver, 50)
+        wait = WebDriverWait(self.driver, 10)
         if locator.__len__() == 2:
             return wait.until(expected_conditions.element_to_be_clickable(locator))
 
     def wait_for_element_visible(self, *locator):
-        wait = WebDriverWait(self.driver, 50)
+        wait = WebDriverWait(self.driver, 10)
         if locator.__len__() == 2:
             return wait.until(expected_conditions.visibility_of_element_located(locator))
 
     def wait_for_element_not_visible(self, *locator):
-        wait = WebDriverWait(self.driver, 50)
+        wait = WebDriverWait(self.driver, 10)
         if locator.__len__() == 2:
             return wait.until(expected_conditions.invisibility_of_element_located(locator))

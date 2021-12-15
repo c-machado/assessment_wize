@@ -19,6 +19,14 @@ class Constants(object):
         "tablet": "--height=1024",
         "desktop": "--height=768"
     }
+    LEGAL_LINKS_FOOTER_US_LOCALE_DICT = {
+        "Privacy": "https://policies.google.com/privacy",
+        "Terms": "https://policies.google.com/terms",
+        "About Google": "https://about.google/",
+        "Google Products": "https://about.google/products/",
+        "About the Keyword": "https://blog.google/inside-google/company-announcements/about/",
+        "Help": "https://support.google.com/"
+    }
     PLATFORM_IOS = 'IOS'
     PLATFORM_MAC = 'MAC'
     PLATFORM_WIN = "WIN"

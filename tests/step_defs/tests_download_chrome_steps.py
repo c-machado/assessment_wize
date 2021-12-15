@@ -271,28 +271,28 @@ def user_clicks_to_link(browser, base_page, link):
     browser.click_to_element(element)
 
 
-@then("the user is redirected to the play store <url>")
-@then("the user is redirected to <url>")
-# @pytest.mark.execution_timeout(0.5)
-# @pytest.mark.teardown_timeout(0.4)
-def redirect_to_url(browser, url, base_page):
-    assert base_page.get_status_redirect() == 200
-    print('status base_page:', base_page.get_status_redirect())
-    print('url:', url)
-    print('current url:', browser.current_url())
-    assert browser.current_url().__contains__(url)
-
-
-@then("the user is redirected to the <url> in a new tab")
-# @pytest.mark.flaky(rerun=1, reruns_delay=0.5, reason="NetworkError: A network error occurred. Error 500,"
-#                                                      "IndexError: list index out of range")
-def redirect_to_url_new_tab(browser, base_page, url):
-    browser.switch_to_active_tab()
-    assert base_page.get_status_redirect() == 200
-    print('status base_page:', base_page.get_status_redirect())
-    print('url:', url)
-    print('current url:', browser.current_url())
-    assert browser.current_url().__contains__(url)
+# @then("the user is redirected to the play store <url>")
+# @then("the user is redirected to <url>")
+# # @pytest.mark.execution_timeout(0.5)
+# # @pytest.mark.teardown_timeout(0.4)
+# def redirect_to_url(browser, url, base_page):
+#     assert base_page.get_status_redirect() == 200
+#     print('status base_page:', base_page.get_status_redirect())
+#     print('url:', url)
+#     print('current url:', browser.current_url())
+#     assert browser.current_url().__contains__(url)
+#
+#
+# @then("the user is redirected to the <url> in a new tab")
+# # @pytest.mark.flaky(rerun=1, reruns_delay=0.5, reason="NetworkError: A network error occurred. Error 500,"
+# #                                                      "IndexError: list index out of range")
+# def redirect_to_url_new_tab(browser, base_page, url):
+#     browser.switch_to_active_tab()
+#     assert base_page.get_status_redirect() == 200
+#     print('status base_page:', base_page.get_status_redirect())
+#     print('url:', url)
+#     print('current url:', browser.current_url())
+#     assert browser.current_url().__contains__(url)
 
 
 @when("the user clicks on Download")
