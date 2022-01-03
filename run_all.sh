@@ -3,10 +3,8 @@
 
 printf "STARTING TEST:\n"
 
-#python -m pytest
-#--html=reports/blog/home.html
-
-pytest tests/ -m "keyword-test" --html=reports/blog/test.html
+pytest tests/ -m "header" --html=reports/blog/header.html --self-contained-html
+pytest tests/ -m "footer" --html=reports/blog/footer.html --self-contained-html
 
 #docker run --rm -v "$(pwd)"/reports:/chrome-test/tests/reports chrome/linux:latest
 

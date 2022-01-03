@@ -1,4 +1,6 @@
 class Constants(object):
+    BASE_URL = 'https://blog.google'
+    # BASE_URL = 'https://gweb-uniblog-publish-stage.appspot.com/supportingnews'
 
     CHROME_WINDOWS_SIZE = {
         "mobile": "window-size=414,896",
@@ -18,6 +20,17 @@ class Constants(object):
         "mobile": "--height=640",
         "tablet": "--height=1024",
         "desktop": "--height=768"
+    }
+    KEBAB_MENU_OPTIONS = {
+        "rss_us": "RSS feed",
+        "rss_de": "RSS-Feed",
+        "rss_in": "RSS feed",
+        "rss_au": "RSS feed",
+        "press_us": "Press corner",
+        "press_de": "Pressezentrum",
+        "press_in": "Press corner",
+        "press_au": "Press corner",
+
     }
     LEGAL_LINKS_FOOTER_US_LOCALE_DICT = {
         "Privacy": "https://policies.google.com/privacy",

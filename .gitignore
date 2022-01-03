@@ -2,6 +2,8 @@
 /.idea
 *.log
 /.pytest_cache
+/tests/step_defs/__pycache__/
+/tests/pages/__pycache__/
 
 /html_reports
 reports/
@@ -9,3 +11,7 @@ requirements.txt
 tmp/
 
 Pipfile.lock
+geckodriver.log
+server.log
+.editorconfig
+/.DS_Store

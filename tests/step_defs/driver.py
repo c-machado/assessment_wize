@@ -170,30 +170,6 @@ class Driver(IDriver):
     #             capabilities=caps)
     #         return self.driver
 
-    def set_window_size(self, width, height):
-        self.driver.set_window_size(width, height)
-
-    @staticmethod
-    def get_window_size(viewport):
-        for viewport_id, win_size in Constants.CHROME_WINDOWS_SIZE.items():
-            if viewport_id == viewport:
-                return win_size
-
-    @staticmethod
-    def get_win_width(viewport, width_browser):
-        for viewport_id, width in width_browser.items():
-            if viewport_id == viewport:
-                return width
-
-    @staticmethod
-    def get_win_height(viewport, height_browser):
-        for viewport_id, height in height_browser.items():
-            if viewport_id == viewport:
-                return height
-
-    def maximize_window(self):
-        self.driver.maximize_window()
-
     # options, error with chrome running in parallel:
     # https://stackoverflow.com/questions/65418237/chromedriver-crashing-on-some-websites
     # def build_remote_driver(self, run_type, web_browser):
@@ -230,9 +206,8 @@ class Driver(IDriver):
         self.wait_for_element_visible(*clickable_element)
         self.driver.find_element(*clickable_element).click()
 
-    def click_to_element_async(self, locator):
-        element = self.driver.find_element(*locator)
-        self.driver.execute_script("arguments[0].click();", element)
+    def close(self):
+        self.driver.close()
 
     def __contains__(self, item):
         return self.driver.__contains__(item)
@@ -247,57 +222,48 @@ class Driver(IDriver):
 
     def find_elements(self, *locator):
         if locator.__len__() == 2:
-            return self.driver.find_element(*locator)
+            return self.driver.find_elements(*locator)
         return self.driver.find_elements(*(locator[1], locator[2] % locator[0]))
-
-    def find_element_by_id(self, locator):
-        self.driver.find_element_by_id(locator)
 
     def get_elements_list(self, locator):
         return self.driver.find_elements(*locator)
 
-    def get_elements_in_modal(self, element):
-        action = ActionChains(self.driver)
-        action.move_to_element(self.driver.find_element_by_id(element)).perform()
-        elements_list = self.driver.find_element_by_id(element)
-        return elements_list.find_elements_by_tag_name("a")
-
-    def find_element_by_xpath(self, xpath):
-        self.driver.find_element_by_xpath(xpath)
-
-    def find_element_by_css_selector(self, css):
-        self.driver.find_element_by_css_selector(css)
-
-    def find_elements_by_tag_name(self, tag):
-        self.driver.find_elements_by_tag_name(tag)
+    def get_urls_list(self, locator):
+        elements = self.driver.find_elements(*locator)
+        urls = []
+        for element in elements:
+            urls.append(element.get_attribute("href"))
+        return urls
 
     def go_to_URL(self, url):
         self.driver.get(url)
 
-    def is_element_visible(self, element):
-        visible_element = self.driver.find_element(*element)
-        return visible_element.get_attribute("href")
+    @staticmethod
+    def get_window_size(viewport):
+        for viewport_id, win_size in Constants.CHROME_WINDOWS_SIZE.items():
+            if viewport_id == viewport:
+                return win_size
 
-    def is_modal_visible_by_id(self, element):
-        action = ActionChains(self.driver)
-        action.move_to_element(self.driver.find_element_by_id(element)).perform()
-        return self.driver.find_element_by_id(element).is_displayed()
+    @staticmethod
+    def get_win_width(viewport, width_browser):
+        for viewport_id, width in width_browser.items():
+            if viewport_id == viewport:
+                return width
+
+    @staticmethod
+    def get_win_height(viewport, height_browser):
+        for viewport_id, height in height_browser.items():
+            if viewport_id == viewport:
+                return height
 
     def is_displayed(self):
         self.driver.is_displayed()
 
-    def get_inner_html(self, element):
-        element = self.driver.find_element(*element)
-        return element.get_attribute('innerHTML')
+    def maximize_window(self):
+        self.driver.maximize_window()
 
-    def match_current_url(self, url):
-        return self.driver.current_url.__contains__(url)
-
-    def quit_browser(self):
-        self.driver.quit()
-
-    def close(self):
-        self.driver.close()
+    def set_window_size(self, width, height):
+        self.driver.set_window_size(width, height)
 
     def switch_to_active_tab(self):
         handles_before = self.driver.window_handles
@@ -305,14 +271,8 @@ class Driver(IDriver):
         wait.until(lambda x: len(handles_before) > 1)
         self.driver.switch_to.window(self.driver.window_handles[1])
 
-    def accept_alert(self):
-        self.driver.switch_to().alert().accept()
-
-    def get_text_alert(self):
-        self.driver.switch_to.alert.accept()
-
-    def implicitly_wait(self, wait_time):
-        self.driver.implicitly_wait(wait_time)
+    def quit_browser(self):
+        self.driver.quit()
 
     def wait_untilJSReady(self):
         wait = WebDriverWait(self.driver, 2000)

@@ -38,16 +38,6 @@ class IDriver(metaclass=ABCMeta):
 
     @staticmethod
     @abstractmethod
-    def find_element_by_id(self, id):
-        raise NotImplementedError@staticmethod
-
-    @staticmethod
-    @abstractmethod
-    def find_elements_by_tag_name(self, tag):
-        raise NotImplementedError@staticmethod
-
-    @staticmethod
-    @abstractmethod
     def current_url(self, url):
         raise NotImplementedError@staticmethod
 

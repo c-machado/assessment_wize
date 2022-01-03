@@ -7,11 +7,11 @@ Feature: As a user I would like to interact with the footer links
       |/intl/de-de/      |
       |/intl/en-au/      |
 
-  @keyword-test
+  @footer
   Scenario Outline: Open social media links in new tab
     Given a user is at the <keyword> site
-    When I click on every <social_media> item
-    Then the user is redirected to <url>
+    When the user clicks on every <social_media> item
+    Then the user is redirected to <url> in a new tab
     Examples:
       |social_media   |url                         |
       |instagram      |https://www.instagram.com/  |
@@ -20,9 +20,9 @@ Feature: As a user I would like to interact with the footer links
       |facebook       |https://www.facebook.com/   |
       |linkedin       |https://www.linkedin.com/   |
 
-  @keyword-test
+  @footer
   Scenario: Open legal links
     Given a user is at the <keyword> site
-    When I click on legal items
+    When the user clicks on legal items
     Then the user sees the url according to <keyword> locale
 

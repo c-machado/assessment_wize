@@ -7,6 +7,7 @@ from datetime import datetime
 import pytest
 
 from tests.pages.footer import Footer
+from tests.pages.header import Header
 from tests.step_defs.driver import Driver
 from tests.pages.base_page import BasePage
 from tests.pages.locators import PageLocators
@@ -18,7 +19,7 @@ def pytest_bdd_step_error(request, feature, scenario, step, step_func, step_func
 
 
 @pytest.fixture(autouse=True)
-def browser():
+def driver():
     # Initialize WebDriver Instance
     driver = Driver()
 
@@ -42,8 +43,8 @@ def get_viewport(request):
 
 
 @pytest.fixture
-def base_page(browser):
-    return BasePage(browser)
+def base_page(driver):
+    return BasePage(driver)
 
 
 # def pytest_configure(config):
@@ -94,12 +95,17 @@ def cmdopt(request):
 
 
 @pytest.fixture
-def footer(browser):
-    return Footer(browser)
+def footer(driver):
+    return Footer(driver)
 
 
 @pytest.fixture
-def page_locators(browser):
+def header(driver):
+    return Header(driver)
+
+
+@pytest.fixture
+def page_locators(driver):
     return PageLocators()
 
 
