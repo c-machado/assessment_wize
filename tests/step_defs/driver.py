@@ -5,6 +5,7 @@ import warnings
 import selenium
 # from selenium.webdriver import DesiredCapabilities
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.select import Select
 
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
@@ -143,7 +144,7 @@ class Driver(IDriver):
         size_viewport = self.get_window_size(viewport)
         options.add_argument(size_viewport)
         # options.add_argument('--start-maximized')
-        # options.add_argument('--headless')
+        options.add_argument('--headless')
         options.add_argument('--no-sandbox')
         options.add_argument("--disable-dev-shm-usage")
         # options.add_argument("--remote-debugging-port=9222")
@@ -228,15 +229,19 @@ class Driver(IDriver):
     def get_elements_list(self, locator):
         return self.driver.find_elements(*locator)
 
+    def go_to_URL(self, url):
+        self.driver.get(url)
+
+    def get_select_options(self, locator):
+        options = self.driver.find_element(*locator)
+        return Select(options)
+
     def get_urls_list(self, locator):
         elements = self.driver.find_elements(*locator)
         urls = []
         for element in elements:
             urls.append(element.get_attribute("href"))
         return urls
-
-    def go_to_URL(self, url):
-        self.driver.get(url)
 
     @staticmethod
     def get_window_size(viewport):
@@ -270,12 +275,14 @@ class Driver(IDriver):
         wait = WebDriverWait(self.driver, 50)
         wait.until(lambda x: len(handles_before) > 1)
         self.driver.switch_to.window(self.driver.window_handles[1])
+        self.wait_for_page_load()
+        time.sleep(1)
 
     def quit_browser(self):
         self.driver.quit()
 
-    def wait_untilJSReady(self):
-        wait = WebDriverWait(self.driver, 2000)
+    def wait_for_page_load(self):
+        wait = WebDriverWait(self.driver, 50)
         try:
             js_ready = self.execute_script("return document.readyState")
             if js_ready == "complete":
@@ -283,10 +290,6 @@ class Driver(IDriver):
                 wait.until(lambda x: self.driver.execute_script("return document.readyState") == "complete")
         except Exception as e:
             print(e)
-
-    def wait_retry(self, locator):
-        self.wait_for_element_clickable(*locator)
-        self.wait_for_element_visible(*locator)
 
     def wait_for_element_clickable(self, *locator):
         wait = WebDriverWait(self.driver, 10)

@@ -6,6 +6,7 @@ Feature: As a user I would like to interact with the footer links
       |/                 |
       |/intl/de-de/      |
       |/intl/en-au/      |
+      |/intl/en-in/      |
 
   @footer
   Scenario Outline: Open social media links in new tab
@@ -25,4 +26,16 @@ Feature: As a user I would like to interact with the footer links
     Given a user is at the <keyword> site
     When the user clicks on legal items
     Then the user sees the url according to <keyword> locale
+
+  @footer
+  Scenario Outline: Test language selector
+    Given a user is at the <keyword> site
+    When the user clicks on language selector
+    Then the system displays the selector with the corresponding <locale>
+    Examples:
+      |locale               |
+      |English              |
+      |Deutsch              |
+      |English (India)      |
+      |English (Australia)  |
 

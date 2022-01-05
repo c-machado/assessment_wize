@@ -53,5 +53,5 @@ class IDriver(metaclass=ABCMeta):
 
     @staticmethod
     @abstractmethod
-    def wait_untilJSReady(self):
+    def wait_for_page_load(self):
         raise NotImplementedError @ staticmethod

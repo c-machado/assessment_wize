@@ -14,6 +14,7 @@ pytest-html = ">=3.1.1"
 pytest-bdd = "<=4.1.0"
 assertpy = "*"
 pytest-xdist = ">=2.3.0"
+pytest-rerunfailures = ">=10.2"
 
 #browsermob_proxy= ">=0.8.0"
 #py = ">=1.10.0"
@@ -23,7 +24,7 @@ pytest-xdist = ">=2.3.0"
 #pytest-parallel = ">=0.1.0"
 #pytest-xdist = ">=2.3.0"
 #docker-compose = "*"
-#pytest-rerunfailures = ">=10.2"
+
 #pylint = "*"
 #w3lib = ""
 

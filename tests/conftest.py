@@ -6,6 +6,7 @@ from datetime import datetime
 
 import pytest
 
+from tests.pages.cookie_banner import CookieBanner
 from tests.pages.footer import Footer
 from tests.pages.header import Header
 from tests.step_defs.driver import Driver
@@ -102,6 +103,11 @@ def footer(driver):
 @pytest.fixture
 def header(driver):
     return Header(driver)
+
+
+@pytest.fixture
+def cookie_banner(driver):
+    return CookieBanner(driver)
 
 
 @pytest.fixture

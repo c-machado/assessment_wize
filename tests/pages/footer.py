@@ -1,5 +1,7 @@
+import time
 
 from tests.pages.base_page import BasePage
+from tests.pages.cookie_banner import CookieBanner
 from tests.pages.locators import PageLocators
 
 
@@ -10,9 +12,8 @@ class Footer(BasePage):
         self.driver = driver
 
     def click_social_media_item(self, social_media):
-        self.scroll_to_bottom()
-        self.close_cookie_banner()
-        # self.scroll_to_content()
+        self.go_to_footer()
+        time.sleep(1)
         self.driver.click_to_element(PageLocators.social_media_locators[social_media])
 
     def target_media_url(self, social_media):
@@ -29,4 +30,15 @@ class Footer(BasePage):
             legal_items_urls_dic[legal_item.text] = legal_item.get_attribute("href")
             print('3', legal_items_urls_dic)
         return legal_items_urls_dic
+
+    def go_to_footer(self):
+        self.scroll_to_bottom()
+        CookieBanner.close_cookie_banner(self)
+
+    def verify_language_selector_content(self, locale):
+        languages = self.driver.get_select_options(PageLocators.language_selector)
+        for opt in languages.options:
+            print('opt language selector: ', opt.text)
+            if opt.text == locale:
+                return True
 

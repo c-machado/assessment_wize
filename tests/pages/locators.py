@@ -4,12 +4,17 @@ from selenium.webdriver.common.by import By
 class PageLocators(object):
 
     overview = (By.CSS_SELECTOR, "[data-section='overview']")
-    cookie_banner = (By.CSS_SELECTOR, ".cookieBarConsentButton")
+    article_read_more_cta = (By.CSS_SELECTOR, "a.featured-article__link span.cta")
+    cookie_banner_ok_cta = (By.CSS_SELECTOR, ".cookieBarConsentButton")
+    cookie_banner_bar = (By.ID, "cookieBar")
+    cookie_see_details_cta = (By.CSS_SELECTOR, ".cookieBarMoreButton")
     kebab_toggle = (By.CSS_SELECTOR, '.uni-header__kebab-toggle')
     kebab__options_locators = {
         "rss": (By.CSS_SELECTOR, 'div.uni-header__kebab > ul > li:nth-child(2) > a'),
         "press": (By.CSS_SELECTOR, 'div.uni-header__kebab > ul > li:nth-child(1) > a')
     }
+    language_selector = (By.NAME, "language")
+    language_selector_options = (By.CSS_SELECTOR, "select[name='language'] > option")
     legal_links_list = (By.CSS_SELECTOR, ".h-c-footer__link")
     menu_cta_all_product_updates = (By.CSS_SELECTOR, ".uni-main-menu__submenu-view-all-link")
     social_media_list = (By.CSS_SELECTOR, ".h-c-social__link.uni-click-tracker")
