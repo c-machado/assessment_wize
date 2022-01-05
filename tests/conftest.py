@@ -9,6 +9,7 @@ import pytest
 from tests.pages.cookie_banner import CookieBanner
 from tests.pages.footer import Footer
 from tests.pages.header import Header
+from tests.pages.newsletterr import Newsletter
 from tests.step_defs.driver import Driver
 from tests.pages.base_page import BasePage
 from tests.pages.locators import PageLocators
@@ -108,6 +109,11 @@ def header(driver):
 @pytest.fixture
 def cookie_banner(driver):
     return CookieBanner(driver)
+
+
+@pytest.fixture
+def newsletter(driver):
+    return Newsletter(driver)
 
 
 @pytest.fixture

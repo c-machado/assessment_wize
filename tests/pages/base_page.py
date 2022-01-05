@@ -34,6 +34,12 @@ class BasePage(object):
                 print('response', response, 'internal', internal_item)
             assert response.status_code == 200
 
+    @staticmethod
+    def remove_enter(string):
+        import re
+        pattern = re.compile(r'\n+')
+        return re.sub(pattern, '', string)
+
     def scroll_to_bottom(self):
         self.driver.execute_script("window.scroll({top: document.body.scrollHeight-80, behavior: 'smooth'});")
 

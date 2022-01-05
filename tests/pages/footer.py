@@ -31,9 +31,9 @@ class Footer(BasePage):
             print('3', legal_items_urls_dic)
         return legal_items_urls_dic
 
-    def go_to_footer(self):
+    def go_to_footer(self, cookie_banner):
         self.scroll_to_bottom()
-        CookieBanner.close_cookie_banner(self)
+        cookie_banner.close_cookie_banner(self)
 
     def verify_language_selector_content(self, locale):
         languages = self.driver.get_select_options(PageLocators.language_selector)

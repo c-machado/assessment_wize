@@ -3,7 +3,6 @@ from selenium.webdriver.common.by import By
 
 class PageLocators(object):
 
-    overview = (By.CSS_SELECTOR, "[data-section='overview']")
     article_read_more_cta = (By.CSS_SELECTOR, "a.featured-article__link span.cta")
     cookie_banner_ok_cta = (By.CSS_SELECTOR, ".cookieBarConsentButton")
     cookie_banner_bar = (By.ID, "cookieBar")
@@ -16,7 +15,16 @@ class PageLocators(object):
     language_selector = (By.NAME, "language")
     language_selector_options = (By.CSS_SELECTOR, "select[name='language'] > option")
     legal_links_list = (By.CSS_SELECTOR, ".h-c-footer__link")
-    menu_cta_all_product_updates = (By.CSS_SELECTOR, ".uni-main-menu__submenu-view-all-link")
+    menu_all_product_updates_cta = (By.CSS_SELECTOR, ".uni-main-menu__submenu-view-all-link")
+    menu_subscribe_cta = (By.CSS_SELECTOR, "div[data-component='uni-cta-newsletter'].uni-header__newsletter--desktop")
+    menu_subscribe_cta_toast = (By.CSS_SELECTOR, ".uni-newsletter-toast__cta--sub")
+    newsletter_close_icon = (By.CSS_SELECTOR, ".uni-subscribe-modal__icon-close-container")
+    newsletter_first_name_field = (By.ID, "uni-subscribe-first-name")
+    newsletter_email_field = (By.ID, "uni-subscribe-email")
+    newsletter_modal = (By.CSS_SELECTOR, ".uni-subscribe-modal__body")
+    newsletter_success_modal = (By.CSS_SELECTOR, "[data-slide='success']")
+    newsletter_subscribe_cta = (By.CSS_SELECTOR, ".uni-subscribe-modal__submit")
+    newsletter_subscribed_msg = (By.ID, "subscribe_success_label")
     social_media_list = (By.CSS_SELECTOR, ".h-c-social__link.uni-click-tracker")
     social_media_locators = {
         "instagram": (By.XPATH, "//*[starts-with(@href, 'https://www.instagram.com')]"),

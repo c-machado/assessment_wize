@@ -35,6 +35,7 @@ class Driver(IDriver):
 
     def __init__(self):
         self.driver = None
+        self.web_element = None
 
     def start(self, web_browser, viewport):
         if web_browser in Constants.UA_BROWSERS:
@@ -144,7 +145,7 @@ class Driver(IDriver):
         size_viewport = self.get_window_size(viewport)
         options.add_argument(size_viewport)
         # options.add_argument('--start-maximized')
-        options.add_argument('--headless')
+        # options.add_argument('--headless')
         options.add_argument('--no-sandbox')
         options.add_argument("--disable-dev-shm-usage")
         # options.add_argument("--remote-debugging-port=9222")
@@ -261,9 +262,6 @@ class Driver(IDriver):
             if viewport_id == viewport:
                 return height
 
-    def is_displayed(self):
-        self.driver.is_displayed()
-
     def maximize_window(self):
         self.driver.maximize_window()
 
@@ -292,16 +290,16 @@ class Driver(IDriver):
             print(e)
 
     def wait_for_element_clickable(self, *locator):
-        wait = WebDriverWait(self.driver, 10)
+        wait = WebDriverWait(self.driver, 50)
         if locator.__len__() == 2:
             return wait.until(expected_conditions.element_to_be_clickable(locator))
 
     def wait_for_element_visible(self, *locator):
-        wait = WebDriverWait(self.driver, 10)
+        wait = WebDriverWait(self.driver, 50)
         if locator.__len__() == 2:
             return wait.until(expected_conditions.visibility_of_element_located(locator))
 
     def wait_for_element_not_visible(self, *locator):
-        wait = WebDriverWait(self.driver, 10)
+        wait = WebDriverWait(self.driver, 50)
         if locator.__len__() == 2:
             return wait.until(expected_conditions.invisibility_of_element_located(locator))

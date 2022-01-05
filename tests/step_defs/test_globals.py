@@ -5,11 +5,17 @@ import requests
 from pytest_bdd import scenarios, given, when, then
 
 from tests.consts.constants import Constants
+from tests.pages.cookie_banner import CookieBanner
+from tests.pages.footer import Footer
+from tests.pages.header import Header
 from tests.pages.locators import PageLocators
+from tests.pages.newsletterr import Newsletter
 
 scenarios("../features/globals/")
 
 BASE_URL = 'https://blog.google'
+
+
 # BASE_URL = 'https://gweb-uniblog-publish-stage.appspot.com/supportingnews'
 
 
@@ -133,3 +139,44 @@ def user_sees_rss_and_press_options(header, kebab_option, locale):
 @then("the cookie banner is not displayed")
 def cookie_not_displayed(cookie_banner):
     cookie_banner.cookie_not_displayed()
+
+
+@when("the user clicks on subscribe cta")
+def user_clicks_subscribe_cta(header):
+    header.click_on_subscribe_cta()
+
+
+@when("the user fills out the form")
+def user_fills_out_newsletter_form(newsletter):
+    newsletter.enter_first_name()
+    newsletter.enter_email()
+
+
+@when("the user submits the information")
+def user_submit_form(newsletter):
+    newsletter.submit_newsletter_form()
+
+
+@then("the system displays confirmation message")
+def verify_confirmation_msg(newsletter, base_page):
+    message = newsletter.confirm_newsletter_subscription().text
+    formatted_message = base_page.remove_enter(message)
+    print('formatted_message', formatted_message)
+    print('expected_message', Constants.NEWSLETTER_CONFIRMATION)
+    assert Constants.NEWSLETTER_CONFIRMATION == formatted_message
+
+
+@when("the user clicks on subscribe cta in the toast")
+def user_clicks_subscribe_cta_toast(cookie_banner, footer, header):
+    footer.go_to_footer()
+    header.click_on_subscribe_cta_toast()
+
+
+@when("the user closes the modal")
+def user_clicks_to_close_newsletter_modal(newsletter):
+    newsletter.close_newsletter_modal()
+
+
+@then("the system hides the modal")
+def newsletter_modal_not_visible(newsletter):
+    newsletter.modal_not_visible()

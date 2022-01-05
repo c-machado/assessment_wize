@@ -47,6 +47,9 @@ class Constants(object):
         "About the Keyword": "https://blog.google/inside-google/company-announcements/about/",
         "Help": "https://support.google.com/"
     }
+    NEWSLETTER_FIRST_NAME = 'AT TEST'
+    NEWSLETTER_EMAIL = 'at_test@hugeinc.com'
+    NEWSLETTER_CONFIRMATION = 'Done! Check your inbox toconfirm your subscription.'
     PLATFORM_IOS = 'IOS'
     PLATFORM_MAC = 'MAC'
     PLATFORM_WIN = "WIN"
