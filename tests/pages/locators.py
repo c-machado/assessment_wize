@@ -7,6 +7,9 @@ class PageLocators(object):
     cookie_banner_ok_cta = (By.CSS_SELECTOR, ".cookieBarConsentButton")
     cookie_banner_bar = (By.ID, "cookieBar")
     cookie_see_details_cta = (By.CSS_SELECTOR, ".cookieBarMoreButton")
+    footer_google_logo = (By.CSS_SELECTOR, ".h-c-footer__logo")
+    hamburger_menu = (By.CSS_SELECTOR, ".uni-header__hamburguer-button")
+    hamburger_menu_rss = (By.CSS_SELECTOR, "ul.uni-header__kebab-menu--mobile > li:nth-child(2) > a")
     kebab_toggle = (By.CSS_SELECTOR, '.uni-header__kebab-toggle')
     kebab__options_locators = {
         "rss": (By.CSS_SELECTOR, 'div.uni-header__kebab > ul > li:nth-child(2) > a'),
@@ -15,6 +18,7 @@ class PageLocators(object):
     language_selector = (By.NAME, "language")
     language_selector_options = (By.CSS_SELECTOR, "select[name='language'] > option")
     legal_links_list = (By.CSS_SELECTOR, ".h-c-footer__link")
+    menu_keyword_logo = (By.CSS_SELECTOR, ".uni-header__site-title")
     menu_all_product_updates_cta = (By.CSS_SELECTOR, ".uni-main-menu__submenu-view-all-link")
     menu_subscribe_cta = (By.CSS_SELECTOR, "div[data-component='uni-cta-newsletter'].uni-header__newsletter--desktop")
     menu_subscribe_cta_toast = (By.CSS_SELECTOR, ".uni-newsletter-toast__cta--sub")
@@ -25,14 +29,19 @@ class PageLocators(object):
     newsletter_success_modal = (By.CSS_SELECTOR, "[data-slide='success']")
     newsletter_subscribe_cta = (By.CSS_SELECTOR, ".uni-subscribe-modal__submit")
     newsletter_subscribed_msg = (By.ID, "subscribe_success_label")
+    search_icon_desktop = (By.CSS_SELECTOR, '.uni-header__kebab-search')
+    search_bar_text_field = (By.CSS_SELECTOR, 'input.uni-search__input')
+    search_close_icon_desktop = (By.CSS_SELECTOR, 'button.uni-search__button.uni-search__button-close')
     social_media_list = (By.CSS_SELECTOR, ".h-c-social__link.uni-click-tracker")
     social_media_locators = {
         "instagram": (By.XPATH, "//*[starts-with(@href, 'https://www.instagram.com')]"),
         "twitter": (By.XPATH, "//a[@class='h-c-social__link uni-click-tracker' and starts-with"
                               "(@href, 'https://twitter.com')]"),
         "youtube": (By.XPATH, "//*[starts-with(@href, 'https://www.youtube.com')]"),
-        "facebook": (By.XPATH, "//*[starts-with(@href, 'https://www.facebook.com')]"),
-        "linkedin": (By.XPATH, "//*[starts-with(@href, 'https://www.linkedin.com')]")
+        "facebook": (By.XPATH, "//a[@class='h-c-social__link uni-click-tracker' and "
+                               "starts-with(@href, 'https://www.facebook.com')]"),
+        "linkedin": (By.XPATH, "//a[@class='h-c-social__link uni-click-tracker' and "
+                               "starts-with(@href, 'https://www.linkedin.com')]")
     }
     submenu_company_news_see_all_ctas = (By.CSS_SELECTOR, ".uni-main-menu__submenu-item-see-all")
     submenu_items_locators = {

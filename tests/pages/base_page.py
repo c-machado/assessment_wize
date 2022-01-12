@@ -1,6 +1,7 @@
 import pytest
 import requests
 
+from tests.consts.constants import Constants
 from tests.pages.locators import PageLocators
 
 
@@ -13,6 +14,16 @@ class BasePage(object):
 
     def click_tab(self, tab_locator):
         self.driver.click_to_element(tab_locator)
+
+    def get_current_page(self):
+        self.driver.switch_to_active_tab()
+        print('current url ', self.driver.current_url())
+        return self.driver.current_url()
+
+    @staticmethod
+    def get_format_date(date, format_date):
+        from datetime import datetime
+        return datetime.strptime(date, format_date).strftime(Constants.YYYY_MM_DD)
 
     def get_status_redirect(self):
         return self.driver.execute_script("var xhr = new XMLHttpRequest();"

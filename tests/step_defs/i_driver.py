@@ -38,7 +38,7 @@ class IDriver(metaclass=ABCMeta):
 
     @staticmethod
     @abstractmethod
-    def current_url(self, url):
+    def current_url(self):
         raise NotImplementedError@staticmethod
 
     @staticmethod

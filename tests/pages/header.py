@@ -1,7 +1,7 @@
+import requests
 
 from tests.consts.constants import Constants
 from tests.pages.base_page import BasePage
-from tests.pages.cookie_banner import CookieBanner
 from tests.pages.locators import PageLocators
 
 
@@ -15,8 +15,20 @@ class Header(BasePage):
         if locale == '/':
             self.driver.click_to_element(PageLocators.menu_all_product_updates_cta)
 
+    def click_on_hamburger_menu(self):
+        self.driver.click_to_element(PageLocators.hamburger_menu)
+
+    def click_on_hamburger_rss(self):
+        self.driver.click_to_element(PageLocators.hamburger_menu_rss)
+
+    def click_on_nav_logo(self):
+        self.driver.click_to_element(PageLocators.menu_keyword_logo)
+
     def click_on_kebab_menu(self):
         self.driver.click_to_element(PageLocators.kebab_toggle)
+
+    def click_on_kebab_option(self, kebab_option):
+        self.driver.click_to_element(PageLocators.kebab__options_locators[kebab_option])
 
     def click_on_submenu_item(self, submenu):
         submenu_locator = self.get_item_selector(submenu, PageLocators.submenu_locators)
@@ -35,8 +47,18 @@ class Header(BasePage):
     def confirm_kebab_menu_opts(self, locale, option):
         kebab_option_selector = self.get_item_selector(option, PageLocators.kebab__options_locators)
         option_text_in_page = self.driver.find_element(*kebab_option_selector).text
+        print('option_text_in_page', option_text_in_page)
         option_text_expected = self.get_kebab_opt_expected_text(locale, option)
+        print('option_text_expected', option_text_expected)
         assert option_text_in_page == option_text_expected
+
+    def get_publish_date_in_rss(self):
+        from bs4 import BeautifulSoup
+        soup = BeautifulSoup(self.driver.get_page_source(), 'xml')
+        # print('all', soup.prettify())
+        publish_date = soup.find('lastBuildDate').text
+        date_formatted = self.get_format_date(publish_date[5:16], Constants.DD_M_LETTER_YYYY)
+        return date_formatted
 
     @staticmethod
     def get_kebab_opt_expected_text(locale, option):

@@ -10,6 +10,7 @@ from tests.pages.cookie_banner import CookieBanner
 from tests.pages.footer import Footer
 from tests.pages.header import Header
 from tests.pages.newsletterr import Newsletter
+from tests.pages.search import Search
 from tests.step_defs.driver import Driver
 from tests.pages.base_page import BasePage
 from tests.pages.locators import PageLocators
@@ -32,7 +33,8 @@ def driver():
     driver.quit_browser()
 
 
-# @pytest.fixture(params=["chrome", "firefox", "safari"], scope="module")
+# TODO: Safari initialization is not working with Selenium 4
+# @pytest.fixture(params=["chrome", "firefox", "safari"], scope="module", autouse=True)
 @pytest.fixture(params=["chrome"], scope="module", autouse=True)
 def get_web_browser(request):
     return request.param
@@ -114,6 +116,11 @@ def cookie_banner(driver):
 @pytest.fixture
 def newsletter(driver):
     return Newsletter(driver)
+
+
+@pytest.fixture
+def search(driver):
+    return Search(driver)
 
 
 @pytest.fixture

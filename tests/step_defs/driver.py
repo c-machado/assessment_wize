@@ -55,26 +55,6 @@ class Driver(IDriver):
         warnings.filterwarnings(action="ignore", message="unclosed", category=ResourceWarning)
         return self.driver
 
-    # selenium.common.exceptions.InvalidCookieDomainException: Message: invalid cookie domain
-    def set_cookie(self):
-        try:
-            cookie_data = {
-                "domain": "gweb-uniblog-publish-stage.appspot.com",
-                "path": "/",
-                "name": "GCP_IAAP_AUTH_TOKEN_B01769F84EF452A5",
-                "value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjkzNDFhYmM0MDkyYjZmYzAzOGU0MDNjOTEwMjJkZDNlNDQ1MzliNTYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiIyNjMzNTM0OTQ5MTYtYXR1NTRrM3YxOTQ5MXBnZnNqampqOTdjZWNjNG52bmIuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiIyNjMzNTM0OTQ5MTYtYXR1NTRrM3YxOTQ5MXBnZnNqampqOTdjZWNjNG52bmIuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDg1NTgwNDI2NDc1NDMyNDcxOTEiLCJoZCI6Imh1Z2VpbmMuY29tIiwiZW1haWwiOiJjbWFjaGFkb0BodWdlaW5jLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhdF9oYXNoIjoiTndDbGZhbW80MVhRcGRyQTV4eGdHdyIsImdvb2dsZSI6eyJnaWMiOiJBR09vNTJpdUxTMzVSb1FsVUM5d2dxbFV5ZXNHbm93UmxZbUtBVFVoN0puajd0NnhUQ21qb3FuMmNJeFJzLVNreU1sdTJreWdrdHlseFRQV05aajZOZWVMYVJZYi0tbEJwTVgwLU9pMlpxeE9qQy1hOE1oek1fOVg0NXNhbkp4WGUyWW1RcnpsQlRGeDBPa0xOTk1nX2VnaWJYNmJ3YnIzY05QLXk0RXZhT1o5X0ZCOWwyMnpNbHdnbFhjT3R3T2xPWDVZMll4SXZvSFZIUFdUbGZNcmVEU2F2V1BGMEk5RXl1ZDNrdyJ9LCJpYXQiOjE2Mzg4MTA1OTMsImV4cCI6MTYzODgxNDE5M30.fz-G5nOYbMJuFZxJCv0xR7iH5rDhpyTtMmtIe96ni4uFIHq275AkmP67Ick1gTGJlx5BBq6xewRTgNAHp0tbyx3rNl0jzgwHh2gT_nYFO9wLZ8WcRVrvyqCjNoRbBd94jxq2mWC1M90vt_OE7KBoHNuZRUFOam4k9xZxC73iBGPUy9G3RSMNop9cYB3arZjF4S-FVJRQGp8Ecv2eG0lxnNCOpjeas-iy8J5qunVUlX1MIIkLiRQS3coWuuJN00WN32BxoHWRg9UV7TquAUAY_62-UhYjhknI9uJhr4jHStmG81siwpl5VdwAjVX2MeS-rXNmSpYQcPCD_o69XY9a3Q",
-                # "expirationDate": 1798790400,
-                # "hostOnly": False,
-                "httpOnly": True,
-                "secure": False,
-                # "session": False,
-                "sameSite": "None"
-            }
-            self.driver.add_cookie(cookie_data)
-            # self.driver.refresh()
-        except exceptions.InvalidCookieDomainException as e:
-            print(e)
-
     def build_driver_with_user_agent(self, web_browser, viewport):
         for browser_id, ua in Constants.USER_AGENTS.items():
             if browser_id == web_browser:
@@ -86,64 +66,16 @@ class Driver(IDriver):
                 warnings.filterwarnings(action="ignore", message="unclosed", category=ResourceWarning)
                 return self.driver
 
-    def refresh(self):
-        self.driver.refresh()
-
-    def set_chrome_ua(self, ua, viewport):
-        self.build_chrome_driver(ChromeDriverManager().install(), viewport)
-        self.driver.execute_cdp_cmd('Network.setUserAgentOverride', {"userAgent": ua})
-
-    def set_firefox_ua(self, ua):
-        self.build_firefox_driver(GeckoDriverManager().install())
-        profile = webdriver.FirefoxProfile()
-        profile.set_preference("general.useragent.override", ua)
-
-    # DeprecationWarning: port has been deprecated, please set it via the service class
-    def build_safari_driver(self, viewport):
-        options = Options()
-        options.set_capability('port', 0)
-        # options.add_argument('acceptInsecureCerts=True')
-        width = self.get_win_width(viewport, Constants.SAFARI_WINDOWS_WIDTH)
-        height = self.get_win_height(viewport, Constants.SAFARI_WINDOWS_HEIGHT)
-        # options.add_argument(width)
-        # options.add_argument(height)
-        self.driver = webdriver.Safari(options)
-        # self.driver.set_window_size(width, height)
-
-    def build_firefox_driver(self, driver_path, viewport):
-        options = Options()
-        # options.add_argument('--headless')
-        width = self.get_win_width(viewport, Constants.FF_WINDOWS_WIDTH)
-        height = self.get_win_height(viewport, Constants.FF_WINDOWS_HEIGHT)
-        options.add_argument(width)
-        options.add_argument(height)
-        s = Service(driver_path)
-        self.driver = webdriver.Firefox(service=s,
-                                        options=options)
-
-    def build_edge_driver(self, driver_path, viewport):
-        options = Options()
-        # options.add_argument('--headless')
-        s = Service(driver_path)
-        self.driver = webdriver.Edge(options=options)
-
-    def add_cookie(self, cookie_data):
-        self.driver.add_cookie(cookie_data)
-
-    def get_cookie(self):
-        self.driver.get_cookie()
-
-    def driver_clear(self):
-        self.driver.driver_clear()
-
     def build_chrome_driver(self, driver_path, viewport):
         print('build chrome')
         options = webdriver.ChromeOptions()
         options.add_experimental_option("prefs", {
             "download.default_directory": r"./tmp",
         })
+        options.add_experimental_option("excludeSwitches", ['enable-automation'])
         size_viewport = self.get_window_size(viewport)
         options.add_argument(size_viewport)
+        options.set_capability("acceptInsecureCerts", True)
         # options.add_argument('--start-maximized')
         # options.add_argument('--headless')
         options.add_argument('--no-sandbox')
@@ -160,6 +92,23 @@ class Driver(IDriver):
         #                   }
         # self.driver.execute_cdp_cmd("Emulation.setDeviceMetricsOverride", device_metrics)
 
+    def build_edge_driver(self, driver_path, viewport):
+        options = Options()
+        # options.add_argument('--headless')
+        s = Service(driver_path)
+        self.driver = webdriver.Edge(options=options)
+
+    def build_firefox_driver(self, driver_path, viewport):
+        options = Options()
+        options.add_argument('--headless')
+        width = self.get_win_width(viewport, Constants.FF_WINDOWS_WIDTH)
+        height = self.get_win_height(viewport, Constants.FF_WINDOWS_HEIGHT)
+        options.add_argument(width)
+        options.add_argument(height)
+        s = Service(driver_path)
+        self.driver = webdriver.Firefox(service=s,
+                                        options=options)
+
     # def build_ie_driver(self, web_browser):
     #     if web_browser == 'ie':
     #         caps = DesiredCapabilities.INTERNETEXPLORER
@@ -171,6 +120,18 @@ class Driver(IDriver):
     #             "C:\\Users\\machadoca\\pyexecnetcache\\keyword\\tests\\bin\\windows\\IEDriverServer.exe",
     #             capabilities=caps)
     #         return self.driver
+
+    # DeprecationWarning: port has been deprecated, please set it via the service class
+    def build_safari_driver(self, viewport):
+        options = Options()
+        # options.set_capability('port', 0)
+        # options.add_argument('acceptInsecureCerts=True')
+        width = self.get_win_width(viewport, Constants.SAFARI_WINDOWS_WIDTH)
+        height = self.get_win_height(viewport, Constants.SAFARI_WINDOWS_HEIGHT)
+        # options.add_argument(width)
+        # options.add_argument(height)
+        self.driver = webdriver.Safari(options)
+        # self.driver.set_window_size(width, height)
 
     # options, error with chrome running in parallel:
     # https://stackoverflow.com/questions/65418237/chromedriver-crashing-on-some-websites
@@ -199,6 +160,47 @@ class Driver(IDriver):
     #             command_executor='http://localhost:4444/wd/hub',
     #             desired_capabilities=caps)
     #         return self.driver
+
+    def set_chrome_ua(self, ua, viewport):
+        self.build_chrome_driver(ChromeDriverManager().install(), viewport)
+        self.driver.execute_cdp_cmd('Network.setUserAgentOverride', {"userAgent": ua})
+
+    # selenium.common.exceptions.InvalidCookieDomainException: Message: invalid cookie domain
+    def set_cookie(self):
+        try:
+            cookie_data = {
+                "domain": "gweb-uniblog-publish-stage.appspot.com",
+                "path": "/",
+                "name": "GCP_IAAP_AUTH_TOKEN_B01769F84EF452A5",
+                "value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjkzNDFhYmM0MDkyYjZmYzAzOGU0MDNjOTEwMjJkZDNlNDQ1MzliNTYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiIyNjMzNTM0OTQ5MTYtYXR1NTRrM3YxOTQ5MXBnZnNqampqOTdjZWNjNG52bmIuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiIyNjMzNTM0OTQ5MTYtYXR1NTRrM3YxOTQ5MXBnZnNqampqOTdjZWNjNG52bmIuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDg1NTgwNDI2NDc1NDMyNDcxOTEiLCJoZCI6Imh1Z2VpbmMuY29tIiwiZW1haWwiOiJjbWFjaGFkb0BodWdlaW5jLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhdF9oYXNoIjoiTndDbGZhbW80MVhRcGRyQTV4eGdHdyIsImdvb2dsZSI6eyJnaWMiOiJBR09vNTJpdUxTMzVSb1FsVUM5d2dxbFV5ZXNHbm93UmxZbUtBVFVoN0puajd0NnhUQ21qb3FuMmNJeFJzLVNreU1sdTJreWdrdHlseFRQV05aajZOZWVMYVJZYi0tbEJwTVgwLU9pMlpxeE9qQy1hOE1oek1fOVg0NXNhbkp4WGUyWW1RcnpsQlRGeDBPa0xOTk1nX2VnaWJYNmJ3YnIzY05QLXk0RXZhT1o5X0ZCOWwyMnpNbHdnbFhjT3R3T2xPWDVZMll4SXZvSFZIUFdUbGZNcmVEU2F2V1BGMEk5RXl1ZDNrdyJ9LCJpYXQiOjE2Mzg4MTA1OTMsImV4cCI6MTYzODgxNDE5M30.fz-G5nOYbMJuFZxJCv0xR7iH5rDhpyTtMmtIe96ni4uFIHq275AkmP67Ick1gTGJlx5BBq6xewRTgNAHp0tbyx3rNl0jzgwHh2gT_nYFO9wLZ8WcRVrvyqCjNoRbBd94jxq2mWC1M90vt_OE7KBoHNuZRUFOam4k9xZxC73iBGPUy9G3RSMNop9cYB3arZjF4S-FVJRQGp8Ecv2eG0lxnNCOpjeas-iy8J5qunVUlX1MIIkLiRQS3coWuuJN00WN32BxoHWRg9UV7TquAUAY_62-UhYjhknI9uJhr4jHStmG81siwpl5VdwAjVX2MeS-rXNmSpYQcPCD_o69XY9a3Q",
+                # "expirationDate": 1798790400,
+                # "hostOnly": False,
+                "httpOnly": True,
+                "secure": False,
+                # "session": False,
+                "sameSite": "None"
+            }
+            self.driver.add_cookie(cookie_data)
+            # self.driver.refresh()
+        except exceptions.InvalidCookieDomainException as e:
+            print(e)
+
+    def set_firefox_ua(self, ua):
+        self.build_firefox_driver(GeckoDriverManager().install())
+        profile = webdriver.FirefoxProfile()
+        profile.set_preference("general.useragent.override", ua)
+
+    def refresh(self):
+        self.driver.refresh()
+
+    def add_cookie(self, cookie_data):
+        self.driver.add_cookie(cookie_data)
+
+    def get_cookie(self):
+        self.driver.get_cookie()
+
+    def driver_clear(self):
+        self.driver.driver_clear()
 
     def current_url(self):
         return self.driver.current_url
@@ -229,6 +231,9 @@ class Driver(IDriver):
 
     def get_elements_list(self, locator):
         return self.driver.find_elements(*locator)
+
+    def get_page_source(self):
+        return self.driver.page_source
 
     def go_to_URL(self, url):
         self.driver.get(url)
@@ -270,22 +275,26 @@ class Driver(IDriver):
 
     def switch_to_active_tab(self):
         handles_before = self.driver.window_handles
+        print('tabs size', len(handles_before))
         wait = WebDriverWait(self.driver, 50)
-        wait.until(lambda x: len(handles_before) > 1)
+        try:
+            if handles_before == 1:
+                wait.until(lambda x: len(handles_before) > 1)
+        except Exception as e:
+            print(e)
         self.driver.switch_to.window(self.driver.window_handles[1])
         self.wait_for_page_load()
-        time.sleep(1)
 
     def quit_browser(self):
         self.driver.quit()
 
+    # TODO: Firefox explicitWait is not working properly
     def wait_for_page_load(self):
         wait = WebDriverWait(self.driver, 50)
         try:
             js_ready = self.execute_script("return document.readyState")
-            if js_ready == "complete":
-                print(js_ready)
-                wait.until(lambda x: self.driver.execute_script("return document.readyState") == "complete")
+            print(js_ready, 'js')
+            wait.until(lambda x: js_ready == "complete")
         except Exception as e:
             print(e)
 

@@ -1,5 +1,6 @@
 class Constants(object):
     BASE_URL = 'https://blog.google'
+    SEARCH_URL = "/search/?query="
     # BASE_URL = 'https://gweb-uniblog-publish-stage.appspot.com/supportingnews'
 
     COOKIE_BANNER_TXT = {
@@ -47,6 +48,34 @@ class Constants(object):
         "About the Keyword": "https://blog.google/inside-google/company-announcements/about/",
         "Help": "https://support.google.com/"
     }
+    LEGAL_LINKS_FOOTER_INDIA_LOCALE_DICT = {
+        "Privacy": "https://policies.google.com/privacy",
+        "Terms": "https://policies.google.com/terms",
+        "About Google": "https://about.google/",
+        "Google Products": "https://about.google/products/",
+        "About the Keyword": "https://blog.google/intl/en-in/about",
+        "Help": "https://support.google.com/"
+    }
+    LEGAL_LINKS_FOOTER_AUSTRALIA_LOCALE_DICT = {
+        "Privacy": "https://policies.google.com/privacy",
+        "Terms": "https://policies.google.com/terms",
+        "About Google": "https://about.google/intl/ALL_au/google-in-australia/",
+        "Google Products": "https://about.google/products/",
+        "About the blog": "https://blog.google/intl/en-au/about",
+        "Help": "https://support.google.com/"
+    }
+    LEGAL_LINKS_FOOTER_GERMANY_LOCALE_DICT = {
+        "Datenschutz": "https://policies.google.com/privacy?hl=de&fg=1",
+        "Nutzungsbedingungen": "https://policies.google.com/terms?hl=de",
+        "Über Google": "https://about.google/",
+        "Unsere Produkte": "https://about.google/products/",
+        "Über unseren Blog": "https://blog.google/intl/de-de/uber",
+        "Hilfe": "https://support.google.com/?hl=de"
+    }
+    US_LOCALE = "/"
+    INDIA_LOCALE = "/intl/en-in/"
+    AUSTRALIA_LOCALE = "/intl/en-au/"
+    GERMANY_LOCALE = "/intl/de-de/"
     NEWSLETTER_FIRST_NAME = 'AT TEST'
     NEWSLETTER_EMAIL = 'at_test@hugeinc.com'
     NEWSLETTER_CONFIRMATION = 'Done! Check your inbox toconfirm your subscription.'
@@ -88,6 +117,8 @@ class Constants(object):
         "edge": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; WebView/3.0) AppleWebKit/537.36 (KHTML, like Gecko) "
                    "Chrome/63.0.3239.111 Safari/537.36 Edge/15.15063 "
     }
+    DD_M_LETTER_YYYY = '%d %b %Y'
+    YYYY_MM_DD = '%Y-%m-%d'
 
 
 

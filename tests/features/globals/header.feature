@@ -35,7 +35,7 @@ Feature: As a user I would like to interact with the header links
         |/          | company_news  |
 
   @header
-  Scenario Outline: Test the kebab menu
+  Scenario Outline: Test options in the kebab menu
       Given a user is at the <keyword> site
       When the user triggers the kebab menu
       Then the user sees <kebab_option> according to <locale>
@@ -50,3 +50,45 @@ Feature: As a user I would like to interact with the header links
         |/intl/en-au/ | press        | au     |
         |/intl/en-in/ | rss          | in     |
         |/intl/en-in/ | press        | in     |
+
+  @header
+  Scenario Outline: Test rss matches content in desktop
+      Given a user is at the <keyword> site
+      When the user triggers the kebab menu
+      And the user clicks <kebab_option>
+      Then the publish date matches with the <content_date>
+
+      Examples:
+        |keyword      | kebab_option | content_date |
+        |/            | rss          | 2022-01-12   |
+        |/intl/de-de/ | rss          | 2022-01-11   |
+        |/intl/en-au/ | rss          | 2022-01-11   |
+        |/intl/en-in/ | rss          | 2022-01-12   |
+
+  @header
+  Scenario Outline: Test rss matches content in mobile
+      Given a user is at the <keyword> site in mobile
+      When the user triggers the hamburger menu
+      And the user clicks on rss option
+      Then the publish date matches with the <content_date>
+
+      Examples:
+        |keyword      |content_date |
+        |/            |2022-01-12   |
+        |/intl/de-de  |2022-01-11   |
+        |/intl/en-in  |2022-01-12   |
+        |/intl/en-au  |2022-01-11   |
+
+  @header
+  Scenario Outline: Test keyword logo in nav menu
+      Given a user is at the <keyword> site
+      And the user clicks in the hero article
+      When the user clicks on the keyword logo
+      Then the user is redirected to <url>
+
+      Examples:
+        |keyword      | url        |
+        |/            | /          |
+        |/intl/de-de/ |/intl/de-de/|
+        |/intl/en-in/ |/intl/en-in/|
+        |/intl/en-au/ |/intl/en-au/|
