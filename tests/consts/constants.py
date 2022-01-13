@@ -38,7 +38,6 @@ class Constants(object):
         "press_de": "Pressezentrum",
         "press_in": "Press corner",
         "press_au": "Press corner",
-
     }
     LEGAL_LINKS_FOOTER_US_LOCALE_DICT = {
         "Privacy": "https://policies.google.com/privacy",
@@ -77,7 +76,11 @@ class Constants(object):
     AUSTRALIA_LOCALE = "/intl/en-au/"
     GERMANY_LOCALE = "/intl/de-de/"
     NEWSLETTER_FIRST_NAME = 'AT TEST'
+    NEWSLETTER_INVALID_FIRST_NAME = 'AT TEST.*'
+    NEWSLETTER_ERROR_MSG_NAME = 'Sorry, only letters (a-z), and numbers (0-9) are allowed.'
+    NEWSLETTER_ERROR_MSG_EMAIL = 'Email address contains error(s).'
     NEWSLETTER_EMAIL = 'at_test@hugeinc.com'
+    NEWSLETTER_INVALID_EMAIL = 'at_test@'
     NEWSLETTER_CONFIRMATION = 'Done! Check your inbox toconfirm your subscription.'
     PLATFORM_IOS = 'IOS'
     PLATFORM_MAC = 'MAC'

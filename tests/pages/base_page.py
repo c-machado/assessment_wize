@@ -54,6 +54,12 @@ class BasePage(object):
     def scroll_to_bottom(self):
         self.driver.execute_script("window.scroll({top: document.body.scrollHeight-80, behavior: 'smooth'});")
 
+    def scroll_to_fifty_percent(self):
+        self.driver.execute_script("window.scroll({"
+                                   "top: (document.body.scrollHeight/2), "
+                                   "left: 0,"
+                                   "behavior: 'smooth'});")
+
     def scroll_to_content(self):
         self.driver.execute_script("window.scroll({top: document.getElementById('footer-standard'),"
                                    " behavior: 'smooth'});")

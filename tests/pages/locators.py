@@ -21,10 +21,11 @@ class PageLocators(object):
     menu_keyword_logo = (By.CSS_SELECTOR, ".uni-header__site-title")
     menu_all_product_updates_cta = (By.CSS_SELECTOR, ".uni-main-menu__submenu-view-all-link")
     menu_subscribe_cta = (By.CSS_SELECTOR, "div[data-component='uni-cta-newsletter'].uni-header__newsletter--desktop")
-    menu_subscribe_cta_toast = (By.CSS_SELECTOR, ".uni-newsletter-toast__cta--sub")
     newsletter_close_icon = (By.CSS_SELECTOR, ".uni-subscribe-modal__icon-close-container")
     newsletter_first_name_field = (By.ID, "uni-subscribe-first-name")
     newsletter_email_field = (By.ID, "uni-subscribe-email")
+    newsletter_error_first_name = (By.ID, "uni-subscribe-first-name--error")
+    newsletter_error_email = (By.ID, "uni-subscribe-email--error")
     newsletter_modal = (By.CSS_SELECTOR, ".uni-subscribe-modal__body")
     newsletter_success_modal = (By.CSS_SELECTOR, "[data-slide='success']")
     newsletter_subscribe_cta = (By.CSS_SELECTOR, ".uni-subscribe-modal__submit")
@@ -53,3 +54,6 @@ class PageLocators(object):
         "product_updates": (By.CSS_SELECTOR, "#uni-main-menu > li:nth-child(2)"),
         "company_news": (By.CSS_SELECTOR, "#uni-main-menu > li:nth-child(3)")
     }
+    toast_bar = (By.CSS_SELECTOR, ".uni-newsletter-toast--container")
+    toast_bar_subscribe_cta = (By.CSS_SELECTOR, ".uni-newsletter-toast__cta--sub")
+    toast_bar_close_cta = (By.CSS_SELECTOR, ".uni-newsletter-toast__buttons > button:nth-child(2)")

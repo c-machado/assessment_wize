@@ -9,8 +9,9 @@ import pytest
 from tests.pages.cookie_banner import CookieBanner
 from tests.pages.footer import Footer
 from tests.pages.header import Header
-from tests.pages.newsletterr import Newsletter
+from tests.pages.newsletter import Newsletter
 from tests.pages.search import Search
+from tests.pages.toast_bar import ToastBar
 from tests.step_defs.driver import Driver
 from tests.pages.base_page import BasePage
 from tests.pages.locators import PageLocators
@@ -33,9 +34,13 @@ def driver():
     driver.quit_browser()
 
 
+# TODO: Firefox: ValueError: response body:
+# {'message': "API rate limit exceeded for 186.155.54.112. (But here's the good news:
+# Authenticated requests get a higher rate limit. Check out the documentation for more details.)",
+# 'documentation_url': 'https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting'}
 # TODO: Safari initialization is not working with Selenium 4
 # @pytest.fixture(params=["chrome", "firefox", "safari"], scope="module", autouse=True)
-@pytest.fixture(params=["chrome"], scope="module", autouse=True)
+@pytest.fixture(params=["firefox"], scope="module", autouse=True)
 def get_web_browser(request):
     return request.param
 
@@ -126,6 +131,11 @@ def search(driver):
 @pytest.fixture
 def page_locators(driver):
     return PageLocators()
+
+
+@pytest.fixture
+def toast_bar(driver):
+    return ToastBar(driver)
 
 
 def pytest_html_results_table_header(cells):

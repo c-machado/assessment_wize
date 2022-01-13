@@ -77,7 +77,7 @@ class Driver(IDriver):
         options.add_argument(size_viewport)
         options.set_capability("acceptInsecureCerts", True)
         # options.add_argument('--start-maximized')
-        # options.add_argument('--headless')
+        options.add_argument('--headless')
         options.add_argument('--no-sandbox')
         options.add_argument("--disable-dev-shm-usage")
         # options.add_argument("--remote-debugging-port=9222")
@@ -207,7 +207,7 @@ class Driver(IDriver):
 
     def click_to_element(self, clickable_element):
         self.wait_for_element_clickable(*clickable_element)
-        self.wait_for_element_visible(*clickable_element)
+        # self.wait_for_element_visible(*clickable_element)
         self.driver.find_element(*clickable_element).click()
 
     def close(self):
@@ -220,6 +220,7 @@ class Driver(IDriver):
         return self.driver.execute_script(script)
 
     def find_element(self, *locator):
+        self.wait_for_element_visible(*locator)
         if locator.__len__() == 2:
             return self.driver.find_element(*locator)
         return self.driver.find_element(*(locator[1], locator[2] % locator[0]))
@@ -309,6 +310,8 @@ class Driver(IDriver):
             return wait.until(expected_conditions.visibility_of_element_located(locator))
 
     def wait_for_element_not_visible(self, *locator):
+        print('test')
         wait = WebDriverWait(self.driver, 50)
         if locator.__len__() == 2:
+            print('test 2')
             return wait.until(expected_conditions.invisibility_of_element_located(locator))

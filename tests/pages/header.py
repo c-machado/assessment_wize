@@ -38,7 +38,7 @@ class Header(BasePage):
         self.driver.click_to_element(PageLocators.menu_subscribe_cta)
 
     def click_on_subscribe_cta_toast(self):
-        self.driver.click_to_element(PageLocators.menu_subscribe_cta)
+        self.driver.click_to_element(PageLocators.toast_bar_subscribe_cta)
 
     def click_see_all_cta_sub_menu(self):
         see_all_items = self.driver.get_urls_list(PageLocators.submenu_company_news_see_all_ctas)

@@ -31,7 +31,7 @@ Feature: As a user I want to interact with the cookie banner
           |/intl/en-in/      | https://policies.google.com/technologies/cookies       | en       |
 
     @cookie
-    Scenario Outline: Test the user can close the cookie bannerr
+    Scenario Outline: Test the user can close the cookie banner
         Given a user is at the <keyword> site
         And the user clicks in the Ok cta
         Then the cookie banner is not displayed

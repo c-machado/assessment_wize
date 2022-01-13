@@ -5,11 +5,7 @@ import requests
 from pytest_bdd import scenarios, given, when, then
 
 from tests.consts.constants import Constants
-from tests.pages.cookie_banner import CookieBanner
-from tests.pages.footer import Footer
-from tests.pages.header import Header
 from tests.pages.locators import PageLocators
-from tests.pages.newsletterr import Newsletter
 
 scenarios("../features/globals/")
 
@@ -159,8 +155,8 @@ def user_clicks_subscribe_cta(header):
 
 @when("the user fills out the form")
 def user_fills_out_newsletter_form(newsletter):
-    newsletter.enter_first_name()
-    newsletter.enter_email()
+    newsletter.enter_first_name(Constants.NEWSLETTER_FIRST_NAME)
+    newsletter.enter_email(Constants.NEWSLETTER_EMAIL)
 
 
 @when("the user submits the information")
@@ -178,8 +174,7 @@ def verify_confirmation_msg(newsletter, base_page):
 
 
 @when("the user clicks on subscribe cta in the toast")
-def user_clicks_subscribe_cta_toast(cookie_banner, footer, header):
-    footer.go_to_footer()
+def user_clicks_subscribe_cta_toast(footer, header):
     header.click_on_subscribe_cta_toast()
 
 
@@ -268,3 +263,39 @@ def user_clicks_rss_in_mobile(header):
 @when("the user clicks on the keyword logo")
 def user_clicks_keyword_logo(header):
     header.click_on_nav_logo()
+
+
+@given("the user closes the cookie banner")
+def user_closes_cookie_banner(cookie_banner):
+    cookie_banner.close_cookie_banner()
+
+
+@when("the user fills out the form with invalid data")
+def user_fills_out_form_with_invalid_data(newsletter):
+    newsletter.enter_first_name(Constants.NEWSLETTER_INVALID_FIRST_NAME)
+    newsletter.enter_email(Constants.NEWSLETTER_INVALID_EMAIL)
+    newsletter.submit_newsletter_form()
+
+
+@given("the toast bar has appeared")
+def toast_bar_visible(cookie_banner, newsletter, toast_bar):
+    cookie_banner.close_cookie_banner()
+    cookie_banner.click_to_read_more_article()
+    toast_bar.make_toast_bar_visible()
+
+
+@then("the user sees an error message")
+def newsletter_error_message(newsletter):
+    assert newsletter.get_name_message_error() == Constants.NEWSLETTER_ERROR_MSG_NAME
+    assert newsletter.get_email_message_error() == Constants.NEWSLETTER_ERROR_MSG_EMAIL
+
+
+@when("the user closes the toast bar")
+def user_closes_toast_bar(toast_bar):
+    toast_bar.close_toast_bar()
+    time.sleep(1)
+
+
+@then("the toast bar is not visible anymore")
+def toast_bar_not_visible(toast_bar):
+    assert toast_bar.is_toast_bar_visible()

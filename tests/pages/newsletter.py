@@ -17,13 +17,21 @@ class Newsletter(BasePage):
     def close_newsletter_modal(self):
         self.driver.click_to_element(PageLocators.newsletter_close_icon)
 
-    def enter_first_name(self):
+    def enter_first_name(self, name):
         first_name = self.driver.find_element(*PageLocators.newsletter_first_name_field)
-        first_name.send_keys(Constants.NEWSLETTER_FIRST_NAME)
+        first_name.send_keys(name)
 
-    def enter_email(self):
-        email = self.driver.find_element(*PageLocators.newsletter_email_field)
-        email.send_keys(Constants.NEWSLETTER_EMAIL)
+    def enter_email(self, email):
+        email_field = self.driver.find_element(*PageLocators.newsletter_email_field)
+        email_field.send_keys(email)
+
+    def get_name_message_error(self):
+        name_error = self.driver.find_element(*PageLocators.newsletter_error_first_name).get_attribute("innerHTML")
+        return name_error
+
+    def get_email_message_error(self):
+        email_error = self.driver.find_element(*PageLocators.newsletter_error_email).get_attribute("innerHTML")
+        return email_error
 
     def modal_not_visible(self):
         self.driver.wait_for_element_not_visible(PageLocators.newsletter_modal)
