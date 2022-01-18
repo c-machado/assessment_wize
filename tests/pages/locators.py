@@ -4,9 +4,11 @@ from selenium.webdriver.common.by import By
 class PageLocators(object):
 
     article_read_more_cta = (By.CSS_SELECTOR, "a.featured-article__link span.cta")
+    article_published_at = (By.CSS_SELECTOR, ".article-meta__published-at")
     cookie_banner_ok_cta = (By.CSS_SELECTOR, ".cookieBarConsentButton")
     cookie_banner_bar = (By.ID, "cookieBar")
     cookie_see_details_cta = (By.CSS_SELECTOR, ".cookieBarMoreButton")
+    feed_articles_list = (By.CSS_SELECTOR, ".feed-article.ng-scope")
     footer_google_logo = (By.CSS_SELECTOR, ".h-c-footer__logo")
     hamburger_menu = (By.CSS_SELECTOR, ".uni-header__hamburguer-button")
     hamburger_menu_rss = (By.CSS_SELECTOR, "ul.uni-header__kebab-menu--mobile > li:nth-child(2) > a")

@@ -57,7 +57,7 @@ class Header(BasePage):
         soup = BeautifulSoup(self.driver.get_page_source(), 'xml')
         # print('all', soup.prettify())
         publish_date = soup.find('lastBuildDate').text
-        date_formatted = self.get_format_date(publish_date[5:16], Constants.DD_M_LETTER_YYYY)
+        date_formatted = self.get_date_in_api_format(publish_date[5:16], Constants.DATE_FORMAT_IN_RSS)
         return date_formatted
 
     @staticmethod

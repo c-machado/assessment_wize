@@ -21,9 +21,9 @@ def at_the_blog(keyword, driver, get_web_browser, get_viewport):
     print('get_web_browser', get_web_browser)
     print('get_viewport', get_viewport)
     driver.start(get_web_browser, get_viewport)
-    driver.go_to_URL(Constants.BASE_URL + keyword)
+    driver.go_to_URL(Constants.BASE_URL_STAGE + keyword)
     driver.wait_for_page_load()
-    # browser.set_cookie()
+    driver.set_cookie()
     # browser.refresh()
 
 
@@ -239,7 +239,7 @@ def user_clicks_google_logo(footer):
 def confirm_date_format_in_rss(header, base_page, content_date):
     publish_date_rss = header.get_publish_date_in_rss()
     print(publish_date_rss)
-    date_in_article = base_page.get_format_date(content_date, Constants.YYYY_MM_DD)
+    date_in_article = base_page.get_date_in_api_format(content_date, Constants.DATE_FORMAT_IN_API)
     print(date_in_article)
     assert publish_date_rss == date_in_article
 
@@ -299,3 +299,12 @@ def user_closes_toast_bar(toast_bar):
 @then("the toast bar is not visible anymore")
 def toast_bar_not_visible(toast_bar):
     assert toast_bar.is_toast_bar_visible()
+
+
+@then("the feed shows the most recent articles")
+def feed_recent_articles(search):
+    search.load_recent_article()
+
+
+
+

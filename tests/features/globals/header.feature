@@ -1,7 +1,7 @@
 # Created by machadoca at 23/12/21
 Feature: As a user I would like to interact with the header links
 
-  @header
+  @header-auth
   Scenario Outline: Test link to product updates page
       Given a user is at the <keyword> site
       When the user clicks on the <submenu>
@@ -79,7 +79,7 @@ Feature: As a user I would like to interact with the header links
         |/intl/en-in  |2022-01-12   |
         |/intl/en-au  |2022-01-11   |
 
-  @header
+  @header-logo
   Scenario Outline: Test keyword logo in nav menu
       Given a user is at the <keyword> site
       And the user clicks in the hero article

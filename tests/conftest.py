@@ -6,9 +6,11 @@ from datetime import datetime
 
 import pytest
 
+from tests.pages.article import ArticlePage
 from tests.pages.cookie_banner import CookieBanner
 from tests.pages.footer import Footer
 from tests.pages.header import Header
+from tests.pages.homepage import HomePage
 from tests.pages.newsletter import Newsletter
 from tests.pages.search import Search
 from tests.pages.toast_bar import ToastBar
@@ -40,7 +42,7 @@ def driver():
 # 'documentation_url': 'https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting'}
 # TODO: Safari initialization is not working with Selenium 4
 # @pytest.fixture(params=["chrome", "firefox", "safari"], scope="module", autouse=True)
-@pytest.fixture(params=["firefox"], scope="module", autouse=True)
+@pytest.fixture(params=["chrome"], scope="module", autouse=True)
 def get_web_browser(request):
     return request.param
 
@@ -136,6 +138,16 @@ def page_locators(driver):
 @pytest.fixture
 def toast_bar(driver):
     return ToastBar(driver)
+
+
+@pytest.fixture
+def homepage(driver):
+    return HomePage(driver)
+
+
+@pytest.fixture
+def article(driver):
+    return ArticlePage(driver)
 
 
 def pytest_html_results_table_header(cells):

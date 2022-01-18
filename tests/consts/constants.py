@@ -1,7 +1,7 @@
 class Constants(object):
     BASE_URL = 'https://blog.google'
     SEARCH_URL = "/search/?query="
-    # BASE_URL = 'https://gweb-uniblog-publish-stage.appspot.com/supportingnews'
+    BASE_URL_STAGE = 'https://gweb-uniblog-publish-stage.appspot.com/supportingnews'
 
     COOKIE_BANNER_TXT = {
         "en": "Google serves cookies to analyze traffic to this site. Information about your use of our site is "
@@ -14,6 +14,18 @@ class Constants(object):
         "mobile": "window-size=414,896",
         "tablet": "window-size=600,800",
         "desktop": "window-size=1920,1080"
+    }
+    # %b: Returns the first three characters of the month name.
+    # %d: Returns day of the month, from 1 to 31.
+    # %Y: Returns the year in four-digit format.
+    # %m: Returns the month as a number
+    DATE_FORMAT_IN_RSS = '%d %b %Y'
+    DATE_FORMAT_IN_API = '%Y-%m-%d'
+    DATE_FORMAT_PER_LOCALE = {
+        'en_US': '%b %d, %Y',
+        'de_DE': '%d.%b.%Y',
+        'en_AU': '%b %d, %Y',
+        'en_GB': '%d %b, %Y'
     }
     DESKTOP_PLATFORMS = [
         'WIN10',
@@ -120,8 +132,7 @@ class Constants(object):
         "edge": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; WebView/3.0) AppleWebKit/537.36 (KHTML, like Gecko) "
                    "Chrome/63.0.3239.111 Safari/537.36 Edge/15.15063 "
     }
-    DD_M_LETTER_YYYY = '%d %b %Y'
-    YYYY_MM_DD = '%Y-%m-%d'
+
 
 
 

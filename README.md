@@ -71,6 +71,8 @@ $ pyenv shell 3.9.6
 
 Click [here](https://github.com/pyenv/pyenv-virtualenv) to complete pyenv-virtualenv installation. 
 
+pip [here](https://phoenixnap.com/kb/install-pip-mac)
+
 ## How to install the dependencies?
 Note: Always use a virtual environment to manage your packages and dependencies
 1. Go to folder’s project

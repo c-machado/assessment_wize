@@ -37,3 +37,7 @@ Feature: As a user I want to be able to search for content within the blog
         Examples:
             | text_to_search | filter_option |
             | /              |               |
+
+
+
+
