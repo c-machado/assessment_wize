@@ -21,6 +21,18 @@ class Constants(object):
     # %m: Returns the month as a number
     DATE_FORMAT_IN_RSS = '%d %b %Y'
     DATE_FORMAT_IN_API = '%Y-%m-%d'
+    DATE_FORMAT_IN_FEED_PER_LOCALE = {
+        'en_US': '%b %d',
+        'de_DE': '%d. %b.',
+        'en_AU': '%b %d',
+        'en_GB': '%d %b'
+    }
+    DATE_FORMAT_IN_FEED_PAST_YEAR_PER_LOCALE = {
+        'en_US': '%b %Y',
+        'de_DE': '%b %Y',
+        'en_AU': '%b %Y',
+        'en_GB': '%b %Y'
+    }
     DATE_FORMAT_PER_LOCALE = {
         'en_US': '%b %d, %Y',
         'de_DE': '%d.%b.%Y',

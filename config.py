@@ -1,2 +1,6 @@
-# BASE_URI = 'https://blog.google/api/v2/latest'
+LATEST_FEED = '/api/v2/latest'
+LATEST_FEED_PERSPECTIVE = '/api/v2/latest?author_ids=3453,41,1614,102,1402,399,150&category=&date_start=&date_stop=&hero_template=heroArticleItem&is_main_hero=&paginate=7&site_id=2&tags=&template=latestArticleItem'
+LATEST_FEED_DE = '/api/v2/latest?author_ids=&category=&date_start=&date_stop=&hero_template=heroArticleItem&is_main_hero=&paginate=7&site_id=8&tags=&template=latestArticleItem'
+LATEST_FEED_AU = '/api/v2/latest?author_ids=&category=&date_start=&date_stop=&hero_template=heroArticleItem&is_main_hero=&paginate=7&site_id=9&tags=&template=latestArticleItem'
+LATEST_FEED_IN = '/api/v2/latest?author_ids=&category=&date_start=&date_stop=&hero_template=heroArticleItem&is_main_hero=&paginate=7&site_id=10&tags=&template=latestArticleItem'
 BASE_URI = 'https://blog.google/api/v2/latest?tags=android'

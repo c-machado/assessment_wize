@@ -22,15 +22,34 @@ def at_the_blog(keyword, driver, get_web_browser, get_viewport):
     # browser.refresh()
 
 
-@when("the user opens an article in the feed list")
-def user_open_article_in_home_feed(homepage, base_page):
-    base_page.close_bar(PageLocators.cookie_banner_ok_cta)
+@when("the user in <keyword> <locale> opens an article in the feed list")
+def user_open_article_in_home_feed(keyword, locale, homepage, base_page):
     base_page.scroll_to_content()
+    """date that appears in the feed list"""
+    actual_format_date = homepage.get_date_article_in_feed()
+    """date expected according to format per locale and published_date in api"""
+    expected_format_date = homepage.get_date_format_in_feed_per_locale(keyword, locale)
+    assert actual_format_date == expected_format_date
     homepage.click_to_random_article()
 
 
-@then("the date format is according to the <locale>")
-def validate_date_format(article, locale):
-    date_in_article = article.get_date_in_article()
-    date_format_expected = article.get_date_format_per_locale(locale)
-    assert article.is_date_format_correct(date_in_article, date_format_expected, locale)
+@then("the date is according to the <locale> format")
+def validate_date_format_in_article(article, locale, base_page):
+    date_in_article = article.get_date_in_article().get_attribute("innerHTML")
+    date_format_expected = base_page.get_date_format_per_locale(locale, Constants.DATE_FORMAT_PER_LOCALE)
+    assert base_page.is_date_format_correct(date_in_article, date_format_expected, locale)
+
+
+# @given("the date in feed articles in <keyword> matches with the <locale> format")
+# def validate_date_format_in_feed(keyword, locale, base_page, homepage):
+#
+#     date_article_in_feed = homepage.get_date_article_in_feed()
+#     date_format_expected = homepage.get_date_format_in_feed_per_locale(keyword, locale, date_article_in_feed)
+#     # date_format_expected = base_page.get_date_format_per_locale(locale, Constants.DATE_FORMAT_IN_FEED_PER_LOCALE)
+#     assert base_page.is_date_format_correct(date_article_in_feed, date_format_expected, locale)
+
+
+@given("the uses chooses a random article")
+def user_choose_random_article(homepage, base_page):
+    homepage.get_random_article_in_feed()
+    base_page.close_bar(PageLocators.cookie_banner_ok_cta)

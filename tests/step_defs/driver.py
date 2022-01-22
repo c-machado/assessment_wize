@@ -274,6 +274,9 @@ class Driver(IDriver):
     def set_window_size(self, width, height):
         self.driver.set_window_size(width, height)
 
+    def switch_to_active_element(self, element):
+        self.driver.switch_to.active_element(element)
+
     def switch_to_active_tab(self):
         handles_before = self.driver.window_handles
         print('tabs size', len(handles_before))

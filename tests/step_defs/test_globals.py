@@ -21,9 +21,9 @@ def at_the_blog(keyword, driver, get_web_browser, get_viewport):
     print('get_web_browser', get_web_browser)
     print('get_viewport', get_viewport)
     driver.start(get_web_browser, get_viewport)
-    driver.go_to_URL(Constants.BASE_URL_STAGE + keyword)
+    driver.go_to_URL(Constants.BASE_URL + keyword)
     driver.wait_for_page_load()
-    driver.set_cookie()
+    # driver.set_cookie()
     # browser.refresh()
 
 
