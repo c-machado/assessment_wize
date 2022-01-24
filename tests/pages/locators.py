@@ -10,6 +10,7 @@ class PageLocators(object):
     cookie_see_details_cta = (By.CSS_SELECTOR, ".cookieBarMoreButton")
     feed_articles_list = (By.CSS_SELECTOR, ".feed-article.ng-scope")
     feed_article_dates_list = (By.CSS_SELECTOR, ".feed-article__content .uni-timesince")
+    feed_load_more = (By.CSS_SELECTOR, ".article-list__load-more")
     footer_google_logo = (By.CSS_SELECTOR, ".h-c-footer__logo")
     hamburger_menu = (By.CSS_SELECTOR, ".uni-header__hamburguer-button")
     hamburger_menu_rss = (By.CSS_SELECTOR, "ul.uni-header__kebab-menu--mobile > li:nth-child(2) > a")

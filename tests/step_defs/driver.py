@@ -302,6 +302,15 @@ class Driver(IDriver):
         except Exception as e:
             print(e)
 
+    def wait_for_feed_to_load(self, *locator):
+        wait = WebDriverWait(self.driver, 50)
+        try:
+            length_list = len(self.driver.find_elements(*locator))
+            print('length_list', length_list)
+            wait.until(lambda x: length_list > 0)
+        except Exception as e:
+            print(e)
+
     def wait_for_element_clickable(self, *locator):
         wait = WebDriverWait(self.driver, 50)
         if locator.__len__() == 2:

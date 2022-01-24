@@ -23,8 +23,12 @@ def at_the_blog(keyword, driver, get_web_browser, get_viewport):
 
 
 @when("the user in <keyword> <locale> opens an article in the feed list")
-def user_open_article_in_home_feed(keyword, locale, homepage, base_page):
+def user_open_article_in_home_feed(keyword, locale, homepage, base_page, driver):
+    driver.wait_for_page_load()
+    driver.wait_for_feed_to_load(*PageLocators.feed_articles_list)
     base_page.scroll_to_content()
+    base_page.scroll_to_bottom()
+    time.sleep(1)
     """date that appears in the feed list"""
     actual_format_date = homepage.get_date_article_in_feed()
     """date expected according to format per locale and published_date in api"""
@@ -35,6 +39,7 @@ def user_open_article_in_home_feed(keyword, locale, homepage, base_page):
 
 @then("the date is according to the <locale> format")
 def validate_date_format_in_article(article, locale, base_page):
+    time.sleep(1)
     date_in_article = article.get_date_in_article().get_attribute("innerHTML")
     date_format_expected = base_page.get_date_format_per_locale(locale, Constants.DATE_FORMAT_PER_LOCALE)
     assert base_page.is_date_format_correct(date_in_article, date_format_expected, locale)
@@ -49,6 +54,7 @@ def validate_date_format_in_article(article, locale, base_page):
 #     assert base_page.is_date_format_correct(date_article_in_feed, date_format_expected, locale)
 
 
+@pytest.mark.flaky("flaky. ValueError: empty range for randrange() (1, 0, -1)")
 @given("the uses chooses a random article")
 def user_choose_random_article(homepage, base_page):
     homepage.get_random_article_in_feed()

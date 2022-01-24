@@ -1,6 +1,8 @@
 import random
 import datetime
+import time
 
+import requests
 import config
 from tests.consts.constants import Constants
 from tests.pages.base_page import BasePage
@@ -15,6 +17,7 @@ class HomePage(BasePage):
         self.random_article = 0
 
     def get_articles_in_feed_list(self):
+        self.driver.wait_for_page_load()
         articles_list = self.driver.find_elements(*PageLocators.feed_articles_list)
         return articles_list
 
@@ -35,33 +38,41 @@ class HomePage(BasePage):
                 return article_date_list[article_date_index].get_attribute("innerHTML")
 
     @staticmethod
-    def get_article_dates_in_latest_api(keyword_url):
+    def get_api_url(keyword_url):
+        """:return api url according to page received, this is required because each page has different filters"""
+        for page, api_url in config.LATEST_FEED.items():
+            if page == keyword_url:
+                print('API_URL', api_url, "KEYWORD_URL", keyword_url)
+                return api_url
+
+    def get_article_dates_in_latest_api(self, keyword_url):
         """the url defines the parameters to add in the request to the API"""
         """:return a list with the article dates in the API format e.g. 2021-11-15"""
-        import requests
-        if keyword_url.__contains__('perspectives'):
-            response = requests.get(Constants.BASE_URL + config.LATEST_FEED_PERSPECTIVE)
-        elif keyword_url.__contains__('/intl/de-de/'):
-            response = requests.get(Constants.BASE_URL + config.LATEST_FEED_DE)
-        elif keyword_url.__contains__('/intl/en-au/'):
-            response = requests.get(Constants.BASE_URL + config.LATEST_FEED_AU)
-        elif keyword_url.__contains__('/intl/en-in/'):
-            response = requests.get(Constants.BASE_URL + config.LATEST_FEED_IN)
-        else:
-            response = requests.get(Constants.BASE_URL + config.LATEST_FEED)
+        api_url = self.get_api_url(keyword_url)
+        response = requests.get(Constants.BASE_URL + api_url)
+        print('api:', Constants.BASE_URL + api_url)
         result = response.json()
         article_dates = []
         for article in result['results']:
             article_dates.append(article['published'][0:10])
             print("article['published'][0:10]", article['published'])
+            print("article['headline']", article['headline'])
         return article_dates
 
     def get_date_from_article_in_feed_in_latest_api(self, keyword_url):
         """:return published date from the current random article in API format"""
+        """we need to navigate different new category pages, since the first article in the api is not showed in the 
+        feed as in the other pages"""
         print('random_article in get_date_from_article_in_feed_in_latest_api', self.random_article)
         article_dates_in_api = self.get_article_dates_in_latest_api(keyword_url)
-        for index in range(0, len(article_dates_in_api)):
-            print('index', index, 'feed_article_date_in_latest_api: ', article_dates_in_api[index])
+        start_range = 1
+        if keyword_url.__contains__(Constants.GERMANY_CATEGORY_PAGE) or \
+                keyword_url.__contains__(Constants.INDIA_CATEGORY_PAGE) or \
+                keyword_url.__contains__(Constants.AUSTRALIA_CATEGORY_PAGE):
+            start_range = 2
+            self.random_article = self.random_article + 1
+        for index in range(start_range, len(article_dates_in_api)):
+            print('index', index, 'feed_article_date_in_latest_api: ', article_dates_in_api[index], "random", self.random_article)
             if index == self.random_article:
                 print('index', index, 'date expected in api format: ', article_dates_in_api[index])
                 return article_dates_in_api[index]
@@ -71,29 +82,24 @@ class HomePage(BasePage):
         """To capture the format that applies based on the current random article"""
         """It should be Month Day (if the year is the same as the current one)"""
         """It should be Month Year (if the year is the previous tp the current one)"""
-
         date_article_in_api = self.get_date_from_article_in_feed_in_latest_api(keyword_url)
         year_current_article = (datetime.datetime.strptime(date_article_in_api, Constants.DATE_FORMAT_IN_API)).year
         print('year_current_article', year_current_article)
         current_year = datetime.datetime.now().year
         print('current_year', current_year)
         if current_year == year_current_article:
-            print('Je suis tres content', locale)
-            self.set_locale(locale)
-            format0 = self.get_date_format_per_locale(locale, Constants.DATE_FORMAT_IN_FEED_PER_LOCALE)
-            # date_expected = datetime.datetime.strptime(date_article_in_api, format0)
-            date_expected_t = datetime.datetime.strptime(date_article_in_api, Constants.DATE_FORMAT_IN_API).strftime(format0)
-            print('format0', format0)
-            print('return date_expectedt', date_expected_t)
-            return date_expected_t
+            return self.get_format_per_year(locale, Constants.DATE_FORMAT_IN_FEED_PER_LOCALE, date_article_in_api)
         elif year_current_article < current_year:
-            print('je suis tres intelligent', locale)
-            self.set_locale(locale)
-            format1 = self.get_date_format_per_locale(locale, Constants.DATE_FORMAT_IN_FEED_PAST_YEAR_PER_LOCALE)
-            date_expected_1 = datetime.datetime.strptime(date_article_in_api, Constants.DATE_FORMAT_IN_API).strftime(format1)
-            print('format0', format1)
-            print('return date_expectedt', date_expected_1)
-            return date_expected_1
+            return self.get_format_per_year(locale, Constants.DATE_FORMAT_IN_FEED_PAST_YEAR_PER_LOCALE, date_article_in_api)
+
+    def get_format_per_year(self, locale, constants_date_format, date_article_in_api):
+        self.set_locale(locale)
+        format_expected = self.get_date_format_per_locale(locale, constants_date_format)
+        print('format0', format_expected)
+        date_expected = datetime.datetime.strptime(date_article_in_api, Constants.DATE_FORMAT_IN_API).strftime(
+            format_expected)
+        print('return date_expected', date_expected)
+        return date_expected
 
     # def get_date_format_in_feed(self, url, locale, date_article):
     #     """To capture the format that applies based on the received date"""
@@ -129,15 +135,18 @@ class HomePage(BasePage):
     #             print(Dict)
 
     def get_random_article_in_feed(self):
-        self.random_article = random.randint(0, len(self.get_articles_in_feed_list()) - 1)
+        feed_list_length = len(self.get_articles_in_feed_list())
+        print('list length of articles in feed', feed_list_length)
+        self.random_article = random.randint(1, feed_list_length - 1)
         return self.random_article
 
     def click_to_random_article(self):
         article_list = self.get_articles_in_feed_list()
-        # random_article = self.get_random_article_in_feed()
         print('random_article in click article:', self.random_article)
         for article in range(0, len(article_list)):
             if article == self.random_article:
-                print('article to click: ', article_list[article].get_attribute("innerHTML"))
+                print('article to clickx: ', article_list[article].get_attribute("innerHTML"))
                 self.driver.wait_for_element_visible(article_list[article])
+                self.driver.wait_for_element_clickable(article_list[article])
+                # time.sleep(3)
                 article_list[article].click()

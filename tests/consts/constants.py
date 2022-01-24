@@ -97,8 +97,11 @@ class Constants(object):
     }
     US_LOCALE = "/"
     INDIA_LOCALE = "/intl/en-in/"
+    INDIA_CATEGORY_PAGE = '/intl/en-in/products/platforms/#android'
     AUSTRALIA_LOCALE = "/intl/en-au/"
+    AUSTRALIA_CATEGORY_PAGE = '/intl/en-au/products/android-chrome-more/'
     GERMANY_LOCALE = "/intl/de-de/"
+    GERMANY_CATEGORY_PAGE = "/intl/de-de/produkte/android-chrome-mehr/#android"
     NEWSLETTER_FIRST_NAME = 'AT TEST'
     NEWSLETTER_INVALID_FIRST_NAME = 'AT TEST.*'
     NEWSLETTER_ERROR_MSG_NAME = 'Sorry, only letters (a-z), and numbers (0-9) are allowed.'

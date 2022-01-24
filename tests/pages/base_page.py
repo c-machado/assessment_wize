@@ -13,6 +13,14 @@ class BasePage(object):
         # Set my local self.browser variable to be whatever browser it's passed in
         self.driver = driver
 
+    @staticmethod
+    def check_internal_status(items):
+        for internal_item in items:
+            response = requests.get(internal_item)
+            if response != 200:
+                print('response', response, 'internal', internal_item)
+            assert response.status_code == 200
+
     def click_tab(self, tab_locator):
         self.driver.click_to_element(tab_locator)
 
@@ -51,13 +59,8 @@ class BasePage(object):
                                           "xhr.open('GET', window.location, false);"
                                           "xhr.send(null);" "return xhr.status")
 
-    @staticmethod
-    def check_internal_status(items):
-        for internal_item in items:
-            response = requests.get(internal_item)
-            if response != 200:
-                print('response', response, 'internal', internal_item)
-            assert response.status_code == 200
+    def click_to_load_more_articles_in_feed(self):
+        self.driver.click_to_element(PageLocators.feed_load_more)
 
     # TODO: Install a new locale on MAC, so India can be tested with the corresponding label en_IN,
     # meanwhile it will be tested with en_GB which is basically the same format than en_IN
@@ -82,6 +85,7 @@ class BasePage(object):
         return re.sub(pattern, '', string)
 
     def scroll_to_bottom(self):
+        self.driver.wait_for_page_load()
         self.driver.execute_script("window.scroll({top: document.body.scrollHeight-80, behavior: 'smooth'});")
 
     def scroll_to_fifty_percent(self):
