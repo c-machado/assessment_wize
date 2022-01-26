@@ -34,9 +34,13 @@ class PageLocators(object):
     newsletter_success_modal = (By.CSS_SELECTOR, "[data-slide='success']")
     newsletter_subscribe_cta = (By.CSS_SELECTOR, ".uni-subscribe-modal__submit")
     newsletter_subscribed_msg = (By.ID, "subscribe_success_label")
-    search_icon_desktop = (By.CSS_SELECTOR, '.uni-header__kebab-search')
+    search_button_desktop = (By.CSS_SELECTOR, '.uni-header__kebab-search')
+    search_button_bar_expanded = (By.CSS_SELECTOR, '.uni-search__button.uni-search__button-search')
     search_bar_text_field = (By.CSS_SELECTOR, 'input.uni-search__input')
     search_close_icon_desktop = (By.CSS_SELECTOR, 'button.uni-search__button.uni-search__button-close')
+    search_eyebrow_articles_in_feed = (By.CSS_SELECTOR, '.feed-article__eyebrow')
+    search_tag_filter_selected = (By.CSS_SELECTOR, ".uni-search-results__selected-facets")
+    search_filter_by = (By.CSS_SELECTOR, '.uni-search-results__select select > option')
     social_media_list = (By.CSS_SELECTOR, ".h-c-social__link.uni-click-tracker")
     social_media_locators = {
         "instagram": (By.XPATH, "//*[starts-with(@href, 'https://www.instagram.com')]"),

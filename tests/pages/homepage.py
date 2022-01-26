@@ -143,6 +143,7 @@ class HomePage(BasePage):
     def click_to_random_article(self):
         article_list = self.get_articles_in_feed_list()
         print('random_article in click article:', self.random_article)
+        # article_list[self.random_article].click()
         for article in range(0, len(article_list)):
             if article == self.random_article:
                 print('article to clickx: ', article_list[article].get_attribute("innerHTML"))

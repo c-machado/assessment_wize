@@ -226,6 +226,7 @@ class Driver(IDriver):
         return self.driver.find_element(*(locator[1], locator[2] % locator[0]))
 
     def find_elements(self, *locator):
+        self.wait_for_element_visible(*locator)
         if locator.__len__() == 2:
             return self.driver.find_elements(*locator)
         return self.driver.find_elements(*(locator[1], locator[2] % locator[0]))
