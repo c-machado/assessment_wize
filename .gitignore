@@ -3,8 +3,6 @@
 *.log
 __pycache__
 /.pytest_cache
-tests/step_defs/__pycache__/
-/tests/pages/__pycache__/
 
 /html_reports
 reports/
@@ -16,5 +14,4 @@ geckodriver.log
 server.log
 bmp.log
 .editorconfig
-/.DS_Store
 .DS_Store
