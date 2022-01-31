@@ -1,7 +1,7 @@
 # Created by machadoca at 23/12/21
 Feature: As a user I would like to interact with the header links
 
-  @header-auth
+  @header
   Scenario Outline: Test link to product updates page
       Given a user is at the <keyword> site
       When the user clicks on the <submenu>
@@ -56,30 +56,30 @@ Feature: As a user I would like to interact with the header links
       Given a user is at the <keyword> site
       When the user triggers the kebab menu
       And the user clicks <kebab_option>
-      Then the publish date matches with the <content_date>
+      Then the dates in rss and <keyword> matches
 
       Examples:
-        |keyword      | kebab_option | content_date |
-        |/            | rss          | 2022-01-12   |
-        |/intl/de-de/ | rss          | 2022-01-11   |
-        |/intl/en-au/ | rss          | 2022-01-11   |
-        |/intl/en-in/ | rss          | 2022-01-12   |
+        |keyword      | kebab_option |
+        |/            | rss          |
+        |/intl/de-de/ | rss          |
+        |/intl/en-au/ | rss          |
+        |/intl/en-in/ | rss          |
 
   @header
   Scenario Outline: Test rss matches content in mobile
       Given a user is at the <keyword> site in mobile
       When the user triggers the hamburger menu
       And the user clicks on rss option
-      Then the publish date matches with the <content_date>
+      Then the dates in rss and <keyword> matches
 
       Examples:
-        |keyword      |content_date |
-        |/            |2022-01-12   |
-        |/intl/de-de  |2022-01-11   |
-        |/intl/en-in  |2022-01-12   |
-        |/intl/en-au  |2022-01-11   |
+        |keyword       |
+        |/             |
+        |/intl/de-de/  |
+        |/intl/en-in/  |
+        |/intl/en-au/  |
 
-  @header-logo
+  @header
   Scenario Outline: Test keyword logo in nav menu
       Given a user is at the <keyword> site
       And the user clicks in the hero article

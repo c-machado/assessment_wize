@@ -77,7 +77,7 @@ class Driver(IDriver):
         options.add_argument(size_viewport)
         options.set_capability("acceptInsecureCerts", True)
         # options.add_argument('--start-maximized')
-        # options.add_argument('--headless')
+        options.add_argument('--headless')
         options.add_argument('--no-sandbox')
         options.add_argument("--disable-dev-shm-usage")
         # options.add_argument("--remote-debugging-port=9222")
@@ -207,7 +207,7 @@ class Driver(IDriver):
 
     def click_to_element(self, clickable_element):
         self.wait_for_element_clickable(*clickable_element)
-        # self.wait_for_element_visible(*clickable_element)
+        self.wait_for_element_visible(*clickable_element)
         self.driver.find_element(*clickable_element).click()
 
     def close(self):
@@ -239,6 +239,9 @@ class Driver(IDriver):
 
     def go_to_URL(self, url):
         self.driver.get(url)
+
+    def go_back_to_url(self):
+        self.driver.back()
 
     def get_select_options(self, locator):
         options = self.driver.find_element(*locator)

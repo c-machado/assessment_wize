@@ -228,14 +228,13 @@ def user_clicks_google_logo(footer):
     footer.click_google_logo()
 
 
-# TODO: bring date_in_article from the API
-@then("the publish date matches with the <content_date>")
-def confirm_date_format_in_rss(header, base_page, content_date):
+@then("the dates in rss and <keyword> matches")
+def confirm_date_format_in_rss(header, homepage, keyword):
     publish_date_rss = header.get_publish_date_in_rss()
-    print(publish_date_rss)
-    date_in_article = base_page.get_date_in_api_format(content_date, Constants.DATE_FORMAT_IN_API)
-    print(date_in_article)
-    assert publish_date_rss == date_in_article
+    print('publish_date_rss', publish_date_rss)
+    date_in_first_article = homepage.get_date_first_article_in_feed(keyword)
+    print('date_in_first_article', date_in_first_article)
+    assert publish_date_rss == date_in_first_article
 
 
 @when("the user clicks <kebab_option>")

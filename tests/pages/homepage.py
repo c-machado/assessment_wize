@@ -3,7 +3,8 @@ import datetime
 import time
 
 import requests
-import config
+
+from tests.consts import api_const
 from tests.consts.constants import Constants
 from tests.pages.base_page import BasePage
 from tests.pages.locators import PageLocators
@@ -40,7 +41,7 @@ class HomePage(BasePage):
     @staticmethod
     def get_api_url(keyword_url):
         """:return api url according to page received, this is required because each page has different filters"""
-        for page, api_url in config.LATEST_FEED.items():
+        for page, api_url in api_const.LATEST_FEED.items():
             if page == keyword_url:
                 print('API_URL', api_url, "KEYWORD_URL", keyword_url)
                 return api_url
@@ -58,6 +59,13 @@ class HomePage(BasePage):
             print("article['published'][0:10]", article['published'])
             print("article['headline']", article['headline'])
         return article_dates
+
+    def get_date_first_article_in_feed(self, keyword_url):
+        self.go_back_previous_page()
+        self.close_bar(PageLocators.cookie_banner_ok_cta)
+        date_in_first_article = self.get_article_dates_in_latest_api(keyword_url)[0]
+        print('date_in_api', date_in_first_article)
+        return date_in_first_article
 
     def get_date_from_article_in_feed_in_latest_api(self, keyword_url):
         """:return published date from the current random article in API format"""

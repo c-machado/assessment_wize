@@ -59,6 +59,9 @@ class BasePage(object):
                                           "xhr.open('GET', window.location, false);"
                                           "xhr.send(null);" "return xhr.status")
 
+    def go_back_previous_page(self):
+        return self.driver.execute_script("window.history.go(-1)")
+
     def click_to_load_more_articles_in_feed(self):
         self.driver.click_to_element(PageLocators.feed_load_more)
 
