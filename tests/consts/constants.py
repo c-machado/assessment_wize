@@ -1,7 +1,9 @@
 class Constants(object):
     BASE_URL = 'https://blog.google'
     SEARCH_URL = "search/?query="
-    BASE_URL_STAGE = 'https://gweb-uniblog-publish-stage.appspot.com/supportingnews'
+    # BASE_URL = 'https://gweb-uniblog-publish-stage.appspot.com/supportingnews'
+    # BASE_URL = 'https://www.gmail.com'
+    # BASE_URL_STAGE = 'https://gweb-uniblog-publish-stage.appspot.com/supportingnews'
 
     COOKIE_BANNER_TXT = {
         "en": "Google serves cookies to analyze traffic to this site. Information about your use of our site is "

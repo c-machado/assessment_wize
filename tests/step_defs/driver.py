@@ -77,11 +77,16 @@ class Driver(IDriver):
         options.add_argument(size_viewport)
         options.set_capability("acceptInsecureCerts", True)
         # options.add_argument('--start-maximized')
-        options.add_argument('--headless')
+        # options.add_argument('--headless')
         options.add_argument('--no-sandbox')
         options.add_argument("--disable-dev-shm-usage")
         # options.add_argument("--remote-debugging-port=9222")
         # chrome://inspect/#devices
+
+        # path_chrome = r'/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
+        # options.add_argument(r'--user-data-dir=/Users/machadoca/Library/Application\ Support/Google/Chrome')  # your chrome user data directory
+        # options.add_argument(r'--profile-directory=/Users/machadoca/Library/Application Support/Google/Chrome/Default')  # the profile with the extensions loaded
+
         s = Service(driver_path)
         self.driver = webdriver.Chrome(service=s,
                                        options=options)

@@ -1,7 +1,7 @@
+import datetime
 import time
 
 import pytest
-import requests
 from pytest_bdd import scenarios, given, when, then
 
 from tests.consts.constants import Constants
@@ -45,17 +45,26 @@ def validate_date_format_in_article(article, locale, base_page):
     assert base_page.is_date_format_correct(date_in_article, date_format_expected, locale)
 
 
-# @given("the date in feed articles in <keyword> matches with the <locale> format")
-# def validate_date_format_in_feed(keyword, locale, base_page, homepage):
-#
-#     date_article_in_feed = homepage.get_date_article_in_feed()
-#     date_format_expected = homepage.get_date_format_in_feed_per_locale(keyword, locale, date_article_in_feed)
-#     # date_format_expected = base_page.get_date_format_per_locale(locale, Constants.DATE_FORMAT_IN_FEED_PER_LOCALE)
-#     assert base_page.is_date_format_correct(date_article_in_feed, date_format_expected, locale)
-
-
 @pytest.mark.flaky("flaky. ValueError: empty range for randrange() (1, 0, -1)")
-@given("the uses chooses a random article")
+@given("the user chooses a random article")
 def user_choose_random_article(homepage, base_page):
     homepage.get_random_article_in_feed()
     base_page.close_bar(PageLocators.cookie_banner_ok_cta)
+
+
+@when("the user clicks on load more stories cta")
+def user_load_more_stories(homepage, base_page):
+    base_page.close_bar(PageLocators.cookie_banner_ok_cta)
+    homepage.click_load_more_stories_in_feed()
+    time.sleep(1)
+
+
+@then("the articles are shown order by date desc")
+def validate_descendent_order(homepage):
+    article_dates_list = homepage.get_article_dates_in_feed_list()
+    article_dates = []
+    for element in article_dates_list:
+        print('article_dates_list', element.get_attribute("innerHTML"))
+        article_dates.append(datetime.datetime.strptime(element, "%d.%b."))
+    article_dates.sort(key=lambda date: datetime.datetime.strptime(date, "%d-%b-%y"))
+    assert False

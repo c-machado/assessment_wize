@@ -5,7 +5,7 @@ Feature: As a user I want to confirm dates are showing according to the expected
     @feed-article-ok
     Scenario Outline: Confirm article's date is in the correct format in homepage feed
         Given a user is at the <keyword> site
-        And the uses chooses a random article
+        And the user chooses a random article
         When the user in <keyword> <locale> opens an article in the feed list
         Then the date is according to the <locale> format
         Examples:
@@ -18,7 +18,7 @@ Feature: As a user I want to confirm dates are showing according to the expected
     @feed-article-ok
     Scenario Outline: Confirm article's date is in the correct format in category page feed
         Given a user is at the <keyword> site
-        And the uses chooses a random article
+        And the user chooses a random article
         When the user in <keyword> <locale> opens an article in the feed list
         Then the date is according to the <locale> format
         Examples:
@@ -33,7 +33,7 @@ Feature: As a user I want to confirm dates are showing according to the expected
     @feed-article-ok
     Scenario Outline: Confirm article's date is in the correct format in subcategory page feed
         Given a user is at the <keyword> site
-        And the uses chooses a random article
+        And the user chooses a random article
         When the user in <keyword> <locale> opens an article in the feed list
         Then the date is according to the <locale> format
         Examples:
@@ -44,7 +44,7 @@ Feature: As a user I want to confirm dates are showing according to the expected
     @feed-article-ok
     Scenario Outline: Confirm article's date is in the correct format in series page feed
         Given a user is at the <keyword> site
-        And the uses chooses a random article
+        And the user chooses a random article
         When the user in <keyword> <locale> opens an article in the feed list
         Then the date is according to the <locale> format
         Examples:
@@ -55,7 +55,7 @@ Feature: As a user I want to confirm dates are showing according to the expected
     @feed-article-ok
     Scenario Outline: Confirm article's date is in the correct format in the perspective page feed
         Given a user is at the <keyword> site
-        And the uses chooses a random article
+        And the user chooses a random article
         When the user in <keyword> <locale> opens an article in the feed list
         Then the date is according to the <locale> format
         Examples:

@@ -1,13 +1,11 @@
-/venv
-/.idea
+venv
+.idea
 *.log
 __pycache__
-/.pytest_cache
+.pytest_cache
 
-/html_reports
-reports/
+reports
 requirements.txt
-tmp/
 
 Pipfile.lock
 geckodriver.log
