@@ -64,9 +64,7 @@ class HomePage(BasePage, BasePageAPI):
         print('random_article in get_date_from_article_in_feed_in_latest_api', self.random_article)
         article_dates_in_api = self.get_article_dates_in_latest_api(keyword_url)
         start_range = 0
-        if keyword_url.__contains__(Constants.GERMANY_CATEGORY_PAGE) or \
-                keyword_url.__contains__(Constants.INDIA_CATEGORY_PAGE) or \
-                keyword_url.__contains__(Constants.AUSTRALIA_CATEGORY_PAGE):
+        if self.is_category_page_horizontal(keyword_url):
             start_range = 1
         print("random", self.random_article)
         random_temp = start_range + self.random_article
@@ -93,7 +91,7 @@ class HomePage(BasePage, BasePageAPI):
         elif year_current_article < current_year:
             return self.get_format_per_year(locale, Constants.DATE_FORMAT_IN_FEED_PAST_YEAR_PER_LOCALE, date)
 
-    def click_to_random_article_in_feed(self):
+    def click_to_random_article_in_feed(self, keyword):
         article_list = self.get_articles_in_feed_list()
         print('random_article in click article_index:', self.random_article, 'len(article_list)', len(article_list))
         for article_index in range(0, len(article_list)):
@@ -104,43 +102,45 @@ class HomePage(BasePage, BasePageAPI):
                 self.driver.wait_for_element_clickable(article_list[article_index])
                 self.driver.wait_for_feed_to_load(*PageLocators.feed_articles_list)
                 time.sleep(2)
-                self.scroll_to_feed(self.random_article)
+                self.scroll_to_feed(self.random_article, keyword)
                 article_list[article_index].click()
 
     def click_load_more_stories_in_feed(self):
-        self.driver.wait_for_feed_to_load()
-        self.driver.wait_for_element_visible(PageLocators.feed_articles_list)
+        self.driver.wait_for_feed_to_load(*PageLocators.feed_articles_list)
         self.scroll_to_bottom()
-        self.driver.click_to_element(PageLocators.feed_load_more)
+        if len(self.get_articles_in_feed_list()) > 6:
+            self.driver.click_to_element(PageLocators.feed_load_more)
 
     def confirm_tagging_in_feed_articles(self, keyword_url):
         """:return True if the article selected randomly contains a valid tag according to current page"""
         primary_tags_articles_in_feed = self.get_article_tags_in_latest_api(keyword_url)
         article_tag = primary_tags_articles_in_feed[self.random_article]
-        print('random in tag', self.random_article, 'tag', article_tag)
+        print('RANDOM in tag', self.random_article, 'TAG:', article_tag)
         tags_per_page = self.get_primary_tags(keyword_url)
         print('tags_per_page', tags_per_page)
-        secondary_tags = self.get_secondary_tags()
-        print('caro', set(secondary_tags) & set(tags_per_page))
+        secondary_tags = self.get_secondary_tags(keyword_url)
         if article_tag in tags_per_page:
             print('article_tag', article_tag, 'tags_per_page', tags_per_page)
             return True
-        elif secondary_tags in tags_per_page:
-            print('tags_per_page', tags_per_page, 'secondary tags', secondary_tags)
+        elif set(secondary_tags) & set(tags_per_page):
+            print('tag that matches', set(secondary_tags) & set(tags_per_page))
+            return True
+        elif secondary_tags == tags_per_page:
             return True
         else:
             return False
 
     def get_primary_tags(self, keyword_url):
         api_url = self.get_api_url(keyword_url)
+        print('api_url', api_url)
         primary_tags = self.get_tags_in_api_url(api_url)
         print('primary_tags', primary_tags)
         return primary_tags
 
-    def get_secondary_tags(self):
+    def get_secondary_tags(self, keyword_url):
         from tests.pages.article import ArticlePage
         articles_in_feed = self.get_articles_in_feed_list()
-        self.scroll_to_feed(self.random_article)
+        self.scroll_to_feed(self.random_article, keyword_url)
         articles_in_feed[self.random_article].click()
         secondary_tags = ArticlePage(self.driver).get_secondary_tags_in_article()
         print('secondary_tags', secondary_tags)

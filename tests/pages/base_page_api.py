@@ -35,7 +35,7 @@ class BasePageAPI(object):
         """the url defines the parameters to add in the request to the API"""
         api_url = self.get_api_url(keyword_url)
         response = requests.get(Constants.BASE_URL + api_url)
-        print('api:', Constants.BASE_URL + api_url)
+        # print('api:', Constants.BASE_URL + api_url)
         result = response.json()
         return result
 
@@ -50,7 +50,12 @@ class BasePageAPI(object):
     @staticmethod
     def get_tags_in_api_url(api_url):
         tags = re.split(r'tags=|&template', api_url)[1]
+        print('tags', tags)
         tags_list = []
         if re.search(',', tags):
             tags_list = tags.split(',')
-        return tags_list
+            print('tags_list', tags_list)
+            return tags_list
+        else:
+            print('tags1', tags)
+            return tags

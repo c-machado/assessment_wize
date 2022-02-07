@@ -30,7 +30,7 @@ class BasePage(object):
 
     def close_bar(self, locator):
         self.driver.wait_for_page_load()
-        self.scroll_to_bottom()
+        # self.scroll_to_bottom()
         self.driver.click_to_element(locator)
 
     def get_current_page(self):
@@ -78,6 +78,12 @@ class BasePage(object):
         self.random_article = random.randint(0, feed_list_length - 1)
         return self.random_article
 
+    def get_scroll_locator(self, url):
+        if self.is_category_page_horizontal(url):
+            return PageLocators.feed_articles_category_horizontal_top
+        else:
+            return PageLocators.feed_articles_list_top
+
     def get_status_redirect(self):
         return self.driver.execute_script("var xhr = new XMLHttpRequest();"
                                           "xhr.open('GET', window.location, false);"
@@ -88,6 +94,16 @@ class BasePage(object):
 
     def click_to_load_more_articles_in_feed(self):
         self.driver.click_to_element(PageLocators.feed_load_more)
+
+    @staticmethod
+    def is_category_page_horizontal(keyword_url):
+        if keyword_url.__contains__(Constants.GERMANY_CATEGORY_PAGE) or \
+                keyword_url.__contains__(Constants.INDIA_CATEGORY_PAGE) or \
+                keyword_url.__contains__(Constants.AUSTRALIA_CATEGORY_PAGE):
+            return True
+
+    def is_element_visible(self, *locator):
+        return self.driver.find_element(*locator).is_displayed()
 
     # TODO: Install a new locale on MAC, so India can be tested with the corresponding label en_IN,
     # meanwhile it will be tested with en_GB which is basically the same format than en_IN
@@ -122,15 +138,28 @@ class BasePage(object):
         pattern = re.compile(r'\n+')
         return re.sub(pattern, '', string)
 
-    @staticmethod
-    def replace_space(string):
+    def replace_space(self, string):
         import re
+        string_without_special_chars = string
+        if self.contains_special_char(string):
+            string_without_special_chars = re.sub("&amp;", "and", string)
         pattern = re.compile(r'\s+')
-        return re.sub(pattern, '-', string.strip())
+        string_no_spaces_no_special_chars = re.sub(pattern, '-', string_without_special_chars.strip())
+        return string_no_spaces_no_special_chars
+
+    @staticmethod
+    def contains_special_char(string):
+        import re
+        regexp = re.compile("&amp;")
+        if regexp.search(string):
+            return True
 
     def scroll_to_bottom(self):
         self.driver.wait_for_page_load()
-        self.driver.execute_script("window.scroll({top: document.body.scrollHeight-80, behavior: 'smooth'});")
+        self.driver.execute_script("window.scroll({"
+                                   "top: (document.body.scrollHeight), "
+                                   "left: 0,"
+                                   "behavior: 'smooth'});")
         time.sleep(1)
 
     def scroll_to_fifty_percent(self):
@@ -144,15 +173,13 @@ class BasePage(object):
                                    "top: document.getElementById('footer-standard'),"
                                    "left: 0,"
                                    " behavior: 'smooth'});")
+        time.sleep(1)
 
-    def scroll_to_feed(self, random_article):
+    def scroll_to_feed(self, random_article, keyword_url):
+        print('RANDOM IN scroll_to_feed', random_article)
+        locator = self.get_scroll_locator(keyword_url)
         if random_article <= 3:
-            element = self.driver.find_element(*PageLocators.feed_articles_list_top)
-            print(element.get_attribute("innerHTML"))
-            self.driver.execute_script("window.scroll("
-                                       "{top: document.getElementsByClassName('feed-article__content'),"
-                                       "left: 0,"
-                                       " behavior: 'smooth'});")
+            element = self.driver.find_element(*locator)
             from selenium.webdriver import Keys
             element.send_keys(Keys.PAGE_DOWN)
             time.sleep(1)

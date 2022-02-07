@@ -3,7 +3,7 @@
 
 printf "STARTING TEST:\n"
 
-pytest tests/ -m "load-more-" --html=reports/blog/tag.html
+pytest tests/ -m "load-more" --html=reports/blog/tag.html
 #pytest tests/ -m "search" --html=reports/blog/search_ff.html
 pytest tests/ -m "feed-article" --html=reports/blog/feed_ff.html
 #pytest tests/ -m "header" --html=reports/blog/header_ff.html

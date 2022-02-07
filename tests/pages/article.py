@@ -20,7 +20,6 @@ class ArticlePage(BasePage):
         tags_in_article = []
         for element in secondary_tags_list:
             tag_string = element.get_attribute("innerHTML")
-            print('tag_string', tag_string)
             tag = self.replace_space(tag_string)
             tags_in_article.append(tag.lower())
         return tags_in_article
