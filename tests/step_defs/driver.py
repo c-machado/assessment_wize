@@ -77,7 +77,7 @@ class Driver(IDriver):
         options.add_argument(size_viewport)
         options.set_capability("acceptInsecureCerts", True)
         # options.add_argument('--start-maximized')
-        # options.add_argument('--headless')
+        options.add_argument('--headless')
         options.add_argument('--no-sandbox')
         options.add_argument("--disable-dev-shm-usage")
         # options.add_argument("--remote-debugging-port=9222")
@@ -224,6 +224,9 @@ class Driver(IDriver):
     def execute_script(self, script):
         return self.driver.execute_script(script)
 
+    def execute_script_locator(self, script, locator):
+        return self.driver.execute_script(script, locator)
+
     def find_element(self, *locator):
         self.wait_for_element_visible(*locator)
         if locator.__len__() == 2:
@@ -280,6 +283,11 @@ class Driver(IDriver):
     def maximize_window(self):
         self.driver.maximize_window()
 
+    def move_to_element(self, to_element):
+        from selenium.webdriver.common.action_chains import ActionChains
+        action = ActionChains(self.driver)
+        action.move_to_element(to_element).click().perform()
+
     def set_window_size(self, width, height):
         self.driver.set_window_size(width, height)
 
@@ -306,7 +314,6 @@ class Driver(IDriver):
         wait = WebDriverWait(self.driver, 50)
         try:
             js_ready = self.execute_script("return document.readyState")
-            print(js_ready, 'js')
             wait.until(lambda x: js_ready == "complete")
         except Exception as e:
             print(e)

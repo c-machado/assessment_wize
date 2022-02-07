@@ -148,6 +148,7 @@ def cookie_not_displayed(cookie_banner):
     cookie_banner.cookie_not_displayed()
 
 
+@pytest.mark.flaky(reruns_delay=0.5, reason="Element is not clickable at point (1418, 1166)")
 @when("the user clicks on subscribe cta")
 def user_clicks_subscribe_cta(header):
     header.click_on_subscribe_cta()
@@ -285,8 +286,8 @@ def newsletter_error_message(newsletter):
 
 @when("the user closes the toast bar")
 def user_closes_toast_bar(toast_bar):
+    time.sleep(2)
     toast_bar.close_toast_bar()
-    time.sleep(1)
 
 
 @then("the toast bar is not visible anymore")

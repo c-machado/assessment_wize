@@ -1,3 +1,6 @@
+import random
+import time
+
 import pytest
 import requests
 
@@ -12,6 +15,7 @@ class BasePage(object):
     def __init__(self, driver):
         # Set my local self.browser variable to be whatever browser it's passed in
         self.driver = driver
+        self.random_article = 0
 
     @staticmethod
     def check_internal_status(items):
@@ -26,12 +30,17 @@ class BasePage(object):
 
     def close_bar(self, locator):
         self.driver.wait_for_page_load()
+        self.scroll_to_bottom()
         self.driver.click_to_element(locator)
 
     def get_current_page(self):
         self.driver.switch_to_active_tab()
         print('current url ', self.driver.current_url())
         return self.driver.current_url()
+
+    @staticmethod
+    def get_year_in_given_date(date_to_convert, format_date):
+        return (datetime.datetime.strptime(date_to_convert, format_date)).year
 
     @staticmethod
     def get_date_in_api_format(date, format_date):
@@ -47,12 +56,27 @@ class BasePage(object):
             if locale_format == locale:
                 return date_format
 
+    def get_format_per_year(self, locale, constants_date_format, date_article_in_api):
+        self.set_locale(locale)
+        format_expected = self.get_date_format_per_locale(locale, constants_date_format)
+        print('format0', format_expected)
+        date_expected = datetime.datetime.strptime(date_article_in_api, Constants.DATE_FORMAT_IN_API).strftime(
+            format_expected)
+        print('return date_expected', date_expected)
+        return date_expected
+
     @staticmethod
     def get_item_selector(item, locators):
         for item_id, locator_item in locators.items():
             if item_id == item:
                 print('locator ', locator_item, 'submenu', item)
                 return locator_item
+
+    def get_random_article_in_feed(self, feed_list):
+        feed_list_length = len(feed_list)
+        print('list length of articles in feed', feed_list_length)
+        self.random_article = random.randint(0, feed_list_length - 1)
+        return self.random_article
 
     def get_status_redirect(self):
         return self.driver.execute_script("var xhr = new XMLHttpRequest();"
@@ -82,14 +106,32 @@ class BasePage(object):
         return is_format_expected
 
     @staticmethod
+    def order_list_by_date_desc(article_dates_list):
+        article_dates_list_original = article_dates_list
+        article_dates_list.sort(key=lambda date: datetime.datetime.strptime(date, Constants.DATE_FORMAT_IN_API),
+                                reverse=True)
+        for original_date, sorted_date in zip(article_dates_list_original, article_dates_list):
+            print(original_date, sorted_date)
+            if original_date != sorted_date:
+                return False
+        return True
+
+    @staticmethod
     def remove_enter(string):
         import re
         pattern = re.compile(r'\n+')
         return re.sub(pattern, '', string)
 
+    @staticmethod
+    def replace_space(string):
+        import re
+        pattern = re.compile(r'\s+')
+        return re.sub(pattern, '-', string.strip())
+
     def scroll_to_bottom(self):
         self.driver.wait_for_page_load()
         self.driver.execute_script("window.scroll({top: document.body.scrollHeight-80, behavior: 'smooth'});")
+        time.sleep(1)
 
     def scroll_to_fifty_percent(self):
         self.driver.execute_script("window.scroll({"
@@ -103,11 +145,20 @@ class BasePage(object):
                                    "left: 0,"
                                    " behavior: 'smooth'});")
 
-    def scroll_to_feed(self):
-        self.driver.execute_script("window.scroll("
-                                   "{top: document.getElementsByClassName('feed-article.ng-scope'),"
-                                   "left: 0,"
-                                   " behavior: 'smooth'});")
+    def scroll_to_feed(self, random_article):
+        if random_article <= 3:
+            element = self.driver.find_element(*PageLocators.feed_articles_list_top)
+            print(element.get_attribute("innerHTML"))
+            self.driver.execute_script("window.scroll("
+                                       "{top: document.getElementsByClassName('feed-article__content'),"
+                                       "left: 0,"
+                                       " behavior: 'smooth'});")
+            from selenium.webdriver import Keys
+            element.send_keys(Keys.PAGE_DOWN)
+            time.sleep(1)
+        else:
+            self.scroll_to_bottom()
+            time.sleep(1)
 
     @staticmethod
     def set_locale(locale_string):

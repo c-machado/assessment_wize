@@ -2,11 +2,12 @@
 Feature: As a user I want to confirm dates are showing according to the expected format
 
 
-    @feed-article-ok
+    @feed-article
     Scenario Outline: Confirm article's date is in the correct format in homepage feed
         Given a user is at the <keyword> site
         And the user chooses a random article
-        When the user in <keyword> <locale> opens an article in the feed list
+        When the user in <keyword> <locale> check the date in the feed
+        And the user opens the selected random article
         Then the date is according to the <locale> format
         Examples:
             | locale    | keyword      |
@@ -15,11 +16,12 @@ Feature: As a user I want to confirm dates are showing according to the expected
             | en_AU     | /intl/en-au/ |
             | en_GB     | /intl/en-in/ |
 
-    @feed-article-ok
+    @feed-article
     Scenario Outline: Confirm article's date is in the correct format in category page feed
         Given a user is at the <keyword> site
         And the user chooses a random article
-        When the user in <keyword> <locale> opens an article in the feed list
+        When the user in <keyword> <locale> check the date in the feed
+        And the user opens the selected random article
         Then the date is according to the <locale> format
         Examples:
             | locale    | keyword                                           |
@@ -30,33 +32,36 @@ Feature: As a user I want to confirm dates are showing according to the expected
 
 
     #Add subcategory pages for other locales if the content gets updated
-    @feed-article-ok
+    @feed-article
     Scenario Outline: Confirm article's date is in the correct format in subcategory page feed
         Given a user is at the <keyword> site
         And the user chooses a random article
-        When the user in <keyword> <locale> opens an article in the feed list
+        When the user in <keyword> <locale> check the date in the feed
+        And the user opens the selected random article
         Then the date is according to the <locale> format
         Examples:
             | locale    | keyword               |
             | en_US     | /products/android/    |
 
 
-    @feed-article-ok
+    @feed-article
     Scenario Outline: Confirm article's date is in the correct format in series page feed
         Given a user is at the <keyword> site
         And the user chooses a random article
-        When the user in <keyword> <locale> opens an article in the feed list
+        When the user in <keyword> <locale> check the date in the feed
+        And the user opens the selected random article
         Then the date is according to the <locale> format
         Examples:
             | locale    | keyword                             |
             | en_US     | /inside-google/googlers/she-word/   |
 
 
-    @feed-article-ok
+    @feed-article
     Scenario Outline: Confirm article's date is in the correct format in the perspective page feed
         Given a user is at the <keyword> site
         And the user chooses a random article
-        When the user in <keyword> <locale> opens an article in the feed list
+        When the user in <keyword> <locale> check the date in the feed
+        And the user opens the selected random article
         Then the date is according to the <locale> format
         Examples:
             | locale    | keyword                      |

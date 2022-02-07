@@ -1,3 +1,5 @@
+import time
+
 import requests
 
 from tests.consts.constants import Constants
@@ -35,9 +37,11 @@ class Header(BasePage):
         self.driver.click_to_element(submenu_locator)
 
     def click_on_subscribe_cta(self):
+        time.sleep(2)
         self.driver.click_to_element(PageLocators.menu_subscribe_cta)
 
     def click_on_subscribe_cta_toast(self):
+        time.sleep(2)
         self.driver.click_to_element(PageLocators.toast_bar_subscribe_cta)
 
     def click_see_all_cta_sub_menu(self):

@@ -4,11 +4,13 @@ from selenium.webdriver.common.by import By
 class PageLocators(object):
 
     article_read_more_cta = (By.CSS_SELECTOR, "a.featured-article__link span.cta")
+    article_secondary_tags = (By.CSS_SELECTOR, ".uni-blog-article-tags-value")
     article_published_at = (By.CSS_SELECTOR, ".article-meta__published-at")
     cookie_banner_ok_cta = (By.CSS_SELECTOR, ".cookieBarConsentButton")
     cookie_banner_bar = (By.ID, "cookieBar")
     cookie_see_details_cta = (By.CSS_SELECTOR, ".cookieBarMoreButton")
     feed_articles_list = (By.CSS_SELECTOR, ".feed-article.ng-scope")
+    feed_articles_list_top = (By.CSS_SELECTOR, ".js-load-more-content > a:nth-child(1)")
     feed_article_dates_list = (By.CSS_SELECTOR, ".feed-article__content .uni-timesince")
     feed_load_more = (By.CSS_SELECTOR, ".article-list__load-more")
     footer_google_logo = (By.CSS_SELECTOR, ".h-c-footer__logo")
@@ -24,6 +26,7 @@ class PageLocators(object):
     legal_links_list = (By.CSS_SELECTOR, ".h-c-footer__link")
     menu_keyword_logo = (By.CSS_SELECTOR, ".uni-header__site-title")
     menu_all_product_updates_cta = (By.CSS_SELECTOR, ".uni-main-menu__submenu-view-all-link")
+    menu_hidden = (By.CSS_SELECTOR, ".uni-header.h-u-box-shadow-2")
     menu_subscribe_cta = (By.CSS_SELECTOR, "div[data-component='uni-cta-newsletter'].uni-header__newsletter--desktop")
     newsletter_close_icon = (By.CSS_SELECTOR, ".uni-subscribe-modal__icon-close-container")
     newsletter_first_name_field = (By.ID, "uni-subscribe-first-name")

@@ -22,8 +22,8 @@ def at_the_blog(keyword, driver, get_web_browser, get_viewport):
     # browser.refresh()
 
 
-@when("the user in <keyword> <locale> opens an article in the feed list")
-def user_open_article_in_home_feed(keyword, locale, homepage, base_page, driver):
+@when("the user in <keyword> <locale> check the date in the feed")
+def user_opens_an_article_in_home_feed(keyword, locale, homepage, driver, base_page):
     driver.wait_for_page_load()
     driver.wait_for_feed_to_load(*PageLocators.feed_articles_list)
     base_page.scroll_to_content()
@@ -32,39 +32,46 @@ def user_open_article_in_home_feed(keyword, locale, homepage, base_page, driver)
     """date that appears in the feed list"""
     actual_format_date = homepage.get_date_article_in_feed()
     """date expected according to format per locale and published_date in api"""
-    expected_format_date = homepage.get_date_format_in_feed_per_locale(keyword, locale)
+    date_article_in_api = homepage.get_date_from_article_in_feed_in_latest_api(keyword)
+    expected_format_date = homepage.get_date_format_in_feed_per_locale(locale, date_article_in_api)
     assert actual_format_date == expected_format_date
-    homepage.click_to_random_article()
+
+
+@when("the user opens the selected random article")
+def user_open_random_article_in_feed(homepage):
+    homepage.click_to_random_article_in_feed()
 
 
 @then("the date is according to the <locale> format")
-def validate_date_format_in_article(article, locale, base_page):
+def validate_date_format_in_article(article, locale, homepage, base_page):
     time.sleep(1)
     date_in_article = article.get_date_in_article().get_attribute("innerHTML")
     date_format_expected = base_page.get_date_format_per_locale(locale, Constants.DATE_FORMAT_PER_LOCALE)
     assert base_page.is_date_format_correct(date_in_article, date_format_expected, locale)
 
 
-@pytest.mark.flaky("flaky. ValueError: empty range for randrange() (1, 0, -1)")
+@when("the user chooses a random article")
 @given("the user chooses a random article")
 def user_choose_random_article(homepage, base_page):
-    homepage.get_random_article_in_feed()
+    homepage.get_random_article_in_feed(homepage.get_articles_in_feed_list())
     base_page.close_bar(PageLocators.cookie_banner_ok_cta)
 
 
+@pytest.mark.flaky("flaky. Category page takes too long to load")
 @when("the user clicks on load more stories cta")
 def user_load_more_stories(homepage, base_page):
     base_page.close_bar(PageLocators.cookie_banner_ok_cta)
-    homepage.click_load_more_stories_in_feed()
     time.sleep(1)
+    homepage.click_load_more_stories_in_feed()
 
 
 @then("the articles are shown order by date desc")
 def validate_descendent_order(homepage):
-    article_dates_list = homepage.get_article_dates_in_feed_list()
-    article_dates = []
-    for element in article_dates_list:
-        print('article_dates_list', element.get_attribute("innerHTML"))
-        article_dates.append(datetime.datetime.strptime(element, "%d.%b."))
-    article_dates.sort(key=lambda date: datetime.datetime.strptime(date, "%d-%b-%y"))
-    assert False
+    original_list = homepage.get_article_dates_in_feed_with_year()
+    homepage.order_list_by_date_desc(original_list)
+
+
+@then("the tags associated matches with the content in the <keyword>")
+def validate_tags_in_content(homepage, keyword):
+    assert homepage.confirm_tagging_in_feed_articles(keyword)
+
