@@ -1,12 +1,12 @@
 # Created by machadoca at 7/02/22
 Feature: As a user I want to confirm articles in the feed list are shown to the user according to the corresponding tag
 
-    #TODO: tags is empty in the url, to confirm what is needed to validate in the homepages across locales
     @feed-article-tagging
     Scenario Outline: Test articles listed in the feed in the homepage are tagged accordingly
         Given a user is at the <keyword> site
-        When the user chooses a random article
-        Then the tags associated matches with the content in the <keyword>
+        When the user scroll to the feed in <keyword> locale
+        Then the system shows articles in the <keyword> locale
+
         Examples:
             | keyword      |
             | /            |
@@ -26,7 +26,7 @@ Feature: As a user I want to confirm articles in the feed list are shown to the 
            | /intl/en-in/products/platforms/#android           |
            | /intl/en-au/products/android-chrome-more/         |
 
-    @feed-article-tagging-
+    @feed-article-tagging
     Scenario Outline: Test articles listed in the feed in the subcategory page are tagged accordingly
         Given a user is at the <keyword> site
         When the user chooses a random article
@@ -44,11 +44,11 @@ Feature: As a user I want to confirm articles in the feed list are shown to the 
            | keyword                            |
            | /inside-google/googlers/she-word/  |
 
-    @feed-article-tagging-author-ids
+    @feed-article-tagging
     Scenario Outline: Test articles listed in the feed in a perspective landing page are tagged accordingly
         Given a user is at the <keyword> site
-        When the user chooses a random article
-        Then the tags associated matches with the content in the <keyword>
+        When the user scroll to the feed in <keyword> locale
+        Then the system shows articles in the <keyword> locale
         Examples:
            | keyword                       |
            | /perspectives/sundar-pichai/  |

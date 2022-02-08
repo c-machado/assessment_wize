@@ -37,6 +37,14 @@ class HomePage(BasePage, BasePageAPI):
             dates_with_year_list.append(date_with_year[0:10])
         return dates_with_year_list
 
+    def get_article_titles_in_feed(self):
+        article_titles_list = self.driver.find_elements(*PageLocators.feed_article_titles_list)
+        titles_list = []
+        for article_title in article_titles_list:
+            titles_list.append(article_title.get_attribute("innerHTML"))
+            print('article_title.get_attribute("innerHTML")', article_title.get_attribute("innerHTML"))
+        return titles_list
+
     def get_date_article_in_feed(self):
         """To capture the date shown in an article in the feed"""
         """:return e.g. Jan 20 / Dec 2021"""
@@ -110,6 +118,14 @@ class HomePage(BasePage, BasePageAPI):
         self.scroll_to_bottom()
         if len(self.get_articles_in_feed_list()) > 6:
             self.driver.click_to_element(PageLocators.feed_load_more)
+
+    def confirm_articles_in_feed_homepage(self, keyword_url):
+        headlines_in_feed = self.get_article_titles_in_feed()
+        headlines_in_api = self.get_article_titles_in_latest_api(keyword_url)
+        if headlines_in_api == headlines_in_feed:
+            return True
+        else:
+            return False
 
     def confirm_tagging_in_feed_articles(self, keyword_url):
         """:return True if the article selected randomly contains a valid tag according to current page"""

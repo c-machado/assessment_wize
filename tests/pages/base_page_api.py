@@ -30,6 +30,14 @@ class BasePageAPI(object):
             print("article['tag]", article['tag'])
         return article_tags
 
+    def get_article_titles_in_latest_api(self, keyword_url):
+        article_headlines = []
+        result = self.get_results_in_latest_api(keyword_url)
+        for article in result['results']:
+            article_headlines.append(article['headline'])
+            print("article['headline']", article['headline'])
+        return article_headlines
+
     def get_results_in_latest_api(self, keyword_url):
         """:return latest api results according to page received"""
         """the url defines the parameters to add in the request to the API"""

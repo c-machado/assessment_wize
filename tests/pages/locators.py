@@ -13,6 +13,7 @@ class PageLocators(object):
     feed_articles_list_top = (By.CSS_SELECTOR, ".feed-article.ng-scope:nth-child(1)")
     feed_articles_category_horizontal_top = (By.CSS_SELECTOR, ".feed-article.ng-scope:nth-child(2)")
     feed_article_dates_list = (By.CSS_SELECTOR, ".feed-article__content .uni-timesince")
+    feed_article_titles_list = (By.CSS_SELECTOR, ".feed-article__title")
     feed_load_more = (By.CSS_SELECTOR, ".article-list__load-more")
     footer_google_logo = (By.CSS_SELECTOR, ".h-c-footer__logo")
     hamburger_menu = (By.CSS_SELECTOR, ".uni-header__hamburguer-button")

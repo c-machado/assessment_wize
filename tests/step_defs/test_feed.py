@@ -67,7 +67,6 @@ def user_load_more_stories(homepage, base_page):
 
 @then("the articles are shown order by date desc")
 def validate_descendent_order(homepage):
-    print('holi')
     original_list = homepage.get_article_dates_in_feed_with_year()
     homepage.order_list_by_date_desc(original_list)
 
@@ -76,3 +75,12 @@ def validate_descendent_order(homepage):
 def validate_tags_in_content(homepage, keyword):
     assert homepage.confirm_tagging_in_feed_articles(keyword)
 
+
+@when("the user scroll to the feed in <keyword> locale")
+def scroll_to_feed_section(base_page, keyword):
+    base_page.scroll_to_feed(0, keyword)
+
+
+@then("the system shows articles in the <keyword> locale")
+def show_articles_in_feed_per_page(keyword, homepage):
+    homepage.confirm_articles_in_feed_homepage(keyword)
