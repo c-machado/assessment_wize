@@ -125,7 +125,7 @@ class HomePage(BasePage, BasePageAPI):
         elif set(secondary_tags) & set(tags_per_page):
             print('tag that matches', set(secondary_tags) & set(tags_per_page))
             return True
-        elif secondary_tags == tags_per_page:
+        elif secondary_tags in tags_per_page:
             return True
         else:
             return False
