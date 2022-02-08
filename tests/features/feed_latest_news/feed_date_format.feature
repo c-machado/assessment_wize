@@ -66,3 +66,14 @@ Feature: As a user I want to confirm dates are showing according to the expected
         Examples:
             | locale    | keyword                       |
             | en_US     | /perspectives/sundar-pichai/  |
+
+    @feed-article-date-format
+    Scenario Outline: Confirm article's date is in the correct format in the sitespace feed
+        Given a user is at the <keyword> site
+        And the user chooses a random article
+        When the user in <keyword> <locale> check the date in the feed
+        And the user opens the selected random article in <keyword> feed
+        Then the date is according to the <locale> format
+        Examples:
+            | locale    | keyword   |
+            | en_US     | /waze/    |

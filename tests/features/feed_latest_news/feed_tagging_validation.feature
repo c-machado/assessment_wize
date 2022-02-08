@@ -26,6 +26,15 @@ Feature: As a user I want to confirm articles in the feed list are shown to the 
            | /intl/en-in/products/platforms/#android           |
            | /intl/en-au/products/android-chrome-more/         |
 
+    @feed-article-tagging-
+    Scenario Outline: Test articles listed in the feed in the subcategory page are tagged accordingly
+        Given a user is at the <keyword> site
+        When the user chooses a random article
+        Then the tags associated matches with the content in the <keyword>
+        Examples:
+            | keyword               |
+            | /products/android/    |
+
     @feed-article-tagging
     Scenario Outline: Test articles listed in the feed in a series page are tagged accordingly
         Given a user is at the <keyword> site
