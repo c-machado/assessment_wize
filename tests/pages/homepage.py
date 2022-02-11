@@ -16,6 +16,9 @@ class HomePage(BasePage, BasePageAPI):
         self.driver = driver
         self.random_article = 0
 
+    def click_to_read_more_article(self):
+        self.driver.click_to_element(PageLocators.article_read_more_cta)
+
     def get_articles_in_feed_list(self):
         self.driver.wait_for_page_load()
         articles_list = self.driver.find_elements(*PageLocators.feed_articles_list)
@@ -147,7 +150,7 @@ class HomePage(BasePage, BasePageAPI):
             return False
 
     def get_primary_tags(self, keyword_url):
-        api_url = self.get_api_url(keyword_url)
+        api_url = self.get_latest_api_url(keyword_url)
         print('api_url', api_url)
         primary_tags = self.get_tags_in_api_url(api_url)
         print('primary_tags', primary_tags)

@@ -1,3 +1,4 @@
+import re
 import time
 
 import requests
@@ -5,10 +6,11 @@ from assertpy import assert_that
 
 from tests.consts.constants import Constants
 from tests.pages.base_page import BasePage
+from tests.pages.base_page_api import BasePageAPI
 from tests.pages.locators import PageLocators
 
 
-class Search(BasePage):
+class Search(BasePage, BasePageAPI):
 
     def __init__(self, driver):
         super().__init__(driver)
@@ -17,11 +19,12 @@ class Search(BasePage):
         self.tag_to_filter = ''
 
     def click_search_icon_in_nav_bar(self):
-        self.driver.click_to_element(PageLocators.search_button_desktop)
+        self.driver.click_to_element(PageLocators.search_icon_nav_desktop)
         self.driver.wait_for_element_visible(*PageLocators.search_bar_text_field)
+        # time.sleep(2)
 
     def click_search_icon_in_bar_expanded(self):
-        self.driver.click_to_element(PageLocators.search_button_bar_expanded)
+        self.driver.click_to_element(PageLocators.search_icon_nav_expanded)
         self.driver.wait_for_page_load()
 
     def click_filter_by_random_option(self):
@@ -39,6 +42,29 @@ class Search(BasePage):
 
     def get_articles_in_feed_search_results_page(self):
         return self.driver.find_elements(*PageLocators.search_eyebrow_articles_in_feed)
+
+    @staticmethod
+    def get_msg_no_search_results_per_language(text_to_search, language):
+        for language_id, message in Constants.SEARCH_NO_RESULTS_MSG.items():
+            if language_id == language:
+                message_no_search_results = re.sub('text_to_search', text_to_search, message)
+                print('expected', message_no_search_results)
+                return message_no_search_results
+
+    def get_msg_no_search_results_in_page(self):
+        print('actual msg', self.driver.find_element(*PageLocators.search_no_results_header).get_attribute("innerHTML"))
+        return self.driver.find_element(*PageLocators.search_no_results_header).get_attribute("innerHTML")
+
+    def get_search_results_headlines(self, search_results):
+        results_headlines = []
+        for article in search_results:
+            article_headline = article.get_attribute("innerHTML")
+            print('article value', article.get_dom_attribute("innerHTML"))
+            if self.contains_ampersand_char(article_headline):
+                article_headline = re.sub('&amp;', '&', article_headline)
+            results_headlines.append(article_headline)
+            print('headline in page', article_headline)
+        return results_headlines
 
     def get_list_filter_by_results(self):
         self.driver.wait_for_page_load()
@@ -62,11 +88,21 @@ class Search(BasePage):
                 return False
         return True
 
+    def get_suggested_results_expected(self, keyword_url, text_to_search):
+        return self.get_suggested_results_in_search_api(keyword_url, text_to_search)
+
+    def get_search_results_in_page(self):
+        results_in_page = self.driver.find_elements(*PageLocators.search_results_list)
+        return self.get_search_results_headlines(results_in_page)
+
+    def get_suggested_results_in_page(self):
+        suggested_results_in_page = self.driver.find_elements(*PageLocators.search_suggestions_results_list)
+        return self.get_search_results_headlines(suggested_results_in_page)
+
     @staticmethod
     def get_tag_eyebrow_in_feed_results_page(eyebrow_in_articles):
         tag_articles_eyebrow = []
         for element in eyebrow_in_articles:
-            # element_text = element.get_attribute("innerHTML").split("/ ")
             tag_eyebrow = element.get_attribute("innerHTML").split("/ ")[1]
             print('tag', tag_eyebrow)
             tag_articles_eyebrow.append(tag_eyebrow)
@@ -79,10 +115,14 @@ class Search(BasePage):
         self.driver.wait_for_element_not_visible(*PageLocators.search_bar_text_field)
 
     def is_searchbar_button_visible(self):
-        return self.driver.find_element(*PageLocators.search_button_desktop).is_displayed()
+        return self.driver.find_element(*PageLocators.search_icon_nav_desktop).is_displayed()
+
+    def is_search_results_header_visible(self):
+        return self.driver.find_element(*PageLocators.search_results_header).is_displayed()
 
     def type_search_criteria(self, search_criteria):
-        self.driver.find_element(*PageLocators.search_bar_text_field).send_keys(search_criteria)
+        text_field = self.driver.find_element(*PageLocators.search_bar_text_field)
+        text_field.send_keys(search_criteria)
 
     @staticmethod
     def load_recent_article():

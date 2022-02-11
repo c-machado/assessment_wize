@@ -25,7 +25,7 @@ Feature: As a user I want to confirm articles in the feed list are shown to the 
            | /intl/en-in/products/platforms/#android           |
            | /intl/en-au/products/android-chrome-more/         |
 
-    @feed-article-load-more-
+    @feed-article-load-more
     Scenario Outline: Test articles listed in the feed in the subcategory page are order by desc date
         Given a user is at the <keyword> site
         When the user clicks on load more stories cta

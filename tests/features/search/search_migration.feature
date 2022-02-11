@@ -14,6 +14,7 @@ Feature: As a user I want to be able to search for content within the blog
         When the user clicks the search icon
         Then the system shows the search bar expanded
 
+
     @search
     Scenario: Test the search bar  - collapsing the search bar
         Given a user is at the <keyword> site
@@ -21,11 +22,13 @@ Feature: As a user I want to be able to search for content within the blog
         And the user closes the search bar
         Then the system collapsed the search bar
 
+
     @search
     Scenario Outline: Test the results page
         Given a user is at the <keyword> site
         When the user clicks the search icon
         And the user types the <text_to_search>
+        And the user clicks the magnifying glass
         Then the system adds the <text_to_search> as a parameter in the <keyword> url
 
         Examples:
@@ -37,13 +40,10 @@ Feature: As a user I want to be able to search for content within the blog
         Given a user is at the <keyword> site
         When the user clicks the search icon
         And the user types the <text_to_search>
+        And  the user clicks the magnifying glass
         And the user selects a random filter
         Then the system updates the result based on the filter
 
         Examples:
             | text_to_search |
             | google         |
-
-
-
-

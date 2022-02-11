@@ -141,14 +141,14 @@ class BasePage(object):
     def replace_space(self, string):
         import re
         string_without_special_chars = string
-        if self.contains_special_char(string):
+        if self.contains_ampersand_char(string):
             string_without_special_chars = re.sub("&amp;", "and", string)
         pattern = re.compile(r'\s+')
         string_no_spaces_no_special_chars = re.sub(pattern, '-', string_without_special_chars.strip())
         return string_no_spaces_no_special_chars
 
     @staticmethod
-    def contains_special_char(string):
+    def contains_ampersand_char(string):
         import re
         regexp = re.compile("&amp;")
         if regexp.search(string):

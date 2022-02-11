@@ -13,4 +13,19 @@ LATEST_FEED = {
     '/inside-google/googlers/she-word/': '/api/v2/latest?author_ids=&category=article,perspective&date_start=&date_stop=&hero_template=heroArticleItem&is_main_hero=&paginate=5&site_id=2&tags=the-she-word&template=latestArticleItem',
     '/waze/': '/api/v2/latest?author_ids=&category=&date_start=&date_stop=&hero_template=heroArticleItem&is_main_hero=&paginate=7&site_id=2&tags=products-waze&template=latestArticleItem'
 }
+
+SEARCH_API = {
+    '/': '/api/v2/search?paginate=12&order=relevance&site_id=2&query=text_to_search',
+    '/intl/de-de/': '/api/v2/search?paginate=12&order=relevance&site_id=8&query=text_to_search',
+    '/intl/en-au/': '/api/v2/search?paginate=12&order=relevance&site_id=9&query=text_to_search',
+    '/intl/en-in/': '/api/v2/search?paginate=12&order=relevance&site_id=10&query=text_to_search'
+}
+
+SEARCH_SUGGESTIONS_API = {
+    '/': '/api/v2/search-suggestions/?query=text_to_search&site_id=2&format=json',
+    '/intl/de-de/': '/api/v2/search-suggestions/?query=text_to_search&site_id=8&format=json',
+    '/intl/en-au/': '/api/v2/search-suggestions/?query=text_to_search&site_id=9&format=json',
+    '/intl/en-in/': '/api/v2/search-suggestions/?query=text_to_search&site_id=10&format=json'
+}
+
 BASE_URI = 'https://blog.google/api/v2/latest?tags=android'

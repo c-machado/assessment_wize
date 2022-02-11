@@ -8,7 +8,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 service=Service(ChromeDriverManager().install())
 
 options = webdriver.ChromeOptions()
-options.add_argument(r'user-data-dir=/Users/jmallarino/Library/Application Support/Google/Chrome')
+options.add_argument(r'user-data-dir=/Users/machadoca/Library/Application Support/Google/Chrome')
 options.add_argument(r'profile-directory=Default')
 
 cls.driver = webdriver.Chrome(

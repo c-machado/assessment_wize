@@ -1,9 +1,8 @@
 class Constants(object):
     BASE_URL = 'https://blog.google'
     SEARCH_URL = "search/?query="
-    # BASE_URL = 'https://gweb-uniblog-publish-stage.appspot.com/supportingnews'
     # BASE_URL = 'https://www.gmail.com'
-    # BASE_URL_STAGE = 'https://gweb-uniblog-publish-stage.appspot.com/supportingnews'
+    # BASE_URL = 'https://gweb-uniblog-publish-stage.appspot.com'
 
     COOKIE_BANNER_TXT = {
         "en": "Google serves cookies to analyze traffic to this site. Information about your use of our site is "
@@ -129,6 +128,10 @@ class Constants(object):
         "mobile": "640",
         "tablet": "1024",
         "desktop": "768"
+    }
+    SEARCH_NO_RESULTS_MSG = {
+        'de': "Ups, die Suche nach “text_to_search” führte zu keinem Ergebnis.",
+        'en': "Oops, your search for “text_to_search” didn't return any results."
     }
     MOBILE_PLATFORMS = [
         'ANDROID',

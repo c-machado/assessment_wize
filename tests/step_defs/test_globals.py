@@ -9,15 +9,10 @@ from tests.pages.locators import PageLocators
 
 scenarios("../features/globals/")
 
-BASE_URL = 'https://blog.google'
-
-
-# BASE_URL = 'https://gweb-uniblog-publish-stage.appspot.com/supportingnews'
-
 
 @given("a user is at the <keyword> site")
 def at_the_blog(keyword, driver, get_web_browser, get_viewport):
-    print('keyword url', BASE_URL + keyword)
+    print('keyword url', Constants.BASE_URL + keyword)
     print('get_web_browser', get_web_browser)
     print('get_viewport', get_viewport)
     driver.start(get_web_browser, get_viewport)
@@ -29,7 +24,7 @@ def at_the_blog(keyword, driver, get_web_browser, get_viewport):
 
 @given("a user is at the <keyword> site in mobile")
 def at_the_blog(keyword, driver, get_web_browser):
-    print('keyword url', BASE_URL + keyword)
+    print('keyword url', Constants.BASE_URL + keyword)
     print('get_web_browser', get_web_browser)
     driver.start(get_web_browser, "mobile")
     driver.go_to_URL(Constants.BASE_URL + keyword)
@@ -189,41 +184,6 @@ def newsletter_modal_not_visible(newsletter):
     newsletter.modal_not_visible()
 
 
-@when("the user clicks the search icon")
-def user_clicks_search(search):
-    search.click_search_icon_in_nav_bar()
-
-
-@then("the system shows the search bar expanded")
-def search_bar_expanded(search):
-    assert search.is_search_bar_visible()
-
-
-@when("the user closes the search bar")
-def user_click_close_icon_search_bar(search):
-    search.close_search_bar()
-
-
-@then("the system collapsed the search bar")
-def search_bar_collapsed(search):
-    search.is_search_bar_not_visible()
-    assert search.is_searchbar_button_visible()
-
-
-@when("the user types the <text_to_search>")
-def user_type_criteria_to_search(text_to_search, search):
-    search.type_search_criteria(text_to_search)
-    search.click_search_icon_in_bar_expanded()
-    # time.sleep(2)
-
-
-@then("the system adds the <text_to_search> as a parameter in the <keyword> url")
-def user_sees_parameter_in_url(text_to_search, keyword, driver):
-    url_results_page = Constants.BASE_URL + keyword + Constants.SEARCH_URL + text_to_search
-    print('current url:', driver.current_url())
-    assert url_results_page == driver.current_url()
-
-
 @when("the user clicks the Google logo")
 def user_clicks_google_logo(footer):
     footer.click_google_logo()
@@ -295,18 +255,5 @@ def toast_bar_not_visible(toast_bar):
     assert toast_bar.is_toast_bar_visible()
 
 
-@then("the feed shows the most recent articles")
-def feed_recent_articles(search):
-    search.load_recent_article()
 
-
-@when("the user selects a random filter")
-def user_selects_random_filter(search):
-    search.click_filter_by_random_option()
-    # time.sleep(3)
-
-
-@then("the system updates the result based on the filter")
-def results_per_filter_by_option(search):
-    assert search.get_results_filtered()
 
