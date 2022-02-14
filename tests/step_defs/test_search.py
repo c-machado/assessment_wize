@@ -2,6 +2,7 @@ import time
 
 from pytest_bdd import scenarios, given, when, then
 
+from tests.pages.locators import PageLocators
 from tests.consts.constants import Constants
 
 scenarios("../features/search")
@@ -76,6 +77,8 @@ def results_per_filter_by_option(search):
 def correct_suggestions_per_criteria(text_to_search, keyword, search):
     expected_suggestions = search.get_suggested_results_expected(keyword, text_to_search)
     actual_suggestions = search.get_suggested_results_in_page()
+    print('expected_suggestions', expected_suggestions)
+    print('actual_suggestions', actual_suggestions)
     assert expected_suggestions == actual_suggestions
 
 
@@ -97,4 +100,16 @@ def visibility_of_no_search_results_message(text_to_search, language, search):
 @given("the progress bar is visible")
 def make_progress_bar_visible(homepage, base_page):
     homepage.click_to_read_more_article()
+    base_page.scroll_to_fifty_percent()
+
+
+@given("the user selects an article in <keyword> feed")
+def user_selects_article_in_feed(keyword, homepage, base_page):
+    homepage.get_random_article_in_feed(homepage.get_articles_in_feed_list())
+    base_page.close_bar(PageLocators.cookie_banner_ok_cta)
+    homepage.click_to_random_article_in_feed(keyword)
+
+
+@given("the user scroll to see the progress bar")
+def user_scroll_in_article_page(base_page):
     base_page.scroll_to_fifty_percent()

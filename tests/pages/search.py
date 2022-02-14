@@ -95,6 +95,7 @@ class Search(BasePage, BasePageAPI):
         results_in_page = self.driver.find_elements(*PageLocators.search_results_list)
         return self.get_search_results_headlines(results_in_page)
 
+    # TODO: add validation when there are not suggested results
     def get_suggested_results_in_page(self):
         suggested_results_in_page = self.driver.find_elements(*PageLocators.search_suggestions_results_list)
         return self.get_search_results_headlines(suggested_results_in_page)

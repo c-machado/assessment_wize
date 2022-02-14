@@ -18,14 +18,16 @@ SEARCH_API = {
     '/': '/api/v2/search?paginate=12&order=relevance&site_id=2&query=text_to_search',
     '/intl/de-de/': '/api/v2/search?paginate=12&order=relevance&site_id=8&query=text_to_search',
     '/intl/en-au/': '/api/v2/search?paginate=12&order=relevance&site_id=9&query=text_to_search',
-    '/intl/en-in/': '/api/v2/search?paginate=12&order=relevance&site_id=10&query=text_to_search'
+    '/intl/en-in/': '/api/v2/search?paginate=12&order=relevance&site_id=10&query=text_to_search',
+    '/perspectives/sundar-pichai/': '/api/v2/search?paginate=12&order=relevance&site_id=2&query=text_to_search'
 }
 
 SEARCH_SUGGESTIONS_API = {
     '/': '/api/v2/search-suggestions/?query=text_to_search&site_id=2&format=json',
     '/intl/de-de/': '/api/v2/search-suggestions/?query=text_to_search&site_id=8&format=json',
     '/intl/en-au/': '/api/v2/search-suggestions/?query=text_to_search&site_id=9&format=json',
-    '/intl/en-in/': '/api/v2/search-suggestions/?query=text_to_search&site_id=10&format=json'
+    '/intl/en-in/': '/api/v2/search-suggestions/?query=text_to_search&site_id=10&format=json',
+    '/perspectives/sundar-pichai/': '/api/v2/search-suggestions/?query=text_to_search&site_id=2&format=json'
 }
 
 BASE_URI = 'https://blog.google/api/v2/latest?tags=android'
