@@ -92,3 +92,9 @@ def visibility_of_no_search_results_message(text_to_search, language, search):
     expected_msg = search.get_msg_no_search_results_per_language(text_to_search, language)
     actual_msg = search.get_msg_no_search_results_in_page()
     assert expected_msg == actual_msg
+
+
+@given("the progress bar is visible")
+def make_progress_bar_visible(homepage, base_page):
+    homepage.click_to_read_more_article()
+    base_page.scroll_to_fifty_percent()

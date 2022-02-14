@@ -52,6 +52,8 @@ Feature: As a user I would like to interact with the header links
         |/intl/en-in/ | press        | in     |
 
   @header
+  #TODO: add a new case sitespace and subcategory in en-us
+  #TODO: add comparisson between 5 first articles
   Scenario Outline: Test rss matches content in desktop
       Given a user is at the <keyword> site
       When the user triggers the kebab menu
