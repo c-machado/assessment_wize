@@ -12,8 +12,9 @@ printf "STARTING TEST:\n"
 #pytest tests/ -m "cookie" --html=reports/blog/cookie.html
 #pytest tests/ -m "newsletter" --html=reports/blog/newsletter.html
 
+pytest tests/ -m "search-category" --html=reports/blog/search-cat.html
 pytest tests/ -m "search-article" --html=reports/blog/article-search.html
-#pytest tests/ -m "search" --html=reports/blog/search.html
+pytest tests/ -m "search" --html=reports/blog/search.html
 
 #docker run --rm -v "$(pwd)"/reports:/chrome-test/tests/reports chrome/linux:latest
 

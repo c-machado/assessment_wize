@@ -77,14 +77,14 @@ class Driver(IDriver):
         options.add_argument(size_viewport)
         options.set_capability("acceptInsecureCerts", True)
         # options.add_argument('--start-maximized')
-        # options.add_argument('--headless')
+        options.add_argument('--headless')
         options.add_argument('--no-sandbox')
         options.add_argument("--disable-dev-shm-usage")
         # options.add_argument("--remote-debugging-port=9222")
         # chrome://inspect/#devices
 
         # path_chrome = r'/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
-        # options.add_argument(r'--user-data-dir=/Users/machadoca/Library/Application Support/Google/Chrome')  # your chrome user data directory
+        # options.add_argument(r'--user-data-dir=/Users/machadoca/Documents/keyword_chrome')  # your chrome user data directory
         # options.add_argument(r'--profile-directory=Default')  # the profile with the extensions loaded
 
         s = Service(driver_path)
@@ -103,6 +103,7 @@ class Driver(IDriver):
         s = Service(driver_path)
         self.driver = webdriver.Edge(options=options)
 
+    # https://stackoverflow.com/questions/66209119/automation-google-login-with-python-and-selenium-shows-this-browser-or-app-may
     def build_firefox_driver(self, driver_path, viewport):
         options = Options()
         options.add_argument('--headless')
@@ -110,9 +111,18 @@ class Driver(IDriver):
         height = self.get_win_height(viewport, Constants.FF_WINDOWS_HEIGHT)
         options.add_argument(width)
         options.add_argument(height)
+
+        profile_path = '/Users/machadoca/Library/Application Support/Firefox/Profiles/4jwzwjvm.default'
+        options.set_preference('profile', profile_path)
+
+        options.set_preference("dom.webdriver.enabled", False)
+        options.set_preference('useAutomationExtension', False)
+
         s = Service(driver_path)
         self.driver = webdriver.Firefox(service=s,
                                         options=options)
+
+
 
     # def build_ie_driver(self, web_browser):
     #     if web_browser == 'ie':

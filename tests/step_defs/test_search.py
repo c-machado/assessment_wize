@@ -16,6 +16,7 @@ def at_the_blog(keyword, driver, get_web_browser, get_viewport):
     driver.start(get_web_browser, get_viewport)
     driver.go_to_URL(Constants.BASE_URL + keyword)
     driver.wait_for_page_load()
+    # driver.set_cookie()
 
 
 @when("the user clicks the search icon")

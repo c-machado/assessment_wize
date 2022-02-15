@@ -80,11 +80,13 @@ class BasePageAPI(object):
         return result
 
     def get_search_api_url(self, keyword_url, text_to_search):
-        """:return api url according to page received, this is required because each page has different filters"""
+        """:return api url according to page received, this is required because each locale has different site_id"""
         print('current url', self.driver.current_url())
         urls = self.get_api_url_per_type_of_search()
+        locale_url = self.get_base_keyword_url(keyword_url)
+        print('locale_url', locale_url)
         for page, url in urls.items():
-            if page == keyword_url:
+            if page == locale_url:
                 api_url = self.replace_query_parameter(text_to_search, url)
                 print('API_URL_SEARCH', api_url)
                 return api_url
@@ -114,3 +116,15 @@ class BasePageAPI(object):
         regexp = re.compile(r'\s+')
         if regexp.search(string):
             return True
+
+    @staticmethod
+    def get_base_keyword_url(keyword_url):
+        substring = keyword_url[0:6]
+        print('substring', substring)
+        if substring == '/intl/':
+            url = keyword_url[0:12]
+            print('keyword_url[0:12]', keyword_url[0:12])
+        else:
+            url = keyword_url[0]
+            print('keyword_url[0]', keyword_url[0])
+        return url
