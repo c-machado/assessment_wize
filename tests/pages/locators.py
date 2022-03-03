@@ -6,6 +6,7 @@ class PageLocators(object):
     article_read_more_cta = (By.CSS_SELECTOR, "a.featured-article__link span.cta")
     article_secondary_tags = (By.CSS_SELECTOR, ".uni-blog-article-tags-value")
     article_published_at = (By.CSS_SELECTOR, ".article-meta__published-at")
+    collection_data_analytics = (By.CSS_SELECTOR, ".page-analytics-data")
     cookie_banner_ok_cta = (By.CSS_SELECTOR, ".cookieBarConsentButton")
     cookie_banner_bar = (By.ID, "cookieBar")
     cookie_see_details_cta = (By.CSS_SELECTOR, ".cookieBarMoreButton")

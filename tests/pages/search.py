@@ -1,8 +1,10 @@
+import json
 import re
 import time
 
 import requests
 from assertpy import assert_that
+from selenium.webdriver import Keys
 
 from tests.consts.constants import Constants
 from tests.pages.base_page import BasePage
@@ -17,6 +19,7 @@ class Search(BasePage, BasePageAPI):
         self.driver = driver
         self.random_filter = 0
         self.tag_to_filter = ''
+        self.collections_dict = {}
 
     def click_search_icon_in_nav_bar(self):
         self.driver.click_to_element(PageLocators.search_icon_nav_desktop)
@@ -29,13 +32,19 @@ class Search(BasePage, BasePageAPI):
 
     def click_filter_by_random_option(self):
         filter_by_options_list = self.get_list_filter_by_results()
-        print('filter_by_options_list', len(filter_by_options_list))
-        self.get_random_element_to_filter(self.get_list_filter_by_results())
+        self.get_random_element_to_filter(filter_by_options_list)
         self.tag_to_filter = filter_by_options_list[self.random_filter].get_attribute("innerHTML")
         print('tag to filter', self.tag_to_filter)
         filter_by_options_list[self.random_filter].click()
+        # time.sleep(2)
         self.driver.wait_for_page_load()
         self.driver.wait_for_element_visible(PageLocators.search_tag_filter_selected)
+
+    def click_on_collection_element(self, index):
+        print('element', index)
+        index = "% s" % index
+        from selenium.webdriver.common.by import By
+        self.driver.find_element(By.CSS_SELECTOR, '.uni-search-results__list > a:nth-child(' + index + ')').click()
 
     def close_search_bar(self):
         self.driver.click_to_element(PageLocators.search_close_icon_desktop)
@@ -79,9 +88,9 @@ class Search(BasePage, BasePageAPI):
         print('random', self.random_filter)
         return self.random_filter
 
-    def get_results_filtered(self):
+    def get_results_filtered(self, keyword):
         articles_in_feed = self.get_articles_in_feed_search_results_page()
-        articles_tags_in_feed_results = self.get_tag_eyebrow_in_feed_results_page(articles_in_feed)
+        articles_tags_in_feed_results = self.get_tag_eyebrow_in_feed_results_page(articles_in_feed, keyword)
         for tag in articles_tags_in_feed_results:
             if tag != self.tag_to_filter:
                 print('tag in feed', tag)
@@ -100,14 +109,46 @@ class Search(BasePage, BasePageAPI):
         suggested_results_in_page = self.driver.find_elements(*PageLocators.search_suggestions_results_list)
         return self.get_search_results_headlines(suggested_results_in_page)
 
-    @staticmethod
-    def get_tag_eyebrow_in_feed_results_page(eyebrow_in_articles):
+    def get_tag_eyebrow_in_feed_results_page(self, eyebrow_in_articles, keyword):
         tag_articles_eyebrow = []
+        index = 0
+        collection_index = 0
         for element in eyebrow_in_articles:
-            tag_eyebrow = element.get_attribute("innerHTML").split("/ ")[1]
-            print('tag', tag_eyebrow)
-            tag_articles_eyebrow.append(tag_eyebrow)
+            tag_eyebrow = self.remove_html_tags(element.get_attribute("innerHTML"))
+            print('tag_eyebrow1', tag_eyebrow)
+            tag_eyebrow_principal = tag_eyebrow.split("/ ")[1]
+            print('tag eyebrow principal', tag_eyebrow_principal)
+            index += 1
+            if 'collection' in tag_eyebrow_principal:
+                collection_index += 1
+                self.collections_dict.setdefault(collection_index, []).append(index)
+                self.collections_dict.setdefault(collection_index, []).append(element)
+            elif (tag_eyebrow_principal != self.tag_to_filter) and not(tag_eyebrow_principal.strip().startswith('From')):
+                tag_eyebrow = tag_eyebrow.split("/ ")[2]
+                tag_articles_eyebrow.append(tag_eyebrow)
+            elif self.tag_to_filter in tag_eyebrow_principal:
+                if tag_eyebrow_principal.strip().startswith("From"):
+                    tag_articles_eyebrow.append(tag_eyebrow_principal[5:len(self.tag_to_filter)+6].strip())
+                else:
+                    tag_articles_eyebrow.append(tag_eyebrow_principal)
+        if collection_index >= 1:
+            assert self.get_collection_primary_tag(keyword)
         return tag_articles_eyebrow
+
+    def get_collection_primary_tag(self, keyword):
+        primary_tags_list = []
+        for item in self.collections_dict.values():
+            index = item[0]
+            print('self.collections_dict', self.collections_dict)
+            self.scroll_to_feed(index, keyword)
+            self.click_on_collection_element(index)
+            data_analytics = self.driver.find_element(*PageLocators.collection_data_analytics)
+            primary_tag = (data_analytics.get_attribute("outerHTML").split("primaryTag")[1]).split("&quot;")[2]
+            # print(json.loads(data_analytics.get_attribute("data-analytics")))
+            print('primary_tag', primary_tag)
+            primary_tags_list.append(primary_tag)
+            self.driver.go_back_to_url()
+        return self.contains_filtered_tag(self.tag_to_filter, primary_tags_list)
 
     def is_search_bar_visible(self):
         return self.driver.find_element(*PageLocators.search_bar_text_field).is_displayed()
@@ -124,21 +165,3 @@ class Search(BasePage, BasePageAPI):
     def type_search_criteria(self, search_criteria):
         text_field = self.driver.find_element(*PageLocators.search_bar_text_field)
         text_field.send_keys(search_criteria)
-
-    @staticmethod
-    def load_recent_article():
-        response = requests.get(Constants.BASE_URL+'/api/v2/latest')
-        assert_that(response.status_code).is_equal_to(requests.codes.ok)
-        assert_that(response.status_code).is_equal_to(200)
-        result = response.json()
-        print('len response', len(result['results']))
-        articles = [result['results'] for article in result]
-        # print('articles', articles)
-        # assert_that(android_articles).contains('category')
-        for article in result['results']:
-            print('article', article)
-            print('category', article['category'])
-            print('tag', article['tag'])
-            print('published', article['published'])
-            assert_that(article['category']).contains('article')
-        assert False

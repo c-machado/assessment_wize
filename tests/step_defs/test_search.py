@@ -66,12 +66,11 @@ def user_sees_parameter_in_url(text_to_search, keyword, driver):
 @when("the user selects a random filter")
 def user_selects_random_filter(search):
     search.click_filter_by_random_option()
-    # time.sleep(3)
 
 
-@then("the system updates the result based on the filter")
-def results_per_filter_by_option(search):
-    assert search.get_results_filtered()
+@then("the system filters the results on <keyword>")
+def results_per_filter_by_option(keyword, search):
+    assert search.get_results_filtered(keyword)
 
 
 @then("the system shows suggestions per <text_to_search> in <keyword> page")

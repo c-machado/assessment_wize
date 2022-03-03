@@ -123,14 +123,12 @@ class BasePage(object):
 
     @staticmethod
     def order_list_by_date_desc(article_dates_list):
-        article_dates_list_original = article_dates_list
-        article_dates_list.sort(key=lambda date: datetime.datetime.strptime(date, Constants.DATE_FORMAT_IN_API),
-                                reverse=True)
-        for original_date, sorted_date in zip(article_dates_list_original, article_dates_list):
-            print(original_date, sorted_date)
-            if original_date != sorted_date:
+        for index in range(len(article_dates_list)-2):
+            article_current_date = datetime.datetime.strptime(article_dates_list[index], Constants.DATE_FORMAT_IN_API)
+            article_next_date = datetime.datetime.strptime(article_dates_list[index+1], Constants.DATE_FORMAT_IN_API)
+            if article_current_date < article_next_date:
                 return False
-        return True
+            return True
 
     @staticmethod
     def remove_enter(string):
@@ -153,6 +151,24 @@ class BasePage(object):
         regexp = re.compile("&amp;")
         if regexp.search(string):
             return True
+
+    @staticmethod
+    def contains_filtered_tag(tag_to_filter, primary_tags):
+        true_match = False
+        import re
+        for tag in primary_tags:
+            match = re.search(tag_to_filter.lower(), tag)
+            if match:
+                print(match)
+                true_match = True
+        return true_match
+
+    @staticmethod
+    def remove_html_tags(raw_html):
+        import re
+        cleaner = re.compile('<.*?>')
+        clean_text = re.sub(cleaner, '', raw_html)
+        return clean_text
 
     def scroll_to_bottom(self):
         self.driver.wait_for_page_load()

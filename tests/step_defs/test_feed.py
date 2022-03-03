@@ -68,7 +68,7 @@ def user_load_more_stories(homepage, base_page):
 @then("the articles are shown order by date desc")
 def validate_descendent_order(homepage):
     original_list = homepage.get_article_dates_in_feed_with_year()
-    homepage.order_list_by_date_desc(original_list)
+    assert homepage.order_list_by_date_desc(original_list)
 
 
 @then("the tags associated matches with the content in the <keyword>")
