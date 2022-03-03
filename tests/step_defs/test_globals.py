@@ -190,7 +190,7 @@ def user_clicks_google_logo(footer):
 
 
 @then("the dates in rss and <keyword> matches")
-def confirm_date_format_in_rss(header, homepage, keyword):
+def confirm_date_format_in_rss(header, feed, keyword):
     publish_date_rss = header.get_publish_date_in_rss()
     print('publish_date_rss', publish_date_rss)
     date_in_first_article = homepage.get_date_first_article_in_feed(keyword)
@@ -232,9 +232,9 @@ def user_fills_out_form_with_invalid_data(newsletter):
 
 
 @given("the toast bar has appeared")
-def toast_bar_visible(cookie_banner, newsletter, toast_bar):
+def toast_bar_visible(cookie_banner, homepage, newsletter, toast_bar):
     cookie_banner.close_cookie_banner()
-    cookie_banner.click_to_read_more_article()
+    homepage.click_to_read_more_article()
     toast_bar.make_toast_bar_visible()
 
 

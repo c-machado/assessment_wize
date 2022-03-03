@@ -6,11 +6,12 @@ from datetime import datetime
 
 import pytest
 
+from tests.pages.homepage import Homepage
 from tests.pages.article import ArticlePage
 from tests.pages.cookie_banner import CookieBanner
 from tests.pages.footer import Footer
 from tests.pages.header import Header
-from tests.pages.homepage import HomePage
+from tests.pages.feed import Feed
 from tests.pages.newsletter import Newsletter
 from tests.pages.search import Search
 from tests.pages.toast_bar import ToastBar
@@ -141,8 +142,13 @@ def toast_bar(driver):
 
 
 @pytest.fixture
+def feed(driver):
+    return Feed(driver)
+
+
+@pytest.fixture
 def homepage(driver):
-    return HomePage(driver)
+    return Homepage(driver)
 
 
 @pytest.fixture

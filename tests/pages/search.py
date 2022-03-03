@@ -34,9 +34,9 @@ class Search(BasePage, BasePageAPI):
         filter_by_options_list = self.get_list_filter_by_results()
         self.get_random_element_to_filter(filter_by_options_list)
         self.tag_to_filter = filter_by_options_list[self.random_filter].get_attribute("innerHTML")
+        self.tag_to_filter = self.replace_ampersand_char(self.tag_to_filter)
         print('tag to filter', self.tag_to_filter)
         filter_by_options_list[self.random_filter].click()
-        # time.sleep(2)
         self.driver.wait_for_page_load()
         self.driver.wait_for_element_visible(PageLocators.search_tag_filter_selected)
 
@@ -85,7 +85,6 @@ class Search(BasePage, BasePageAPI):
     def get_random_element_to_filter(self, element_list):
         import random
         self.random_filter = random.randint(1, len(element_list) - 1)
-        print('random', self.random_filter)
         return self.random_filter
 
     def get_results_filtered(self, keyword):
@@ -115,7 +114,6 @@ class Search(BasePage, BasePageAPI):
         collection_index = 0
         for element in eyebrow_in_articles:
             tag_eyebrow = self.remove_html_tags(element.get_attribute("innerHTML"))
-            print('tag_eyebrow1', tag_eyebrow)
             tag_eyebrow_principal = tag_eyebrow.split("/ ")[1]
             print('tag eyebrow principal', tag_eyebrow_principal)
             index += 1
@@ -123,9 +121,9 @@ class Search(BasePage, BasePageAPI):
                 collection_index += 1
                 self.collections_dict.setdefault(collection_index, []).append(index)
                 self.collections_dict.setdefault(collection_index, []).append(element)
-            elif (tag_eyebrow_principal != self.tag_to_filter) and not(tag_eyebrow_principal.strip().startswith('From')):
-                tag_eyebrow = tag_eyebrow.split("/ ")[2]
-                tag_articles_eyebrow.append(tag_eyebrow)
+            elif not(tag_eyebrow_principal.strip().startswith('From')) and (tag_eyebrow_principal != self.tag_to_filter):
+                tag_eyebrow_secondary = tag_eyebrow.split("/ ")[2]
+                tag_articles_eyebrow.append(tag_eyebrow_secondary)
             elif self.tag_to_filter in tag_eyebrow_principal:
                 if tag_eyebrow_principal.strip().startswith("From"):
                     tag_articles_eyebrow.append(tag_eyebrow_principal[5:len(self.tag_to_filter)+6].strip())

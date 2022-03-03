@@ -75,7 +75,7 @@ class Driver(IDriver):
         options.add_argument(size_viewport)
         options.set_capability("acceptInsecureCerts", True)
         # options.add_argument('--start-maximized')
-        # options.add_argument('--headless')
+        options.add_argument('--headless')
         options.add_argument('--no-sandbox')
         options.add_argument("--disable-dev-shm-usage")
         # options.add_argument("--remote-debugging-port=9222")

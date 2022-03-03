@@ -104,10 +104,10 @@ def make_progress_bar_visible(homepage, base_page):
 
 
 @given("the user selects an article in <keyword> feed")
-def user_selects_article_in_feed(keyword, homepage, base_page):
-    homepage.get_random_article_in_feed(homepage.get_articles_in_feed_list())
+def user_selects_article_in_feed(keyword, feed, base_page):
+    feed.get_random_index_in_list(feed.get_articles_in_feed_list())
     base_page.close_bar(PageLocators.cookie_banner_ok_cta)
-    homepage.click_to_random_article_in_feed(keyword)
+    feed.click_to_random_article_in_feed(keyword)
 
 
 @given("the user scroll to see the progress bar")

@@ -72,10 +72,10 @@ class BasePage(object):
                 print('locator ', locator_item, 'submenu', item)
                 return locator_item
 
-    def get_random_article_in_feed(self, feed_list):
-        feed_list_length = len(feed_list)
-        print('list length of articles in feed', feed_list_length)
-        self.random_article = random.randint(0, feed_list_length - 1)
+    def get_random_index_in_list(self, element_list):
+        element_list_length = len(element_list)
+        print('list length of articles in feed', element_list_length)
+        self.random_article = random.randint(0, element_list_length - 1)
         return self.random_article
 
     def get_scroll_locator(self, url):
@@ -163,12 +163,22 @@ class BasePage(object):
                 true_match = True
         return true_match
 
-    @staticmethod
-    def remove_html_tags(raw_html):
+    def replace_ampersand_char(self, string):
+        if self.contains_ampersand_char(string):
+            import re
+            return re.sub("&amp;", "&", string)
+        else:
+            return string
+
+    def remove_html_tags(self, raw_html):
         import re
         cleaner = re.compile('<.*?>')
         clean_text = re.sub(cleaner, '', raw_html)
-        return clean_text
+        if self.contains_ampersand_char(clean_text):
+            clean_text = self.replace_ampersand_char(clean_text)
+            return clean_text
+        else:
+            return clean_text
 
     def scroll_to_bottom(self):
         self.driver.wait_for_page_load()
