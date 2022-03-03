@@ -53,7 +53,6 @@ def search_bar_collapsed(search):
 @when("the user types the <text_to_search>")
 def user_type_criteria_to_search(text_to_search, search):
     search.type_search_criteria(text_to_search)
-    # time.sleep(2)
 
 
 @then("the system adds the <text_to_search> as a parameter in the <keyword> url")

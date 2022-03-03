@@ -142,7 +142,6 @@ class Search(BasePage, BasePageAPI):
             self.click_on_collection_element(index)
             data_analytics = self.driver.find_element(*PageLocators.collection_data_analytics)
             primary_tag = (data_analytics.get_attribute("outerHTML").split("primaryTag")[1]).split("&quot;")[2]
-            # print(json.loads(data_analytics.get_attribute("data-analytics")))
             print('primary_tag', primary_tag)
             primary_tags_list.append(primary_tag)
             self.driver.go_back_to_url()

@@ -1,6 +1,6 @@
 import random
 import time
-
+import re
 import pytest
 import requests
 
@@ -132,12 +132,10 @@ class BasePage(object):
 
     @staticmethod
     def remove_enter(string):
-        import re
         pattern = re.compile(r'\n+')
         return re.sub(pattern, '', string)
 
     def replace_space(self, string):
-        import re
         string_without_special_chars = string
         if self.contains_ampersand_char(string):
             string_without_special_chars = re.sub("&amp;", "and", string)
@@ -147,7 +145,6 @@ class BasePage(object):
 
     @staticmethod
     def contains_ampersand_char(string):
-        import re
         regexp = re.compile("&amp;")
         if regexp.search(string):
             return True
@@ -155,7 +152,6 @@ class BasePage(object):
     @staticmethod
     def contains_filtered_tag(tag_to_filter, primary_tags):
         true_match = False
-        import re
         for tag in primary_tags:
             match = re.search(tag_to_filter.lower(), tag)
             if match:
@@ -165,13 +161,12 @@ class BasePage(object):
 
     def replace_ampersand_char(self, string):
         if self.contains_ampersand_char(string):
-            import re
+
             return re.sub("&amp;", "&", string)
         else:
             return string
 
     def remove_html_tags(self, raw_html):
-        import re
         cleaner = re.compile('<.*?>')
         clean_text = re.sub(cleaner, '', raw_html)
         if self.contains_ampersand_char(clean_text):
