@@ -54,6 +54,7 @@ class Constants(object):
         "tablet": "--height=1024",
         "desktop": "--height=768"
     }
+    HTML_string = '''<!DOCTYPE html><html><head><style>table …'''
     KEBAB_MENU_OPTIONS = {
         "rss_us": "RSS feed",
         "rss_de": "RSS-Feed",

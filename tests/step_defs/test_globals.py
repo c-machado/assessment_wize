@@ -193,7 +193,7 @@ def user_clicks_google_logo(footer):
 def confirm_date_format_in_rss(header, feed, keyword):
     publish_date_rss = header.get_publish_date_in_rss()
     print('publish_date_rss', publish_date_rss)
-    date_in_first_article = homepage.get_date_first_article_in_feed(keyword)
+    date_in_first_article = feed.get_date_first_article_in_feed(keyword)
     print('date_in_first_article', date_in_first_article)
     assert publish_date_rss == date_in_first_article
 

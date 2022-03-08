@@ -2,7 +2,13 @@ from selenium.webdriver.common.by import By
 
 
 class PageLocators(object):
-
+    article_current_time = (By.CSS_SELECTOR, ".ytp-time-current")
+    article_mute_video = (By.CSS_SELECTOR, ".ytp-mute-button")
+    article_play_hero_video = (By.CSS_SELECTOR, ".uni-article-video--hero")
+    article_play_embed_video = (By.CSS_SELECTOR, ".uni-article-video--body")
+    article_pause_video = (By.CSS_SELECTOR, ".ytp-play-button")
+    article_see_subtitles = (By.CSS_SELECTOR, ".ytp-subtitles-button")
+    article_video_frame = (By.CSS_SELECTOR, ".uni-article-video__embed-container > iframe")
     article_read_more_cta = (By.CSS_SELECTOR, "a.featured-article__link span.cta")
     article_secondary_tags = (By.CSS_SELECTOR, ".uni-blog-article-tags-value")
     article_published_at = (By.CSS_SELECTOR, ".article-meta__published-at")

@@ -81,6 +81,7 @@ def correct_suggestions_per_criteria(text_to_search, keyword, search):
     assert expected_suggestions == actual_suggestions
 
 
+# TODO: aleatory tests may fail, because sometimes the results are being shown in different order. bug reported UNI-6189
 @then("the system shows results per <text_to_search> in <keyword> page")
 def correct_search_results_per_criteria(text_to_search, keyword, search):
     assert search.is_search_results_header_visible()

@@ -67,15 +67,20 @@ class Driver(IDriver):
     def build_chrome_driver(self, driver_path, viewport):
         print('build chrome')
         options = webdriver.ChromeOptions()
-        options.add_experimental_option("prefs", {
-            "download.default_directory": r"./tmp",
-        })
+        # options.add_experimental_option("loggingPrefs", {
+        #     "browser": "ALL",
+        # })
+        # options to test analytics
+        # options.add_experimental_option("excludeSwitches", ['enable-logging'])
+        # # options.add_extension(os.environ['CHROME_DTM_PATH'])
+        # options.add_extension(os.environ['bknpehncffejahipecakbfkomebjmokl'])
+
         options.add_experimental_option("excludeSwitches", ['enable-automation'])
         size_viewport = self.get_window_size(viewport)
         options.add_argument(size_viewport)
         options.set_capability("acceptInsecureCerts", True)
         # options.add_argument('--start-maximized')
-        options.add_argument('--headless')
+        # options.add_argument('--headless')
         options.add_argument('--no-sandbox')
         options.add_argument("--disable-dev-shm-usage")
         # options.add_argument("--remote-debugging-port=9222")
@@ -104,7 +109,7 @@ class Driver(IDriver):
     # https://stackoverflow.com/questions/66209119/automation-google-login-with-python-and-selenium-shows-this-browser-or-app-may
     def build_firefox_driver(self, driver_path, viewport):
         options = Options()
-        options.add_argument('--headless')
+        # options.add_argument('--headless')
         width = self.get_win_width(viewport, Constants.FF_WINDOWS_WIDTH)
         height = self.get_win_height(viewport, Constants.FF_WINDOWS_HEIGHT)
         options.add_argument(width)
@@ -119,8 +124,6 @@ class Driver(IDriver):
         s = Service(driver_path)
         self.driver = webdriver.Firefox(service=s,
                                         options=options)
-
-
 
     # def build_ie_driver(self, web_browser):
     #     if web_browser == 'ie':
@@ -313,6 +316,10 @@ class Driver(IDriver):
             print(e)
         self.driver.switch_to.window(self.driver.window_handles[1])
         self.wait_for_page_load()
+
+    def switch_to_iframe(self, element):
+        iframe = self.driver.find_element(*element)
+        self.driver.switch_to.frame(iframe)
 
     def quit_browser(self):
         self.driver.quit()
