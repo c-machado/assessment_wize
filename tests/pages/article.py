@@ -35,10 +35,13 @@ class ArticlePage(BasePage):
     def close_cookie_banner(self):
         self.close_bar(PageLocators.cookie_banner_ok_cta)
 
-    def confirm_share_video(self):
-        self.driver.click_to_element(PageLocators.article_share_video)
-        # link_to_share = self.driver.find_element(*PageLocators.article_share_video_link).get_attribute("innerHTML")
-        # print(link_to_share)
+    def confirm_internal_status(self):
+        inline_links = self.driver.get_urls_list(PageLocators.article_inline_links)
+        for internal_link in inline_links:
+            response = requests.get(internal_link)
+            if response != 404:
+                print('response', response, 'internal', internal_link)
+            assert response.status_code != 404
 
     def get_current_time_video(self):
         current_time = self.driver.find_element(*PageLocators.article_current_time)
@@ -57,20 +60,44 @@ class ArticlePage(BasePage):
             tags_in_article.append(tag.lower())
         return tags_in_article
 
+    def validate_inline_links_in_article(self):
+        inline_links = self.get_urls_params(PageLocators.article_inline_links)
+        print(len(inline_links))
+        flag_target = 0
+        for link in inline_links.values():
+            if link[0].startswith("https://blog.google") and len(link) > 1:
+                flag_target = 1
+        return flag_target
+
+    def get_urls_params(self, locator):
+        elements = self.driver.find_elements(*locator)
+        urls_dict = {}
+        index = 0
+        for element in elements:
+            index += 1
+            href = element.get_attribute("href")
+            if element.get_attribute("target"):
+                urls_dict.setdefault(index, []).append(href)
+                urls_dict.setdefault(index, []).append(element.get_attribute("target"))
+            else:
+                urls_dict.setdefault(index, []).append(href)
+        print(urls_dict)
+        return urls_dict
+
     @staticmethod
     def find_all_links(url):
         # download the page
         print('parsing...')  # displaying text while parsing the page
-        res = requests.get(url)  # takes the string of the url to download
+        res = requests.get(Constants.BASE_URL + url)  # takes the string of the url to download
         res.raise_for_status()  # will raise exception if error downloading
         # retrieve all the links
         soup = bs4.BeautifulSoup(res.text)
-        print('all', soup.prettify())
-        linkel = soup.find(class_='ytp-youtube-button')  # could be altered as required
-        print(linkel)
+        # print('all', soup.prettify())
+        linkel = soup.select('.uni-container > a')  # could be altered as required
+        # print(linkel)
         # return a set of links
         numOpen = len(linkel)
-        print(numOpen) #optional for console validation
+        # print(numOpen) #optional for console validation
         linkel2 = []
         for i in range(numOpen):
             linkel2 = linkel2 + [(linkel[i].get('href'))]

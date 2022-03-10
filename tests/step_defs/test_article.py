@@ -35,3 +35,13 @@ def user_pause_video(article):
     article.click_to_mute_video()
     assert article.get_current_time_video() > 0
     article.click_to_pause_video()
+
+
+@then("all links are marked with the target property accordingly")
+def validate_internal_links(article):
+    assert article.validate_inline_links_in_article() == 0
+
+
+@then("all links redirects to an existing page")
+def redirect_to_an_existing_page(article):
+    article.confirm_internal_status()

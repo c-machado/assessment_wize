@@ -12,6 +12,7 @@ Feature: As a user I want to be able to interact with videos shown in the conten
             | keyword                                                                       | video_type |
             | /outreach-initiatives/accessibility/ml-making-sign-language-more-accessible/  | hero       |
             | /technology/ai/discover-ai-in-daily-life/                                     | hero       |
+            | /outreach-initiatives/diversity/international-womens-day-2022/                | hero       |
 
     @article
     Scenario Outline: Test a user can interact with a video in the body's article

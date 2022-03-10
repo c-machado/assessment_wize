@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 
 class PageLocators(object):
     article_current_time = (By.CSS_SELECTOR, ".ytp-time-current")
+    article_inline_links = (By.CSS_SELECTOR, ".uni-blog-article-container p a")
     article_mute_video = (By.CSS_SELECTOR, ".ytp-mute-button")
     article_play_hero_video = (By.CSS_SELECTOR, ".uni-article-video--hero")
     article_play_embed_video = (By.CSS_SELECTOR, ".uni-article-video--body")
