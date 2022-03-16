@@ -29,9 +29,10 @@ class BasePage(object):
         self.driver.click_to_element(tab_locator)
 
     def close_bar(self, locator):
-        self.driver.wait_for_page_load()
-        # self.scroll_to_bottom()
-        self.driver.click_to_element(locator)
+        if Constants.BASE_URL.endswith('blog.google'):
+            self.driver.wait_for_page_load()
+            # self.scroll_to_bottom()
+            self.driver.click_to_element(locator)
 
     def get_current_page(self):
         self.driver.switch_to_active_tab()

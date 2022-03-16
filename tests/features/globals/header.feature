@@ -1,5 +1,5 @@
 # Created by machadoca at 23/12/21
-Feature: As a user I would like to interact with the header links
+Feature: As a user, I would like to interact with the header links
 
   @header
   Scenario Outline: Test link to product updates page
@@ -13,6 +13,9 @@ Feature: As a user I would like to interact with the header links
         |/intl/de-de/      | /intl/de-de/produkte/ |product_updates |
         |/intl/en-au/      | /intl/en-au/products/ |product_updates |
         |/intl/en-in/      | /intl/en-in/products/ |product_updates |
+        |/intl/en-ca/      | /intl/en-ca/products/ |product_updates |
+        |/intl/fr-ca/      | /intl/fr-ca/produits/ |product_updates |
+        |/intl/pt-br/      | /intl/pt-br/produtos/ |product_updates |
 
 
   @header
@@ -26,7 +29,7 @@ Feature: As a user I would like to interact with the header links
         |/          | company_news    |
 
   @header
-  Scenario Outline: Test the header cta's 'see all' within company submenu
+  Scenario Outline: Test the header cta's 'see all' within the company submenu
       Given a user is at the <keyword> site
       When the user clicks on the <submenu>
       Then every 'see all' CTA selected return an http 200
@@ -50,15 +53,21 @@ Feature: As a user I would like to interact with the header links
         |/intl/en-au/ | press        | au     |
         |/intl/en-in/ | rss          | in     |
         |/intl/en-in/ | press        | in     |
+        |/intl/en-ca/ | rss          | en_ca  |
+        |/intl/en-ca/ | press        | en_ca  |
+        |/intl/fr-ca/ | rss          | fr_ca  |
+        |/intl/fr-ca/ | press        | fr_ca  |
+        |/intl/pt-br/ | rss          | pt_br  |
+        |/intl/pt-br/ | press        | pt_br  |
 
   @header
   #TODO: add a new case sitespace and subcategory in en-us
-  #TODO: add comparisson between 5 first articles
-  Scenario Outline: Test rss matches content in desktop
+  #TODO: add a comparison between 5 first articles
+  Scenario Outline: Test RSS matches the content on desktop
       Given a user is at the <keyword> site
       When the user triggers the kebab menu
       And the user clicks <kebab_option>
-      Then the dates in rss and <keyword> matches
+      Then the dates in RSS and <keyword> matches
 
       Examples:
         |keyword      | kebab_option |
@@ -66,13 +75,16 @@ Feature: As a user I would like to interact with the header links
         |/intl/de-de/ | rss          |
         |/intl/en-au/ | rss          |
         |/intl/en-in/ | rss          |
+        |/intl/en-ca/ | rss          |
+        |/intl/fr-ca/ | rss          |
+        |/intl/pt-br/ | rss          |
 
   @header
-  Scenario Outline: Test rss matches content in mobile
+  Scenario Outline: Test RSS matches the content in mobile
       Given a user is at the <keyword> site in mobile
       When the user triggers the hamburger menu
-      And the user clicks on rss option
-      Then the dates in rss and <keyword> matches
+      And the user clicks on the RSS option
+      Then the dates in RSS and <keyword> matches
 
       Examples:
         |keyword       |
@@ -80,11 +92,14 @@ Feature: As a user I would like to interact with the header links
         |/intl/de-de/  |
         |/intl/en-in/  |
         |/intl/en-au/  |
+        |/intl/en-ca/  |
+        |/intl/fr-ca/  |
+        |/intl/pt-br/  |
 
   @header
-  Scenario Outline: Test keyword logo in nav menu
+  Scenario Outline: Test keyword logo in the nav menu
       Given a user is at the <keyword> site
-      And the user clicks in the hero article
+      And the user clicks on the hero article
       When the user clicks on the keyword logo
       Then the user is redirected to <url>
 
@@ -94,3 +109,6 @@ Feature: As a user I would like to interact with the header links
         |/intl/de-de/ |/intl/de-de/|
         |/intl/en-in/ |/intl/en-in/|
         |/intl/en-au/ |/intl/en-au/|
+        |/intl/en-ca/ |/intl/en-ca/|
+        |/intl/fr-ca/ |/intl/fr-ca/|
+        |/intl/pt-br/ |/intl/pt-br/|

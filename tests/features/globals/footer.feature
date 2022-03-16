@@ -1,5 +1,5 @@
 # Created by machadoca at 17/11/21
-Feature: As a user I would like to access the content in the footer
+Feature: As a user, I would like to access the content in the footer
 
   Examples:
       |keyword           |
@@ -7,8 +7,12 @@ Feature: As a user I would like to access the content in the footer
       |/intl/de-de/      |
       |/intl/en-au/      |
       |/intl/en-in/      |
+      |/intl/en-ca/      |
+      |/intl/fr-ca/      |
+      |/intl/pt-br/      |
 
   @footer
+  # TODO: facebook urls are not secure (locales: in & au) https://jira.hugeinc.com/browse/UNI-5897
   Scenario Outline: Test social media links are not broken and open in a new tab
     Given a user is at the <keyword> site
     When the user clicks on every <social_media> item
@@ -25,9 +29,9 @@ Feature: As a user I would like to access the content in the footer
   Scenario: Test legal links are not broken
     Given a user is at the <keyword> site
     When the user clicks on legal items
-    Then the user sees the url according to <keyword> locale
+    Then the user sees the URL according to <keyword> locale
 
-  @footer
+  @footer1
   Scenario Outline: Test language selector contains expected locales
     Given a user is at the <keyword> site
     When the user clicks on language selector
@@ -38,8 +42,11 @@ Feature: As a user I would like to access the content in the footer
       |Deutsch              |
       |English (India)      |
       |English (Australia)  |
+      |English (Canada)     |
+      |French (Canada)      |
+      |Portuguese (Brazil)  |
 
-  @footer
+  @footer1
   Scenario Outline: Test Google link is not broken
     Given a user is at the <keyword> site
     When the user clicks the Google logo

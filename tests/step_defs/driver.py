@@ -67,10 +67,13 @@ class Driver(IDriver):
     def build_chrome_driver(self, driver_path, viewport):
         print('build chrome')
         options = webdriver.ChromeOptions()
+
+        # options to test analytics
+
         # options.add_experimental_option("loggingPrefs", {
         #     "browser": "ALL",
         # })
-        # options to test analytics
+
         # options.add_experimental_option("excludeSwitches", ['enable-logging'])
         # # options.add_extension(os.environ['CHROME_DTM_PATH'])
         # options.add_extension(os.environ['bknpehncffejahipecakbfkomebjmokl'])
@@ -80,15 +83,14 @@ class Driver(IDriver):
         options.add_argument(size_viewport)
         options.set_capability("acceptInsecureCerts", True)
         # options.add_argument('--start-maximized')
-        options.add_argument('--headless')
+        # options.add_argument('--headless')
         options.add_argument('--no-sandbox')
         options.add_argument("--disable-dev-shm-usage")
         # options.add_argument("--remote-debugging-port=9222")
         # chrome://inspect/#devices
 
-        # path_chrome = r'/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
-        # options.add_argument(r'--user-data-dir=/Users/machadoca/Documents/keyword_chrome')  # your chrome user data directory
-        # options.add_argument(r'--profile-directory=Default')  # the profile with the extensions loaded
+        options.add_argument(r'--user-data-dir=/Users/machadoca/Documents/keyword_chrome')  # your chrome user data directory
+        options.add_argument(r'--profile-directory=Default')  # the profile with the extensions loaded
 
         s = Service(driver_path)
         self.driver = webdriver.Chrome(service=s,
@@ -115,8 +117,8 @@ class Driver(IDriver):
         options.add_argument(width)
         options.add_argument(height)
 
-        profile_path = '/Users/machadoca/Library/Application Support/Firefox/Profiles/4jwzwjvm.default'
-        options.set_preference('profile', profile_path)
+        # profile_path = '/Users/machadoca/Library/Application Support/Firefox/Profiles/4jwzwjvm.default'
+        # options.set_preference('profile', profile_path)
 
         options.set_preference("dom.webdriver.enabled", False)
         options.set_preference('useAutomationExtension', False)
@@ -326,7 +328,7 @@ class Driver(IDriver):
 
     # TODO: Firefox explicitWait is not working properly
     def wait_for_page_load(self):
-        wait = WebDriverWait(self.driver, 50)
+        wait = WebDriverWait(self.driver, 20)
         try:
             js_ready = self.execute_script("return document.readyState")
             wait.until(lambda x: js_ready == "complete")
@@ -334,7 +336,7 @@ class Driver(IDriver):
             print(e)
 
     def wait_for_feed_to_load(self, *locator):
-        wait = WebDriverWait(self.driver, 50)
+        wait = WebDriverWait(self.driver, 20)
         try:
             length_list = len(self.driver.find_elements(*locator))
             print('length_list', length_list)
@@ -343,18 +345,18 @@ class Driver(IDriver):
             print(e)
 
     def wait_for_element_clickable(self, *locator):
-        wait = WebDriverWait(self.driver, 50)
+        wait = WebDriverWait(self.driver, 20)
         if locator.__len__() == 2:
             return wait.until(expected_conditions.element_to_be_clickable(locator))
 
     def wait_for_element_visible(self, *locator):
-        wait = WebDriverWait(self.driver, 50)
+        wait = WebDriverWait(self.driver, 20)
         if locator.__len__() == 2:
             return wait.until(expected_conditions.visibility_of_element_located(locator))
 
     def wait_for_element_not_visible(self, *locator):
         print('test')
-        wait = WebDriverWait(self.driver, 50)
+        wait = WebDriverWait(self.driver, 20)
         if locator.__len__() == 2:
             print('test 2')
             return wait.until(expected_conditions.invisibility_of_element_located(locator))

@@ -56,7 +56,7 @@ def click_on_legal_links(footer):
         assert response.status_code == 200
 
 
-@then("the user sees the url according to <keyword> locale")
+@then("the user sees the URL according to <keyword> locale")
 def confirm_legal_urls(footer, keyword):
     legal_items_dict = footer.get_legal_links()
     print('legal links in page', legal_items_dict)
@@ -86,7 +86,7 @@ def user_clicks_ok_cookies_msg(cookie_banner):
     cookie_banner.close_cookie_banner()
 
 
-@given("the user clicks in the hero article")
+@given("the user clicks on the hero article")
 def user_clicks_hero_article(cookie_banner):
     cookie_banner.click_to_read_more_article()
 
@@ -189,7 +189,7 @@ def user_clicks_google_logo(footer):
     footer.click_google_logo()
 
 
-@then("the dates in rss and <keyword> matches")
+@then("the dates in RSS and <keyword> matches")
 def confirm_date_format_in_rss(header, feed, keyword):
     publish_date_rss = header.get_publish_date_in_rss()
     print('publish_date_rss', publish_date_rss)
@@ -208,7 +208,7 @@ def user_expand_hamburger_menu(header):
     header.click_on_hamburger_menu()
 
 
-@when("the user clicks on rss option")
+@when("the user clicks on the RSS option")
 def user_clicks_rss_in_mobile(header):
     header.click_on_hamburger_rss()
     time.sleep(2)

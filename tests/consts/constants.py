@@ -1,8 +1,7 @@
 class Constants(object):
-    BASE_URL = 'https://blog.google'
+    # BASE_URL = 'https://blog.google'
     SEARCH_URL = "search/?query="
-    # BASE_URL = 'https://www.gmail.com'
-    # BASE_URL = 'https://gweb-uniblog-publish-stage.appspot.com'
+    BASE_URL = 'https://gweb-uniblog-publish-stage.appspot.com'
 
     COOKIE_BANNER_TXT = {
         "en": "Google serves cookies to analyze traffic to this site. Information about your use of our site is "
@@ -60,50 +59,97 @@ class Constants(object):
         "rss_de": "RSS-Feed",
         "rss_in": "RSS feed",
         "rss_au": "RSS feed",
+        "rss_en_ca": "RSS feed",
+        "rss_fr_ca": "RSS feed",
+        "rss_pt_br": "RSS feed",
         "press_us": "Press corner",
         "press_de": "Pressezentrum",
         "press_in": "Press corner",
         "press_au": "Press corner",
+        "press_en_ca": "Press corner",
+        "press_fr_ca": "Salle de presse",
+        "press_pt_br": "Imprensa",
     }
-    LEGAL_LINKS_FOOTER_US_LOCALE_DICT = {
-        "Privacy": "https://policies.google.com/privacy",
-        "Terms": "https://policies.google.com/terms",
-        "About Google": "https://about.google/",
-        "Google Products": "https://about.google/products/",
-        "About the Keyword": "https://blog.google/inside-google/company-announcements/about/",
-        "Help": "https://support.google.com/"
+
+    LEGAL_LINKS = {
+        '/': {
+            "Privacy": "https://policies.google.com/privacy",
+            "Terms": "https://policies.google.com/terms",
+            "About Google": "https://about.google/",
+            "Google Products": "https://about.google/products/",
+            "Help": "https://support.google.com/"
+        },
+        '/intl/en-in/': {
+            "Privacy": "https://policies.google.com/privacy",
+            "Terms": "https://policies.google.com/terms",
+            "About Google": "https://about.google/",
+            "Google Products": "https://about.google/products/",
+            "Help": "https://support.google.com/"
+        },
+        '/intl/en-au/': {
+            "Privacy": "https://policies.google.com/privacy",
+            "Terms": "https://policies.google.com/terms",
+            "About Google": "https://about.google/intl/ALL_au/google-in-australia/",
+            "Google Products": "https://about.google/products/",
+            "Help": "https://support.google.com/"
+        },
+        '/intl/en-ca/': {
+            "Privacy": "https://policies.google.com/privacy",
+            "Terms": "https://policies.google.com/terms",
+            "About Google": "https://about.google/",
+            "Google Products": "https://about.google/products/",
+            "Help": "https://support.google.com/"
+        },
+        '/intl/fr-ca/': {
+            "Confidentialité": "https://policies.google.com/privacy?hl=fr-CA",
+            "Conditions": "https://policies.google.com/terms?hl=fr-CA",
+            "À propos de Google": "https://about.google/",
+            "Google Produits": "https://about.google/products/",
+            "Aide": "https://support.google.com/?hl=fr"
+        },
+        '/intl/de-de/': {
+            "Datenschutz": "https://policies.google.com/privacy?hl=de&fg=1",
+            "Nutzungsbedingungen": "https://policies.google.com/terms?hl=de",
+            "Über Google": "https://about.google/",
+            "Unsere Produkte": "https://about.google/products/",
+            "Hilfe": "https://support.google.com/?hl=de"
+        },
+        '/intl/pt-br/': {
+            "Política de Privacidade": "https://policies.google.com/privacy?hl=pt-br",
+            "Termos de Serviço": "https://policies.google.com/terms?hl=pt-br",
+            "Sobre o Google": "https://about.google/intl/pt-br/",
+            "Produtos do Google": "https://about.google/products/",
+            "Ajuda": "https://support.google.com/?hl=pt-BR"
+         }
     }
-    LEGAL_LINKS_FOOTER_INDIA_LOCALE_DICT = {
-        "Privacy": "https://policies.google.com/privacy",
-        "Terms": "https://policies.google.com/terms",
-        "About Google": "https://about.google/",
-        "Google Products": "https://about.google/products/",
-        "About the Keyword": "https://blog.google/intl/en-in/about",
-        "Help": "https://support.google.com/"
-    }
-    LEGAL_LINKS_FOOTER_AUSTRALIA_LOCALE_DICT = {
-        "Privacy": "https://policies.google.com/privacy",
-        "Terms": "https://policies.google.com/terms",
-        "About Google": "https://about.google/intl/ALL_au/google-in-australia/",
-        "Google Products": "https://about.google/products/",
-        "About the blog": "https://blog.google/intl/en-au/about",
-        "Help": "https://support.google.com/"
-    }
-    LEGAL_LINKS_FOOTER_GERMANY_LOCALE_DICT = {
-        "Datenschutz": "https://policies.google.com/privacy?hl=de&fg=1",
-        "Nutzungsbedingungen": "https://policies.google.com/terms?hl=de",
-        "Über Google": "https://about.google/",
-        "Unsere Produkte": "https://about.google/products/",
-        "Über unseren Blog": "https://blog.google/intl/de-de/uber",
-        "Hilfe": "https://support.google.com/?hl=de"
+    LEGAL_LINKS_ABOUT_THE_BLOG_COPY = {
+        "/": "About the Keyword",
+        "/intl/en-in/": "About the blog",
+        '/intl/en-au/': "About the blog",
+        '/intl/en-ca/': "About the blog",
+        '/intl/fr-ca/': "À propos du blogue",
+        '/intl/de-de/': "Über unseren Blog",
+        '/intl/pt-br/': "Sobre o blog",
+        }
+    LEGAL_LINKS_ABOUT_THE_BLOG_URL = {
+        "/": "/inside-google/company-announcements/about/",
+        "/intl/en-in/": "/intl/en-in/about",
+        '/intl/en-au/': "/intl/en-au/about",
+        '/intl/en-ca/': "/intl/en-ca/about",
+        '/intl/fr-ca/': "/intl/fr-ca/a-propos",
+        '/intl/de-de/': "/intl/de-de/uber",
+        '/intl/pt-br/': "/intl/pt-br/sobre-o-blog",
     }
     US_LOCALE = "/"
     INDIA_LOCALE = "/intl/en-in/"
     INDIA_CATEGORY_PAGE = '/intl/en-in/products/platforms/#android'
     AUSTRALIA_LOCALE = "/intl/en-au/"
     AUSTRALIA_CATEGORY_PAGE = '/intl/en-au/products/android-chrome-more/'
+    EN_CANADA_LOCALE = "/intl/en-ca/"
+    FR_CANADA_LOCALE = "/intl/fr-ca/"
     GERMANY_LOCALE = "/intl/de-de/"
     GERMANY_CATEGORY_PAGE = "/intl/de-de/produkte/android-chrome-mehr/#android"
+    PT_BRAZIL_LOCALE = "/intl/pt-br/"
     NEWSLETTER_FIRST_NAME = 'AT TEST'
     NEWSLETTER_INVALID_FIRST_NAME = 'AT TEST.*'
     NEWSLETTER_ERROR_MSG_NAME = 'Sorry, only letters (a-z), and numbers (0-9) are allowed.'

@@ -1,11 +1,14 @@
+import json
 import re
 import unicodedata
 import urllib.parse
 
 import requests
+from selenium.common.exceptions import WebDriverException
 
 from tests.consts import api_const
 from tests.consts.constants import Constants
+from bs4 import BeautifulSoup
 
 
 class BasePageAPI(object):
@@ -70,14 +73,30 @@ class BasePageAPI(object):
             print('tags1', tags)
             return tags
 
-    @staticmethod
-    def get_results_in_api(api_url):
+    def get_results_in_api(self, api_url):
         """:return latest api results according to page received"""
         """the url defines the parameters to add in the request to the API"""
-        response = requests.get(api_url)
-        # print('api:', api_url)
-        result = response.json()
-        return result
+        try:
+            if Constants.BASE_URL.endswith('blog.google'):
+                response = requests.get(api_url)
+                # print('api:', api_url)
+                result = response.json()
+
+            else:
+                # self.driver.execute_script('''window.open("", "_blank");''')
+                # self.driver.switch_to_active_tab()
+                # print('current', self.driver.current_url())
+                print('url api stage', api_url)
+                self.driver.go_to_URL(api_url)
+                soup = BeautifulSoup(self.driver.get_page_source(), 'lxml')
+                api_result = soup.find('pre').text
+                print('api result1 ', api_result)
+                print(json.loads(api_result))
+                result = json.loads(api_result)
+                print('api result2 ', result)
+            return result
+        except WebDriverException:
+            print("Exception on {}".format(api_url))
 
     def get_search_api_url(self, keyword_url, text_to_search):
         """:return api url according to page received, this is required because each locale has different site_id"""

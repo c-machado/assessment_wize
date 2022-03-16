@@ -30,16 +30,23 @@ class Footer(BasePage):
         # print('legal links in page', legal_items_urls_dic)
         return legal_items_urls_dic
 
+    def get_expected_legal_links_per_locale(self, locale):
+        about_link = self.get_about_blog_legal_links_expected_per_locale(locale)
+        for locale_legal_items in Constants.LEGAL_LINKS.items():
+            if locale_legal_items[0] == locale:
+                locale_legal_links = locale_legal_items[1]
+                legal_links_expected = {**locale_legal_links, **about_link}
+                return legal_links_expected
+
     @staticmethod
-    def get_expected_legal_links_per_locale(locale):
-        if locale == Constants.US_LOCALE:
-            return Constants.LEGAL_LINKS_FOOTER_US_LOCALE_DICT
-        elif locale == Constants.INDIA_LOCALE:
-            return Constants.LEGAL_LINKS_FOOTER_INDIA_LOCALE_DICT
-        elif locale == Constants.AUSTRALIA_LOCALE:
-            return Constants.LEGAL_LINKS_FOOTER_AUSTRALIA_LOCALE_DICT
-        elif locale == Constants.GERMANY_LOCALE:
-            return Constants.LEGAL_LINKS_FOOTER_GERMANY_LOCALE_DICT
+    def get_about_blog_legal_links_expected_per_locale(locale):
+        about_blog_legal_links = {**Constants.LEGAL_LINKS_ABOUT_THE_BLOG_URL, **Constants.LEGAL_LINKS_ABOUT_THE_BLOG_COPY}
+        locale_legal_about = {}
+        for key, value in about_blog_legal_links.items():
+            if key in Constants.LEGAL_LINKS_ABOUT_THE_BLOG_URL and key in Constants.LEGAL_LINKS_ABOUT_THE_BLOG_COPY:
+                if key == locale:
+                    locale_legal_about[value] = Constants.BASE_URL+Constants.LEGAL_LINKS_ABOUT_THE_BLOG_URL[key]
+                    return locale_legal_about
 
     def go_to_footer(self):
         self.scroll_to_bottom()

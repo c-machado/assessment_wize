@@ -45,3 +45,14 @@ def validate_internal_links(article):
 @then("all links redirects to an existing page")
 def redirect_to_an_existing_page(article):
     article.confirm_internal_status()
+
+
+@when("the user scrolls to the related stories section")
+def user_scroll_related_articles_section(article):
+    article.close_cookie_banner()
+    article.scroll_to_bottom()
+
+
+@then("the user sees articles matching tags in current article")
+def user_sees_articles_matching_current_tag(article):
+    article.validate_tags_in_related_stories()

@@ -15,7 +15,7 @@ class CookieBanner(BasePage):
         self.driver.click_to_element(PageLocators.article_read_more_cta)
 
     def close_cookie_banner(self):
-        self.driver.click_to_element(PageLocators.cookie_banner_ok_cta)
+        self.close_bar(PageLocators.cookie_banner_ok_cta)
 
     def get_cookie_text_in_page(self):
         self.driver.find_element(*PageLocators.cookie_banner_bar)

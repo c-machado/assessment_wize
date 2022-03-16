@@ -162,6 +162,6 @@ class Feed(BasePage, BasePageAPI):
         articles_in_feed = self.get_articles_in_feed_list()
         self.scroll_to_feed(self.random_article, keyword_url)
         articles_in_feed[self.random_article].click()
-        secondary_tags = ArticlePage(self.driver).get_secondary_tags_in_article()
+        secondary_tags = ArticlePage(self.driver).get_secondary_tags_in_article_api_format()
         print('secondary_tags', secondary_tags)
         return secondary_tags

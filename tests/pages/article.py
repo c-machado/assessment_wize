@@ -43,6 +43,24 @@ class ArticlePage(BasePage):
                 print('response', response, 'internal', internal_link)
             assert response.status_code != 404
 
+    def find_tags_in_related_stories(self):
+        tags_in_related_stories = []
+        list_of_tags = self.driver.find_elements(*PageLocators.article_related_stories_category_tags)
+        for tag in list_of_tags:
+            tags_in_related_stories.append(tag.get_attribute("innerHTML"))
+        return tags_in_related_stories
+
+    def find_secondary_tags_in_related_stories_articles(self, tags_in_article):
+        tags_in_related_stories = []
+        list_of_tags = self.driver.find_elements(*PageLocators.article_related_stories_category_tags)
+        for tag in list_of_tags:
+            if tag not in tags_in_article:
+                tag.click()
+                secondary_tags = self.get_secondary_tags_in_article()
+                tags_in_related_stories.append(secondary_tags)
+        for e in tags_in_related_stories:
+            print('caro', e)
+
     def get_current_time_video(self):
         current_time = self.driver.find_element(*PageLocators.article_current_time)
         time_formatted = current_time.get_attribute("innerHTML").split(':')[1]
@@ -51,7 +69,7 @@ class ArticlePage(BasePage):
     def get_date_in_article(self):
         return self.driver.find_element(*PageLocators.article_published_at)
 
-    def get_secondary_tags_in_article(self):
+    def get_secondary_tags_in_article_api_format(self):
         secondary_tags_list = self.driver.find_elements(*PageLocators.article_secondary_tags)
         tags_in_article = []
         for element in secondary_tags_list:
@@ -60,14 +78,16 @@ class ArticlePage(BasePage):
             tags_in_article.append(tag.lower())
         return tags_in_article
 
-    def validate_inline_links_in_article(self):
-        inline_links = self.get_urls_params(PageLocators.article_inline_links)
-        print(len(inline_links))
-        flag_target = 0
-        for link in inline_links.values():
-            if link[0].startswith("https://blog.google") and len(link) > 1:
-                flag_target = 1
-        return flag_target
+    def get_secondary_tags_in_article(self):
+        secondary_tags_list = self.driver.find_elements(*PageLocators.article_secondary_tags)
+        tags_in_article = []
+        for element in secondary_tags_list:
+            tag_string = element.get_attribute("innerHTML")
+            tags_in_article.append(tag_string.strip())
+        return tags_in_article
+
+    def get_primary_tag_in_article(self):
+        return self.driver.find_element(*PageLocators.article_primary_tag).get_attribute("innerHTML")
 
     def get_urls_params(self, locator):
         elements = self.driver.find_elements(*locator)
@@ -83,6 +103,26 @@ class ArticlePage(BasePage):
                 urls_dict.setdefault(index, []).append(href)
         print(urls_dict)
         return urls_dict
+
+    def validate_inline_links_in_article(self):
+        inline_links = self.get_urls_params(PageLocators.article_inline_links)
+        print(len(inline_links))
+        flag_target = 0
+        for link in inline_links.values():
+            if link[0].startswith("https://blog.google") and len(link) > 1:
+                flag_target = 1
+        return flag_target
+
+    def validate_tags_in_related_stories(self):
+        tags_in_article = set(self.get_secondary_tags_in_article())
+        for e in tags_in_article:
+            print('secondary', e)
+        tags_in_related_stories = set(self.find_tags_in_related_stories())
+        for e in tags_in_related_stories:
+            print('relate', e)
+        if not tags_in_related_stories == tags_in_article:
+            self.find_secondary_tags_in_related_stories_articles(tags_in_article)
+
 
     @staticmethod
     def find_all_links(url):
