@@ -29,7 +29,7 @@ class BasePage(object):
         self.driver.click_to_element(tab_locator)
 
     def close_bar(self, locator):
-        if Constants.BASE_URL.endswith('blog.google'):
+        if self.is_substring(Constants.BASE_URL, Constants.PROD_URL):
             self.driver.wait_for_page_load()
             # self.scroll_to_bottom()
             self.driver.click_to_element(locator)
@@ -105,6 +105,12 @@ class BasePage(object):
 
     def is_element_visible(self, *locator):
         return self.driver.find_element(*locator).is_displayed()
+
+    @staticmethod
+    def is_substring(str1, str2):
+        if re.search(str1, str2):
+            print(re.search(str1, str2))
+            return True
 
     # TODO: Install a new locale on MAC, so India can be tested with the corresponding label en_IN,
     # meanwhile it will be tested with en_GB which is basically the same format than en_IN

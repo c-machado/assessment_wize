@@ -1,8 +1,8 @@
 class Constants(object):
-    # BASE_URL = 'https://blog.google'
+    BASE_URL = 'https://blog.google'
     SEARCH_URL = "search/?query="
-    BASE_URL = 'https://gweb-uniblog-publish-stage.appspot.com'
-
+    # BASE_URL = 'https://gweb-uniblog-publish-stage.appspot.com'
+    PROD_URL = 'blog.google'
     COOKIE_BANNER_TXT = {
         "en": "Google serves cookies to analyze traffic to this site. Information about your use of our site is "
               "shared with Google for that purpose.",
@@ -152,7 +152,7 @@ class Constants(object):
     PT_BRAZIL_LOCALE = "/intl/pt-br/"
     NEWSLETTER_FIRST_NAME = 'AT TEST'
     NEWSLETTER_INVALID_FIRST_NAME = 'AT TEST.*'
-    NEWSLETTER_ERROR_MSG_NAME = 'Sorry, only letters (a-z), and numbers (0-9) are allowed.'
+    NEWSLETTER_ERROR_MSG_NAME = 'Sorry, only letters (a-z), numbers (0-9) and hyphens are allowed.'
     NEWSLETTER_ERROR_MSG_EMAIL = 'Email address contains error(s).'
     NEWSLETTER_EMAIL = 'at_test@hugeinc.com'
     NEWSLETTER_INVALID_EMAIL = 'at_test@'

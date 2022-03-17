@@ -9,6 +9,8 @@ from tests.consts.constants import Constants
 from tests.pages.base_page import BasePage
 from tests.pages.locators import PageLocators
 
+from selenium.webdriver.common.by import By
+
 
 class ArticlePage(BasePage):
 
@@ -43,24 +45,6 @@ class ArticlePage(BasePage):
                 print('response', response, 'internal', internal_link)
             assert response.status_code != 404
 
-    def find_tags_in_related_stories(self):
-        tags_in_related_stories = []
-        list_of_tags = self.driver.find_elements(*PageLocators.article_related_stories_category_tags)
-        for tag in list_of_tags:
-            tags_in_related_stories.append(tag.get_attribute("innerHTML"))
-        return tags_in_related_stories
-
-    def find_secondary_tags_in_related_stories_articles(self, tags_in_article):
-        tags_in_related_stories = []
-        list_of_tags = self.driver.find_elements(*PageLocators.article_related_stories_category_tags)
-        for tag in list_of_tags:
-            if tag not in tags_in_article:
-                tag.click()
-                secondary_tags = self.get_secondary_tags_in_article()
-                tags_in_related_stories.append(secondary_tags)
-        for e in tags_in_related_stories:
-            print('caro', e)
-
     def get_current_time_video(self):
         current_time = self.driver.find_element(*PageLocators.article_current_time)
         time_formatted = current_time.get_attribute("innerHTML").split(':')[1]
@@ -76,14 +60,6 @@ class ArticlePage(BasePage):
             tag_string = element.get_attribute("innerHTML")
             tag = self.replace_space(tag_string)
             tags_in_article.append(tag.lower())
-        return tags_in_article
-
-    def get_secondary_tags_in_article(self):
-        secondary_tags_list = self.driver.find_elements(*PageLocators.article_secondary_tags)
-        tags_in_article = []
-        for element in secondary_tags_list:
-            tag_string = element.get_attribute("innerHTML")
-            tags_in_article.append(tag_string.strip())
         return tags_in_article
 
     def get_primary_tag_in_article(self):
@@ -113,16 +89,61 @@ class ArticlePage(BasePage):
                 flag_target = 1
         return flag_target
 
-    def validate_tags_in_related_stories(self):
-        tags_in_article = set(self.get_secondary_tags_in_article())
-        for e in tags_in_article:
-            print('secondary', e)
-        tags_in_related_stories = set(self.find_tags_in_related_stories())
-        for e in tags_in_related_stories:
-            print('relate', e)
-        if not tags_in_related_stories == tags_in_article:
-            self.find_secondary_tags_in_related_stories_articles(tags_in_article)
+    def click_on_carousel_dot(self, index):
+        index = "% s" % index
+        self.driver.find_element(By.CSS_SELECTOR,
+                                 '.uni-related-articles-cards__pagination :nth-child(' + index + ')').click()
+        self.driver.wait_for_element_visible(By.CSS_SELECTOR,
+                                             '.uni-related-articles-cards__wrap > li:nth-child(' + index + ')')
+        self.driver.wait_for_element_clickable(By.CSS_SELECTOR,
+                                               '.uni-related-articles-cards__wrap > li:nth-child(' + index + ')')
 
+    def validate_tags_in_related_stories(self):
+        formatted_tags = self.find_tags_in_related_stories()
+        print('related', formatted_tags)
+        tags_in_article = self.get_secondary_tags_in_article()
+        print('tags in article', tags_in_article)
+        index = 0
+        for tag in formatted_tags:
+            index += 1
+            if tag not in tags_in_article:
+                self.validate_secondary_tags_in_related_articles(index, tags_in_article)
+        if set(formatted_tags) & set(tags_in_article):
+            print('match', set(formatted_tags) & set(tags_in_article))
+            return True
+
+    def find_tags_in_related_stories(self):
+        tags_in_related_stories = []
+        list_of_tags = self.driver.find_elements(*PageLocators.article_related_stories_category_tags)
+        for tag in list_of_tags:
+            tags_in_related_stories.append(tag.get_attribute("innerHTML"))
+        return tags_in_related_stories
+
+    def validate_secondary_tags_in_related_articles(self, index, tags_in_article):
+        secondary_tags_in_related_article = self.find_secondary_tags_in_related_stories_articles(index)
+        if not set(secondary_tags_in_related_article) & set(tags_in_article):
+            print('does not match secondary tags', set(secondary_tags_in_related_article) & set(tags_in_article))
+            return False
+
+    def find_secondary_tags_in_related_stories_articles(self, index):
+        self.click_on_carousel_dot(index)
+        time.sleep(1)
+        index = "% s" % index
+        element = self.driver.find_element(By.CSS_SELECTOR, '.uni-related-articles-cards__wrap > li:nth-child(' + index + ')')
+        self.driver.wait_for_element_visible(element)
+        element.click()
+        secondary_tags_related_article = self.get_secondary_tags_in_article()
+        self.driver.go_back_to_url()
+        print('secondary_tags_related_article', secondary_tags_related_article)
+        return secondary_tags_related_article
+
+    def get_secondary_tags_in_article(self):
+        secondary_tags_list = self.driver.find_elements(*PageLocators.article_secondary_tags)
+        tags_in_article = []
+        for element in secondary_tags_list:
+            tag_string = element.get_attribute("innerHTML")
+            tags_in_article.append(tag_string.strip())
+        return tags_in_article
 
     @staticmethod
     def find_all_links(url):
@@ -182,13 +203,3 @@ class ArticlePage(BasePage):
         HTML_file = open("file.html", "w")
         HTML_file.write(Constants.HTML_string)
         HTML_file.close()
-
-
-
-
-
-
-
-
-
-

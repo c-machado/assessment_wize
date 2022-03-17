@@ -55,4 +55,4 @@ def user_scroll_related_articles_section(article):
 
 @then("the user sees articles matching tags in current article")
 def user_sees_articles_matching_current_tag(article):
-    article.validate_tags_in_related_stories()
+    assert article.validate_tags_in_related_stories()

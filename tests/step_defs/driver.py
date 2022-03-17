@@ -117,8 +117,8 @@ class Driver(IDriver):
         options.add_argument(width)
         options.add_argument(height)
 
-        # profile_path = '/Users/machadoca/Library/Application Support/Firefox/Profiles/4jwzwjvm.default'
-        # options.set_preference('profile', profile_path)
+        profile_path = '/Users/machadoca/Library/Application Support/Firefox/Profiles/4jwzwjvm.default'
+        options.set_preference('profile', profile_path)
 
         options.set_preference("dom.webdriver.enabled", False)
         options.set_preference('useAutomationExtension', False)
