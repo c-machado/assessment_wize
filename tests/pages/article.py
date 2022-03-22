@@ -1,6 +1,7 @@
 import datetime
 import time
 import random
+import logging
 import bs4
 import requests
 from selenium.common.exceptions import WebDriverException
@@ -17,6 +18,7 @@ class ArticlePage(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
         self.driver = driver
+        self.logger = logging.getLogger(__name__)
 
     def click_to_mute_video(self):
         self.driver.click_to_element(PageLocators.article_mute_video)
@@ -66,27 +68,32 @@ class ArticlePage(BasePage):
         return self.driver.find_element(*PageLocators.article_primary_tag).get_attribute("innerHTML")
 
     def get_urls_params(self, locator):
-        elements = self.driver.find_elements(*locator)
+        elements = self.driver.find_elements(*PageLocators.article_inline_links)
         urls_dict = {}
         index = 0
         for element in elements:
             index += 1
             href = element.get_attribute("href")
-            if element.get_attribute("target"):
+            target = element.get_attribute("target")
+            if target:
+                self.logger.info(target)
+                print('target en if ', target, href)
                 urls_dict.setdefault(index, []).append(href)
-                urls_dict.setdefault(index, []).append(element.get_attribute("target"))
+                urls_dict.setdefault(index, []).append(target)
             else:
+                print('else' , target, href)
                 urls_dict.setdefault(index, []).append(href)
-        print(urls_dict)
+        self.logger.info(len(urls_dict))
         return urls_dict
 
     def validate_inline_links_in_article(self):
-        inline_links = self.get_urls_params(PageLocators.article_inline_links)
-        print(len(inline_links))
-        flag_target = 0
-        for link in inline_links.values():
-            if link[0].startswith("https://blog.google") and len(link) > 1:
-                flag_target = 1
+        href_and_target_params = self.get_urls_params(PageLocators.article_inline_links)
+        self.logger.info(len(href_and_target_params))
+        flag_target = True
+        for param in href_and_target_params.values():
+            print('param', param)
+            if len(param) > 1 and param[0].startswith("https://blog.google"):
+                flag_target = False
         return flag_target
 
     def click_on_carousel_dot(self, index):
@@ -149,20 +156,22 @@ class ArticlePage(BasePage):
     def find_all_links(url):
         # download the page
         print('parsing...')  # displaying text while parsing the page
+        ulr= Constants.BASE_URL + url
+        print('ulr', ulr)
         res = requests.get(Constants.BASE_URL + url)  # takes the string of the url to download
         res.raise_for_status()  # will raise exception if error downloading
         # retrieve all the links
         soup = bs4.BeautifulSoup(res.text)
         # print('all', soup.prettify())
-        linkel = soup.select('.uni-container > a')  # could be altered as required
-        # print(linkel)
+        linkel = soup.select('.uni-blog-article-container a')  # could be altered as required
+        print(linkel)
         # return a set of links
         numOpen = len(linkel)
-        # print(numOpen) #optional for console validation
+        print(numOpen) #optional for console validation
         linkel2 = []
         for i in range(numOpen):
-            linkel2 = linkel2 + [(linkel[i].get('href'))]
-            print('linkel2', linkel2)
+            linkel2 = linkel2 + [(linkel[i].get('href'))] + [(linkel[i].get('target'))]
+        print('linkel2', linkel2)
         return linkel2
 
     def page_hits(self, url):

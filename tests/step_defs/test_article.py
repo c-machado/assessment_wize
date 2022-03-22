@@ -37,9 +37,9 @@ def user_pause_video(article):
     article.click_to_pause_video()
 
 
-@then("all links are marked with the target property accordingly")
-def validate_internal_links(article):
-    assert article.validate_inline_links_in_article() == 0
+@then("all links are marked with the target property accordingly <keyword>")
+def validate_internal_links(article, keyword):
+    assert article.validate_inline_links_in_article()
 
 
 @then("all links redirects to an existing page")
