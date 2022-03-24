@@ -1,3 +1,4 @@
+import logging
 import random
 import datetime
 import re
@@ -15,6 +16,7 @@ class Feed(BasePage, BasePageAPI):
         super().__init__(driver)
         self.driver = driver
         self.random_article = 0
+        self.logger = logging.getLogger(__name__)
 
     # def click_to_read_more_article(self):
     #     self.driver.click_to_element(PageLocators.article_read_more_cta)

@@ -11,9 +11,9 @@ from tests.pages.locators import PageLocators
 
 class BasePage(object):
 
-    # It takes in the browser, which will be passed in from the test case
+    # It takes in the browser, which will be stage in from the test case
     def __init__(self, driver):
-        # Set my local self.browser variable to be whatever browser it's passed in
+        # Set my local self.browser variable to be whatever browser it's stage in
         self.driver = driver
         self.random_article = 0
 
@@ -29,10 +29,13 @@ class BasePage(object):
         self.driver.click_to_element(tab_locator)
 
     def close_bar(self, locator):
-        if self.is_substring(Constants.BASE_URL, Constants.PROD_URL):
-            self.driver.wait_for_page_load()
-            # self.scroll_to_bottom()
-            self.driver.click_to_element(locator)
+        self.driver.wait_for_page_load()
+        # self.scroll_to_bottom()
+        self.driver.click_to_element(locator)
+
+    def clear_local_storage(self):
+        self.driver.execute_script("window.localStorage.clear();")
+        time.sleep(1)
 
     def get_current_page(self):
         self.driver.switch_to_active_tab()

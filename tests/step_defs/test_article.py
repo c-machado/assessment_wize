@@ -25,6 +25,7 @@ def test_tagging(keyword, article):
 
 @given("the user clicks to play the <video_type>")
 def user_play_video(article, video_type):
+    article.clear_local_storage()
     article.close_cookie_banner()
     article.click_to_play_video(video_type)
 
@@ -37,8 +38,8 @@ def user_pause_video(article):
     article.click_to_pause_video()
 
 
-@then("all links are marked with the target property accordingly <keyword>")
-def validate_internal_links(article, keyword):
+@then("all links are marked with the target property accordingly")
+def validate_internal_links(article):
     assert article.validate_inline_links_in_article()
 
 
@@ -49,6 +50,7 @@ def redirect_to_an_existing_page(article):
 
 @when("the user scrolls to the related stories section")
 def user_scroll_related_articles_section(article):
+    article.clear_local_storage()
     article.close_cookie_banner()
     article.scroll_to_bottom()
 

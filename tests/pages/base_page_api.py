@@ -1,4 +1,5 @@
 import json
+import logging
 import re
 import unicodedata
 import urllib.parse
@@ -16,6 +17,7 @@ class BasePageAPI(object):
     def __init__(self, driver):
         super().__init__(driver)
         self.driver = driver
+        self.logger = logging.getLogger(__name__)
 
     def get_api_url_per_type_of_search(self):
         if self.driver.current_url().__contains__('search'):
@@ -86,14 +88,13 @@ class BasePageAPI(object):
                 # self.driver.execute_script('''window.open("", "_blank");''')
                 # self.driver.switch_to_active_tab()
                 # print('current', self.driver.current_url())
-                print('url api stage', api_url)
+                self.logger.info(api_url)
                 self.driver.go_to_URL(api_url)
                 soup = BeautifulSoup(self.driver.get_page_source(), 'lxml')
                 api_result = soup.find('pre').text
-                print('api result1 ', api_result)
-                print(json.loads(api_result))
                 result = json.loads(api_result)
-                print('api result2 ', result)
+                self.logger.info(result)
+                self.driver.go_back_to_url()
             return result
         except WebDriverException:
             print("Exception on {}".format(api_url))

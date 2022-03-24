@@ -78,11 +78,13 @@ def confirm_language_options(driver, footer, locale):
 
 @given("the system displays the cookie banner per <language>")
 def verify_cookie_banner_displayed(cookie_banner, language):
+    cookie_banner.clear_local_storage()
     assert cookie_banner.get_cookie_text_per_language(language) == cookie_banner.get_cookie_text_in_page()
 
 
 @given("the user clicks in the Ok cta")
 def user_clicks_ok_cookies_msg(cookie_banner):
+    cookie_banner.clear_local_storage()
     cookie_banner.close_cookie_banner()
 
 
@@ -146,6 +148,7 @@ def cookie_not_displayed(cookie_banner):
 @pytest.mark.flaky(reruns_delay=0.5, reason="Element is not clickable at point (1418, 1166)")
 @when("the user clicks on subscribe cta")
 def user_clicks_subscribe_cta(header):
+    header.clear_local_storage()
     header.click_on_subscribe_cta()
 
 
@@ -233,6 +236,7 @@ def user_fills_out_form_with_invalid_data(newsletter):
 
 @given("the toast bar has appeared")
 def toast_bar_visible(cookie_banner, homepage, newsletter, toast_bar):
+    cookie_banner.clear_local_storage()
     cookie_banner.close_cookie_banner()
     homepage.click_to_read_more_article()
     toast_bar.make_toast_bar_visible()

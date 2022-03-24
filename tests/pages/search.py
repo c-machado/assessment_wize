@@ -1,4 +1,5 @@
 import json
+import logging
 import re
 import time
 
@@ -20,6 +21,7 @@ class Search(BasePage, BasePageAPI):
         self.random_filter = 0
         self.tag_to_filter = ''
         self.collections_dict = {}
+        self.logger = logging.getLogger(__name__)
 
     def click_search_icon_in_nav_bar(self):
         self.driver.click_to_element(PageLocators.search_icon_nav_desktop)

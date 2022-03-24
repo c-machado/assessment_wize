@@ -40,9 +40,9 @@ class ArticlePage(BasePage):
         self.close_bar(PageLocators.cookie_banner_ok_cta)
 
     def confirm_internal_status(self):
-        inline_links = self.driver.get_urls_list(PageLocators.article_inline_links)
-        for internal_link in inline_links:
-            response = requests.get(internal_link)
+        urls = self.get_urls_params()
+        for internal_link in urls.values():
+            response = requests.get(internal_link[0])
             if response != 404:
                 print('response', response, 'internal', internal_link)
             assert response.status_code != 404
@@ -67,31 +67,26 @@ class ArticlePage(BasePage):
     def get_primary_tag_in_article(self):
         return self.driver.find_element(*PageLocators.article_primary_tag).get_attribute("innerHTML")
 
-    def get_urls_params(self, locator):
+    def get_urls_params(self):
         elements = self.driver.find_elements(*PageLocators.article_inline_links)
         urls_dict = {}
         index = 0
         for element in elements:
             index += 1
-            href = element.get_attribute("href")
-            target = element.get_attribute("target")
-            if target:
-                self.logger.info(target)
-                print('target en if ', target, href)
-                urls_dict.setdefault(index, []).append(href)
-                urls_dict.setdefault(index, []).append(target)
-            else:
-                print('else' , target, href)
-                urls_dict.setdefault(index, []).append(href)
-        self.logger.info(len(urls_dict))
+            if element.get_attribute("href") is not None and element.get_attribute("target") is None or element.get_attribute("target") == '':
+                urls_dict.setdefault(index, []).append(element.get_attribute("href"))
+
+            elif element.get_attribute("href") is not None and element.get_attribute("target") is not None:
+                urls_dict.setdefault(index, []).append(element.get_attribute("href"))
+                urls_dict.setdefault(index, []).append(element.get_attribute("target"))
         return urls_dict
 
     def validate_inline_links_in_article(self):
-        href_and_target_params = self.get_urls_params(PageLocators.article_inline_links)
+        href_and_target_params = self.get_urls_params()
         self.logger.info(len(href_and_target_params))
         flag_target = True
         for param in href_and_target_params.values():
-            print('param', param)
+            self.logger.info(param)
             if len(param) > 1 and param[0].startswith("https://blog.google"):
                 flag_target = False
         return flag_target

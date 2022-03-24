@@ -74,8 +74,8 @@ def results_per_filter_by_option(keyword, search):
 
 @then("the system shows suggestions per <text_to_search> in <keyword> page")
 def correct_suggestions_per_criteria(text_to_search, keyword, search):
-    expected_suggestions = search.get_suggested_results_expected(keyword, text_to_search)
     actual_suggestions = search.get_suggested_results_in_page()
+    expected_suggestions = search.get_suggested_results_expected(keyword, text_to_search)
     print('expected_suggestions', expected_suggestions)
     print('actual_suggestions', actual_suggestions)
     assert expected_suggestions == actual_suggestions
