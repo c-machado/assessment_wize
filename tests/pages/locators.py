@@ -13,6 +13,7 @@ class PageLocators(object):
     article_read_more_cta = (By.CSS_SELECTOR, "a.featured-article__link span.cta")
     article_related_stories_category_tags = (By.CSS_SELECTOR, ".uni-related-articles-cards__category")
     article_related_stories_cards = (By.CSS_SELECTOR, ".uni-related-articles-cards__link")
+    article_related_stories_published_at = (By.CSS_SELECTOR, ".uni-related-articles-cards__date")
     article_secondary_tags = (By.CSS_SELECTOR, ".uni-blog-article-tags-value")
     article_see_subtitles = (By.CSS_SELECTOR, ".ytp-subtitles-button")
     article_video_frame = (By.CSS_SELECTOR, ".uni-article-video__embed-container > iframe")

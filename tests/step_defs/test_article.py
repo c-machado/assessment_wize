@@ -58,3 +58,24 @@ def user_scroll_related_articles_section(article):
 @then("the user sees articles matching tags in current article")
 def user_sees_articles_matching_current_tag(article):
     assert article.validate_tags_in_related_stories()
+
+
+@then("the date shown in the related stories articles are according to the <locale> format")
+def date_format_in_related_stories(article, base_page, locale):
+    time.sleep(1)
+    date_in_article_list = article.get_date_in_related_articles()
+    date_format_expected = article.get_date_format_per_locale(locale, Constants.DATE_FORMAT_PER_LOCALE)
+    for date_in_article in date_in_article_list:
+        assert base_page.is_date_format_correct(date_in_article, date_format_expected, locale)
+
+
+@given("the user chooses a random article")
+def user_choose_random_article(feed, article):
+    # article.clear_local_storage()
+    article.close_cookie_banner()
+    feed.get_random_index_in_list(feed.get_articles_in_feed_list())
+
+
+@when("the user opens the selected random article in <keyword> feed")
+def user_open_random_article_in_feed(feed, keyword):
+    feed.click_to_random_article_in_feed(keyword)

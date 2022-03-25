@@ -30,12 +30,15 @@ class BasePage(object):
 
     def close_bar(self, locator):
         self.driver.wait_for_page_load()
-        # self.scroll_to_bottom()
-        self.driver.click_to_element(locator)
+        if Constants.PROD_URL not in self.driver.current_url():
+            self.clear_local_storage()
+            self.driver.click_to_element(locator)
+        else:
+            self.driver.click_to_element(locator)
 
     def clear_local_storage(self):
         self.driver.execute_script("window.localStorage.clear();")
-        time.sleep(1)
+        self.driver.refresh()
 
     def get_current_page(self):
         self.driver.switch_to_active_tab()

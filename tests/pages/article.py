@@ -55,6 +55,13 @@ class ArticlePage(BasePage):
     def get_date_in_article(self):
         return self.driver.find_element(*PageLocators.article_published_at)
 
+    def get_date_in_related_articles(self):
+        article_dates = self.driver.find_elements(*PageLocators.article_related_stories_published_at)
+        article_dates_list = []
+        for element in article_dates:
+            article_dates_list.append(element.get_attribute("innerHTML").strip())
+        return article_dates_list
+
     def get_secondary_tags_in_article_api_format(self):
         secondary_tags_list = self.driver.find_elements(*PageLocators.article_secondary_tags)
         tags_in_article = []

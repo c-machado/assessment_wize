@@ -20,11 +20,12 @@
 #printf "TESTS WITH ERRORS IN STAGE:\n"
 #TODO: remove localStorage from the session before starting the tests
 #pytest tests/ -m "cookie" --html=reports/blog/cookie.html
-pytest tests/ -m "newsletter" --html=reports/blog/newsletter.html
+#pytest tests/ -m "newsletter" --html=reports/blog/newsletter.html
 
 #pytest tests/ -m "article" --html=reports/blog/article-videos.html
 #pytest tests/ -m "article-inline" --html=reports/blog/article-inline.html
 #pytest tests/ -m "article-related" --html=reports/blog/article-related.html
+pytest tests/ -m "article-date-format-related-stories" --html=reports/blog/article-related-date.html
 
 #docker run --rm -v "$(pwd)"/reports:/chrome-test/tests/reports chrome/linux:latest
 
