@@ -18,11 +18,6 @@ def at_the_blog(keyword, driver, get_web_browser, get_viewport):
     driver.wait_for_page_load()
 
 
-@then("we test the code in the example <keyword>")
-def test_tagging(keyword, article):
-    article.test(keyword)
-
-
 @given("the user clicks to play the <video_type>")
 def user_play_video(article, video_type):
     article.clear_local_storage()
@@ -31,7 +26,7 @@ def user_play_video(article, video_type):
 
 
 @then("the user can interact with the video controls")
-def user_pause_video(article):
+def user_interacting_with_video(article):
     article.switch_to_video_context()
     article.click_to_mute_video()
     assert article.get_current_time_video() > 0

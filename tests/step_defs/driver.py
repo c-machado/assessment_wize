@@ -68,16 +68,6 @@ class Driver(IDriver):
         print('build chrome')
         options = webdriver.ChromeOptions()
 
-        # options to test analytics
-
-        # options.add_experimental_option("loggingPrefs", {
-        #     "browser": "ALL",
-        # })
-
-        # options.add_experimental_option("excludeSwitches", ['enable-logging'])
-        # # options.add_extension(os.environ['CHROME_DTM_PATH'])
-        # options.add_extension(os.environ['bknpehncffejahipecakbfkomebjmokl'])
-
         options.add_experimental_option("excludeSwitches", ['enable-automation'])
         size_viewport = self.get_window_size(viewport)
         options.add_argument(size_viewport)
