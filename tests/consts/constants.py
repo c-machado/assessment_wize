@@ -176,6 +176,22 @@ class Constants(object):
         "tablet": "1024",
         "desktop": "768"
     }
+    SITESPACE_TITLE_IN_PRODUCTS = [
+        'AdSense',
+        'Google Ads & Commerce',
+        'Google Ad Manager',
+        'Google Analytics products',
+        'Google AdMob',
+        'Google Marketing Platform'
+    ]
+    SITESPACE_TITLE_IN_NAV_MENU = [
+        'AdSense',
+        'Ads & Commerce Blog',
+        'Ad Manager',
+        'Marketing Platform',
+        'AdMob',
+        'Marketing Platform'
+    ]
     SEARCH_NO_RESULTS_MSG = {
         'de': "Ups, die Suche nach “text_to_search” führte zu keinem Ergebnis.",
         'en': "Oops, your search for “text_to_search” didn't return any results."

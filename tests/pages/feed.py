@@ -68,6 +68,7 @@ class Feed(BasePage, BasePageAPI):
         self.close_bar(PageLocators.cookie_banner_ok_cta)
         date_in_first_article = self.get_article_dates_in_latest_api(keyword_url)[0]
         print('date_in_api', date_in_first_article)
+        self.logger.info(date_in_first_article)
         return date_in_first_article
 
     def get_date_from_article_in_feed_in_latest_api(self, keyword_url):
@@ -167,3 +168,24 @@ class Feed(BasePage, BasePageAPI):
         secondary_tags = ArticlePage(self.driver).get_secondary_tags_in_article_api_format()
         print('secondary_tags', secondary_tags)
         return secondary_tags
+
+    def get_articles_matching_tag_from_site_space_in_feed(self, eyebrow_in_articles, sitespace):
+        articles_with_sitespace_tag = []
+        index = 0
+        for element in eyebrow_in_articles:
+            index += 1
+            tag_eyebrow = self.remove_html_tags(element.get_attribute("innerHTML"))
+            tag_eyebrow_principal = tag_eyebrow.split("/ ")[1]
+            if sitespace == tag_eyebrow_principal:
+                articles_with_sitespace_tag.append(index)
+        return articles_with_sitespace_tag
+
+    def get_eyebrows_in_feed_site_space_page(self):
+        return self.driver.find_elements(*PageLocators.search_eyebrow_articles_in_feed)
+
+    def click_on_sitespace_element(self, index, keyword):
+        self.close_bar(PageLocators.cookie_banner_ok_cta)
+        self.scroll_to_feed(index, keyword)
+        index = "% s" % index
+        from selenium.webdriver.common.by import By
+        self.driver.find_element(By.CSS_SELECTOR, '.feed-article.ng-scope:nth-child(' + index + ')').click()

@@ -26,6 +26,7 @@ def user_play_video(article, video_type):
 
 
 @then("the user can interact with the video controls")
+# TODO: Adding test according to Will proposal https://jira.hugeinc.com/browse/UNI-6187
 def user_interacting_with_video(article):
     article.switch_to_video_context()
     article.click_to_mute_video()

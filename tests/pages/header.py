@@ -1,17 +1,26 @@
+import logging
 import time
 
 import requests
 
+from bs4 import BeautifulSoup
+
+from tests.pages.base_page_api import BasePageAPI
 from tests.consts.constants import Constants
 from tests.pages.base_page import BasePage
 from tests.pages.locators import PageLocators
 
 
-class Header(BasePage):
+class Header(BasePage, BasePageAPI):
 
     def __init__(self, driver):
         super().__init__(driver)
         self.driver = driver
+        self.random_site_space = 0
+        self.site_space_url = ''
+        self.site_space_title_in_products = ''
+        self.logger = logging.getLogger(__name__)
+
 
     def click_cta_all_product_updates(self, locale):
         if locale == '/':
@@ -44,6 +53,12 @@ class Header(BasePage):
         time.sleep(2)
         self.driver.click_to_element(PageLocators.toast_bar_subscribe_cta)
 
+    def click_random_site_space(self, site_spaces_list):
+        element = site_spaces_list[self.random_site_space]
+        self.site_space_url = (element.get_attribute("outerHTML").split('href="')[1].split('" rel')[0])
+        self.site_space_title_in_products = self.get_text_from_span(element)
+        element.click()
+
     def click_see_all_cta_sub_menu(self):
         see_all_items = self.driver.get_urls_list(PageLocators.submenu_company_news_see_all_ctas)
         self.check_internal_status(see_all_items)
@@ -56,12 +71,33 @@ class Header(BasePage):
         print('option_text_expected', option_text_expected)
         assert option_text_in_page == option_text_expected
 
+    def get_sitespaces_list(self):
+        self.close_bar(PageLocators.cookie_banner_ok_cta)
+        site_spaces_list = self.driver.find_elements(*PageLocators.site_spaces_in_ads_and_analytics)
+        return site_spaces_list
+
+    def get_random_sitespace(self, site_spaces_list):
+        self.random_site_space = self.get_random_index_in_list(site_spaces_list)
+
+    def get_sitespace_title_expected_in_products(self):
+        return self.get_element_in_list(Constants.SITESPACE_TITLE_IN_PRODUCTS, self.random_site_space)
+
+    def get_sitespace_title_expected_in_nav(self):
+        return self.get_element_in_list(Constants.SITESPACE_TITLE_IN_NAV_MENU, self.random_site_space)
+
+    def get_site_space_title_in_navigation(self):
+        title_in_sitespace = self.driver.find_element(*PageLocators.site_space_title_in_nav_menu).get_attribute("innerHTML").strip()
+        if self.contains_ampersand_char(title_in_sitespace):
+            title_in_sitespace = self.replace_ampersand_char(title_in_sitespace)
+            self.logger.info(title_in_sitespace)
+        return title_in_sitespace
+
     def get_publish_date_in_rss(self):
-        from bs4 import BeautifulSoup
         soup = BeautifulSoup(self.driver.get_page_source(), 'xml')
         # print('all', soup.prettify())
         publish_date = soup.find('lastBuildDate').text
         date_formatted = self.get_date_in_api_format(publish_date[5:16], Constants.DATE_FORMAT_IN_RSS)
+        self.logger.info(date_formatted)
         return date_formatted
 
     @staticmethod

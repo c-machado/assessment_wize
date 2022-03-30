@@ -14,7 +14,7 @@ Feature: As a user I want to confirm articles in the feed list are shown to the 
             | /intl/en-in/ |
 
     @feed-article-load-more
-    Scenario Outline: Test articles listed in the feed in the category page are order by desc date
+    Scenario Outline: Test articles listed in the feed in the category page are ordered by desc date
         Given a user is at the <keyword> site
         When the user clicks on load more stories cta
         Then the articles are shown order by date desc
@@ -26,7 +26,7 @@ Feature: As a user I want to confirm articles in the feed list are shown to the 
            | /intl/en-au/products/android-chrome-more/         |
 
     @feed-article-load-more
-    Scenario Outline: Test articles listed in the feed in the subcategory page are order by desc date
+    Scenario Outline: Test articles listed in the feed on the subcategory page are ordered by desc date
         Given a user is at the <keyword> site
         When the user clicks on load more stories cta
         Then the articles are shown order by date desc
@@ -35,7 +35,7 @@ Feature: As a user I want to confirm articles in the feed list are shown to the 
             | /products/android/    |
 
     @feed-article-load-more
-    Scenario Outline: Test articles listed in the feed in a series page are order by desc date
+    Scenario Outline: Test articles listed in the feed in a series page are ordered by desc date
         Given a user is at the <keyword> site
         When the user clicks on load more stories cta
         Then the articles are shown order by date desc
@@ -44,7 +44,7 @@ Feature: As a user I want to confirm articles in the feed list are shown to the 
            | /inside-google/googlers/she-word/     |
 
     @feed-article-load-more
-    Scenario Outline: Test articles listed in the feed in a perspective landing page are order by desc date
+    Scenario Outline: Test articles listed in the feed on a perspective landing page are ordered by desc date
         Given a user is at the <keyword> site
         When the user clicks on load more stories cta
         Then the articles are shown order by date desc
@@ -53,7 +53,7 @@ Feature: As a user I want to confirm articles in the feed list are shown to the 
            | /perspectives/sundar-pichai/    |
 
     @feed-article-load-more
-    Scenario Outline: Test articles listed in the feed in a sitespace are order by desc date
+    Scenario Outline: Test articles listed in the feed in a sitespace are ordered by desc date
         Given a user is at the <keyword> site
         When the user clicks on load more stories cta
         Then the articles are shown order by date desc

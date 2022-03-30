@@ -112,3 +112,23 @@ Feature: As a user, I would like to interact with the header links
         |/intl/en-ca/ |/intl/en-ca/|
         |/intl/fr-ca/ |/intl/fr-ca/|
         |/intl/pt-br/ |/intl/pt-br/|
+
+  @header
+  Scenario Outline: Test navigation in sitespaces within products in Ads&Analytics list
+      Given a user is at the <keyword> site
+      When the user clicks on a random sitespace
+      Then the system shows the updated header
+
+      Examples:
+      |keyword   |
+      |/products |
+
+  @header-sitespace
+  Scenario Outline: Test navigation in an article belonging to a sitespace
+      Given a user is at the <keyword> site
+      When the user clicks in an article in a <sitespace_tag> in <keyword>
+      Then the system shows the <sitespace_title> nav menu in an article
+
+      Examples:
+      |keyword                 |sitespace_tag         |sitespace_title      |
+      |/products/ads-commerce  |Google Ads & Commerce |Ads & Commerce Blog  |

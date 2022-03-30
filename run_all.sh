@@ -4,6 +4,7 @@
 #printf "TESTS PASSED IN STAGE & PROD:\n"
 
 #pytest tests/ -m "header" --html=reports/blog/header.html
+pytest tests/ -m "header-sitespace" --html=reports/blog/header-sitespace.html
 #pytest tests/ -m "footer" --html=reports/blog/footer.html
 
 #pytest tests/ -m "search" --html=reports/blog/search.html
@@ -25,7 +26,7 @@
 #pytest tests/ -m "article" --html=reports/blog/article-videos.html
 #pytest tests/ -m "article-inline" --html=reports/blog/article-inline.html
 #pytest tests/ -m "article-related" --html=reports/blog/article-related.html
-pytest tests/ -m "article-date-format-related-stories" --html=reports/blog/article-related-date.html
+#pytest tests/ -m "article-date-format-related-stories" --html=reports/blog/article-related-date.html
 
 #docker run --rm -v "$(pwd)"/reports:/chrome-test/tests/reports chrome/linux:latest
 

@@ -5,6 +5,9 @@ import pytest
 import requests
 
 import datetime
+
+from bs4 import BeautifulSoup
+
 from tests.consts.constants import Constants
 from tests.pages.locators import PageLocators
 
@@ -42,8 +45,13 @@ class BasePage(object):
 
     def get_current_page(self):
         self.driver.switch_to_active_tab()
-        print('current url ', self.driver.current_url())
         return self.driver.current_url()
+
+    @staticmethod
+    def get_element_in_list(elements_list, element):
+        for index, title in enumerate(elements_list):
+            if element == index:
+                return title
 
     @staticmethod
     def get_year_in_given_date(date_to_convert, format_date):
@@ -81,7 +89,6 @@ class BasePage(object):
 
     def get_random_index_in_list(self, element_list):
         element_list_length = len(element_list)
-        print('list length of articles in feed', element_list_length)
         self.random_article = random.randint(0, element_list_length - 1)
         return self.random_article
 
@@ -90,6 +97,11 @@ class BasePage(object):
             return PageLocators.feed_articles_category_horizontal_top
         else:
             return PageLocators.feed_articles_list_top
+
+    @staticmethod
+    def get_text_from_span(element):
+        soup = BeautifulSoup(element.get_attribute("outerHTML"), 'xml')
+        return soup.find('span').text
 
     def get_status_redirect(self):
         return self.driver.execute_script("var xhr = new XMLHttpRequest();"

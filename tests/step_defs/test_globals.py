@@ -195,9 +195,7 @@ def user_clicks_google_logo(footer):
 @then("the dates in RSS and <keyword> matches")
 def confirm_date_format_in_rss(header, feed, keyword):
     publish_date_rss = header.get_publish_date_in_rss()
-    print('publish_date_rss', publish_date_rss)
     date_in_first_article = feed.get_date_first_article_in_feed(keyword)
-    print('date_in_first_article', date_in_first_article)
     assert publish_date_rss == date_in_first_article
 
 
@@ -236,7 +234,6 @@ def user_fills_out_form_with_invalid_data(newsletter):
 
 @given("the toast bar has appeared")
 def toast_bar_visible(cookie_banner, homepage, newsletter, toast_bar):
-    cookie_banner.clear_local_storage()
     cookie_banner.close_cookie_banner()
     homepage.click_to_read_more_article()
     toast_bar.make_toast_bar_visible()
@@ -259,5 +256,33 @@ def toast_bar_not_visible(toast_bar):
     assert toast_bar.is_toast_bar_visible()
 
 
+@when("the user clicks on a random sitespace")
+def user_clicks_on_random_site_space(header):
+    site_spaces_list = header.get_sitespaces_list()
+    header.get_random_sitespace(site_spaces_list)
+    title_expected_in_products = header.get_sitespace_title_expected_in_products()
+    header.click_random_site_space(site_spaces_list)
+    title_sitespace_in_products = header.site_space_title_in_products
+    assert title_expected_in_products == title_sitespace_in_products
 
 
+@then("the system shows the updated header")
+def user_sees_sitespace_nav(header):
+    assert header.site_space_url in header.get_current_page()
+    title_sitespace_in_nav = header.get_site_space_title_in_navigation()
+    title_expected_in_nav = header.get_sitespace_title_expected_in_nav()
+    assert title_sitespace_in_nav == title_expected_in_nav
+
+
+@when("the user clicks in an article in a <sitespace_tag> in <keyword>")
+def user_clicks_on_random_site_space(sitespace_tag, keyword, feed):
+    tags_list = feed.get_eyebrows_in_feed_site_space_page()
+    articles_within_sitespace = feed.get_articles_matching_tag_from_site_space_in_feed(tags_list, sitespace_tag)
+    random_index = feed.get_random_index_in_list(articles_within_sitespace)
+    feed.click_on_sitespace_element(articles_within_sitespace[random_index], keyword)
+
+
+@then("the system shows the <sitespace_title> nav menu in an article")
+def user_sees_nav_sitespace_in_article(sitespace_title, header):
+    title_in_sitespace_nav = header.get_site_space_title_in_navigation()
+    assert title_in_sitespace_nav == sitespace_title

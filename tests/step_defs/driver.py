@@ -299,7 +299,6 @@ class Driver(IDriver):
 
     def switch_to_active_tab(self):
         handles_before = self.driver.window_handles
-        print('tabs size', len(handles_before))
         wait = WebDriverWait(self.driver, 50)
         try:
             if handles_before == 1:
