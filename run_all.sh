@@ -4,15 +4,14 @@
 #printf "TESTS PASSED IN STAGE & PROD:\n"
 
 #pytest tests/ -m "header" --html=reports/blog/header.html
-pytest tests/ -m "header-sitespace" --html=reports/blog/header-sitespace.html
-#pytest tests/ -m "footer" --html=reports/blog/footer.html
+#pytest tests/ -m "header-sitespace" --html=reports/blog/header-sitespace.html
+pytest tests/ -m "footer" --html=reports/blog/footer.html
 
-#pytest tests/ -m "search" --html=reports/blog/search.html
+#pytest tests/ -m "search" --html=reports/blog/search-migration.html
 #pytest tests/ -m "search-home" --html=reports/blog/search-home.html
 #pytest tests/ -m "search-category" --html=reports/blog/search-cat.html
 #pytest tests/ -m "search-subcategory" --html=reports/blog/search-subcat.html
 #pytest tests/ -m "search-article" --html=reports/blog/article-search.html
-#pytest tests/ -m "search" --html=reports/blog/search-migration.html
 
 #pytest tests/ -m "feed-article-load-more" --html=reports/blog/feed-load-more.html
 #pytest tests/ -m "feed-article-tagging" --html=reports/blog/feed-tagging.html

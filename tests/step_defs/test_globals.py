@@ -59,21 +59,19 @@ def click_on_legal_links(footer):
 @then("the user sees the URL according to <keyword> locale")
 def confirm_legal_urls(footer, keyword):
     legal_items_dict = footer.get_legal_links()
-    print('legal links in page', legal_items_dict)
     expected_links = footer.get_expected_legal_links_per_locale(keyword)
-    print('expected_links', expected_links)
     assert legal_items_dict == expected_links
 
 
-@when("the user clicks on language selector")
-def user_clicks_on_language_selector(footer):
+@when("the user clicks on every language in the selector")
+def user_clicks_on_every_language_in_selector(footer):
     footer.go_to_footer()
-    footer.click_to_open_language_selector()
+    footer.click_to_each_language_in_selector()
 
 
-@then("the system displays the selector with the corresponding <locale>")
-def confirm_language_options(driver, footer, locale):
-    assert footer.verify_language_selector_content(locale)
+@then("the user can see all expected locales in the selector")
+def confirm_language_options(footer):
+    assert set(footer.languages) == set(Constants.LANGUAGE_SELECTOR)
 
 
 @given("the system displays the cookie banner per <language>")
@@ -167,8 +165,6 @@ def user_submit_form(newsletter):
 def verify_confirmation_msg(newsletter, base_page):
     message = newsletter.confirm_newsletter_subscription().text
     formatted_message = base_page.remove_enter(message)
-    print('formatted_message', formatted_message)
-    print('expected_message', Constants.NEWSLETTER_CONFIRMATION)
     assert Constants.NEWSLETTER_CONFIRMATION == formatted_message
 
 
@@ -286,3 +282,18 @@ def user_clicks_on_random_site_space(sitespace_tag, keyword, feed):
 def user_sees_nav_sitespace_in_article(sitespace_title, header):
     title_in_sitespace_nav = header.get_site_space_title_in_navigation()
     assert title_in_sitespace_nav == sitespace_title
+
+
+@when("the user clicks on every social media")
+def user_clicks_on_every_social_link(footer):
+    assert footer.click_all_social_media_links()
+
+
+@then("the system opens each link in a new tab")
+def each_link_opens_in_a_new_tab(footer):
+    assert footer.confirm_links_opened_in_a_new_tab()
+
+
+@then("the system shows a secure url per each link")
+def url_per_social_media_is_secure(footer):
+    assert footer.confirm_social_media_url_is_secure()

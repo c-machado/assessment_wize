@@ -70,7 +70,15 @@ class Constants(object):
         "press_fr_ca": "Salle de presse",
         "press_pt_br": "Imprensa",
     }
-
+    LANGUAGE_SELECTOR = {
+        "English",
+        "Deutsch",
+        "English (India)",
+        "English (Australia)",
+        "English (Canada)",
+        "French (Canada)",
+        "Portuguese (Brazil)"
+    }
     LEGAL_LINKS = {
         '/': {
             "Privacy": "https://policies.google.com/privacy",
@@ -120,7 +128,14 @@ class Constants(object):
             "Sobre o Google": "https://about.google/intl/pt-br/",
             "Produtos do Google": "https://about.google/products/",
             "Ajuda": "https://support.google.com/?hl=pt-BR"
-         }
+         },
+        '/products/ads-commerce': {
+            "Privacy": "https://policies.google.com/privacy",
+            "Terms": "https://policies.google.com/terms",
+            "About Google": "https://about.google/",
+            "Google Products": "https://about.google/products/",
+            "Help": "https://support.google.com/"
+        }
     }
     LEGAL_LINKS_ABOUT_THE_BLOG_COPY = {
         "/": "About the Keyword",
