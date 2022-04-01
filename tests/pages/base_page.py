@@ -169,6 +169,22 @@ class BasePage(object):
         return string_no_spaces_no_special_chars
 
     @staticmethod
+    def format_ampersand_in_url(string):
+        string_without_special_chars = string
+        if re.compile("&"):
+            string_without_special_chars = re.sub("&", "and", string)
+        pattern = re.compile(r'\s+')
+        string_no_spaces_no_special_chars = re.sub(pattern, '-', string_without_special_chars.strip())
+        return string_no_spaces_no_special_chars
+
+    @staticmethod
+    def format_ampersand_in_type_url(string):
+        string_without_special_chars = string
+        if re.compile("&"):
+            string_without_special_chars = re.sub("&", "and", string)
+        return string_without_special_chars
+
+    @staticmethod
     def contains_ampersand_char(string):
         regexp = re.compile("&amp;")
         if regexp.search(string):
@@ -186,7 +202,6 @@ class BasePage(object):
 
     def replace_ampersand_char(self, string):
         if self.contains_ampersand_char(string):
-
             return re.sub("&amp;", "&", string)
         else:
             return string

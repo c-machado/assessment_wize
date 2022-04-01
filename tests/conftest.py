@@ -6,6 +6,7 @@ from datetime import datetime
 
 import pytest
 
+from tests.pages.press_assets import PressAssets
 from tests.pages.homepage import Homepage
 from tests.pages.article import ArticlePage
 from tests.pages.cookie_banner import CookieBanner
@@ -154,6 +155,11 @@ def homepage(driver):
 @pytest.fixture
 def article(driver):
     return ArticlePage(driver)
+
+
+@pytest.fixture
+def press(driver):
+    return PressAssets(driver)
 
 
 def pytest_html_results_table_header(cells):

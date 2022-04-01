@@ -33,4 +33,14 @@ SEARCH_SUGGESTIONS_API = {
     '/perspectives/sundar-pichai/': '/api/v2/search-suggestions/?query=text_to_search&site_id=2&format=json'
 }
 
+PRESS_ASSETS_PER_TYPE_API = {
+    '/': '/api/v2/press-asset/?paginate=12&locale=en-us&pageId=774&type=text_to_search',
+    '/intl/en-in/': '/api/v2/press-asset/?paginate=12&locale=en-in&pageId=50365&type=text_to_search'
+}
+
+PRESS_ASSETS_PER_TYPE_AND_TAG_API = {
+    '/': '/api/v2/press-asset/?paginate=12&locale=en-us&pageId=774&type=type_filter&tag=tag_filter',
+    '/intl/en-in/': '/api/v2/press-asset/?paginate=12&locale=en-in&pageId=50365&type=text_to_search&tag=tag_to_search'
+}
+
 BASE_URI = 'https://blog.google/api/v2/latest?tags=android'

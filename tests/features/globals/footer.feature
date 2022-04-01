@@ -43,18 +43,3 @@ Feature: As a user, I would like to access the content in the footer
 
 
 
-  # TODO: deprecate it
-  Scenario Outline: Test social media links are not broken and open in a new tab
-    Given a user is at the <keyword> site
-    When the user clicks on every <social_media> item
-    Then the user is redirected to <url> in a new tab
-    Examples:
-      |social_media   |url                         |
-      |instagram      |https://www.instagram.com/  |
-      |twitter        |https://twitter.com/        |
-      |youtube        |https://www.youtube.com/    |
-      |facebook       |https://www.facebook.com/   |
-      |linkedin       |https://www.linkedin.com/   |
-
-
-
