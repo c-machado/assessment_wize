@@ -48,19 +48,24 @@ class PressAssets(BasePage, BasePageAPI):
     def get_results_filter_by_type(self, filter_by_type):
         select_opts_per_type = self.driver.get_select_options(PageLocators.press_filter_by_type)
         self.click_option_in_filter_by(select_opts_per_type, filter_by_type)
+        # TODO: Explore a different solution to avoid using time sleep.
+        #  This is required because the stage is taking a long to load the content filtered.
+        #  It's the same for filter examples below
+        time.sleep(1)
 
     def get_results_filter_by_product(self, filter_by_product):
         select_opts_per_product = self.driver.get_select_options(PageLocators.press_filter_by_product)
         self.click_option_in_filter_by(select_opts_per_product, filter_by_product)
+        time.sleep(1)
 
     def get_results_filter_by_topic(self, filter_by_topic):
         select_opts_per_topic = self.driver.get_select_options(PageLocators.press_filter_by_topic)
         self.click_option_in_filter_by(select_opts_per_topic, filter_by_topic)
+        time.sleep(1)
 
     def get_titles_in_press_assets_page(self):
         titles = []
         number_of_results = self.driver.find_element(*PageLocators.press_number_of_results).get_attribute("innerHTML")
-        print(number_of_results)
         if not number_of_results.startswith("0"):
             titles_list = self.driver.find_elements(*PageLocators.press_titles_in_page)
             for title in titles_list:

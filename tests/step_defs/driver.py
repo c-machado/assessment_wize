@@ -79,8 +79,8 @@ class Driver(IDriver):
         # options.add_argument("--remote-debugging-port=9222")
         # chrome://inspect/#devices
 
-        # options.add_argument(r'--user-data-dir=/Users/machadoca/Documents/keyword_chrome')  # your chrome user data directory
-        # options.add_argument(r'--profile-directory=Default')  # the profile with the extensions loaded
+        # options.add_argument(r'--user-data-dir=/Users/machadoca/Documents/chrome_huge_inc')  # your chrome user data directory
+        # options.add_argument(r'--profile-directory=Person 2')  # the profile with the extensions loaded
 
         s = Service(driver_path)
         self.driver = webdriver.Chrome(service=s,

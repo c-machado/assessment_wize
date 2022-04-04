@@ -108,6 +108,7 @@ class BasePageAPI(object):
                 result = json.loads(api_result)
                 self.logger.info(result)
                 self.driver.go_back_to_url()
+                self.driver.wait_for_page_load()
             return result
         except WebDriverException:
             print("Exception on {}".format(api_url))
