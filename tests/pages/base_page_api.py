@@ -27,12 +27,15 @@ class BasePageAPI(object):
 
     def get_article_dates_in_latest_api(self, keyword_url):
         """:return a list with the article dates in the API format e.g. 2021-11-15"""
+        self.logger.info(keyword_url)
         api_url = self.get_api_url(keyword_url, api_const.LATEST_FEED)
+        self.logger.info(api_url)
         result = self.get_results_in_api(Constants.BASE_URL + api_url)
         article_dates = []
         for article in result['results']:
             article_dates.append(article['published'][0:10])
             print("article['published'][0:10]", article['published'])
+            self.logger.info(article['published'])
         return article_dates
 
     def get_article_tags_in_latest_api(self, keyword_url):

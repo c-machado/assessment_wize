@@ -3,7 +3,8 @@
 
 #printf "TESTS PASSED IN STAGE & PROD:\n"
 
-#pytest tests/ -m "header" --html=reports/blog/header.html
+pytest tests/ -m "header-mobile" --html=reports/blog/header-mobile.html
+pytest tests/ -m "header" --html=reports/blog/header.html
 #pytest tests/ -m "header-sitespace" --html=reports/blog/header-sitespace.html
 #pytest tests/ -m "footer" --html=reports/blog/footer.html
 
@@ -27,7 +28,7 @@
 #pytest tests/ -m "article-related" --html=reports/blog/article-related.html
 #pytest tests/ -m "article-date-format-related-stories" --html=reports/blog/article-related-date.html
 
-pytest tests/ -m "press" --html=reports/blog/press.html
+#pytest tests/ -m "press" --html=reports/blog/press.html
 
 #docker run --rm -v "$(pwd)"/reports:/chrome-test/tests/reports chrome/linux:latest
 

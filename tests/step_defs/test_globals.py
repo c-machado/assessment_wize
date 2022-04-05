@@ -22,15 +22,24 @@ def at_the_blog(keyword, driver, get_web_browser, get_viewport):
     # browser.refresh()
 
 
-@given("a user is at the <keyword> site in mobile")
-def at_the_blog(keyword, driver, get_web_browser):
+@given("a user is at the <keyword> site on <mobile>")
+def at_the_blog(keyword, mobile, driver, get_web_browser):
     print('keyword url', Constants.BASE_URL + keyword)
     print('get_web_browser', get_web_browser)
+    print('mobile', mobile)
+
     driver.start(get_web_browser, "mobile")
     driver.go_to_URL(Constants.BASE_URL + keyword)
     driver.wait_for_page_load()
-    # browser.set_cookie()
-    # browser.refresh()
+
+
+@given("a user is at the <keyword> site on desktop")
+def at_the_blog(keyword, driver, get_web_browser):
+    print('keyword url', Constants.BASE_URL + keyword)
+    print('get_web_browser', get_web_browser)
+    driver.start(get_web_browser, "desktop")
+    driver.go_to_URL(Constants.BASE_URL + keyword)
+    driver.wait_for_page_load()
 
 
 @when("the user clicks on every <social_media> item")

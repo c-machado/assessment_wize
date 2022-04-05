@@ -83,4 +83,4 @@ def scroll_to_feed_section(base_page, keyword):
 
 @then("the system shows articles in the <keyword> locale")
 def show_articles_in_feed_per_page(keyword, feed):
-    feed.confirm_articles_in_feed_homepage(keyword)
+    assert feed.confirm_articles_in_feed_homepage(keyword)

@@ -1,9 +1,11 @@
+
 import os
 import time
 import warnings
 
 import selenium
 # from selenium.webdriver import DesiredCapabilities
+from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.select import Select
 
 from selenium.webdriver.support.wait import WebDriverWait
@@ -44,25 +46,26 @@ class Driver(IDriver):
     def build_driver_for_local(self, web_browser, viewport):
         if web_browser == "chrome":
             self.build_chrome_driver(ChromeDriverManager().install(), viewport)
-        elif web_browser == 'firefox':
-            self.build_firefox_driver(GeckoDriverManager().install(), viewport)
-        elif web_browser == 'safari':
-            self.build_safari_driver(viewport)
-        elif web_browser == 'edge':
-            self.build_edge_driver(viewport)
+        # elif web_browser == 'firefox':
+        #     self.build_firefox_driver(GeckoDriverManager().install(), viewport)
+        # elif web_browser == 'safari':
+        #     self.build_safari_driver(viewport)
+        # elif web_browser == 'edge':
+        #     self.build_edge_driver(viewport)
         warnings.filterwarnings(action="ignore", message="unclosed", category=ResourceWarning)
         return self.driver
 
     def build_driver_with_user_agent(self, web_browser, viewport):
         for browser_id, ua in Constants.USER_AGENTS.items():
             if browser_id == web_browser:
-                if web_browser in Constants.UA_BROWSERS:
-                    self.set_chrome_ua(ua, viewport)
-                    print(ua)
-                elif web_browser == 'firefox_ua':
-                    self.set_firefox_ua(ua)
+                print('viewport en main', viewport, web_browser)
+                self.set_chrome_ua(ua, viewport)
                 warnings.filterwarnings(action="ignore", message="unclosed", category=ResourceWarning)
                 return self.driver
+
+    def set_chrome_ua(self, ua, viewport):
+        self.build_chrome_driver(ChromeDriverManager().install(), viewport)
+        self.driver.execute_cdp_cmd('Network.setUserAgentOverride', {"userAgent": ua})
 
     def build_chrome_driver(self, driver_path, viewport):
         print('build chrome')
@@ -79,8 +82,8 @@ class Driver(IDriver):
         # options.add_argument("--remote-debugging-port=9222")
         # chrome://inspect/#devices
 
-        # options.add_argument(r'--user-data-dir=/Users/machadoca/Documents/chrome_huge_inc')  # your chrome user data directory
-        # options.add_argument(r'--profile-directory=Person 2')  # the profile with the extensions loaded
+        options.add_argument(r'--user-data-dir=/Users/machadoca/Documents/chrome_huge_inc')  # your chrome user data directory
+        options.add_argument(r'--profile-directory=Person 2')  # the profile with the extensions loaded
 
         s = Service(driver_path)
         self.driver = webdriver.Chrome(service=s,
@@ -169,10 +172,6 @@ class Driver(IDriver):
     #             desired_capabilities=caps)
     #         return self.driver
 
-    def set_chrome_ua(self, ua, viewport):
-        self.build_chrome_driver(ChromeDriverManager().install(), viewport)
-        self.driver.execute_cdp_cmd('Network.setUserAgentOverride', {"userAgent": ua})
-
     # selenium.common.exceptions.InvalidCookieDomainException: Message: invalid cookie domain
     def set_cookie(self):
         try:
@@ -192,11 +191,6 @@ class Driver(IDriver):
             # self.driver.refresh()
         except exceptions.InvalidCookieDomainException as e:
             print(e)
-
-    def set_firefox_ua(self, ua):
-        self.build_firefox_driver(GeckoDriverManager().install())
-        profile = webdriver.FirefoxProfile()
-        profile.set_preference("general.useragent.override", ua)
 
     def refresh(self):
         self.driver.refresh()

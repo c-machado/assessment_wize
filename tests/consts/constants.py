@@ -218,17 +218,22 @@ class Constants(object):
     UA_BROWSERS = [
         'edge',
         'ie',
-        'firefox_ua',
-        'ios'
+        'firefox',
+        'safari',
+        'ios',
+        'android'
     ]
     USER_AGENTS = {
-        "android": "Mozilla/5.0 (Linux; Android 8.0.0; SM-G965F Build/R16NW) AppleWebKit/537.36 (KHTML, "
-                   "Chrome/63.0.3239.111 Mobile Safari/537.36",
-        "ios": "Mozilla/5.0 (iPhone; CPU iPhone OS 11_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.0 Mobile/15E148 Safari/604.1",
-        "ie": "Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.111 "
-                 "Safari/537.36 Edge/14.14393",
-        "edge": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; WebView/3.0) AppleWebKit/537.36 (KHTML, like Gecko) "
-                   "Chrome/63.0.3239.111 Safari/537.36 Edge/15.15063 "
+        "android": "Mozilla/5.0 (Linux; Android 12) AppleWebKit/537.36 (KHTML, like Gecko) "
+                   "Chrome/100.0.4896.58 Mobile Safari/537.36",
+        "ios": "Mozilla/5.0 (iPhone; CPU iPhone OS 15_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko)"
+               " Version/15.3 Mobile/15E148 Safari/604.1",
+        "edge": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko)"
+                " Chrome/100.0.4896.60 Safari/537.36 Edg/99.0.1150.36",
+        "firefox": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:98.0) Gecko/20100101 Firefox/98.0",
+        "safari": "Mozilla/5.0 (Macintosh; Intel Mac OS X 12_3_1) AppleWebKit/605.1.15 (KHTML, like Gecko) "
+                   "Version/15.3 Safari/605.1.15"
+
     }
 
 

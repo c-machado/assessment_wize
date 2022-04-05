@@ -10,12 +10,12 @@ Feature: As a user, I would like to interact with the header links
       Examples:
         |keyword           |url                    |submenu         |
         |/                 | /products/            |product_updates |
-        |/intl/de-de/      | /intl/de-de/produkte/ |product_updates |
-        |/intl/en-au/      | /intl/en-au/products/ |product_updates |
-        |/intl/en-in/      | /intl/en-in/products/ |product_updates |
-        |/intl/en-ca/      | /intl/en-ca/products/ |product_updates |
-        |/intl/fr-ca/      | /intl/fr-ca/produits/ |product_updates |
-        |/intl/pt-br/      | /intl/pt-br/produtos/ |product_updates |
+#        |/intl/de-de/      | /intl/de-de/produkte/ |product_updates |
+#        |/intl/en-au/      | /intl/en-au/products/ |product_updates |
+#        |/intl/en-in/      | /intl/en-in/products/ |product_updates |
+#        |/intl/en-ca/      | /intl/en-ca/products/ |product_updates |
+#        |/intl/fr-ca/      | /intl/fr-ca/produits/ |product_updates |
+#        |/intl/pt-br/      | /intl/pt-br/produtos/ |product_updates |
 
 
   @header
@@ -47,18 +47,18 @@ Feature: As a user, I would like to interact with the header links
         |keyword      | kebab_option | locale |
         |/            | rss          | us     |
         |/            | press        | us     |
-        |/intl/de-de/ | rss          | de     |
-        |/intl/de-de/ | press        | de     |
-        |/intl/en-au/ | rss          | au     |
-        |/intl/en-au/ | press        | au     |
-        |/intl/en-in/ | rss          | in     |
-        |/intl/en-in/ | press        | in     |
-        |/intl/en-ca/ | rss          | en_ca  |
-        |/intl/en-ca/ | press        | en_ca  |
-        |/intl/fr-ca/ | rss          | fr_ca  |
-        |/intl/fr-ca/ | press        | fr_ca  |
-        |/intl/pt-br/ | rss          | pt_br  |
-        |/intl/pt-br/ | press        | pt_br  |
+#        |/intl/de-de/ | rss          | de     |
+#        |/intl/de-de/ | press        | de     |
+#        |/intl/en-au/ | rss          | au     |
+#        |/intl/en-au/ | press        | au     |
+#        |/intl/en-in/ | rss          | in     |
+#        |/intl/en-in/ | press        | in     |
+#        |/intl/en-ca/ | rss          | en_ca  |
+#        |/intl/en-ca/ | press        | en_ca  |
+#        |/intl/fr-ca/ | rss          | fr_ca  |
+#        |/intl/fr-ca/ | press        | fr_ca  |
+#        |/intl/pt-br/ | rss          | pt_br  |
+#        |/intl/pt-br/ | press        | pt_br  |
 
   @header
   #TODO: add a new case sitespace and subcategory in en-us
@@ -72,32 +72,15 @@ Feature: As a user, I would like to interact with the header links
       Examples:
         |keyword      | kebab_option |
         |/            | rss          |
-        |/intl/de-de/ | rss          |
-        |/intl/en-au/ | rss          |
-        |/intl/en-in/ | rss          |
-        |/intl/en-ca/ | rss          |
-        |/intl/fr-ca/ | rss          |
-        |/intl/pt-br/ | rss          |
+#        |/intl/de-de/ | rss          |
+#        |/intl/en-au/ | rss          |
+#        |/intl/en-in/ | rss          |
+#        |/intl/en-ca/ | rss          |
+#        |/intl/fr-ca/ | rss          |
+#        |/intl/pt-br/ | rss          |
 
   @header
-  Scenario Outline: Test RSS matches the content in mobile
-      Given a user is at the <keyword> site in mobile
-      When the user triggers the hamburger menu
-      And the user clicks on the RSS option
-      Then the dates in RSS and <keyword> matches
-
-      Examples:
-        |keyword       |
-        |/             |
-        |/intl/de-de/  |
-        |/intl/en-in/  |
-        |/intl/en-au/  |
-        |/intl/en-ca/  |
-        |/intl/fr-ca/  |
-        |/intl/pt-br/  |
-
-  @header
-  Scenario Outline: Test keyword logo in the nav menu
+  Scenario Outline: Test the keyword logo in the nav menu
       Given a user is at the <keyword> site
       And the user clicks on the hero article
       When the user clicks on the keyword logo
@@ -106,12 +89,12 @@ Feature: As a user, I would like to interact with the header links
       Examples:
         |keyword      | url        |
         |/            | /          |
-        |/intl/de-de/ |/intl/de-de/|
-        |/intl/en-in/ |/intl/en-in/|
-        |/intl/en-au/ |/intl/en-au/|
-        |/intl/en-ca/ |/intl/en-ca/|
-        |/intl/fr-ca/ |/intl/fr-ca/|
-        |/intl/pt-br/ |/intl/pt-br/|
+#        |/intl/de-de/ |/intl/de-de/|
+#        |/intl/en-in/ |/intl/en-in/|
+#        |/intl/en-au/ |/intl/en-au/|
+#        |/intl/en-ca/ |/intl/en-ca/|
+#        |/intl/fr-ca/ |/intl/fr-ca/|
+#        |/intl/pt-br/ |/intl/pt-br/|
 
   @header
   Scenario Outline: Test navigation in sitespaces within products in Ads&Analytics list
