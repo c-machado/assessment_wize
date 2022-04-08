@@ -1,9 +1,14 @@
+# Created by machadoca at 7/04/22
 # Created by machadoca at 17/02/22
 Feature: As a user, I would like to search for the content while navigating the homepage
 
-    @search-home
+    Examples:
+    |mobile|
+    |ios   |
+
+    @search-home-mobile
     Scenario Outline: Test search suggestions in the homepage
-        Given a user is at the <keyword> site
+        Given a user is at the <keyword> site on <mobile>
         When the user clicks the search icon
         And the user types the <text_to_search>
         Then the system shows suggestions per <text_to_search> in <keyword> page
@@ -18,9 +23,9 @@ Feature: As a user, I would like to search for the content while navigating the 
             | parcerias      | /intl/pt-br/  |
             | cloud          | /intl/en-ca/  |
 
-    @search-home
+    @search-home-mobile
     Scenario Outline: Test search suggestions on the homepage using special characters
-        Given a user is at the <keyword> site
+        Given a user is at the <keyword> site on <mobile>
         When the user clicks the search icon
         And the user types the <text_to_search>
         Then the system shows suggestions per <text_to_search> in <keyword> page
@@ -36,9 +41,9 @@ Feature: As a user, I would like to search for the content while navigating the 
             | trans-Pacific             | /intl/en-ca/  |
 
 
-    @search-home
+    @search-home-mobile
     Scenario Outline: Test search results on the homepage
-        Given a user is at the <keyword> site
+        Given a user is at the <keyword> site on <mobile>
         When the user clicks the search icon
         And the user types the <text_to_search>
         And the user clicks the magnifying glass
@@ -55,9 +60,9 @@ Feature: As a user, I would like to search for the content while navigating the 
             | subsea         | /intl/en-ca/  |
 
     # TODO: Error with texts with special characters in the wrong format. https://hugeinc.atlassian.net/browse/UNI-6398
-    @search-home
+    @search-home-mobile
     Scenario Outline: Test search results on the homepage using special characters
-        Given a user is at the <keyword> site
+        Given a user is at the <keyword> site on <mobile>
         When the user clicks the search icon
         And the user types the <text_to_search>
         And the user clicks the magnifying glass
@@ -74,9 +79,9 @@ Feature: As a user, I would like to search for the content while navigating the 
             | informações               | /intl/pt-br/  |
             | Canada's K-12             | /intl/en-ca/  |
 
-    @search-home
+    @search-home-mobile
     Scenario Outline: Test search results when there are no results on the homepage
-        Given a user is at the <keyword> site
+        Given a user is at the <keyword> site on <mobile>
         When the user clicks the search icon
         And the user types the <text_to_search>
         And the user clicks the magnifying glass

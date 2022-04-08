@@ -19,12 +19,22 @@ def at_the_blog(keyword, driver, get_web_browser, get_viewport):
     # driver.set_cookie()
 
 
+@given("a user is at the <keyword> site on <mobile>")
+def at_the_blog(keyword, mobile, driver, get_web_browser):
+    print('keyword url', Constants.BASE_URL + keyword)
+    print('get_web_browser', get_web_browser)
+    print('mobile', mobile)
+    driver.start(get_web_browser, "mobile")
+    driver.go_to_URL(Constants.BASE_URL + keyword)
+    driver.wait_for_page_load()
+
+
 @when("the user clicks the search icon")
 def user_clicks_search(search):
     search.click_search_icon_in_nav_bar()
 
 
-@given("the user clicks in the hero article")
+@given("the user clicks on the hero article")
 def user_clicks_hero_article(homepage):
     homepage.click_to_read_more_article()
 
@@ -105,8 +115,8 @@ def make_progress_bar_visible(homepage, base_page):
 
 @given("the user selects an article in <keyword> feed")
 def user_selects_article_in_feed(keyword, feed, base_page):
-    feed.get_random_index_in_list(feed.get_articles_in_feed_list())
     base_page.close_bar(PageLocators.cookie_banner_ok_cta)
+    feed.get_random_index_in_list(feed.get_articles_in_feed_list())
     feed.click_to_random_article_in_feed(keyword)
 
 

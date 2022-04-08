@@ -1,3 +1,4 @@
+import logging
 import random
 import time
 import re
@@ -19,6 +20,7 @@ class BasePage(object):
         # Set my local self.browser variable to be whatever browser it's stage in
         self.driver = driver
         self.random_article = 0
+        self.logger = logging.getLogger(__name__)
 
     @staticmethod
     def check_internal_status(items):
@@ -122,6 +124,7 @@ class BasePage(object):
             return True
 
     def is_element_visible(self, *locator):
+        self.logger.info(self.driver.find_element(*locator).is_displayed())
         return self.driver.find_element(*locator).is_displayed()
 
     @staticmethod

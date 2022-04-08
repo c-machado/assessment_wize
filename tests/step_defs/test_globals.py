@@ -157,6 +157,14 @@ def cookie_not_displayed(cookie_banner):
 def user_clicks_subscribe_cta(header):
     header.clear_local_storage()
     header.click_on_subscribe_cta()
+    time.sleep(1)
+
+
+@when("the user clicks on subscribe cta on mobile")
+def user_clicks_subscribe_cta_mobile(header):
+    header.clear_local_storage()
+    header.click_on_subscribe_cta_mobile()
+    time.sleep(2)
 
 
 @when("the user fills out the form")
@@ -170,7 +178,7 @@ def user_submit_form(newsletter):
     newsletter.submit_newsletter_form()
 
 
-@then("the system displays confirmation message")
+@then("the system displays a confirmation message")
 def verify_confirmation_msg(newsletter, base_page):
     message = newsletter.confirm_newsletter_subscription().text
     formatted_message = base_page.remove_enter(message)

@@ -82,8 +82,8 @@ class Driver(IDriver):
         # options.add_argument("--remote-debugging-port=9222")
         # chrome://inspect/#devices
 
-        options.add_argument(r'--user-data-dir=/Users/machadoca/Documents/chrome_huge_inc')  # your chrome user data directory
-        options.add_argument(r'--profile-directory=Person 2')  # the profile with the extensions loaded
+        # options.add_argument(r'--user-data-dir=/Users/machadoca/Documents/chrome_huge_inc')  # your chrome user data directory
+        # options.add_argument(r'--profile-directory=Person 2')  # the profile with the extensions loaded
 
         s = Service(driver_path)
         self.driver = webdriver.Chrome(service=s,
@@ -231,7 +231,8 @@ class Driver(IDriver):
         return self.driver.find_element(*(locator[1], locator[2] % locator[0]))
 
     def find_elements(self, *locator):
-        self.wait_for_element_visible(*locator)
+        # self.wait_for_element_visible(*locator)
+        self.wait_for_all_elements_visible(*locator)
         if locator.__len__() == 2:
             return self.driver.find_elements(*locator)
         return self.driver.find_elements(*(locator[1], locator[2] % locator[0]))
@@ -336,6 +337,11 @@ class Driver(IDriver):
         wait = WebDriverWait(self.driver, 20)
         if locator.__len__() == 2:
             return wait.until(expected_conditions.visibility_of_element_located(locator))
+
+    def wait_for_all_elements_visible(self, *locator):
+        wait = WebDriverWait(self.driver, 20)
+        if locator.__len__() == 2:
+            return wait.until(expected_conditions.visibility_of_all_elements_located(locator))
 
     def wait_for_element_not_visible(self, *locator):
         print('test')

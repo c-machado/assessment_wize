@@ -22,7 +22,11 @@ SEARCH_API = {
     '/intl/de-de/': '/api/v2/search?paginate=12&order=relevance&site_id=8&query=text_to_search',
     '/intl/en-au/': '/api/v2/search?paginate=12&order=relevance&site_id=9&query=text_to_search',
     '/intl/en-in/': '/api/v2/search?paginate=12&order=relevance&site_id=10&query=text_to_search',
-    '/perspectives/sundar-pichai/': '/api/v2/search?paginate=12&order=relevance&site_id=2&query=text_to_search'
+    '/intl/fr-ca/': '/api/v2/search?paginate=12&order=relevance&site_id=12&query=text_to_search',
+    '/intl/pt-br/': '/api/v2/search?paginate=12&order=relevance&site_id=14&query=text_to_search',
+    '/intl/en-ca/': '/api/v2/search?paginate=12&order=relevance&site_id=11&query=text_to_search',
+    '/perspectives/sundar-pichai/': '/api/v2/search?paginate=12&order=relevance&site_id=2&query=text_to_search',
+
 }
 
 SEARCH_SUGGESTIONS_API = {
@@ -30,6 +34,9 @@ SEARCH_SUGGESTIONS_API = {
     '/intl/de-de/': '/api/v2/search-suggestions/?query=text_to_search&site_id=8&format=json',
     '/intl/en-au/': '/api/v2/search-suggestions/?query=text_to_search&site_id=9&format=json',
     '/intl/en-in/': '/api/v2/search-suggestions/?query=text_to_search&site_id=10&format=json',
+    '/intl/fr-ca/': '/api/v2/search-suggestions/?query=text_to_search&site_id=12&format=json',
+    '/intl/pt-br/': '/api/v2/search-suggestions/?query=text_to_search&site_id=14&format=json',
+    '/intl/en-ca/': '/api/v2/search-suggestions/?query=text_to_search&site_id=11&format=json',
     '/perspectives/sundar-pichai/': '/api/v2/search-suggestions/?query=text_to_search&site_id=2&format=json'
 }
 

@@ -1,10 +1,13 @@
-# Created by machadoca at 14/01/22
-Feature: As a user, I would like to search content within the blog within an article page
+# Created by machadoca at 8/04/22
+Feature: As a user, I would like to search content within the blog within an article page on mobile
 
+    Examples:
+    |mobile|
+    |ios   |
 
-    @search-article
-    Scenario Outline: Test search suggestions on an article page
-        Given a user is at the <keyword> site
+    @search-article-mobile
+    Scenario Outline: Test search suggestions on an article page on mobile
+        Given a user is at the <keyword> site on <mobile>
         And the user clicks on the hero article
         When the user clicks the search icon
         And the user types the <text_to_search>
@@ -21,9 +24,9 @@ Feature: As a user, I would like to search content within the blog within an art
             | cloud          | /intl/en-ca/  |
 
 
-    @search-article
-    Scenario Outline: Test the search suggestions in an article page using special characters
-        Given a user is at the <keyword> site
+    @search-article-mobile
+    Scenario Outline: Test the search suggestions in an article page using special characters on mobile
+        Given a user is at the <keyword> site on <mobile>
         And the user clicks on the hero article
         When the user clicks the search icon
         And the user types the <text_to_search>
@@ -40,9 +43,9 @@ Feature: As a user, I would like to search content within the blog within an art
             | trans-Pacific             | /intl/en-ca/  |
 
 
-    @search-article
-    Scenario Outline: Test search results on an article page
-        Given a user is at the <keyword> site
+    @search-article-mobile
+    Scenario Outline: Test search results on an article page on mobile
+        Given a user is at the <keyword> site on <mobile>
         And the user clicks on the hero article
         When the user clicks the search icon
         And the user types the <text_to_search>
@@ -59,9 +62,9 @@ Feature: As a user, I would like to search content within the blog within an art
             | pessoas        | /intl/pt-br/  |
             | subsea         | /intl/en-ca/  |
 
-    @search-article
-    Scenario Outline: Test search results in an article page using special characters
-        Given a user is at the <keyword> site
+    @search-article-mobile
+    Scenario Outline: Test search results in an article page using special characters on mobile
+        Given a user is at the <keyword> site on <mobile>
         And the user clicks on the hero article
         When the user clicks the search icon
         And the user types the <text_to_search>
@@ -79,9 +82,9 @@ Feature: As a user, I would like to search content within the blog within an art
             | Canada's K-12             | /intl/en-ca/  |
 
 
-    @search-article
-    Scenario Outline: Test search results when there are no results on an article page
-        Given a user is at the <keyword> site
+    @search-article-mobile
+    Scenario Outline: Test search results when there are no results on an article page on mobile
+        Given a user is at the <keyword> site on <mobile>
         And the user clicks on the hero article
         When the user clicks the search icon
         And the user types the <text_to_search>
@@ -98,9 +101,9 @@ Feature: As a user, I would like to search content within the blog within an art
             | pesquisa                  | /intl/fr-ca/  | fr       |
             | retornou                  | /intl/en-ca/  | en       |
 
-    @search-article
-    Scenario Outline: Test search suggestions in an article page progress bar
-        Given a user is at the <keyword> site
+    @search-article-mobile
+    Scenario Outline: Test search suggestions in an article page progress bar on mobile
+        Given a user is at the <keyword> site on <mobile>
         And the progress bar is visible
         When the user clicks the search icon
         And the user types the <text_to_search>
@@ -117,9 +120,9 @@ Feature: As a user, I would like to search content within the blog within an art
             | subsea         | /intl/en-ca/  |
 
 
-    @search-article
-    Scenario Outline: Test the search suggestions in an article page progress bar using special characters
-        Given a user is at the <keyword> site
+    @search-article-mobile
+    Scenario Outline: Test the search suggestions in an article page progress bar using special characters on mobile
+        Given a user is at the <keyword> site on <mobile>
         And the progress bar is visible
         When the user clicks the search icon
         And the user types the <text_to_search>
@@ -136,9 +139,9 @@ Feature: As a user, I would like to search content within the blog within an art
             | Canada's K-12             | /intl/en-ca/  |
 
 
-    @search-article
-    Scenario Outline: Test search results in an article page progress bar
-        Given a user is at the <keyword> site
+    @search-article-mobile
+    Scenario Outline: Test search results in an article page progress bar on mobile
+        Given a user is at the <keyword> site on <mobile>
         And the progress bar is visible
         When the user clicks the search icon
         And the user types the <text_to_search>
@@ -156,9 +159,9 @@ Feature: As a user, I would like to search content within the blog within an art
             | subsea         | /intl/en-ca/  |
 
 
-    @search-article
-    Scenario Outline: Test search results in an article page progress bar using special characters
-        Given a user is at the <keyword> site
+    @search-article-mobile
+    Scenario Outline: Test search results in an article page progress bar using special characters on mobile
+        Given a user is at the <keyword> site on <mobile>
         And the progress bar is visible
         When the user clicks the search icon
         And the user types the <text_to_search>
@@ -176,9 +179,9 @@ Feature: As a user, I would like to search content within the blog within an art
             | Canada's K-12             | /intl/en-ca/  |
 
 
-    @search-article
-    Scenario Outline: Test search results when there are no results in an article page progress bar
-        Given a user is at the <keyword> site
+    @search-article-mobile
+    Scenario Outline: Test search results when there are no results in an article page progress bar on mobile
+        Given a user is at the <keyword> site on <mobile>
         And the progress bar is visible
         When the user clicks the search icon
         And the user types the <text_to_search>

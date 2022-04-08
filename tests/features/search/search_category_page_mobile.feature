@@ -1,9 +1,12 @@
-# Created by machadoca at 15/02/22
+# Created by machadoca at 7/04/22
 Feature: As a user, I would like to search for the content while navigating on a category page
+    Examples:
+    |mobile|
+    |ios   |
 
-    @search-category
-    Scenario Outline: Test search suggestions on a category page
-        Given a user is at the <keyword> site
+    @search-category-mobile
+    Scenario Outline: Test search suggestions on a category page on mobile
+        Given a user is at the <keyword> site on <mobile>
         When the user clicks the search icon
         And the user types the <text_to_search>
         Then the system shows suggestions per <text_to_search> in <keyword> page
@@ -18,9 +21,9 @@ Feature: As a user, I would like to search for the content while navigating on a
             | voyager        | /intl/fr-ca/produits/explorez-obtenez-des-reponses/|
             | vacinas        | /intl/pt-br/produtos/explore-e-encontre-respostas/ |
 
-    @search-category
-    Scenario Outline: Test search suggestions on a category page using special characters
-        Given a user is at the <keyword> site
+    @search-category-mobile
+    Scenario Outline: Test search suggestions on a category page using special characters on mobile
+        Given a user is at the <keyword> site on <mobile>
         When the user clicks the search icon
         And the user types the <text_to_search>
         Then the system shows suggestions per <text_to_search> in <keyword> page
@@ -37,9 +40,9 @@ Feature: As a user, I would like to search for the content while navigating on a
             | desinformação              | /intl/pt-br/produtos/explore-e-encontre-respostas/ |
 
 
-    @search-category
-    Scenario Outline: Test search results on a category page
-        Given a user is at the <keyword> site
+    @search-category-mobile
+    Scenario Outline: Test search results on a category page on mobile
+        Given a user is at the <keyword> site on <mobile>
         When the user clicks the search icon
         And the user types the <text_to_search>
         And the user clicks the magnifying glass
@@ -55,9 +58,9 @@ Feature: As a user, I would like to search for the content while navigating on a
             | voyager        | /intl/fr-ca/produits/explorez-obtenez-des-reponses/|
             | vacinas        | /intl/pt-br/produtos/explore-e-encontre-respostas/ |
 
-    @search-category
-    Scenario Outline: Test search results in a category page using special characters
-        Given a user is at the <keyword> site
+    @search-category-mobile
+    Scenario Outline: Test search results in a category page using special characters on mobile
+        Given a user is at the <keyword> site on <mobile>
         When the user clicks the search icon
         And the user types the <text_to_search>
         And the user clicks the magnifying glass
@@ -73,9 +76,9 @@ Feature: As a user, I would like to search for the content while navigating on a
             | téléphone                  | /intl/fr-ca/produits/explorez-obtenez-des-reponses/|
             | desinformação              | /intl/pt-br/produtos/explore-e-encontre-respostas/ |
 
-    @search-category
-    Scenario Outline: Test search results when there are no results on a category page
-        Given a user is at the <keyword> site
+    @search-category-mobile
+    Scenario Outline: Test search results when there are no results on a category page on mobile
+        Given a user is at the <keyword> site on <mobile>
         When the user clicks the search icon
         And the user types the <text_to_search>
         And the user clicks the magnifying glass

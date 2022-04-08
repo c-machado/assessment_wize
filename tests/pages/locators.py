@@ -42,6 +42,7 @@ class PageLocators(object):
     menu_all_product_updates_cta = (By.CSS_SELECTOR, ".uni-main-menu__submenu-view-all-link")
     menu_hidden = (By.CSS_SELECTOR, ".uni-header.h-u-box-shadow-2")
     menu_subscribe_cta = (By.CSS_SELECTOR, "div[data-component='uni-cta-newsletter'].uni-header__newsletter--desktop")
+    menu_subscribe_mobile_cta = (By.CSS_SELECTOR, ".uni-navigation--mobile .uni-header__newsletter--cta--mobile")
     newsletter_close_icon = (By.CSS_SELECTOR, ".uni-subscribe-modal__icon-close-container")
     newsletter_first_name_field = (By.ID, "uni-subscribe-first-name")
     newsletter_email_field = (By.ID, "uni-subscribe-email")

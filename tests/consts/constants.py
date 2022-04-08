@@ -7,7 +7,11 @@ class Constants(object):
         "en": "Google serves cookies to analyze traffic to this site. Information about your use of our site is "
               "shared with Google for that purpose.",
         "de": "Google verwendet Cookies, um Zugriffe auf diese Website zu analysieren. " 
-              "Informationen zu deiner Nutzung dieser Website werden deshalb mit Google geteilt."
+              "Informationen zu deiner Nutzung dieser Website werden deshalb mit Google geteilt.",
+        "fr": "Google utilise des cookies pour analyser le trafic vers ce site. "
+              "Les informations relatives à votre utilisation de notre site sont partagées avec Google à cette fin.",
+        "pt": "O Google usa cookies para analisar o tráfego para este site. As informações sobre seu uso do nosso site "
+              "são compartilhadas com o Google para esse fim."
     }
 
     CHROME_WINDOWS_SIZE = {
@@ -209,7 +213,9 @@ class Constants(object):
     ]
     SEARCH_NO_RESULTS_MSG = {
         'de': "Ups, die Suche nach “text_to_search” führte zu keinem Ergebnis.",
-        'en': "Oops, your search for “text_to_search” didn't return any results."
+        'en': "Oops, your search for “text_to_search” didn't return any results.",
+        'fr': "Oups, votre recherche “text_to_search” n’a générée aucun résultat.",
+        'pt': "Ops, sua pesquisa por “text_to_search” não retornou nenhum resultado."
     }
     MOBILE_PLATFORMS = [
         'ANDROID',

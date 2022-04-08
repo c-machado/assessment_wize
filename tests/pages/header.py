@@ -49,6 +49,10 @@ class Header(BasePage, BasePageAPI):
         time.sleep(2)
         self.driver.click_to_element(PageLocators.menu_subscribe_cta)
 
+    def click_on_subscribe_cta_mobile(self):
+        time.sleep(2)
+        self.driver.click_to_element(PageLocators.menu_subscribe_mobile_cta)
+
     def click_on_subscribe_cta_toast(self):
         time.sleep(2)
         self.driver.click_to_element(PageLocators.toast_bar_subscribe_cta)
