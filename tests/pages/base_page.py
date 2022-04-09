@@ -73,13 +73,32 @@ class BasePage(object):
             if locale_format == locale:
                 return date_format
 
-    def get_format_per_year(self, locale, constants_date_format, date_article_in_api):
+    def get_format_current_year(self, locale, constants_date_format, date_article_in_api):
         self.set_locale(locale)
         format_expected = self.get_date_format_per_locale(locale, constants_date_format)
-        print('format0', format_expected)
+        self.logger.info('%s format expected', format_expected)
         date_expected = datetime.datetime.strptime(date_article_in_api, Constants.DATE_FORMAT_IN_API).strftime(
             format_expected)
-        print('return date_expected', date_expected)
+        """This validation is required because fr_CA locale is returning the month in lower case"""
+        if locale == 'fr_CA':
+            month = date_expected.split(' ')[1]
+            day = date_expected.split(' ')[0]+' '
+            date_expected = day + month.capitalize()
+        self.logger.info('%s date_expected', date_expected)
+        return date_expected
+
+    def get_format_previous_year(self, locale, constants_date_format, date_article_in_api):
+        self.set_locale(locale)
+        format_expected = self.get_date_format_per_locale(locale, constants_date_format)
+        self.logger.info('%s format expected', format_expected)
+        date_expected = datetime.datetime.strptime(date_article_in_api, Constants.DATE_FORMAT_IN_API).strftime(
+            format_expected)
+        """This validation is required because fr_CA locale is returning the month in lower case"""
+        if locale == 'fr_CA':
+            month = date_expected.split(' ')[0].capitalize() + ' '
+            year = date_expected.split(' ')[1]
+            date_expected = month + year
+        self.logger.info('%s date_expected', date_expected)
         return date_expected
 
     @staticmethod
@@ -118,9 +137,8 @@ class BasePage(object):
 
     @staticmethod
     def is_category_page_horizontal(keyword_url):
-        if keyword_url.__contains__(Constants.GERMANY_CATEGORY_PAGE) or \
-                keyword_url.__contains__(Constants.INDIA_CATEGORY_PAGE) or \
-                keyword_url.__contains__(Constants.AUSTRALIA_CATEGORY_PAGE):
+        if keyword_url in Constants.CATEGORY_HORIZONTAL:
+            print(keyword_url)
             return True
 
     def is_element_visible(self, *locator):

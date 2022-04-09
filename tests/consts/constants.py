@@ -29,19 +29,29 @@ class Constants(object):
         'en_US': '%b %d',
         'de_DE': '%d. %b.',
         'en_AU': '%b %d',
-        'en_GB': '%d %b'
+        'en_GB': '%d %b',
+        'fr_CA': '%d %b',
+        'en_CA': '%b %d',
+        'pt_BR': '%d %b',
+
     }
     DATE_FORMAT_IN_FEED_PAST_YEAR_PER_LOCALE = {
         'en_US': '%b %Y',
         'de_DE': '%b %Y',
         'en_AU': '%b %Y',
-        'en_GB': '%b %Y'
+        'en_GB': '%b %Y',
+        'fr_CA': '%b %Y',
+        'en_CA': '%b %Y',
+        'pt_BR': '%b %Y',
     }
     DATE_FORMAT_PER_LOCALE = {
         'en_US': '%b %d, %Y',
         'de_DE': '%d.%b.%Y',
         'en_AU': '%b %d, %Y',
-        'en_GB': '%d %b, %Y'
+        'en_GB': '%d %b, %Y',
+        'pt_BR': '%d %b, %Y',
+        'en_CA': '%b %d, %Y',
+        'fr_CA': '%d %b, %Y',
     }
     DESKTOP_PLATFORMS = [
         'WIN10',
@@ -159,15 +169,21 @@ class Constants(object):
         '/intl/de-de/': "/intl/de-de/uber",
         '/intl/pt-br/': "/intl/pt-br/sobre-o-blog",
     }
+
+    CATEGORY_HORIZONTAL = [
+        '/intl/en-au/products/android-chrome-more/',
+        '/intl/en-ca/products/explore-get-answers/',
+        '/intl/fr-ca/produits/explorez-obtenez-des-reponses/',
+        '/intl/de-de/produkte/android-chrome-mehr/#android',
+        '/intl/en-in/products/platforms/#android',
+        '/intl/pt-br/produtos/android-chrome-play/'
+    ]
     US_LOCALE = "/"
     INDIA_LOCALE = "/intl/en-in/"
-    INDIA_CATEGORY_PAGE = '/intl/en-in/products/platforms/#android'
     AUSTRALIA_LOCALE = "/intl/en-au/"
-    AUSTRALIA_CATEGORY_PAGE = '/intl/en-au/products/android-chrome-more/'
     EN_CANADA_LOCALE = "/intl/en-ca/"
     FR_CANADA_LOCALE = "/intl/fr-ca/"
     GERMANY_LOCALE = "/intl/de-de/"
-    GERMANY_CATEGORY_PAGE = "/intl/de-de/produkte/android-chrome-mehr/#android"
     PT_BRAZIL_LOCALE = "/intl/pt-br/"
     NEWSLETTER_FIRST_NAME = 'AT TEST'
     NEWSLETTER_INVALID_FIRST_NAME = 'AT TEST.*'

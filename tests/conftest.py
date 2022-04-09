@@ -38,22 +38,6 @@ def driver():
     driver.quit_browser()
 
 
-# TODO: Firefox: ValueError: response body:
-# {'message': "API rate limit exceeded for 186.155.54.112. (But here's the good news:
-# Authenticated requests get a higher rate limit. Check out the documentation for more details.)",
-# 'documentation_url': 'https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting'}
-# TODO: Safari initialization is not working with Selenium 4
-@pytest.fixture(params=["chrome"], scope="module", autouse=True)
-# @pytest.fixture(params=["chrome", "edge", "firefox", "safari", "chrome",], scope="module", autouse=True)
-def get_web_browser(request):
-    return request.param
-
-
-@pytest.fixture(params=["desktop"], scope="module", autouse=True)
-def get_viewport(request):
-    return request.param
-
-
 @pytest.fixture
 def base_page(driver):
     return BasePage(driver)
@@ -65,22 +49,22 @@ def base_page(driver):
 #     )
 
 
-@pytest.fixture(scope='function', autouse=True)
-def cleanup(request, cmdopt):
-    """Cleanup a testing directory."""
-
-    def remove_test_dir():
-        print('cleanup dir', os.path.isdir("./tmp"))
-        download_folder = "./tmp"
-        try:
-            if os.path.isdir(download_folder):
-                shutil.rmtree(download_folder)
-            else:
-                print("Error: %s folder not found" % download_folder)
-        except OSError:
-            print('error')
-
-    request.addfinalizer(remove_test_dir)
+# @pytest.fixture(scope='function', autouse=True)
+# def cleanup(request, cmdopt):
+#     """Cleanup a testing directory."""
+#
+#     def remove_test_dir():
+#         print('cleanup dir', os.path.isdir("./tmp"))
+#         download_folder = "./tmp"
+#         try:
+#             if os.path.isdir(download_folder):
+#                 shutil.rmtree(download_folder)
+#             else:
+#                 print("Error: %s folder not found" % download_folder)
+#         except OSError:
+#             print('error')
+#
+#     request.addfinalizer(remove_test_dir)
 
 
 @pytest.fixture(scope='session', autouse=True)
@@ -91,19 +75,9 @@ def my_cooler_session_finish(request):
     print("session_finish", session)
 
 
-def pytest_addoption(parser):
-    parser.addoption(
-        "--cmdopt",
-        action="store",
-        default="session",
-        help="my option: session or function",
-        choices=("session", "function"),
-    )
-
-
-@pytest.fixture
-def cmdopt(request):
-    return request.config.getoption("--cmdopt")
+# @pytest.fixture
+# def cmdopt(request):
+#     return request.config.getoption("--cmdopt")
 
 
 @pytest.fixture

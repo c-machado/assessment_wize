@@ -8,20 +8,16 @@
 #pytest tests/ -m "header-sitespace" --html=reports/blog/header-sitespace.html
 #pytest tests/ -m "footer" --html=reports/blog/footer.html
 
-pytest tests/ -m "search1" --html=reports/blog/search-global.html
-#pytest tests/ -m "search-mobile" --html=reports/blog/search-migration-mobile.html
-#pytest tests/ -m "search-home-mobile" --html=reports/blog/search-home.html
+#pytest tests/ -m "search" --html=reports/blog/search-global.html
+#pytest tests/ -m "search-home" --html=reports/blog/search-home.html
 #pytest tests/ -m "search-category" --html=reports/blog/search-cat.html
-#pytest tests/ -m "search-category-mobile" --html=reports/blog/search-cat-mobile.html
-#pytest tests/ -m "search-subcategory-mobile" --html=reports/blog/search-subcat-mobile.html
-#pytest tests/ -m "search-article" --html=reports/blog/article-search1.html
-#pytest tests/ -m "search-article-mobile" --html=reports/blog/article-search-mobile.html
+#pytest tests/ -m "search-subcategory" --html=reports/blog/search-subcat.html
+#pytest tests/ -m "search-article" --html=reports/blog/article-search.html
 #pytest tests/ -m "search-sitespace" --html=reports/blog/search-sitespace.html
-#pytest tests/ -m "search-sitespace-mobile" --html=reports/blog/search-sitespace-mobile.html
 
 #pytest tests/ -m "feed-article-load-more" --html=reports/blog/feed-load-more.html
 #pytest tests/ -m "feed-article-tagging" --html=reports/blog/feed-tagging.html
-#pytest tests/ -m "feed-article-date-format" --html=reports/blog/feed-date-format.html
+pytest tests/ -m "feed-article-date-format" --html=reports/blog/feed-date-format1.html
 
 #printf "TESTS WITH ERRORS IN STAGE:\n"
 #TODO: remove localStorage from the session before starting the tests

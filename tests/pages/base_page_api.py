@@ -34,7 +34,6 @@ class BasePageAPI(object):
         article_dates = []
         for article in result['results']:
             article_dates.append(article['published'][0:10])
-            print("article['published'][0:10]", article['published'])
             self.logger.info(article['published'])
         return article_dates
 

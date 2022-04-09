@@ -50,10 +50,7 @@ class Feed(BasePage, BasePageAPI):
         """To capture the date shown in an article in the feed"""
         """:return e.g. Jan 20 / Dec 2021"""
         article_date_list = self.get_article_dates_in_feed_list()
-        print('random_article_in_date_feed', self.random_article)
         for article_date_index in range(0, len(article_date_list)):
-            print('article_date_index', article_date_index, 'actual_article_date_in_feed ',
-                  article_date_list[article_date_index])
             if article_date_index == self.random_article:
                 print('article_date_index', article_date_index, 'actual_article_date_in_feed_to_return ',
                       article_date_list[article_date_index])
@@ -71,17 +68,12 @@ class Feed(BasePage, BasePageAPI):
         """:return published date from the current random article in API format"""
         """we need to navigate different new category pages, since the first article in the api is not showed in the 
         feed as in the other pages"""
-        print('random_article in get_date_from_article_in_feed_in_latest_api', self.random_article)
         article_dates_in_api = self.get_article_dates_in_latest_api(keyword_url)
         start_range = 0
         if self.is_category_page_horizontal(keyword_url):
             start_range = 1
-        print("random", self.random_article)
         random_temp = start_range + self.random_article
-        print('random_temp', random_temp)
-        print('len(article_dates_in_api)', len(article_dates_in_api))
         for index in range(start_range, len(article_dates_in_api)):
-            print('index', index, 'feed_article_date_in_latest_api: ', article_dates_in_api[index])
             if index == random_temp:
                 print('index', index, 'date expected in api format: ', article_dates_in_api[index])
                 return article_dates_in_api[index]
@@ -93,13 +85,11 @@ class Feed(BasePage, BasePageAPI):
         """It should be Month Year (if the year is the previous tp the current one)"""
         # date_article_in_api = self.get_date_from_article_in_feed_in_latest_api(keyword_url)
         year_current_article = self.get_year_in_given_date(date, Constants.DATE_FORMAT_IN_API)
-        print('year_current_article', year_current_article)
         current_year = datetime.datetime.now().year
-        print('current_year', current_year)
         if current_year == year_current_article:
-            return self.get_format_per_year(locale, Constants.DATE_FORMAT_IN_FEED_PER_LOCALE, date)
+            return self.get_format_current_year(locale, Constants.DATE_FORMAT_IN_FEED_PER_LOCALE, date)
         elif year_current_article < current_year:
-            return self.get_format_per_year(locale, Constants.DATE_FORMAT_IN_FEED_PAST_YEAR_PER_LOCALE, date)
+            return self.get_format_previous_year(locale, Constants.DATE_FORMAT_IN_FEED_PAST_YEAR_PER_LOCALE, date)
 
     def click_to_random_article_in_feed(self, keyword):
         article_list = self.get_articles_in_feed_list()
