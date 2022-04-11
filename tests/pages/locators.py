@@ -42,7 +42,8 @@ class PageLocators(object):
     language_selector_options = (By.CSS_SELECTOR, "select[name='language'] > option")
     legal_links_list = (By.CSS_SELECTOR, ".h-c-footer__link")
     menu_keyword_logo = (By.CSS_SELECTOR, ".uni-header__site-title")
-    menu_all_product_updates_cta = (By.CSS_SELECTOR, ".uni-main-menu__submenu-view-all-link")
+    menu_all_product_updates_cta_desktop = (By.CSS_SELECTOR, ".uni-main-menu__submenu-view-all-link")
+    menu_all_product_updates_cta_mobile = (By.CSS_SELECTOR, ".uni-main-menu__subnav--mobile > a")
     menu_hidden = (By.CSS_SELECTOR, ".uni-header.h-u-box-shadow-2")
     menu_subscribe_cta = (By.CSS_SELECTOR, "div[data-component='uni-cta-newsletter'].uni-header__newsletter--desktop")
     menu_subscribe_mobile_cta = (By.CSS_SELECTOR, ".uni-navigation--mobile .uni-header__newsletter--cta--mobile")
@@ -85,14 +86,23 @@ class PageLocators(object):
                                "starts-with(@href, 'https://www.linkedin.com')]")
     }
     submenu_company_news_see_all_ctas = (By.CSS_SELECTOR, ".uni-main-menu__submenu-item-see-all")
-    submenu_items_locators = {
+    submenu_company_news_see_all_ctas_mobile = (By.CSS_SELECTOR, "li.uni-main-menu__item--mobile:nth-child(3) > div > ul >li >ul >li:last-child >a")
+    submenu_items_urls = {
         "product_updates": (By.XPATH, "//a[@data-navigation='Product-updates']"
-                                      "[@class=' uni-main-menu__submenu-anchor']"),
-        "company_news": (By.XPATH, "//a[@data-navigation='Company-news'][@class=' uni-main-menu__submenu-anchor']")
+                                      "[@class='uni-main-menu__submenu-anchor']"),
+        "company_news": (By.XPATH, "//a[@data-navigation='Company-news'][@class='uni-main-menu__submenu-anchor']")
     }
-    submenu_locators = {
-        "product_updates": (By.CSS_SELECTOR, "#uni-main-menu > li:nth-child(2)"),
-        "company_news": (By.CSS_SELECTOR, "#uni-main-menu > li:nth-child(3)")
+    submenu_locators_desktop = {
+        "product_updates": (By.CSS_SELECTOR, "#uni-main-menu > li.uni-main-menu__item--desktop:nth-child(2)"),
+        "company_news": (By.CSS_SELECTOR, "#uni-main-menu > li.uni-main-menu__item--desktop:nth-child(3)")
+    }
+    submenu_locators_mobile = {
+        "product_updates": (By.CSS_SELECTOR, "li.uni-main-menu__item--mobile:nth-child(2)"),
+        "company_news": (By.CSS_SELECTOR, "li.uni-main-menu__item--mobile:nth-child(3)")
+    }
+    submenu_items_mobile = {
+        "product_updates": (By.CSS_SELECTOR, "li.uni-main-menu__item--mobile:nth-child(2) > div > ul >li"),
+        "company_news": (By.CSS_SELECTOR, "li.uni-main-menu__item--mobile:nth-child(3) > div > ul >li")
     }
     toast_bar = (By.CSS_SELECTOR, ".uni-newsletter-toast--container")
     toast_bar_subscribe_cta = (By.CSS_SELECTOR, ".uni-newsletter-toast__cta--sub")

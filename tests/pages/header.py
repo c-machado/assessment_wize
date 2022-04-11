@@ -21,9 +21,11 @@ class Header(BasePage, BasePageAPI):
         self.site_space_title_in_products = ''
         self.logger = logging.getLogger(__name__)
 
-    def click_cta_all_product_updates(self, locale):
-        if locale == '/':
-            self.driver.click_to_element(PageLocators.menu_all_product_updates_cta)
+    def click_cta_all_product_updates(self, locale, viewport):
+        if locale == '/' and viewport == 'desktop':
+            self.driver.click_to_element(PageLocators.menu_all_product_updates_cta_desktop)
+        elif locale == '/' and viewport == 'mobile':
+            self.driver.click_to_element(PageLocators.menu_all_product_updates_cta_mobile)
 
     def click_on_hamburger_menu(self):
         self.driver.click_to_element(PageLocators.hamburger_menu)
@@ -40,9 +42,13 @@ class Header(BasePage, BasePageAPI):
     def click_on_kebab_option(self, kebab_option):
         self.driver.click_to_element(PageLocators.kebab__options_locators[kebab_option])
 
-    def click_on_submenu_item(self, submenu):
-        submenu_locator = self.get_item_selector(submenu, PageLocators.submenu_locators)
-        self.driver.click_to_element(submenu_locator)
+    def click_on_submenu_item(self, submenu, get_viewport):
+        if get_viewport == 'mobile':
+            submenu_locator = self.get_item_selector(submenu, PageLocators.submenu_locators_mobile)
+            self.driver.click_to_element(submenu_locator)
+        elif get_viewport == 'desktop':
+            submenu_locator = self.get_item_selector(submenu, PageLocators.submenu_locators_desktop)
+            self.driver.click_to_element(submenu_locator)
 
     def click_on_subscribe_cta(self):
         time.sleep(2)
@@ -62,9 +68,13 @@ class Header(BasePage, BasePageAPI):
         self.site_space_title_in_products = self.get_text_from_span(element)
         element.click()
 
-    def click_see_all_cta_sub_menu(self):
-        see_all_items = self.driver.get_urls_list(PageLocators.submenu_company_news_see_all_ctas)
-        self.check_internal_status(see_all_items)
+    def click_see_all_cta_company_sub_menu(self, viewport):
+        if viewport == 'desktop':
+            see_all_items = self.driver.get_urls_list(PageLocators.submenu_company_news_see_all_ctas)
+            self.check_internal_status(see_all_items)
+        elif viewport == 'mobile':
+            see_all_items = self.driver.get_urls_list(PageLocators.submenu_company_news_see_all_ctas_mobile)
+            self.check_internal_status(see_all_items)
 
     def close_cookie_banner(self):
         self.close_bar(PageLocators.cookie_banner_ok_cta)
@@ -116,3 +126,10 @@ class Header(BasePage, BasePageAPI):
         for item_id, locator_item in locators.items():
             if item_id == item:
                 return self.driver.get_urls_list(locator_item)
+
+    def click_submenu_items_mobile(self, submenu):
+        locator = self.get_item_selector(submenu, PageLocators.submenu_items_mobile)
+        submenus_list = self.driver.find_elements(*locator)
+        for element in submenus_list:
+            element.click()
+            time.sleep(1)

@@ -1,7 +1,7 @@
 # Created by machadoca at 23/12/21
-Feature: As a user, I would like to interact with the header links
+Feature: As a user, I would like to interact with the header navigation on desktop
 
-  @header
+  @header-desktop
   Scenario Outline: Test link to product updates page
       Given a user is at the <keyword> site
       When the user clicks on the <submenu>
@@ -18,7 +18,7 @@ Feature: As a user, I would like to interact with the header links
         |/intl/pt-br/      | /intl/pt-br/produtos/ |product_updates |
 
 
-  @header
+  @header-desktop
   Scenario Outline: Test the header items within products and company news submenus
       Given a user is at the <keyword> site
       When the user clicks on the <submenu>
@@ -28,7 +28,8 @@ Feature: As a user, I would like to interact with the header links
         |/          | product_updates |
         |/          | company_news    |
 
-  @header
+
+  @header-desktop
   Scenario Outline: Test the header cta's 'see all' within the company submenu
       Given a user is at the <keyword> site
       When the user clicks on the <submenu>
@@ -37,7 +38,7 @@ Feature: As a user, I would like to interact with the header links
         |keyword    | submenu       |
         |/          | company_news  |
 
-  @header
+  @header-desktop
   Scenario Outline: Test options in the kebab menu
       Given a user is at the <keyword> site
       When the user triggers the kebab menu
@@ -60,7 +61,7 @@ Feature: As a user, I would like to interact with the header links
         |/intl/pt-br/ | rss          | pt_br  |
         |/intl/pt-br/ | press        | pt_br  |
 
-  @header
+  @header-desktop
   #TODO: add a new case sitespace and subcategory in en-us
   #TODO: add a comparison between 5 first articles
   Scenario Outline: Test RSS matches the content on desktop
@@ -79,7 +80,7 @@ Feature: As a user, I would like to interact with the header links
         |/intl/fr-ca/ | rss          |
         |/intl/pt-br/ | rss          |
 
-  @header
+  @header-desktop
   Scenario Outline: Test the keyword logo in the nav menu
       Given a user is at the <keyword> site
       And the user clicks on the hero article
@@ -96,7 +97,7 @@ Feature: As a user, I would like to interact with the header links
         |/intl/fr-ca/ |/intl/fr-ca/|
         |/intl/pt-br/ |/intl/pt-br/|
 
-  @header
+  @header-desktop
   Scenario Outline: Test navigation in sitespaces within products in Ads&Analytics list
       Given a user is at the <keyword> site
       When the user clicks on a random sitespace
@@ -106,7 +107,7 @@ Feature: As a user, I would like to interact with the header links
       |keyword   |
       |/products |
 
-  @header
+  @header-desktop
   Scenario Outline: Test navigation in an article belonging to a sitespace
       Given a user is at the <keyword> site
       When the user clicks in an article in a <sitespace_tag> in <keyword>

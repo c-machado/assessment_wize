@@ -85,8 +85,8 @@ def user_clicks_see_details_cta(cookie_banner):
 
 
 @when("the user on <keyword> clicks the CTA See all product updates")
-def click_on_cta_all_product_updates(header, keyword):
-    header.click_cta_all_product_updates(keyword)
+def click_on_cta_all_product_updates(header, keyword, get_viewport):
+    header.click_cta_all_product_updates(keyword, get_viewport)
 
 
 @then("the user is redirected to <url>")
@@ -99,21 +99,21 @@ def redirected_to_page(url, base_page, driver):
 
 
 @when("the user clicks on the <submenu>")
-def user_clicks_to_submenu(header, submenu):
-    header.click_on_submenu_item(submenu)
+def user_clicks_to_submenu(header, submenu, get_viewport):
+    header.click_on_submenu_item(submenu, get_viewport)
 
 
 @pytest.mark.flaky(reruns=1, reruns_delay=0.5, reason="requests.exceptions.ConnectionError: ('Connection aborted.',"
                                                       " TimeoutError(60, 'Operation timed out'))")
 @then("every link in the <submenu> selected return an Http 200")
 def check_http_status_internal_links(header, submenu):
-    submenu_items = header.get_url_submenu_items(submenu, PageLocators.submenu_items_locators)
+    submenu_items = header.get_url_submenu_items(submenu, PageLocators.submenu_items_urls)
     header.check_internal_status(submenu_items)
 
 
 @then("every 'see all' CTA selected return an http 200")
-def user_clicks_to_see_all_within_company_menu(header):
-    header.click_see_all_cta_sub_menu()
+def user_clicks_to_see_all_within_company_menu(header, get_viewport):
+    header.click_see_all_cta_company_sub_menu(get_viewport)
 
 
 @when("the user triggers the kebab menu")

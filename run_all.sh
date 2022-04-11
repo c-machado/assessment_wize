@@ -4,8 +4,7 @@
 #printf "TESTS PASSED IN STAGE & PROD:\n"
 
 #pytest tests/ -m "header-mobile" --html=reports/blog/header-mobile.html
-pytest tests/ -m "header" --html=reports/blog/header.html
-#pytest tests/ -m "header-sitespace" --html=reports/blog/header-sitespace.html
+#pytest tests/ -m "header-desktop" --html=reports/blog/header-desktop.html
 #pytest tests/ -m "footer" --html=reports/blog/footer.html
 
 #pytest tests/ -m "search" --html=reports/blog/search-global.html
@@ -22,7 +21,7 @@ pytest tests/ -m "header" --html=reports/blog/header.html
 #printf "TESTS WITH ERRORS IN STAGE:\n"
 #TODO: remove localStorage from the session before starting the tests
 #pytest tests/ -m "cookie" --html=reports/blog/cookie.html
-#pytest tests/ -m "newsletter" --html=reports/blog/newsletter.html
+pytest tests/ -m "newsletter" --html=reports/blog/newsletter.html
 
 #pytest tests/ -m "article" --html=reports/blog/article-videos.html
 #pytest tests/ -m "article-inline" --html=reports/blog/article-inline.html
