@@ -113,11 +113,19 @@ class BasePage(object):
         self.random_article = random.randint(0, element_list_length - 1)
         return self.random_article
 
-    def get_scroll_locator(self, url):
+    def get_scroll_locator(self, url, random_article):
         if self.is_category_page_horizontal(url):
-            return PageLocators.feed_articles_category_horizontal_top
+            random_index = random_article+2
+            locator = re.sub("index_to_scroll", str(random_index), Constants.SCROLL_TO_HOME_FEED)
+            print('1', locator)
+            # return PageLocators.feed_articles_category_horizontal_top
+            return locator
         else:
-            return PageLocators.feed_articles_list_top
+            random_index = random_article + 1
+            locator = re.sub("index_to_scroll", str(random_index), Constants.SCROLL_TO_CATEGORY_HORIZONTAL_FEED)
+            print('2', locator)
+            # return PageLocators.feed_articles_list_top
+            return locator
 
     @staticmethod
     def get_text_from_span(element):
@@ -259,15 +267,22 @@ class BasePage(object):
 
     def scroll_to_feed(self, random_article, keyword_url):
         print('RANDOM IN scroll_to_feed', random_article)
-        locator = self.get_scroll_locator(keyword_url)
-        if random_article <= 3:
-            element = self.driver.find_element(*locator)
-            from selenium.webdriver import Keys
-            element.send_keys(Keys.PAGE_DOWN)
-            time.sleep(1)
-        else:
-            self.scroll_to_bottom()
-            time.sleep(1)
+        locator = self.get_scroll_locator(keyword_url, random_article)
+        from selenium.webdriver.common.by import By
+        element = self.driver.find_element(By.CSS_SELECTOR, locator)
+        from selenium.webdriver import Keys
+        element.send_keys(Keys.PAGE_DOWN)
+        time.sleep(1)
+        # if random_article <= 3:
+        #     # element = self.driver.find_element(*locator)
+        #     from selenium.webdriver.common.by import By
+        #     element = self.driver.find_element(By.CSS_SELECTOR, locator)
+        #     from selenium.webdriver import Keys
+        #     element.send_keys(Keys.PAGE_DOWN)
+        #     time.sleep(1)
+        # else:
+        #     self.scroll_to_bottom()
+        #     time.sleep(1)
 
     @staticmethod
     def set_locale(locale_string):

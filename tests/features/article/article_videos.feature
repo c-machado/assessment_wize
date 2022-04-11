@@ -9,10 +9,12 @@ Feature: As a user I want to be able to interact with videos shown in the conten
         Then the user can interact with the video controls
 
      Examples:
-            | keyword                                                                       | video_type |
-            | /outreach-initiatives/accessibility/ml-making-sign-language-more-accessible/  | hero       |
-            | /technology/ai/discover-ai-in-daily-life/                                     | hero       |
-            | /outreach-initiatives/diversity/international-womens-day-2022/                | hero       |
+      | keyword                                                                          | video_type |
+      | /outreach-initiatives/accessibility/ml-making-sign-language-more-accessible/     | hero       |
+      | /intl/en-in/company-news/technology/empowering-women-speak-solutions/            | hero       |
+      | /intl/en-ca/products/devices-services/speaking-our-language-importance-mandarin-pixel-6-ad-simu-liu/  | hero  |
+      | /technology/ai/discover-ai-in-daily-life/                                     | hero       |
+      | /outreach-initiatives/diversity/international-womens-day-2022/                | hero       |
 
     @article
     Scenario Outline: Test a user can interact with a video in the body's article
@@ -20,6 +22,14 @@ Feature: As a user I want to be able to interact with videos shown in the conten
         And the user clicks to play the <video_type>
         Then the user can interact with the video controls
 
-     Examples: Vertical
-            | keyword   | /outreach-initiatives/google-news-initiative/demystifying-process-launching-news-business/   |
-            | video_type | body                                                                                        |
+     Examples:
+      | keyword                                                                     | video_type |
+      | /intl/de-de/unternehmen/engagement/heartbeat-of-the-earth-2022/             | body       |
+      | /intl/en-in/company-news/technology/empowering-women-speak-solutions/       | body       |
+      | /intl/en-ca/company-news/technology/introducing-topaz/                      | body       |
+      | /intl/en-au/company-news/outreach-initiatives/digital-future-initiative/    | body       |
+      | /intl/fr-ca/nouvelles/technologie/voici-topaz-le-premier-cable-sous-marin-relier-le-canada-lasie/ | body   |
+      | /outreach-initiatives/google-news-initiative/demystifying-process-launching-news-business/        | body   |
+      #TODO: This video is actually not playing in the live site. Pending to check wo is responsible or who should be informed
+      | /intl/fr-ca/produits/appareils-services/la-star-canadienne-du-tennis-leylah-fernandez-rejoint-teampixel/ |body|
+

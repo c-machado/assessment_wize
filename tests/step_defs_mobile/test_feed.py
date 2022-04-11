@@ -51,11 +51,12 @@ def validate_date_format_in_article(article, locale, feed, base_page):
 @when("the user chooses a random article")
 @given("the user chooses a random article")
 def user_choose_random_article(feed, base_page):
-    feed.get_random_index_in_list(feed.get_articles_in_feed_list())
     base_page.close_bar(PageLocators.cookie_banner_ok_cta)
+    feed.get_random_index_in_list(feed.get_articles_in_feed_list())
 
 
-@pytest.mark.flaky("flaky. Category page takes too long to load")
+
+@pytest.mark.flaky("Category page takes too long to load")
 @when("the user clicks on load more stories cta")
 def user_load_more_stories(feed, base_page):
     base_page.close_bar(PageLocators.cookie_banner_ok_cta)
@@ -69,12 +70,12 @@ def validate_descendent_order(feed):
     assert feed.order_list_by_date_desc(original_list)
 
 
-@then("the tags associated matches with the content in the <keyword>")
+@then("the tags associated match with the content in the <keyword>")
 def validate_tags_in_content(feed, keyword):
     assert feed.confirm_tagging_in_feed_articles(keyword)
 
 
-@when("the user scroll to the feed in <keyword> locale")
+@when("the user scrolls to the feed in <keyword> locale")
 def scroll_to_feed_section(base_page, keyword):
     base_page.scroll_to_feed(0, keyword)
 

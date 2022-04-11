@@ -21,7 +21,6 @@ class Header(BasePage, BasePageAPI):
         self.site_space_title_in_products = ''
         self.logger = logging.getLogger(__name__)
 
-
     def click_cta_all_product_updates(self, locale):
         if locale == '/':
             self.driver.click_to_element(PageLocators.menu_all_product_updates_cta)
@@ -66,6 +65,9 @@ class Header(BasePage, BasePageAPI):
     def click_see_all_cta_sub_menu(self):
         see_all_items = self.driver.get_urls_list(PageLocators.submenu_company_news_see_all_ctas)
         self.check_internal_status(see_all_items)
+
+    def close_cookie_banner(self):
+        self.close_bar(PageLocators.cookie_banner_ok_cta)
 
     def confirm_kebab_menu_opts(self, locale, option):
         kebab_option_selector = self.get_item_selector(option, PageLocators.kebab__options_locators)

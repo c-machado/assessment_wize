@@ -1,10 +1,10 @@
 # Created by machadoca at 7/02/22
-Feature: As a user I want to confirm articles in the feed list are shown to the user according to the corresponding tag
+Feature: As a user, I want to confirm articles in the feed list are shown to the user according to the corresponding tag
 
     @feed-article-tagging
-    Scenario Outline: Test articles listed in the feed in the homepage are tagged accordingly
+    Scenario Outline: Test articles listed in the feed on the homepage are tagged accordingly
         Given a user is at the <keyword> site
-        When the user scroll to the feed in <keyword> locale
+        When the user scrolls to the feed in <keyword> locale
         Then the system shows articles in the <keyword> locale
 
         Examples:
@@ -13,24 +13,30 @@ Feature: As a user I want to confirm articles in the feed list are shown to the 
             | /intl/de-de/ |
             | /intl/en-au/ |
             | /intl/en-in/ |
+            | /intl/fr-ca/ |
+            | /intl/en-ca/ |
+            | /intl/pt-br/ |
 
     @feed-article-tagging
     Scenario Outline: Test articles listed in the feed in the category page are tagged accordingly
         Given a user is at the <keyword> site
         When the user chooses a random article
-        Then the tags associated matches with the content in the <keyword>
+        Then the tags associated match with the content in the <keyword>
         Examples:
-           | keyword                                           |
-           | /technology/                                      |
-           | /intl/de-de/produkte/android-chrome-mehr/#android |
-           | /intl/en-in/products/platforms/#android           |
-           | /intl/en-au/products/android-chrome-more/         |
+           | keyword                                                |
+           | /technology/                                           |
+           | /intl/de-de/produkte/android-chrome-mehr/#android      |
+           | /intl/en-in/products/platforms/#android                |
+           | /intl/en-au/products/android-chrome-more/              |
+           | /intl/fr-ca/produits/explorez-obtenez-des-reponses/    |
+           | /intl/en-ca/products/explore-get-answers/              |
+           | /intl/pt-br/produtos/android-chrome-play/              |
 
     @feed-article-tagging
-    Scenario Outline: Test articles listed in the feed in the subcategory page are tagged accordingly
+    Scenario Outline: Test articles listed in the feed on the subcategory page are tagged accordingly
         Given a user is at the <keyword> site
         When the user chooses a random article
-        Then the tags associated matches with the content in the <keyword>
+        Then the tags associated match with the content in the <keyword>
         Examples:
             | keyword               |
             | /products/android/    |
@@ -39,15 +45,15 @@ Feature: As a user I want to confirm articles in the feed list are shown to the 
     Scenario Outline: Test articles listed in the feed in a series page are tagged accordingly
         Given a user is at the <keyword> site
         When the user chooses a random article
-        Then the tags associated matches with the content in the <keyword>
+        Then the tags associated match with the content in the <keyword>
         Examples:
            | keyword                            |
            | /inside-google/googlers/she-word/  |
 
     @feed-article-tagging
-    Scenario Outline: Test articles listed in the feed in a perspective landing page are tagged accordingly
+    Scenario Outline: Test articles listed in the feed on a perspective landing page are tagged accordingly
         Given a user is at the <keyword> site
-        When the user scroll to the feed in <keyword> locale
+        When the user scrolls to the feed in <keyword> locale
         Then the system shows articles in the <keyword> locale
         Examples:
            | keyword                       |
@@ -57,7 +63,7 @@ Feature: As a user I want to confirm articles in the feed list are shown to the 
     Scenario Outline: Test articles listed in the feed in a sitespace are tagged accordingly
         Given a user is at the <keyword> site
         When the user chooses a random article
-        Then the tags associated matches with the content in the <keyword>
+        Then the tags associated match with the content in the <keyword>
         Examples:
            | keyword   |
            | /waze/    |

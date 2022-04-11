@@ -33,7 +33,7 @@ Feature: As a user, I want to confirm dates are showing according to the expecte
             | en_GB     | /intl/en-in/products/platforms/#android               |
             | en_AU     | /intl/en-au/products/android-chrome-more/             |
             | fr_CA     | /intl/fr-ca/produits/explorez-obtenez-des-reponses/   |
-            | en_CA     | /intl/en-ca/products/explore-get-answers/            |
+            | en_CA     | /intl/en-ca/products/explore-get-answers/             |
             | pt_BR     | /intl/pt-br/produtos/android-chrome-play/             |
 
 

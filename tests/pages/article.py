@@ -27,10 +27,13 @@ class ArticlePage(BasePage):
         self.driver.click_to_element(PageLocators.article_pause_video)
 
     def click_to_play_video(self, video_type):
+        time.sleep(1)
         if video_type == 'hero':
             self.driver.click_to_element(PageLocators.article_play_hero_video)
+            self.driver.switch_to_iframe(PageLocators.article_video_hero_frame)
         elif video_type == 'body':
             self.driver.click_to_element(PageLocators.article_play_embed_video)
+            self.driver.switch_to_iframe(PageLocators.article_video_body_frame)
         time.sleep(2)
 
     def click_to_see_subtitles(self):
@@ -82,7 +85,6 @@ class ArticlePage(BasePage):
             index += 1
             if element.get_attribute("href") is not None and element.get_attribute("target") is None or element.get_attribute("target") == '':
                 urls_dict.setdefault(index, []).append(element.get_attribute("href"))
-
             elif element.get_attribute("href") is not None and element.get_attribute("target") is not None:
                 urls_dict.setdefault(index, []).append(element.get_attribute("href"))
                 urls_dict.setdefault(index, []).append(element.get_attribute("target"))
@@ -154,5 +156,4 @@ class ArticlePage(BasePage):
             tags_in_article.append(tag_string.strip())
         return tags_in_article
 
-    def switch_to_video_context(self):
-        self.driver.switch_to_iframe(PageLocators.article_video_frame)
+

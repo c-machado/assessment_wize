@@ -4,7 +4,7 @@
 #printf "TESTS PASSED IN STAGE & PROD:\n"
 
 #pytest tests/ -m "header-mobile" --html=reports/blog/header-mobile.html
-#pytest tests/ -m "header" --html=reports/blog/header.html
+pytest tests/ -m "header" --html=reports/blog/header.html
 #pytest tests/ -m "header-sitespace" --html=reports/blog/header-sitespace.html
 #pytest tests/ -m "footer" --html=reports/blog/footer.html
 
@@ -17,12 +17,12 @@
 
 #pytest tests/ -m "feed-article-load-more" --html=reports/blog/feed-load-more.html
 #pytest tests/ -m "feed-article-tagging" --html=reports/blog/feed-tagging.html
-pytest tests/ -m "feed-article-date-format" --html=reports/blog/feed-date-format1.html
+#pytest tests/ -m "feed-article-date-format" --html=reports/blog/feed-date-format1.html
 
 #printf "TESTS WITH ERRORS IN STAGE:\n"
 #TODO: remove localStorage from the session before starting the tests
-#pytest tests/ -m "cookie-mobile" --html=reports/blog/cookie-mobile.html
-#pytest tests/ -m "newsletter1" --html=reports/blog/newsletter.html
+#pytest tests/ -m "cookie" --html=reports/blog/cookie.html
+#pytest tests/ -m "newsletter" --html=reports/blog/newsletter.html
 
 #pytest tests/ -m "article" --html=reports/blog/article-videos.html
 #pytest tests/ -m "article-inline" --html=reports/blog/article-inline.html

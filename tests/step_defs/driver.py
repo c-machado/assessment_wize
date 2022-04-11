@@ -1,4 +1,4 @@
-
+import logging
 import os
 import time
 import warnings
@@ -36,6 +36,7 @@ class Driver(IDriver):
     def __init__(self):
         self.driver = None
         self.web_element = None
+        self.logger = logging.getLogger(__name__)
 
     def start(self, web_browser, viewport):
         if web_browser in Constants.UA_BROWSERS:
@@ -208,8 +209,8 @@ class Driver(IDriver):
         return self.driver.current_url
 
     def click_to_element(self, clickable_element):
-        self.wait_for_element_clickable(*clickable_element)
         self.wait_for_element_visible(*clickable_element)
+        self.wait_for_element_clickable(*clickable_element)
         self.driver.find_element(*clickable_element).click()
 
     def close(self):
@@ -231,7 +232,6 @@ class Driver(IDriver):
         return self.driver.find_element(*(locator[1], locator[2] % locator[0]))
 
     def find_elements(self, *locator):
-        # self.wait_for_element_visible(*locator)
         self.wait_for_all_elements_visible(*locator)
         if locator.__len__() == 2:
             return self.driver.find_elements(*locator)
@@ -323,29 +323,42 @@ class Driver(IDriver):
         wait = WebDriverWait(self.driver, 20)
         try:
             length_list = len(self.driver.find_elements(*locator))
-            print('length_list', length_list)
             wait.until(lambda x: length_list > 0)
         except Exception as e:
             print(e)
 
     def wait_for_element_clickable(self, *locator):
         wait = WebDriverWait(self.driver, 20)
-        if locator.__len__() == 2:
-            return wait.until(expected_conditions.element_to_be_clickable(locator))
+        try:
+            if locator.__len__() == 2:
+                return wait.until(expected_conditions.element_to_be_clickable(locator))
+        except Exception as e:
+            self.logger.error(e)
+            print(e)
 
     def wait_for_element_visible(self, *locator):
         wait = WebDriverWait(self.driver, 20)
-        if locator.__len__() == 2:
-            return wait.until(expected_conditions.visibility_of_element_located(locator))
+        try:
+            if locator.__len__() == 2:
+                return wait.until(expected_conditions.visibility_of_element_located(locator))
+        except Exception as e:
+            self.logger.error(e)
+            print(e)
 
     def wait_for_all_elements_visible(self, *locator):
         wait = WebDriverWait(self.driver, 20)
-        if locator.__len__() == 2:
-            return wait.until(expected_conditions.visibility_of_all_elements_located(locator))
+        try:
+            if locator.__len__() == 2:
+                return wait.until(expected_conditions.visibility_of_all_elements_located(locator))
+        except Exception as e:
+            self.logger.error(e)
+            print(e)
 
     def wait_for_element_not_visible(self, *locator):
-        print('test')
         wait = WebDriverWait(self.driver, 20)
-        if locator.__len__() == 2:
-            print('test 2')
-            return wait.until(expected_conditions.invisibility_of_element_located(locator))
+        try:
+            if locator.__len__() == 2:
+                return wait.until(expected_conditions.invisibility_of_element_located(locator))
+        except Exception as e:
+            self.logger.error(e)
+            print(e)

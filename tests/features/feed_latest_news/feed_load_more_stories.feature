@@ -12,6 +12,9 @@ Feature: As a user I want to confirm articles in the feed list are shown to the 
             | /intl/de-de/ |
             | /intl/en-au/ |
             | /intl/en-in/ |
+            | /intl/fr-ca/ |
+            | /intl/en-ca/ |
+            | /intl/pt-br/ |
 
     @feed-article-load-more
     Scenario Outline: Test articles listed in the feed in the category page are ordered by desc date
@@ -19,11 +22,14 @@ Feature: As a user I want to confirm articles in the feed list are shown to the 
         When the user clicks on load more stories cta
         Then the articles are shown order by date desc
         Examples:
-           | keyword                                           |
-           | /technology/                                      |
-           | /intl/de-de/produkte/android-chrome-mehr/#android |
-           | /intl/en-in/products/platforms/#android           |
-           | /intl/en-au/products/android-chrome-more/         |
+           | keyword                                                |
+           | /technology/                                           |
+           | /intl/de-de/produkte/android-chrome-mehr/#android      |
+           | /intl/en-in/products/platforms/#android                |
+           | /intl/en-au/products/android-chrome-more/              |
+           | /intl/fr-ca/produits/explorez-obtenez-des-reponses/    |
+           | /intl/en-ca/products/explore-get-answers/              |
+           | /intl/pt-br/produtos/android-chrome-play/              |
 
     @feed-article-load-more
     Scenario Outline: Test articles listed in the feed on the subcategory page are ordered by desc date

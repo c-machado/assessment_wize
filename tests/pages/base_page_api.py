@@ -1,7 +1,6 @@
 import json
 import logging
 import re
-import unicodedata
 import urllib.parse
 
 import requests

@@ -8,6 +8,7 @@ from tests.consts.constants import Constants
 from tests.pages.locators import PageLocators
 
 scenarios("../features/globals/")
+scenarios("../features/globals_desktop")
 
 
 @given("a user is at the <keyword> site")
@@ -16,28 +17,6 @@ def at_the_blog(keyword, driver, get_web_browser, get_viewport):
     print('get_web_browser', get_web_browser)
     print('get_viewport', get_viewport)
     driver.start(get_web_browser, get_viewport)
-    driver.go_to_URL(Constants.BASE_URL + keyword)
-    driver.wait_for_page_load()
-    # driver.set_cookie()
-    # browser.refresh()
-
-
-@given("a user is at the <keyword> site on <mobile>")
-def at_the_blog(keyword, mobile, driver, get_web_browser):
-    print('keyword url', Constants.BASE_URL + keyword)
-    print('get_web_browser', get_web_browser)
-    print('mobile', mobile)
-
-    driver.start(get_web_browser, "mobile")
-    driver.go_to_URL(Constants.BASE_URL + keyword)
-    driver.wait_for_page_load()
-
-
-@given("a user is at the <keyword> site on desktop")
-def at_the_blog(keyword, driver, get_web_browser):
-    print('keyword url', Constants.BASE_URL + keyword)
-    print('get_web_browser', get_web_browser)
-    driver.start(get_web_browser, "desktop")
     driver.go_to_URL(Constants.BASE_URL + keyword)
     driver.wait_for_page_load()
 
@@ -154,17 +133,10 @@ def cookie_not_displayed(cookie_banner):
 
 @pytest.mark.flaky(reruns_delay=0.5, reason="Element is not clickable at point (1418, 1166)")
 @when("the user clicks on subscribe cta")
-def user_clicks_subscribe_cta(header):
-    header.clear_local_storage()
+def user_clicks_subscribe_cta_desktop(header):
+    header.close_cookie_banner()
     header.click_on_subscribe_cta()
     time.sleep(1)
-
-
-@when("the user clicks on subscribe cta on mobile")
-def user_clicks_subscribe_cta_mobile(header):
-    header.clear_local_storage()
-    header.click_on_subscribe_cta_mobile()
-    time.sleep(2)
 
 
 @when("the user fills out the form")

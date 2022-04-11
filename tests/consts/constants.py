@@ -211,6 +211,8 @@ class Constants(object):
         "tablet": "1024",
         "desktop": "768"
     }
+    SCROLL_TO_HOME_FEED = '.feed-article.ng-scope:nth-child(index_to_scroll)'
+    SCROLL_TO_CATEGORY_HORIZONTAL_FEED = '.feed-article.ng-scope:nth-child(index_to_scroll)'
     SITESPACE_TITLE_IN_PRODUCTS = [
         'AdSense',
         'Google Ads & Commerce',
