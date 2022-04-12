@@ -30,6 +30,6 @@ Feature: As a user I want to be able to interact with videos shown in the conten
       | /intl/en-au/company-news/outreach-initiatives/digital-future-initiative/    | body       |
       | /intl/fr-ca/nouvelles/technologie/voici-topaz-le-premier-cable-sous-marin-relier-le-canada-lasie/ | body   |
       | /outreach-initiatives/google-news-initiative/demystifying-process-launching-news-business/        | body   |
-      #TODO: This video is actually not playing in the live site. Pending to check wo is responsible or who should be informed
-      | /intl/fr-ca/produits/appareils-services/la-star-canadienne-du-tennis-leylah-fernandez-rejoint-teampixel/ |body|
+      #TODO: This video is actually not playing in the live site, because the author name contains a special character
+#      | /intl/fr-ca/produits/appareils-services/la-star-canadienne-du-tennis-leylah-fernandez-rejoint-teampixel/ |body|
 
