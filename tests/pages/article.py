@@ -114,25 +114,22 @@ class ArticlePage(BasePage):
         self.logger.info('%s formatted_tags in stories related', formatted_tags)
         tags_in_article = self.get_secondary_tags_in_article()
         self.logger.info('%s tags_in_article', tags_in_article)
-        index = 0
-        for tag in formatted_tags:
-            index += 1
+        for index, tag in enumerate(formatted_tags):
             if tag not in tags_in_article:
-                self.validate_secondary_tags_in_related_articles(index, tags_in_article)
+                self.validate_secondary_tags_in_related_articles(index + 1, tags_in_article)
         if set(formatted_tags) & set(tags_in_article):
             self.logger.info('%s matching tags', set(formatted_tags) & set(tags_in_article))
             return True
 
     def find_tags_in_related_stories(self):
-        tags_in_related_stories = []
         list_of_tags = self.driver.find_elements(*PageLocators.article_related_stories_category_tags)
-        for tag in list_of_tags:
-            tags_in_related_stories.append(tag.get_attribute("innerHTML"))
-        return tags_in_related_stories
+        return [tag.get_attribute("innerHTML") for tag in list_of_tags]
 
     def validate_secondary_tags_in_related_articles(self, index, tags_in_article):
         secondary_tags_in_related_article = self.find_secondary_tags_in_related_stories_articles(index)
-        if not set(secondary_tags_in_related_article) & set(tags_in_article):
+        if set(secondary_tags_in_related_article) & set(tags_in_article):
+            return True
+        else:
             return False
 
     def find_secondary_tags_in_related_stories_articles(self, index):
@@ -149,8 +146,4 @@ class ArticlePage(BasePage):
 
     def get_secondary_tags_in_article(self):
         secondary_tags_list = self.driver.find_elements(*PageLocators.article_secondary_tags)
-        tags_in_article = []
-        for element in secondary_tags_list:
-            tag_string = element.get_attribute("innerHTML")
-            tags_in_article.append(tag_string.strip())
-        return tags_in_article
+        return [element.get_attribute("innerHTML").strip() for element in secondary_tags_list]

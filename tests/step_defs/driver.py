@@ -74,15 +74,13 @@ class Driver(IDriver):
         options.add_argument(size_viewport)
         options.set_capability("acceptInsecureCerts", True)
         # options.add_argument('--start-maximized')
-        options.add_argument('--headless')
+        # options.add_argument('--headless')
         options.add_argument('--no-sandbox')
         options.add_argument("--disable-dev-shm-usage")
         # options.add_argument("--remote-debugging-port=9222")
         # chrome://inspect/#devices
-
-        # options.add_argument(r'--user-data-dir=/Users/machadoca/Documents/chrome_huge_inc')  # your chrome user data directory
-        # options.add_argument(r'--profile-directory=Person 2')  # the profile with the extensions loaded
-
+        options.add_argument(r'--user-data-dir='+Constants.CHROME_PROFILE)  # your chrome user data directory
+        options.add_argument(r'--profile-directory=Person 2')  # the profile with the extensions loaded
         s = Service(driver_path)
         self.driver = webdriver.Chrome(service=s,
                                        options=options)
@@ -102,8 +100,7 @@ class Driver(IDriver):
         options.add_argument(width)
         options.add_argument(height)
 
-        profile_path = '/Users/machadoca/Library/Application Support/Firefox/Profiles/4jwzwjvm.default'
-        options.set_preference('profile', profile_path)
+        options.set_preference('profile', Constants.FIREFOX_PROFILE)
 
         options.set_preference("dom.webdriver.enabled", False)
         options.set_preference('useAutomationExtension', False)

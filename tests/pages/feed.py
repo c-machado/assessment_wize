@@ -119,7 +119,6 @@ class Feed(BasePage, BasePageAPI):
         else:
             return False
 
-    #TODO: REview this
     def confirm_tagging_in_feed_articles(self, keyword_url):
         """:return True if the article randomly selected contains a valid tag according to current page"""
         primary_tags_articles_in_feed = self.get_article_tags_in_latest_api(keyword_url)

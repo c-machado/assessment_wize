@@ -43,7 +43,7 @@ class BasePageAPI(object):
         result = self.get_results_in_api(Constants.BASE_URL + api_url)
         for article in result['results']:
             article_tags.append(article['tag'])
-            print("article['tag]", article['tag'])
+            self.logger.info('%s article[tag]', article['tag'])
         return article_tags
 
     def get_article_titles_in_latest_api(self, keyword_url):
@@ -52,7 +52,7 @@ class BasePageAPI(object):
         result = self.get_results_in_api(Constants.BASE_URL + api_url)
         for article in result['results']:
             article_headlines.append(article['headline'])
-            print("article['headline']", article['headline'])
+            self.logger.info('%s article[headline]', article['headline'])
         return article_headlines
 
     def get_api_url(self, keyword_url, api_urls):
@@ -81,17 +81,15 @@ class BasePageAPI(object):
                 self.logger.info(api_url)
                 return api_url
 
-    @staticmethod
-    def get_tags_in_api_url(api_url):
+    def get_tags_in_api_url(self, api_url):
         tags = re.split(r'tags=|&template', api_url)[1]
-        print('tags', tags)
         tags_list = []
         if re.search(',', tags):
             tags_list = tags.split(',')
-            print('tags_list', tags_list)
+            self.logger.info('%s tags_list', tags_list)
             return tags_list
         else:
-            print('tags1', tags)
+            self.logger.info('%s unique tag', tags)
             return tags
 
     def get_results_in_api(self, api_url):
@@ -119,7 +117,7 @@ class BasePageAPI(object):
         result = self.get_results_in_api(Constants.BASE_URL + api_url)
         for article in result['results']:
             article_results_suggestions.append(article['headline'])
-            print("article['headline']", article['headline'])
+            self.logger.info('%s article[headline]', article['headline'])
         return article_results_suggestions
 
     def get_titles_in_press_asset_api(self, api_url):
@@ -134,7 +132,7 @@ class BasePageAPI(object):
         result = self.get_results_in_api(Constants.BASE_URL + api_url)
         for asset in result['results']:
             assets_download_urls_in_press_assets_results.append(asset['download_url'])
-            print(asset['download_url'])
+            self.logger.info('%s asset[download_url]', asset['download_url'])
         return assets_download_urls_in_press_assets_results
 
     def replace_query_parameter(self, type_filter, str_to_replace, url):

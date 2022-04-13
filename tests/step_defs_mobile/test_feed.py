@@ -55,7 +55,6 @@ def user_choose_random_article(feed, base_page):
     feed.get_random_index_in_list(feed.get_articles_in_feed_list())
 
 
-
 @pytest.mark.flaky("Category page takes too long to load")
 @when("the user clicks on load more stories cta")
 def user_load_more_stories(feed, base_page):

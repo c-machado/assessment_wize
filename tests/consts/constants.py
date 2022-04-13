@@ -1,8 +1,10 @@
 class Constants(object):
-    BASE_URL = 'https://blog.google'
+    # BASE_URL = 'https://blog.google'
     SEARCH_URL = "search/?query="
-    # BASE_URL = 'https://gweb-uniblog-publish-stage.appspot.com'
+    BASE_URL = 'https://gweb-uniblog-publish-stage.appspot.com'
     PROD_URL = 'blog.google'
+    CHROME_PROFILE = '/Users/machadoca/Documents/chrome_huge_inc'
+    FIREFOX_PROFILE = '/Users/machadoca/Library/Application Support/Firefox/Profiles/4jwzwjvm.default'
     COOKIE_BANNER_TXT = {
         "en": "Google serves cookies to analyze traffic to this site. Information about your use of our site is "
               "shared with Google for that purpose.",

@@ -43,41 +43,12 @@ def base_page(driver):
     return BasePage(driver)
 
 
-# def pytest_configure(config):
-#     config.addinivalue_line(
-#         "markers", "mac-env: mark test to run only on mac environment"
-#     )
-
-
-# @pytest.fixture(scope='function', autouse=True)
-# def cleanup(request, cmdopt):
-#     """Cleanup a testing directory."""
-#
-#     def remove_test_dir():
-#         print('cleanup dir', os.path.isdir("./tmp"))
-#         download_folder = "./tmp"
-#         try:
-#             if os.path.isdir(download_folder):
-#                 shutil.rmtree(download_folder)
-#             else:
-#                 print("Error: %s folder not found" % download_folder)
-#         except OSError:
-#             print('error')
-#
-#     request.addfinalizer(remove_test_dir)
-
-
 @pytest.fixture(scope='session', autouse=True)
 def my_cooler_session_finish(request):
     yield
     # you can access the session from the injected 'request':
     session = request.session
     print("session_finish", session)
-
-
-# @pytest.fixture
-# def cmdopt(request):
-#     return request.config.getoption("--cmdopt")
 
 
 @pytest.fixture

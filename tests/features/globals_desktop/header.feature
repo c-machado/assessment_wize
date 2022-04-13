@@ -28,7 +28,7 @@ Feature: As a user, I would like to interact with the header navigation on deskt
         |/          | product_updates |
         |/          | company_news    |
 
-      
+
   @header-desktop
   Scenario Outline: Test the header cta's 'see all' within the company submenu
       Given a user is at the <keyword> site
