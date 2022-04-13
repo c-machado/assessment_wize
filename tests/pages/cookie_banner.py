@@ -31,4 +31,3 @@ class CookieBanner(BasePage):
 
     def cookie_not_displayed(self):
         self.driver.wait_for_element_not_visible(PageLocators.cookie_banner_bar)
-

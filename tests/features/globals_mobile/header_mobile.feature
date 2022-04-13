@@ -19,7 +19,7 @@ Feature: As a user, I would like to interact with the header navigation on mobil
 
 
   @header-mobile
-  Scenario Outline: Test the header items within products and company news submenus
+  Scenario Outline: Test the header items within products and company news submenus on mobile
       Given a user is at the <keyword> site
       When the user clicks on the <submenu>
       And the user clicks on each list in the <submenu>
@@ -31,7 +31,7 @@ Feature: As a user, I would like to interact with the header navigation on mobil
 
 
   @header-mobile
-  Scenario Outline: Test the header cta's 'see all' within the company submenu
+  Scenario Outline: Test the header cta's 'see all' within the company submenu on mobile
       Given a user is at the <keyword> site
       When the user clicks on the <submenu>
       And the user clicks on each list in the <submenu>

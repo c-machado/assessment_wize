@@ -4,7 +4,6 @@ import time
 import warnings
 
 import selenium
-# from selenium.webdriver import DesiredCapabilities
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.select import Select
 
@@ -69,9 +68,7 @@ class Driver(IDriver):
         self.driver.execute_cdp_cmd('Network.setUserAgentOverride', {"userAgent": ua})
 
     def build_chrome_driver(self, driver_path, viewport):
-        print('build chrome')
         options = webdriver.ChromeOptions()
-
         options.add_experimental_option("excludeSwitches", ['enable-automation'])
         size_viewport = self.get_window_size(viewport)
         options.add_argument(size_viewport)
@@ -89,12 +86,6 @@ class Driver(IDriver):
         s = Service(driver_path)
         self.driver = webdriver.Chrome(service=s,
                                        options=options)
-        # device_metrics = {"width": 600,
-        #                   "height": 1000,
-        #                   "mobile": True,
-        #                   "deviceScaleFactor": 50
-        #                   }
-        # self.driver.execute_cdp_cmd("Emulation.setDeviceMetricsOverride", device_metrics)
 
     def build_edge_driver(self, driver_path, viewport):
         options = Options()
@@ -121,18 +112,6 @@ class Driver(IDriver):
         self.driver = webdriver.Firefox(service=s,
                                         options=options)
 
-    # def build_ie_driver(self, web_browser):
-    #     if web_browser == 'ie':
-    #         caps = DesiredCapabilities.INTERNETEXPLORER
-    #         caps['acceptSslCerts'] = False
-    #         caps['javascriptEnabled'] = True
-    #         # caps.update(self.driver)
-    #         self.driver = webdriver.Ie(
-    #             executable_path=
-    #             "C:\\Users\\machadoca\\pyexecnetcache\\keyword\\tests\\bin\\windows\\IEDriverServer.exe",
-    #             capabilities=caps)
-    #         return self.driver
-
     # DeprecationWarning: port has been deprecated, please set it via the service class
     def build_safari_driver(self, viewport):
         options = Options()
@@ -144,54 +123,6 @@ class Driver(IDriver):
         # options.add_argument(height)
         self.driver = webdriver.Safari(options)
         # self.driver.set_window_size(width, height)
-
-    # options, error with chrome running in parallel:
-    # https://stackoverflow.com/questions/65418237/chromedriver-crashing-on-some-websites
-    # def build_remote_driver(self, run_type, web_browser):
-    #     url = "http://localhost:4444/wd/hub"
-    #     browser = os.getenv('VERSION')
-    #     print('config_browser', run_type)
-    #     # # if browser == "chrome":
-    #     if web_browser == "chrome":
-    #         options = webdriver.ChromeOptions()
-    #         # options.BinaryLocation = ChromeDriverManager().install()
-    #         #     # options.set_capability("browserVersion", "67")
-    #         #     # options.set_capability("platformName", "Windows XP")
-    #         options.add_argument("--disable-dev-shm-usage")
-    #         #     # caps.update(browser)
-    #         caps = {'browserName': 'chrome'}
-    #         self.driver = selenium.webdriver.Remote(
-    #             command_executor=url,
-    #             desired_capabilities=caps,
-    #             options=options
-    #         )
-    #         return self.driver
-    #     elif web_browser == "firefox":
-    #         caps = {'browserName': 'firefox'}
-    #         self.driver = selenium.webdriver.Remote(
-    #             command_executor='http://localhost:4444/wd/hub',
-    #             desired_capabilities=caps)
-    #         return self.driver
-
-    # selenium.common.exceptions.InvalidCookieDomainException: Message: invalid cookie domain
-    def set_cookie(self):
-        try:
-            cookie_data = {
-                "domain": "gweb-uniblog-publish-stage.appspot.com",
-                "path": "/",
-                "name": "GCP_IAAP_AUTH_TOKEN_B01769F84EF452A5",
-                "value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjkzNDFhYmM0MDkyYjZmYzAzOGU0MDNjOTEwMjJkZDNlNDQ1MzliNTYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiIyNjMzNTM0OTQ5MTYtYXR1NTRrM3YxOTQ5MXBnZnNqampqOTdjZWNjNG52bmIuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiIyNjMzNTM0OTQ5MTYtYXR1NTRrM3YxOTQ5MXBnZnNqampqOTdjZWNjNG52bmIuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDg1NTgwNDI2NDc1NDMyNDcxOTEiLCJoZCI6Imh1Z2VpbmMuY29tIiwiZW1haWwiOiJjbWFjaGFkb0BodWdlaW5jLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhdF9oYXNoIjoiTndDbGZhbW80MVhRcGRyQTV4eGdHdyIsImdvb2dsZSI6eyJnaWMiOiJBR09vNTJpdUxTMzVSb1FsVUM5d2dxbFV5ZXNHbm93UmxZbUtBVFVoN0puajd0NnhUQ21qb3FuMmNJeFJzLVNreU1sdTJreWdrdHlseFRQV05aajZOZWVMYVJZYi0tbEJwTVgwLU9pMlpxeE9qQy1hOE1oek1fOVg0NXNhbkp4WGUyWW1RcnpsQlRGeDBPa0xOTk1nX2VnaWJYNmJ3YnIzY05QLXk0RXZhT1o5X0ZCOWwyMnpNbHdnbFhjT3R3T2xPWDVZMll4SXZvSFZIUFdUbGZNcmVEU2F2V1BGMEk5RXl1ZDNrdyJ9LCJpYXQiOjE2Mzg4MTA1OTMsImV4cCI6MTYzODgxNDE5M30.fz-G5nOYbMJuFZxJCv0xR7iH5rDhpyTtMmtIe96ni4uFIHq275AkmP67Ick1gTGJlx5BBq6xewRTgNAHp0tbyx3rNl0jzgwHh2gT_nYFO9wLZ8WcRVrvyqCjNoRbBd94jxq2mWC1M90vt_OE7KBoHNuZRUFOam4k9xZxC73iBGPUy9G3RSMNop9cYB3arZjF4S-FVJRQGp8Ecv2eG0lxnNCOpjeas-iy8J5qunVUlX1MIIkLiRQS3coWuuJN00WN32BxoHWRg9UV7TquAUAY_62-UhYjhknI9uJhr4jHStmG81siwpl5VdwAjVX2MeS-rXNmSpYQcPCD_o69XY9a3Q",
-                # "expirationDate": 1798790400,
-                # "hostOnly": False,
-                "httpOnly": True,
-                "secure": False,
-                # "session": False,
-                "sameSite": "None"
-            }
-            self.driver.add_cookie(cookie_data)
-            # self.driver.refresh()
-        except exceptions.InvalidCookieDomainException as e:
-            print(e)
 
     def refresh(self):
         self.driver.refresh()

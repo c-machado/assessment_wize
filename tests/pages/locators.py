@@ -93,8 +93,8 @@ class PageLocators(object):
         "company_news": (By.XPATH, "//a[@data-navigation='Company-news'][@class='uni-main-menu__submenu-anchor']")
     }
     submenu_locators_desktop = {
-        "product_updates": (By.CSS_SELECTOR, "#uni-main-menu > li.uni-main-menu__item--desktop:nth-child(2)"),
-        "company_news": (By.CSS_SELECTOR, "#uni-main-menu > li.uni-main-menu__item--desktop:nth-child(3)")
+        "product_updates": (By.CSS_SELECTOR, "li.uni-main-menu__item--desktop:nth-child(2)"),
+        "company_news": (By.CSS_SELECTOR, "li.uni-main-menu__item--desktop:nth-child(3)")
     }
     submenu_locators_mobile = {
         "product_updates": (By.CSS_SELECTOR, "li.uni-main-menu__item--mobile:nth-child(2)"),

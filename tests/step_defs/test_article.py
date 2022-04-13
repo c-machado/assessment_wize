@@ -65,7 +65,6 @@ def date_format_in_related_stories(article, base_page, locale):
 
 @given("the user chooses a random article")
 def user_choose_random_article(feed, article):
-    # article.clear_local_storage()
     article.close_cookie_banner()
     feed.get_random_index_in_list(feed.get_articles_in_feed_list())
 

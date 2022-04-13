@@ -1,4 +1,5 @@
 import logging
+import re
 import time
 
 import requests
@@ -20,11 +21,10 @@ class Footer(BasePage):
         self.driver.click_to_element(PageLocators.social_media_locators[social_media])
 
     def click_google_logo(self):
-        self.driver.click_to_element(PageLocators.cookie_banner_ok_cta)
         self.driver.click_to_element(PageLocators.footer_google_logo)
 
     def click_to_each_language_in_selector(self):
-        self.driver.click_to_element(PageLocators.cookie_banner_ok_cta)
+        self.close_cookie_banner()
         languages = self.driver.get_select_options(PageLocators.language_selector)
         is_status_valid = True
         for opt in languages.options:
@@ -38,11 +38,14 @@ class Footer(BasePage):
     def click_all_social_media_links(self):
         social_media_items = self.get_social_media_items()
         is_status_valid = True
-        for socialItem in social_media_items:
-            response = requests.get(socialItem.get_attribute("href"))
+        for social_item in social_media_items:
+            response = requests.get(social_item.get_attribute("href"))
             if response.status_code == 404:
                 is_status_valid = False
         return is_status_valid
+
+    def close_cookie_banner(self):
+        self.close_bar(PageLocators.cookie_banner_ok_cta)
 
     def confirm_links_opened_in_a_new_tab(self):
         social_media_items = self.get_social_media_items()
@@ -57,6 +60,8 @@ class Footer(BasePage):
         social_media_items = self.get_social_media_items()
         is_url_secure = True
         for social_item in social_media_items:
+            # valid_url = re.compile("http[s]?:", social_item.get_attribute("href"))
+            # print('valid_url', valid_url)
             social_item_url = social_item.get_attribute("href")
             if not social_item_url.startswith("https://"):
                 self.logger.error(social_item_url)
@@ -87,12 +92,13 @@ class Footer(BasePage):
 
     @staticmethod
     def get_about_blog_legal_links_expected_per_locale(locale):
-        about_blog_legal_links = {**Constants.LEGAL_LINKS_ABOUT_THE_BLOG_URL, **Constants.LEGAL_LINKS_ABOUT_THE_BLOG_COPY}
+        about_blog_legal_links = {**Constants.LEGAL_LINKS_ABOUT_THE_BLOG_URL,
+                                  **Constants.LEGAL_LINKS_ABOUT_THE_BLOG_COPY}
         locale_legal_about = {}
         for key, value in about_blog_legal_links.items():
             if key in Constants.LEGAL_LINKS_ABOUT_THE_BLOG_URL and key in Constants.LEGAL_LINKS_ABOUT_THE_BLOG_COPY:
                 if key == locale:
-                    locale_legal_about[value] = Constants.BASE_URL+Constants.LEGAL_LINKS_ABOUT_THE_BLOG_URL[key]
+                    locale_legal_about[value] = Constants.BASE_URL + Constants.LEGAL_LINKS_ABOUT_THE_BLOG_URL[key]
                     return locale_legal_about
 
     def go_to_footer(self):
@@ -104,6 +110,3 @@ class Footer(BasePage):
             item = social_item.get_attribute("aria-label")
             if item == social_media:
                 return social_item.get_attribute("href")
-
-
-

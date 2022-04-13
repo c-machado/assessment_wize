@@ -143,9 +143,9 @@ class Feed(BasePage, BasePageAPI):
 
     def get_primary_tags(self, keyword_url):
         api_url = self.get_api_url(keyword_url, api_const.LATEST_FEED)
-        print('api_url', api_url)
+        self.logger.info('%s api_url', api_url)
         primary_tags = self.get_tags_in_api_url(api_url)
-        print('primary_tags', primary_tags)
+        self.logger.info('%s primary_tags', primary_tags)
         return primary_tags
 
     def get_secondary_tags(self, keyword_url):
@@ -154,7 +154,7 @@ class Feed(BasePage, BasePageAPI):
         self.scroll_to_feed(self.random_article, keyword_url)
         articles_in_feed[self.random_article].click()
         secondary_tags = ArticlePage(self.driver).get_secondary_tags_in_article_api_format()
-        print('secondary_tags', secondary_tags)
+        self.logger.info('%s secondary_tags', secondary_tags)
         return secondary_tags
 
     def get_articles_matching_tag_from_site_space_in_feed(self, eyebrow_in_articles, sitespace):

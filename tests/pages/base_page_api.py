@@ -102,12 +102,10 @@ class BasePageAPI(object):
                 response = requests.get(api_url)
                 result = response.json()
             else:
-                self.logger.info(api_url)
                 self.driver.go_to_URL(api_url)
                 soup = BeautifulSoup(self.driver.get_page_source(), 'lxml')
                 api_result = soup.find('pre').text
                 result = json.loads(api_result)
-                self.logger.info(result)
                 self.driver.go_back_to_url()
                 self.driver.wait_for_page_load()
             return result

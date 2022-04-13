@@ -82,9 +82,9 @@ class Header(BasePage, BasePageAPI):
     def confirm_kebab_menu_opts(self, locale, option):
         kebab_option_selector = self.get_item_selector(option, PageLocators.kebab__options_locators)
         option_text_in_page = self.driver.find_element(*kebab_option_selector).text
-        print('option_text_in_page', option_text_in_page)
+        self.logger.info('%s option_text_in_page', option_text_in_page)
         option_text_expected = self.get_kebab_opt_expected_text(locale, option)
-        print('option_text_expected', option_text_expected)
+        self.logger.info('%s option_text_expected', option_text_expected)
         assert option_text_in_page == option_text_expected
 
     def get_sitespaces_list(self):
@@ -110,7 +110,6 @@ class Header(BasePage, BasePageAPI):
 
     def get_publish_date_in_rss(self):
         soup = BeautifulSoup(self.driver.get_page_source(), 'xml')
-        # print('all', soup.prettify())
         publish_date = soup.find('lastBuildDate').text
         date_formatted = self.get_date_in_api_format(publish_date[5:16], Constants.DATE_FORMAT_IN_RSS)
         self.logger.info(date_formatted)

@@ -27,14 +27,14 @@ class ArticlePage(BasePage):
         self.driver.click_to_element(PageLocators.article_pause_video)
 
     def click_to_play_video(self, video_type):
-        time.sleep(1)
+        time.sleep(2)
         if video_type == 'hero':
             self.driver.click_to_element(PageLocators.article_play_hero_video)
             self.driver.switch_to_iframe(PageLocators.article_video_hero_frame)
         elif video_type == 'body':
             self.driver.click_to_element(PageLocators.article_play_embed_video)
             self.driver.switch_to_iframe(PageLocators.article_video_body_frame)
-        time.sleep(2)
+        time.sleep(3)
 
     def click_to_see_subtitles(self):
         self.driver.click_to_element(PageLocators.article_see_subtitles)
@@ -47,7 +47,8 @@ class ArticlePage(BasePage):
         for internal_link in urls.values():
             response = requests.get(internal_link[0])
             if response != 404:
-                print('response', response, 'internal', internal_link)
+                self.logger.info(response)
+                self.logger.info(internal_link)
             assert response.status_code != 404
 
     def get_current_time_video(self):
@@ -92,10 +93,9 @@ class ArticlePage(BasePage):
 
     def validate_inline_links_in_article(self):
         href_and_target_params = self.get_urls_params()
-        self.logger.info(len(href_and_target_params))
         flag_target = True
         for param in href_and_target_params.values():
-            self.logger.info(param)
+            self.logger.info('%s url + target', param)
             if len(param) > 1 and param[0].startswith("https://blog.google"):
                 flag_target = False
         return flag_target
@@ -111,16 +111,16 @@ class ArticlePage(BasePage):
 
     def validate_tags_in_related_stories(self):
         formatted_tags = self.find_tags_in_related_stories()
-        print('related', formatted_tags)
+        self.logger.info('%s formatted_tags in stories related', formatted_tags)
         tags_in_article = self.get_secondary_tags_in_article()
-        print('tags in article', tags_in_article)
+        self.logger.info('%s tags_in_article', tags_in_article)
         index = 0
         for tag in formatted_tags:
             index += 1
             if tag not in tags_in_article:
                 self.validate_secondary_tags_in_related_articles(index, tags_in_article)
         if set(formatted_tags) & set(tags_in_article):
-            print('match', set(formatted_tags) & set(tags_in_article))
+            self.logger.info('%s matching tags', set(formatted_tags) & set(tags_in_article))
             return True
 
     def find_tags_in_related_stories(self):
@@ -133,7 +133,6 @@ class ArticlePage(BasePage):
     def validate_secondary_tags_in_related_articles(self, index, tags_in_article):
         secondary_tags_in_related_article = self.find_secondary_tags_in_related_stories_articles(index)
         if not set(secondary_tags_in_related_article) & set(tags_in_article):
-            print('does not match secondary tags', set(secondary_tags_in_related_article) & set(tags_in_article))
             return False
 
     def find_secondary_tags_in_related_stories_articles(self, index):
@@ -145,7 +144,7 @@ class ArticlePage(BasePage):
         element.click()
         secondary_tags_related_article = self.get_secondary_tags_in_article()
         self.driver.go_back_to_url()
-        print('secondary_tags_related_article', secondary_tags_related_article)
+        self.logger.info('%s secondary_tags_related_article', secondary_tags_related_article)
         return secondary_tags_related_article
 
     def get_secondary_tags_in_article(self):
@@ -155,5 +154,3 @@ class ArticlePage(BasePage):
             tag_string = element.get_attribute("innerHTML")
             tags_in_article.append(tag_string.strip())
         return tags_in_article
-
-

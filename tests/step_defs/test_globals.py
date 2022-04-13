@@ -32,7 +32,6 @@ def click_on_social_item(footer, cookie_banner, social_media):
 @then("the user is redirected to <url> in a new tab")
 def redirect_to_url_new_tab(base_page, url):
     actual_url = base_page.get_current_page()
-    print("expected url", url, "actual url", actual_url)
     assert actual_url.__contains__(url)
 
 
@@ -92,9 +91,6 @@ def click_on_cta_all_product_updates(header, keyword, get_viewport):
 @then("the user is redirected to <url>")
 def redirected_to_page(url, base_page, driver):
     assert base_page.get_status_redirect() == 200
-    print('status base_page:', base_page.get_status_redirect())
-    print('url:', url)
-    print('current url:', driver.current_url())
     assert driver.current_url().__contains__(url)
 
 
@@ -174,6 +170,7 @@ def newsletter_modal_not_visible(newsletter):
 
 @when("the user clicks the Google logo")
 def user_clicks_google_logo(footer):
+    footer.close_cookie_banner()
     footer.click_google_logo()
 
 

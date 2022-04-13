@@ -92,9 +92,6 @@ def click_on_cta_all_product_updates(header, keyword, get_viewport):
 @then("the user is redirected to <url>")
 def redirected_to_page(url, base_page, driver):
     assert base_page.get_status_redirect() == 200
-    print('status base_page:', base_page.get_status_redirect())
-    print('url:', url)
-    print('current url:', driver.current_url())
     assert driver.current_url().__contains__(url)
 
 

@@ -26,8 +26,6 @@ class BasePage(object):
     def check_internal_status(items):
         for internal_item in items:
             response = requests.get(internal_item)
-            if response != 200:
-                print('response', response, 'internal', internal_item)
             assert response.status_code == 200
 
     def click_tab(self, tab_locator):
@@ -101,11 +99,11 @@ class BasePage(object):
         self.logger.info('%s date_expected', date_expected)
         return date_expected
 
-    @staticmethod
-    def get_item_selector(item, locators):
+    def get_item_selector(self, item, locators):
         for item_id, locator_item in locators.items():
             if item_id == item:
-                print('locator ', locator_item, 'submenu', item)
+                self.logger.info('%s locator_item', locator_item)
+                self.logger.info('%s submenu', item)
                 return locator_item
 
     def get_random_index_in_list(self, element_list):
@@ -115,16 +113,14 @@ class BasePage(object):
 
     def get_scroll_locator(self, url, random_article):
         if self.is_category_page_horizontal(url):
-            random_index = random_article+2
+            random_index = random_article + 2
             locator = re.sub("index_to_scroll", str(random_index), Constants.SCROLL_TO_CATEGORY_HORIZONTAL_FEED)
-            print('1', locator)
-            # return PageLocators.feed_articles_category_horizontal_top
+            self.logger.info('%s locator cat horizontal', locator)
             return locator
         else:
             random_index = random_article + 1
             locator = re.sub("index_to_scroll", str(random_index), Constants.SCROLL_TO_HOME_FEED)
-            print('2', locator)
-            # return PageLocators.feed_articles_list_top
+            self.logger.info('%s locator feed starts at 1', locator)
             return locator
 
     @staticmethod
@@ -146,7 +142,6 @@ class BasePage(object):
     @staticmethod
     def is_category_page_horizontal(keyword_url):
         if keyword_url in Constants.CATEGORY_HORIZONTAL:
-            print(keyword_url)
             return True
 
     def is_element_visible(self, *locator):
@@ -156,18 +151,15 @@ class BasePage(object):
     @staticmethod
     def is_substring(str1, str2):
         if re.search(str1, str2):
-            print(re.search(str1, str2))
             return True
 
     # TODO: Install a new locale on MAC, so India can be tested with the corresponding label en_IN,
     # meanwhile it will be tested with en_GB which is basically the same format than en_IN
     def is_date_format_correct(self, date_string, date_format, locale_string):
-        # date_string = date.get_attribute("innerHTML")
-        # print('date_string', date.get_attribute("innerHTML"))
-        print('date_format', date_format)
+        self.logger.info('%s date_format', date_format)
         from datetime import datetime
         self.set_locale(locale_string)
-        print('date locale updated: ', datetime.strptime(date_string, date_format))
+        self.logger.info('%s date locale updated', datetime.strptime(date_string, date_format))
         try:
             is_format_expected = bool(datetime.strptime(date_string, date_format))
         except ValueError:  # wrong date format
