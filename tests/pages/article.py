@@ -27,6 +27,7 @@ class ArticlePage(BasePage):
         self.driver.click_to_element(PageLocators.article_pause_video)
 
     def click_to_play_video(self, video_type):
+        self.driver.wait_for_page_load()
         time.sleep(2)
         if video_type == 'hero':
             self.driver.click_to_element(PageLocators.article_play_hero_video)

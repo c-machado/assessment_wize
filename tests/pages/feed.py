@@ -158,13 +158,11 @@ class Feed(BasePage, BasePageAPI):
 
     def get_articles_matching_tag_from_site_space_in_feed(self, eyebrow_in_articles, sitespace):
         articles_with_sitespace_tag = []
-        index = 0
-        for element in eyebrow_in_articles:
-            index += 1
+        for index, element in enumerate(eyebrow_in_articles):
             tag_eyebrow = self.remove_html_tags(element.get_attribute("innerHTML"))
             tag_eyebrow_principal = tag_eyebrow.split("/ ")[1]
             if sitespace == tag_eyebrow_principal:
-                articles_with_sitespace_tag.append(index)
+                articles_with_sitespace_tag.append(index+1)
         return articles_with_sitespace_tag
 
     def get_eyebrows_in_feed_site_space_page(self):

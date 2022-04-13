@@ -3,9 +3,9 @@
 
 printf "STARTING TESTS:\n"
 #
-#pytest tests/ -m "header-mobile" --html=reports/blog/header-mobile.html
-#pytest tests/ -m "header-desktop" --html=reports/blog/header-desktop.html
-#pytest tests/ -m "footer" --html=reports/blog/footer.html
+pytest tests/ -m "header-mobile" --html=reports/blog/header-mobile.html
+pytest tests/ -m "header-desktop" --html=reports/blog/header-desktop.html
+pytest tests/ -m "footer" --html=reports/blog/footer.html
 #pytest tests/ -m "cookie" --html=reports/blog/cookie.html
 #pytest tests/ -m "newsletter" --html=reports/blog/newsletter.html
 #
@@ -22,7 +22,7 @@ printf "STARTING TESTS:\n"
 #
 #pytest tests/ -m "article" --html=reports/blog/article-videos1.html
 #pytest tests/ -m "article-inline" --html=reports/blog/article-inline.html
-pytest tests/ -m "article-related" --html=reports/blog/article-related.html
+#pytest tests/ -m "article-related" --html=reports/blog/article-related.html
 #pytest tests/ -m "article-date-format-related-stories" --html=reports/blog/article-related-date1.html
 #
 #pytest tests/ -m "press" --html=reports/blog/press1.html

@@ -51,6 +51,14 @@ Feature: As a user, I would like to interact with the header navigation on mobil
       |keyword   |
       |/products |
 
+  @header-mobile
+  Scenario Outline: Test navigation in waze sitespace
+      Given a user is at the <keyword> site
+      Then the system shows the waze header
+
+      Examples:
+      |keyword   |
+      |/waze     |
 
   @header-mobile
   Scenario Outline: Test navigation in an article belonging to a sitespace on mobile

@@ -108,6 +108,15 @@ Feature: As a user, I would like to interact with the header navigation on deskt
       |/products |
 
   @header-desktop
+  Scenario Outline: Test navigation in waze sitespace
+      Given a user is at the <keyword> site
+      Then the system shows the waze header
+
+      Examples:
+      |keyword   |
+      |/waze     |
+
+  @header-desktop
   Scenario Outline: Test navigation in an article belonging to a sitespace
       Given a user is at the <keyword> site
       When the user clicks in an article in a <sitespace_tag> in <keyword>

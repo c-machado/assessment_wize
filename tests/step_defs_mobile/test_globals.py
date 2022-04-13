@@ -177,6 +177,7 @@ def newsletter_modal_not_visible(newsletter):
 
 @when("the user clicks the Google logo")
 def user_clicks_google_logo(footer):
+    footer.close_cookie_banner()
     footer.click_google_logo()
 
 
@@ -289,3 +290,8 @@ def each_link_opens_in_a_new_tab(footer):
 @then("the system shows a secure url per each link")
 def url_per_social_media_is_secure(footer):
     assert footer.confirm_social_media_url_is_secure()
+
+@then("the system shows the waze header")
+def test_header_waze_sitespace(header):
+    title_sitespace_in_nav = header.get_site_space_title_in_navigation()
+    assert title_sitespace_in_nav == Constants.SITESPACE_WAZE_IN_NAV_MENU

@@ -11,6 +11,8 @@ Feature: As a user, I would like to access the content in the footer
       |/intl/fr-ca/           |
       |/intl/pt-br/           |
       |/products/ads-commerce |
+      |/waze/                 |
+
 
   @footer
   # TODO: facebook URLs are not secure (locales: in & au) https://jira.hugeinc.com/browse/UNI-5897

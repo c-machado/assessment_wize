@@ -1,7 +1,7 @@
 class Constants(object):
-    # BASE_URL = 'https://blog.google'
+    BASE_URL = 'https://blog.google'
     SEARCH_URL = "search/?query="
-    BASE_URL = 'https://gweb-uniblog-publish-stage.appspot.com'
+    # BASE_URL = 'https://gweb-uniblog-publish-stage.appspot.com'
     PROD_URL = 'blog.google'
     CHROME_PROFILE = '/Users/machadoca/Documents/chrome_huge_inc'
     FIREFOX_PROFILE = '/Users/machadoca/Library/Application Support/Firefox/Profiles/4jwzwjvm.default'
@@ -151,6 +151,13 @@ class Constants(object):
             "About Google": "https://about.google/",
             "Google Products": "https://about.google/products/",
             "Help": "https://support.google.com/"
+        },
+        '/waze/': {
+            "Privacy": "https://policies.google.com/privacy",
+            "Terms": "https://policies.google.com/terms",
+            "About Google": "https://about.google/",
+            "Google Products": "https://about.google/products/",
+            "Help": "https://support.google.com/"
         }
     }
     LEGAL_LINKS_ABOUT_THE_BLOG_COPY = {
@@ -229,8 +236,9 @@ class Constants(object):
         'Ad Manager',
         'Marketing Platform',
         'AdMob',
-        'Marketing Platform'
+        'Marketing Platform',
     ]
+    SITESPACE_WAZE_IN_NAV_MENU = 'Waze Blog'
     SEARCH_NO_RESULTS_MSG = {
         'de': "Ups, die Suche nach “text_to_search” führte zu keinem Ergebnis.",
         'en': "Oops, your search for “text_to_search” didn't return any results.",

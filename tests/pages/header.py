@@ -16,7 +16,7 @@ class Header(BasePage, BasePageAPI):
     def __init__(self, driver):
         super().__init__(driver)
         self.driver = driver
-        self.random_site_space = 0
+        self.random_site_space_index = 0
         self.site_space_url = ''
         self.site_space_title_in_products = ''
         self.logger = logging.getLogger(__name__)
@@ -63,7 +63,7 @@ class Header(BasePage, BasePageAPI):
         self.driver.click_to_element(PageLocators.toast_bar_subscribe_cta)
 
     def click_random_site_space(self, site_spaces_list):
-        element = site_spaces_list[self.random_site_space]
+        element = site_spaces_list[self.random_site_space_index]
         self.site_space_url = (element.get_attribute("outerHTML").split('href="')[1].split('" rel')[0])
         self.site_space_title_in_products = self.get_text_from_span(element)
         element.click()
@@ -93,13 +93,13 @@ class Header(BasePage, BasePageAPI):
         return site_spaces_list
 
     def get_random_sitespace(self, site_spaces_list):
-        self.random_site_space = self.get_random_index_in_list(site_spaces_list)
+        self.random_site_space_index = self.get_random_index_in_list(site_spaces_list)
 
     def get_sitespace_title_expected_in_products(self):
-        return self.get_element_in_list(Constants.SITESPACE_TITLE_IN_PRODUCTS, self.random_site_space)
+        return self.get_element_in_list(Constants.SITESPACE_TITLE_IN_PRODUCTS, self.random_site_space_index)
 
     def get_sitespace_title_expected_in_nav(self):
-        return self.get_element_in_list(Constants.SITESPACE_TITLE_IN_NAV_MENU, self.random_site_space)
+        return self.get_element_in_list(Constants.SITESPACE_TITLE_IN_NAV_MENU, self.random_site_space_index)
 
     def get_site_space_title_in_navigation(self):
         title_in_sitespace = self.driver.find_element(*PageLocators.site_space_title_in_nav_menu).get_attribute("innerHTML").strip()
