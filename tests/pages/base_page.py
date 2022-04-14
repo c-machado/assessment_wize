@@ -212,6 +212,12 @@ class BasePage(object):
             return True
 
     @staticmethod
+    def contains_space_char(string):
+        regexp = re.compile("&nbsp;")
+        if regexp.search(string):
+            return True
+
+    @staticmethod
     def contains_filtered_tag(tag_to_filter, primary_tags):
         true_match = False
         for tag in primary_tags:

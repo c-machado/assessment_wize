@@ -116,8 +116,9 @@ class BasePageAPI(object):
         api_url = self.get_api_url_with_updated_parameters(urls_list, keyword_url, text_to_search)
         result = self.get_results_in_api(Constants.BASE_URL + api_url)
         for article in result['results']:
-            article_results_suggestions.append(article['headline'])
-            self.logger.info('%s article[headline]', article['headline'])
+            headline = article['headline'].replace(u'\xa0', u' ')
+            article_results_suggestions.append(headline)
+            self.logger.info('%s article[headline] in api', headline)
         return article_results_suggestions
 
     def get_titles_in_press_asset_api(self, api_url):

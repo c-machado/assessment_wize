@@ -86,8 +86,6 @@ def results_per_filter_by_option(keyword, search):
 def correct_suggestions_per_criteria(text_to_search, keyword, search):
     actual_suggestions = search.get_suggested_results_in_page()
     expected_suggestions = search.get_suggested_results_expected(keyword, text_to_search)
-    print('expected_suggestions', expected_suggestions)
-    print('actual_suggestions', actual_suggestions)
     assert expected_suggestions == actual_suggestions
 
 
@@ -95,8 +93,8 @@ def correct_suggestions_per_criteria(text_to_search, keyword, search):
 @then("the system shows results per <text_to_search> in <keyword> page")
 def correct_search_results_per_criteria(text_to_search, keyword, search):
     assert search.is_search_results_header_visible()
-    expected_results = search.get_suggested_results_expected(keyword, text_to_search)
     actual_results = search.get_search_results_in_page()
+    expected_results = search.get_suggested_results_expected(keyword, text_to_search)
     assert expected_results == actual_results
 
 

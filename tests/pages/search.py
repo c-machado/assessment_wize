@@ -70,11 +70,12 @@ class Search(BasePage, BasePageAPI):
         results_headlines = []
         for article in search_results:
             article_headline = article.get_attribute("innerHTML")
-            print('article value', article.get_attribute("innerHTML"))
             if self.contains_ampersand_char(article_headline):
                 article_headline = re.sub('&amp;', '&', article_headline)
+            elif self.contains_space_char(article_headline):
+                article_headline = re.sub('&nbsp;', ' ', article_headline)
             results_headlines.append(article_headline)
-            print('headline in page', article_headline)
+            self.logger.info('%s article_headline', article_headline)
         return results_headlines
 
     def get_list_filter_by_results(self):
