@@ -44,7 +44,6 @@ def redirect_to_an_existing_page(article):
 
 @when("the user scrolls to the related stories section")
 def user_scroll_related_articles_section(article):
-    article.clear_local_storage()
     article.close_cookie_banner()
     article.scroll_to_bottom()
 
@@ -71,4 +70,5 @@ def user_choose_random_article(feed, article):
 
 @when("the user opens the selected random article in <keyword> feed")
 def user_open_random_article_in_feed(feed, keyword):
+    feed.close_toast_banner()
     feed.click_to_random_article_in_feed(keyword)

@@ -19,7 +19,7 @@ class PressAssets(BasePage, BasePageAPI):
         self.logger = logging.getLogger(__name__)
 
     def click_option_in_filter_by(self, select_options, type_of_filter):
-        filter_options_list = []
+        # filter_options_list = []
         for opt in select_options.options:
             filter_option = opt.get_attribute("innerHTML").strip()
             if self.contains_ampersand_char(filter_option):
@@ -27,7 +27,7 @@ class PressAssets(BasePage, BasePageAPI):
             if type_of_filter == filter_option:
                 self.logger.info(type_of_filter)
                 opt.click()
-                filter_options_list.append(filter_option)
+                # filter_options_list.append(filter_option)
 
     # TODO: Find a way to send the parameter tag_filter as optional, so we can use the same function to get the api_url
     def get_api_url_with_type_and_tag(self, type_filter, tag_filter, keyword):
@@ -50,7 +50,7 @@ class PressAssets(BasePage, BasePageAPI):
         self.click_option_in_filter_by(select_opts_per_type, filter_by_type)
         # TODO: Explore a different solution to avoid using time sleep.
         #  This is required because the stage is taking a long to load the content filtered.
-        #  It's the same for filter examples below
+        #  It's the same in the examples below
         time.sleep(1)
 
     def get_results_filter_by_product(self, filter_by_product):

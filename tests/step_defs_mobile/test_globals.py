@@ -266,7 +266,7 @@ def user_sees_sitespace_nav(header):
 @when("the user clicks in an article in a <sitespace_tag> in <keyword>")
 def user_clicks_on_random_site_space(sitespace_tag, keyword, feed):
     tags_list = feed.get_eyebrows_in_feed_site_space_page()
-    articles_within_sitespace = feed.get_articles_matching_tag_from_site_space_in_feed(tags_list, sitespace_tag)
+    articles_within_sitespace = feed.get_articles_indexes_matching_sitespace_tag(tags_list, sitespace_tag)
     random_index = feed.get_random_index_in_list(articles_within_sitespace)
     feed.click_on_sitespace_element(articles_within_sitespace[random_index], keyword)
 
@@ -290,6 +290,7 @@ def each_link_opens_in_a_new_tab(footer):
 @then("the system shows a secure url per each link")
 def url_per_social_media_is_secure(footer):
     assert footer.confirm_social_media_url_is_secure()
+
 
 @then("the system shows the waze header")
 def test_header_waze_sitespace(header):

@@ -1,5 +1,5 @@
 # Created by machadoca at 14/02/22
-Feature: As a user I want to search content in the nav bar in a perspectives article page
+Feature: As a user, I want to search content in the nav bar on a perspectives article page
 
     @search-article
     Scenario Outline: Test search suggestions in a perspectives article page

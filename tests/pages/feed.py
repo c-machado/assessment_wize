@@ -19,6 +19,8 @@ class Feed(BasePage, BasePageAPI):
 
     def get_articles_in_feed_list(self):
         self.driver.wait_for_page_load()
+        self.driver.wait_for_feed_to_load(*PageLocators.feed_articles_list)
+        # time.sleep(1)
         articles_list = self.driver.find_elements(*PageLocators.feed_articles_list)
         return articles_list
 
@@ -92,24 +94,29 @@ class Feed(BasePage, BasePageAPI):
             return self.get_format_previous_year(locale, Constants.DATE_FORMAT_IN_FEED_PAST_YEAR_PER_LOCALE, date)
 
     def click_to_random_article_in_feed(self, keyword):
+        time.sleep(1)
         article_list = self.get_articles_in_feed_list()
         print('random_article in click article_index:', self.random_article, 'len(article_list)', len(article_list))
         for article_index in range(0, len(article_list)):
             if article_index == self.random_article:
                 print('article_index', article_index, 'self.random_article', self.random_article,
                       'article_index to clickx: ', article_list[article_index].get_attribute("innerHTML"))
+                self.driver.wait_for_feed_to_load(*PageLocators.feed_articles_list)
                 self.driver.wait_for_element_visible(article_list[article_index])
                 self.driver.wait_for_element_clickable(article_list[article_index])
-                self.driver.wait_for_feed_to_load(*PageLocators.feed_articles_list)
                 time.sleep(2)
                 self.scroll_to_feed(self.random_article, keyword)
                 article_list[article_index].click()
+                # time.sleep(1)
 
     def click_load_more_stories_in_feed(self):
         self.driver.wait_for_feed_to_load(*PageLocators.feed_articles_list)
         self.scroll_to_bottom()
         if len(self.get_articles_in_feed_list()) > 6:
             self.driver.click_to_element(PageLocators.feed_load_more)
+
+    def close_toast_banner(self):
+        self.close_bar(PageLocators.toast_bar_close_cta)
 
     def confirm_articles_in_feed_homepage(self, keyword_url):
         headlines_in_feed = self.get_article_titles_in_feed()
@@ -119,23 +126,29 @@ class Feed(BasePage, BasePageAPI):
         else:
             return False
 
+    # TODO: sometimes this test is failing in mobile because the toast bar is appearing in the category pages,
+    #  we need to confirm if that what is expected
     def confirm_tagging_in_feed_articles(self, keyword_url):
-        """:return True if the article randomly selected contains a valid tag according to current page"""
+        """:return True if the article randomly selected contains a valid tag according to the current category page"""
         primary_tags_articles_in_feed = self.get_article_tags_in_latest_api(keyword_url)
+        # primary_tags_articles_in_feed = self.get_tag_articles_in_feed()
         self.scroll_to_feed(self.random_article, keyword_url)
-        article_tag = primary_tags_articles_in_feed[self.random_article]
-        print('RANDOM in tag', self.random_article, 'TAG:', article_tag)
-        tags_per_page = self.get_primary_tags(keyword_url)
-        print('tags_per_page', tags_per_page)
+        article_tag_in_feed = primary_tags_articles_in_feed[self.random_article]
+        # print('RANDOM in tag', self.random_article, 'TAG IN FEED:', article_tag_in_feed)
+        tags_per_cat_page = self.get_primary_tags(keyword_url)
+        # print('tags_per_cat_page', tags_per_cat_page)
         secondary_tags = self.get_secondary_tags(keyword_url)
-        tags_intersection = set(secondary_tags) & set(tags_per_page)
-        if article_tag in tags_per_page:
-            print('article_tag', article_tag, 'tags_per_page', tags_per_page)
+        # print('secondary_tags', secondary_tags)
+        tags_intersection = set(secondary_tags) & set(tags_per_cat_page)
+        # print('tags_intersection', tags_intersection)
+        if article_tag_in_feed in tags_per_cat_page:
+            # print('match 1 article_tag_in_feed', article_tag_in_feed, 'tags_per_cat_page', tags_per_cat_page)
             return True
         elif tags_intersection:
-            print('tag that matches', tags_intersection)
+            # print('match 2 tag that matches', tags_intersection)
             return True
-        elif tags_per_page in secondary_tags:
+        elif tags_per_cat_page in secondary_tags:
+            # print('match 3 tag that matches tags_per_cat_page', tags_per_cat_page, 'secondary_tags', secondary_tags)
             return True
         else:
             return False
@@ -156,14 +169,29 @@ class Feed(BasePage, BasePageAPI):
         self.logger.info('%s secondary_tags', secondary_tags)
         return secondary_tags
 
-    def get_articles_matching_tag_from_site_space_in_feed(self, eyebrow_in_articles, sitespace):
-        articles_with_sitespace_tag = []
+    def get_tag_articles_in_feed(self):
+        tags_list = self.driver.find_elements(*PageLocators.search_eyebrow_articles_in_feed)
+        tags = []
+        print(len(tags_list))
+        for index, element in enumerate(tags_list):
+            tag_eyebrow = self.remove_html_tags(element.get_attribute("innerHTML"))
+            tag_eyebrow_principal = tag_eyebrow.split("/ ")[1]
+            self.logger.info('%s tag before replacing space', tag_eyebrow_principal)
+            tag_eyebrow_principal = self.replace_space(tag_eyebrow_principal.lower())
+            self.logger.info('%s tag after replacing space', tag_eyebrow_principal)
+            tags.append(tag_eyebrow_principal)
+        return tags
+
+    def get_articles_indexes_matching_sitespace_tag(self, eyebrow_in_articles, sitespace):
+        """:return: a list of indexes of the articles that has the same tag from the site space"""
+        articles_indexes_with_sitespace_tag = []
+        print(len(eyebrow_in_articles))
         for index, element in enumerate(eyebrow_in_articles):
             tag_eyebrow = self.remove_html_tags(element.get_attribute("innerHTML"))
             tag_eyebrow_principal = tag_eyebrow.split("/ ")[1]
             if sitespace == tag_eyebrow_principal:
-                articles_with_sitespace_tag.append(index+1)
-        return articles_with_sitespace_tag
+                articles_indexes_with_sitespace_tag.append(index)
+        return articles_indexes_with_sitespace_tag
 
     def get_eyebrows_in_feed_site_space_page(self):
         return self.driver.find_elements(*PageLocators.search_eyebrow_articles_in_feed)
@@ -171,6 +199,6 @@ class Feed(BasePage, BasePageAPI):
     def click_on_sitespace_element(self, index, keyword):
         self.close_bar(PageLocators.cookie_banner_ok_cta)
         self.scroll_to_feed(index, keyword)
-        index = "% s" % index
+        index += 1
         from selenium.webdriver.common.by import By
-        self.driver.find_element(By.CSS_SELECTOR, '.feed-article.ng-scope:nth-child(' + index + ')').click()
+        self.driver.find_element(By.CSS_SELECTOR, '.feed-article.ng-scope:nth-child(' + "% s" % index + ')').click()

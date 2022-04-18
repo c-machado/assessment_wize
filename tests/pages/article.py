@@ -142,6 +142,7 @@ class ArticlePage(BasePage):
         element.click()
         secondary_tags_related_article = self.get_secondary_tags_in_article()
         self.driver.go_back_to_url()
+        time.sleep(1)
         self.logger.info('%s secondary_tags_related_article', secondary_tags_related_article)
         return secondary_tags_related_article
 

@@ -107,17 +107,19 @@ class BasePage(object):
                 return locator_item
 
     def get_random_index_in_list(self, element_list):
+        # time.sleep(1)
         element_list_length = len(element_list)
+        # self.logger.info('%s length list in random', element_list_length)
         self.random_article = random.randint(0, element_list_length - 1)
         return self.random_article
 
     def get_scroll_locator(self, url, random_article):
-        if self.is_category_page_horizontal(url):
+        if self.is_category_page_horizontal(url) and random_article == 0:
             random_index = random_article + 2
             locator = re.sub("index_to_scroll", str(random_index), Constants.SCROLL_TO_CATEGORY_HORIZONTAL_FEED)
             self.logger.info('%s locator cat horizontal', locator)
             return locator
-        else:
+        elif random_article >= 0:
             random_index = random_article + 1
             locator = re.sub("index_to_scroll", str(random_index), Constants.SCROLL_TO_HOME_FEED)
             self.logger.info('%s locator feed starts at 1', locator)
@@ -266,6 +268,7 @@ class BasePage(object):
     def scroll_to_feed(self, random_article, keyword_url):
         print('RANDOM IN scroll_to_feed', random_article)
         locator = self.get_scroll_locator(keyword_url, random_article)
+        print('locator', locator)
         from selenium.webdriver.common.by import By
         element = self.driver.find_element(By.CSS_SELECTOR, locator)
         from selenium.webdriver import Keys

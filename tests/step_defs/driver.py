@@ -137,6 +137,7 @@ class Driver(IDriver):
         return self.driver.current_url
 
     def click_to_element(self, clickable_element):
+        self.wait_for_page_load()
         self.wait_for_element_visible(*clickable_element)
         self.wait_for_element_clickable(*clickable_element)
         self.driver.find_element(*clickable_element).click()
@@ -245,14 +246,18 @@ class Driver(IDriver):
             js_ready = self.execute_script("return document.readyState")
             wait.until(lambda x: js_ready == "complete")
         except Exception as e:
+            self.logger.exception("page does not load")
             print(e)
 
     def wait_for_feed_to_load(self, *locator):
         wait = WebDriverWait(self.driver, 20)
         try:
             length_list = len(self.driver.find_elements(*locator))
+            if length_list == 0:
+                self.driver.refresh()
             wait.until(lambda x: length_list > 0)
         except Exception as e:
+            self.logger.exception("feed does not load")
             print(e)
 
     def wait_for_element_clickable(self, *locator):
@@ -261,32 +266,32 @@ class Driver(IDriver):
             if locator.__len__() == 2:
                 return wait.until(expected_conditions.element_to_be_clickable(locator))
         except Exception as e:
-            self.logger.error(e)
+            self.logger.exception("element not clickable")
             print(e)
 
     def wait_for_element_visible(self, *locator):
-        wait = WebDriverWait(self.driver, 20)
+        wait = WebDriverWait(self.driver, 50)
         try:
             if locator.__len__() == 2:
                 return wait.until(expected_conditions.visibility_of_element_located(locator))
         except Exception as e:
-            self.logger.error(e)
+            self.logger.exception("element not visible")
             print(e)
 
     def wait_for_all_elements_visible(self, *locator):
-        wait = WebDriverWait(self.driver, 20)
+        wait = WebDriverWait(self.driver, 50)
         try:
             if locator.__len__() == 2:
                 return wait.until(expected_conditions.visibility_of_all_elements_located(locator))
         except Exception as e:
-            self.logger.error(e)
+            self.logger.exception("elements visible")
             print(e)
 
     def wait_for_element_not_visible(self, *locator):
-        wait = WebDriverWait(self.driver, 20)
+        wait = WebDriverWait(self.driver, 50)
         try:
             if locator.__len__() == 2:
                 return wait.until(expected_conditions.invisibility_of_element_located(locator))
         except Exception as e:
-            self.logger.error(e)
+            self.logger.exception("element visible")
             print(e)

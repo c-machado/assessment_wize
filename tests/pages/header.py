@@ -90,12 +90,14 @@ class Header(BasePage, BasePageAPI):
     def get_sitespaces_list(self):
         self.close_bar(PageLocators.cookie_banner_ok_cta)
         site_spaces_list = self.driver.find_elements(*PageLocators.site_spaces_in_ads_and_analytics)
+        self.logger.info('%s site_space_list ', site_spaces_list)
         return site_spaces_list
 
     def get_random_sitespace(self, site_spaces_list):
         self.random_site_space_index = self.get_random_index_in_list(site_spaces_list)
 
     def get_sitespace_title_expected_in_products(self):
+        self.logger.info('%s random', self.random_site_space_index)
         return self.get_element_in_list(Constants.SITESPACE_TITLE_IN_PRODUCTS, self.random_site_space_index)
 
     def get_sitespace_title_expected_in_nav(self):

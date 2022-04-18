@@ -1,4 +1,8 @@
-class Constants(object):
+from dataclasses import dataclass
+
+
+@dataclass
+class Constants:
     BASE_URL = 'https://blog.google'
     SEARCH_URL = "search/?query="
     # BASE_URL = 'https://gweb-uniblog-publish-stage.appspot.com'
