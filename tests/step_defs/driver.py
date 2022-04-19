@@ -253,8 +253,6 @@ class Driver(IDriver):
         wait = WebDriverWait(self.driver, 20)
         try:
             length_list = len(self.driver.find_elements(*locator))
-            if length_list == 0:
-                self.driver.refresh()
             wait.until(lambda x: length_list > 0)
         except Exception as e:
             self.logger.exception("feed does not load")
@@ -273,6 +271,8 @@ class Driver(IDriver):
         wait = WebDriverWait(self.driver, 50)
         try:
             if locator.__len__() == 2:
+                # if not expected_conditions.visibility_of_element_located(locator):
+                #     self.driver.refresh()
                 return wait.until(expected_conditions.visibility_of_element_located(locator))
         except Exception as e:
             self.logger.exception("element not visible")

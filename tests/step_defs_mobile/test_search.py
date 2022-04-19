@@ -104,20 +104,8 @@ def visibility_of_no_search_results_message(text_to_search, language, search):
     actual_msg = search.get_msg_no_search_results_in_page()
     assert expected_msg == actual_msg
 
-
-@given("the progress bar is visible")
-def make_progress_bar_visible(homepage, base_page):
-    homepage.click_to_read_more_article()
-    base_page.scroll_to_fifty_percent()
-
-
 @given("the user selects an article in <keyword> feed")
 def user_selects_article_in_feed(keyword, feed, base_page):
     base_page.close_bar(PageLocators.cookie_banner_ok_cta)
     feed.get_random_index_in_list(feed.get_articles_in_feed_list())
     feed.click_to_random_article_in_feed(keyword)
-
-
-@given("the user scroll to see the progress bar")
-def user_scroll_in_article_page(base_page):
-    base_page.scroll_to_fifty_percent()

@@ -65,10 +65,10 @@ def date_format_in_related_stories(article, base_page, locale):
 @given("the user chooses a random article")
 def user_choose_random_article(feed, article):
     article.close_cookie_banner()
-    feed.get_random_index_in_list(feed.get_articles_in_feed_list())
+    article_feed_list = feed.get_articles_in_feed_list()
+    feed.get_random_index_in_list(article_feed_list)
 
 
 @when("the user opens the selected random article in <keyword> feed")
 def user_open_random_article_in_feed(feed, keyword):
-    feed.close_toast_banner()
     feed.click_to_random_article_in_feed(keyword)

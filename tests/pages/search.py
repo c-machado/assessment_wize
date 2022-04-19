@@ -163,6 +163,6 @@ class Search(BasePage, BasePageAPI):
         return self.driver.find_element(*PageLocators.search_results_header).is_displayed()
 
     def type_search_criteria(self, search_criteria):
-        text_field = self.driver.find_element(*PageLocators.search_bar_text_field)
         time.sleep(1)
+        text_field = self.driver.find_element(*PageLocators.search_bar_text_field)
         text_field.send_keys(search_criteria)

@@ -6,6 +6,7 @@ from tests.pages.locators import PageLocators
 from tests.consts.constants import Constants
 
 scenarios("../features/search")
+scenarios("../features/search_desktop/search_bar.feature")
 
 
 @given("a user is at the <keyword> site")
@@ -14,17 +15,6 @@ def at_the_blog(keyword, driver, get_web_browser, get_viewport):
     print('get_web_browser', get_web_browser)
     print('get_viewport', get_viewport)
     driver.start(get_web_browser, get_viewport)
-    driver.go_to_URL(Constants.BASE_URL + keyword)
-    driver.wait_for_page_load()
-    # driver.set_cookie()
-
-
-@given("a user is at the <keyword> site on <mobile>")
-def at_the_blog(keyword, mobile, driver, get_web_browser):
-    print('keyword url', Constants.BASE_URL + keyword)
-    print('get_web_browser', get_web_browser)
-    print('mobile', mobile)
-    driver.start(get_web_browser, "mobile")
     driver.go_to_URL(Constants.BASE_URL + keyword)
     driver.wait_for_page_load()
 
