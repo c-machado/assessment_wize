@@ -17,6 +17,8 @@ Feature: As a user, I want to interact with the cookie banner
           |/intl/fr-ca/      | https://policies.google.com/technologies/cookies?hl=fr-CA  | fr       |
           |/intl/pt-br/      | https://policies.google.com/technologies/cookies?hl=pt-BR  | pt       |
           |/intl/en-ca/      | https://policies.google.com/technologies/cookies           | en       |
+          |/intl/es-419/     | https://policies.google.com/technologies/cookies?hl=es-419 | es       |
+          |/intl/it-it/      | https://policies.google.com/technologies/cookies?hl=it-IT  | it       |
 
     @cookie
     Scenario Outline: Test the cookie banner displayed on an article page
@@ -35,6 +37,8 @@ Feature: As a user, I want to interact with the cookie banner
           |/intl/fr-ca/      | https://policies.google.com/technologies/cookies?hl=fr-CA  | fr       |
           |/intl/pt-br/      | https://policies.google.com/technologies/cookies?hl=pt-BR  | pt       |
           |/intl/en-ca/      | https://policies.google.com/technologies/cookies           | en       |
+          |/intl/es-419/     | https://policies.google.com/technologies/cookies?hl=es-419 | es       |
+          |/intl/it-it/      | https://policies.google.com/technologies/cookies?hl=it-IT  | it       |
 
     @cookie
     Scenario Outline: Test the user can close the cookie banner
@@ -50,3 +54,5 @@ Feature: As a user, I want to interact with the cookie banner
             |/intl/fr-ca/    |
             |/intl/pt-br/    |
             |/intl/en-ca/    |
+            |/intl/es-419/   |
+            |/intl/it-it/    |

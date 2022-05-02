@@ -4,12 +4,14 @@ Feature: As a user, I would like to access the content in the footer
   Examples:
       |keyword                |
       |/                      |
-      |/intl/de-de/           |
-      |/intl/en-au/           |
-      |/intl/en-in/           |
-      |/intl/en-ca/           |
-      |/intl/fr-ca/           |
-      |/intl/pt-br/           |
+#      |/intl/de-de/           |
+#      |/intl/en-au/           |
+#      |/intl/en-in/           |
+#      |/intl/en-ca/           |
+#      |/intl/fr-ca/           |
+#      |/intl/pt-br/           |
+      |/intl/es-419/          |
+      |/intl/it-it/           |
       |/products/ads-commerce |
       |/waze/                 |
 

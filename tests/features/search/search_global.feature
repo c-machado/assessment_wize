@@ -1,5 +1,5 @@
 # Created by machadoca at 6/01/22
-Feature: As a user I want to be able to search for content within the blog
+Feature: As a user, I want to be able to search for content within the blog
 
     Examples:
         |keyword      |
@@ -10,6 +10,8 @@ Feature: As a user I want to be able to search for content within the blog
         |/intl/fr-ca/ |
         |/intl/pt-br/ |
         |/intl/en-ca/ |
+        |/intl/es-419/ |
+        |/intl/it-it/ |
 
     @search
     Scenario: Test the search bar  - expanding the search bar

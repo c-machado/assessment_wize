@@ -17,6 +17,8 @@ Feature: As a user, I would like to search for the content while navigating the 
             | nouvelles      | /intl/fr-ca/  |
             | parcerias      | /intl/pt-br/  |
             | cloud          | /intl/en-ca/  |
+            | privacidad     | /intl/es-419/ |
+            | intelligente   | /intl/it-it/  |
 
     @search-home
     Scenario Outline: Test search suggestions on the homepage using special characters
@@ -34,6 +36,8 @@ Feature: As a user, I would like to search for the content while navigating the 
             | câble                     | /intl/fr-ca/  |
             | desinformação             | /intl/pt-br/  |
             | trans-Pacific             | /intl/en-ca/  |
+            | año                       | /intl/es-419/ |
+            | L'intrattenimento         | /intl/it-it/  |
 
 
     @search-home
@@ -53,6 +57,8 @@ Feature: As a user, I would like to search for the content while navigating the 
             | nouvelles      | /intl/fr-ca/  |
             | pessoas        | /intl/pt-br/  |
             | subsea         | /intl/en-ca/  |
+            | privacidad     | /intl/es-419/ |
+            | intelligente   | /intl/it-it/  |
 
     # TODO: Error with texts with special characters in the wrong format. https://hugeinc.atlassian.net/browse/UNI-6398
     @search-home
@@ -73,6 +79,8 @@ Feature: As a user, I would like to search for the content while navigating the 
             | l'Asie                    | /intl/fr-ca/  |
             | informações               | /intl/pt-br/  |
             | Canada's K-12             | /intl/en-ca/  |
+            | información               | /intl/es-419/ |
+            | un’attività               | /intl/it-it/  |
 
     @search-home
     Scenario Outline: Test search results when there are no results on the homepage
@@ -91,3 +99,5 @@ Feature: As a user, I would like to search for the content while navigating the 
             | sondern                   | /intl/pt-br/  | pt       |
             | pesquisa                  | /intl/fr-ca/  | fr       |
             | retornou                  | /intl/en-ca/  | en       |
+            | retornou                  | /intl/es-419/ | es       |
+            | retornou                  | /intl/it-it/  | it       |

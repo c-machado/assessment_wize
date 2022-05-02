@@ -5,8 +5,6 @@ __pycache__
 .pytest_cache
 
 reports
-requirements.txt
-
 Pipfile.lock
 geckodriver.log
 server.log

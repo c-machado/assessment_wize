@@ -1,11 +1,6 @@
-import json
 import logging
 import re
 import time
-
-import requests
-from assertpy import assert_that
-from selenium.webdriver import Keys
 
 from tests.consts.constants import Constants
 from tests.pages.base_page import BasePage

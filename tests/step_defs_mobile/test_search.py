@@ -35,8 +35,8 @@ def user_clicks_search(search):
 
 
 @given("the user clicks on the hero article")
-def user_clicks_hero_article(homepage):
-    homepage.click_to_read_more_article()
+def user_clicks_hero_article(homepage, get_viewport):
+    homepage.click_to_read_more_article(get_viewport)
 
 
 @when("the user clicks the magnifying glass")

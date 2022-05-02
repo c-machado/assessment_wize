@@ -8,14 +8,16 @@ Feature: As a user, I would like to interact with the header navigation on deskt
       And the user on <keyword> clicks the CTA See all product updates
       Then the user is redirected to <url>
       Examples:
-        |keyword           |url                    |submenu         |
-        |/                 | /products/            |product_updates |
-        |/intl/de-de/      | /intl/de-de/produkte/ |product_updates |
-        |/intl/en-au/      | /intl/en-au/products/ |product_updates |
-        |/intl/en-in/      | /intl/en-in/products/ |product_updates |
-        |/intl/en-ca/      | /intl/en-ca/products/ |product_updates |
-        |/intl/fr-ca/      | /intl/fr-ca/produits/ |product_updates |
-        |/intl/pt-br/      | /intl/pt-br/produtos/ |product_updates |
+        |keyword           |url                                        |submenu         |
+        |/                 | /products/                                |product_updates |
+        |/intl/de-de/      | /intl/de-de/produkte/                     |product_updates |
+        |/intl/en-au/      | /intl/en-au/products/                     |product_updates |
+        |/intl/en-in/      | /intl/en-in/products/                     |product_updates |
+        |/intl/en-ca/      | /intl/en-ca/products/                     |product_updates |
+        |/intl/fr-ca/      | /intl/fr-ca/produits/                     |product_updates |
+        |/intl/pt-br/      | /intl/pt-br/produtos/                     |product_updates |
+        |/intl/es-419/     | /intl/es-419/actualizaciones-de-producto/ |product_updates |
+        |/intl/it-it/      | /intl/it-it/prodotti/                     |product_updates |
 
 
   @header-desktop
@@ -60,6 +62,10 @@ Feature: As a user, I would like to interact with the header navigation on deskt
         |/intl/fr-ca/ | press        | fr_ca  |
         |/intl/pt-br/ | rss          | pt_br  |
         |/intl/pt-br/ | press        | pt_br  |
+        |/intl/es-419/| rss          | es_419 |
+        |/intl/es-419/| press        | es_419 |
+        |/intl/it-it/ | rss          | it_it  |
+        |/intl/it-it/ | press        | it_it  |
 
   @header-desktop
   #TODO: add a new case sitespace and subcategory in en-us
@@ -79,6 +85,8 @@ Feature: As a user, I would like to interact with the header navigation on deskt
         |/intl/en-ca/ | rss          |
         |/intl/fr-ca/ | rss          |
         |/intl/pt-br/ | rss          |
+        |/intl/es-419/| rss          |
+        |/intl/it-it/ | rss          |
 
   @header-desktop
   Scenario Outline: Test the keyword logo in the nav menu
@@ -96,6 +104,8 @@ Feature: As a user, I would like to interact with the header navigation on deskt
         |/intl/en-ca/ |/intl/en-ca/|
         |/intl/fr-ca/ |/intl/fr-ca/|
         |/intl/pt-br/ |/intl/pt-br/|
+        |/intl/es-419/|/intl/es-419/|
+        |/intl/it-it/ |/intl/it-it/|
 
   @header-desktop
   Scenario Outline: Test navigation in sitespaces within products in Ads&Analytics list

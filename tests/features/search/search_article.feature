@@ -12,13 +12,15 @@ Feature: As a user, I would like to search content within the blog within an art
 
      Examples:
             | text_to_search | keyword       |
-            | google         | /             |
+            | google           | /             |
             | sicherer       | /intl/de-de/  |
             | digital        | /intl/en-in/  |
             | australians    | /intl/en-au/  |
             | nouvelles      | /intl/fr-ca/  |
             | parcerias      | /intl/pt-br/  |
             | cloud          | /intl/en-ca/  |
+            | privacidad     | /intl/es-419/ |
+            | intelligente   | /intl/it-it/  |
 
 
     @search-article
@@ -38,6 +40,8 @@ Feature: As a user, I would like to search content within the blog within an art
             | câble                     | /intl/fr-ca/  |
             | desinformação             | /intl/pt-br/  |
             | trans-Pacific             | /intl/en-ca/  |
+            | año                       | /intl/es-419/ |
+            | L'intrattenimento         | /intl/it-it/  |
 
 
     @search-article
@@ -58,6 +62,8 @@ Feature: As a user, I would like to search content within the blog within an art
             | nouvelles      | /intl/fr-ca/  |
             | pessoas        | /intl/pt-br/  |
             | subsea         | /intl/en-ca/  |
+            | privacidad     | /intl/es-419/ |
+            | intelligente   | /intl/it-it/  |
 
     @search-article
     Scenario Outline: Test search results in an article page using special characters
@@ -77,6 +83,8 @@ Feature: As a user, I would like to search content within the blog within an art
             | l'Asie                    | /intl/fr-ca/  |
             | informações               | /intl/pt-br/  |
             | Canada's K-12             | /intl/en-ca/  |
+            | información               | /intl/es-419/ |
+            | un’attività               | /intl/it-it/  |
 
 
     @search-article
@@ -97,3 +105,5 @@ Feature: As a user, I would like to search content within the blog within an art
             | sondern                   | /intl/pt-br/  | pt       |
             | pesquisa                  | /intl/fr-ca/  | fr       |
             | retornou                  | /intl/en-ca/  | en       |
+            | retornou                  | /intl/es-419/ | es       |
+            | retornou                  | /intl/it-it/  | it       |

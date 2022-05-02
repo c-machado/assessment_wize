@@ -3,9 +3,10 @@ from dataclasses import dataclass
 
 @dataclass
 class Constants:
-    BASE_URL = 'https://blog.google'
+    # BASE_URL = 'https://blog.google'
     SEARCH_URL = "search/?query="
     # BASE_URL = 'https://gweb-uniblog-publish-stage.appspot.com'
+    BASE_URL = 'https://gweb-uniblog-publish-dev.appspot.com'
     PROD_URL = 'blog.google'
     CHROME_PROFILE = '/Users/machadoca/Documents/chrome_huge_inc'
     FIREFOX_PROFILE = '/Users/machadoca/Library/Application Support/Firefox/Profiles/4jwzwjvm.default'
@@ -17,11 +18,15 @@ class Constants:
         "fr": "Google utilise des cookies pour analyser le trafic vers ce site. "
               "Les informations relatives à votre utilisation de notre site sont partagées avec Google à cette fin.",
         "pt": "O Google usa cookies para analisar o tráfego para este site. As informações sobre seu uso do nosso site "
-              "são compartilhadas com o Google para esse fim."
+              "são compartilhadas com o Google para esse fim.",
+        "es": "Google utiliza cookies para analizar el tráfico a este sitio. La información sobre tu uso "
+              "de nuestro sitio se comparte con Google para ese propósito.",
+        "it": "Google utilizza i cookie per analizzare il traffico su questo sito. Le informazioni sulla "
+              "tua visita sono condivise con Google per questo scopo."
     }
 
     CHROME_WINDOWS_SIZE = {
-        "mobile": "window-size=414,896",
+        "mobile": "window-size=414,1000",
         "tablet": "window-size=600,800",
         "desktop": "window-size=1920,1080"
     }
@@ -39,7 +44,6 @@ class Constants:
         'fr_CA': '%d %b',
         'en_CA': '%b %d',
         'pt_BR': '%d %b',
-
     }
     DATE_FORMAT_IN_FEED_PAST_YEAR_PER_LOCALE = {
         'en_US': '%b %Y',
@@ -82,6 +86,8 @@ class Constants:
         "rss_en_ca": "RSS feed",
         "rss_fr_ca": "RSS feed",
         "rss_pt_br": "RSS feed",
+        "rss_es_419": "RSS feed",
+        "rss_it_it": "RSS feed",
         "press_us": "Press corner",
         "press_de": "Pressezentrum",
         "press_in": "Press corner",
@@ -89,6 +95,8 @@ class Constants:
         "press_en_ca": "Press corner",
         "press_fr_ca": "Salle de presse",
         "press_pt_br": "Imprensa",
+        "press_es_419": "Prensa",
+        "press_it_it": "Giornalisti",
     }
     LANGUAGE_SELECTOR = {
         "English",
@@ -96,8 +104,10 @@ class Constants:
         "English (India)",
         "English (Australia)",
         "English (Canada)",
-        "French (Canada)",
-        "Portuguese (Brazil)"
+        "Français (Canada)",
+        "Português (Brasil)",
+        "Español (Latinoamérica)",
+        "Italiano",
     }
     LEGAL_LINKS = {
         '/': {
@@ -149,6 +159,20 @@ class Constants:
             "Produtos do Google": "https://about.google/products/",
             "Ajuda": "https://support.google.com/?hl=pt-BR"
          },
+        '/intl/es-419/': {
+            "Privacidad": "https://policies.google.com/privacy?hl=es-419",
+            "Términos y condiciones": "https://policies.google.com/terms?hl=es-419",
+            "Sobre Google": "https://about.google/intl/es-419/",
+            "Productos de Google": "https://about.google/products/",
+            "Ayuda": "https://support.google.com/?hl=es-419"
+        },
+        '/intl/it-it/': {
+            "Norme sulla privacy": "https://policies.google.com/privacy?hl=it-IT",
+            "Termini e condizioni": "https://policies.google.com/terms?hl=it-IT",
+            "L’azienda": "https://about.google/",
+            "Prodotti di Google": "https://about.google/products/",
+            "Aiuto": "https://support.google.com/?hl=it"
+        },
         '/products/ads-commerce': {
             "Privacy": "https://policies.google.com/privacy",
             "Terms": "https://policies.google.com/terms",
@@ -172,6 +196,8 @@ class Constants:
         '/intl/fr-ca/': "À propos du blogue",
         '/intl/de-de/': "Über unseren Blog",
         '/intl/pt-br/': "Sobre o blog",
+        '/intl/es-419/': "Sobre el blog",
+        '/intl/it-it/': "Il blog",
         }
     LEGAL_LINKS_ABOUT_THE_BLOG_URL = {
         "/": "/inside-google/company-announcements/about/",
@@ -181,6 +207,8 @@ class Constants:
         '/intl/fr-ca/': "/intl/fr-ca/a-propos",
         '/intl/de-de/': "/intl/de-de/uber",
         '/intl/pt-br/': "/intl/pt-br/sobre-o-blog",
+        '/intl/es-419/': "/intl/es-419/sobre-el-blog",
+        '/intl/it-it/': "/intl/it-it/sul-blog",
     }
 
     CATEGORY_HORIZONTAL = [
@@ -247,7 +275,9 @@ class Constants:
         'de': "Ups, die Suche nach “text_to_search” führte zu keinem Ergebnis.",
         'en': "Oops, your search for “text_to_search” didn't return any results.",
         'fr': "Oups, votre recherche “text_to_search” n’a générée aucun résultat.",
-        'pt': "Ops, sua pesquisa por “text_to_search” não retornou nenhum resultado."
+        'pt': "Ops, sua pesquisa por “text_to_search” não retornou nenhum resultado.",
+        'es': "Oops, tu búsqueda “text_to_search” no arrojó resultados",
+        'it': "Ops, la tua ricerca per “text_to_search” non ha avuto risultati."
     }
     MOBILE_PLATFORMS = [
         'ANDROID',

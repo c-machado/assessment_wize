@@ -73,14 +73,14 @@ class Driver(IDriver):
         size_viewport = self.get_window_size(viewport)
         options.add_argument(size_viewport)
         options.set_capability("acceptInsecureCerts", True)
-        # options.add_argument('--start-maximized')
-        options.add_argument('--headless')
+        options.add_argument('--start-maximized')
+        # options.add_argument('--headless')
         options.add_argument('--no-sandbox')
         options.add_argument("--disable-dev-shm-usage")
         # options.add_argument("--remote-debugging-port=9222")
         # chrome://inspect/#devices
-        # options.add_argument(r'--user-data-dir='+Constants.CHROME_PROFILE)  # your chrome user data directory
-        # options.add_argument(r'--profile-directory=Person 2')  # the profile with the extensions loaded
+        options.add_argument(r'--user-data-dir='+Constants.CHROME_PROFILE)  # your chrome user data directory
+        options.add_argument(r'--profile-directory=Person 2')  # the profile with the extensions loaded
         s = Service(driver_path)
         self.driver = webdriver.Chrome(service=s,
                                        options=options)
@@ -268,18 +268,16 @@ class Driver(IDriver):
             print(e)
 
     def wait_for_element_visible(self, *locator):
-        wait = WebDriverWait(self.driver, 50)
+        wait = WebDriverWait(self.driver, 20)
         try:
             if locator.__len__() == 2:
-                # if not expected_conditions.visibility_of_element_located(locator):
-                #     self.driver.refresh()
                 return wait.until(expected_conditions.visibility_of_element_located(locator))
         except Exception as e:
             self.logger.exception("element not visible")
             print(e)
 
     def wait_for_all_elements_visible(self, *locator):
-        wait = WebDriverWait(self.driver, 50)
+        wait = WebDriverWait(self.driver, 20)
         try:
             if locator.__len__() == 2:
                 return wait.until(expected_conditions.visibility_of_all_elements_located(locator))
@@ -288,7 +286,7 @@ class Driver(IDriver):
             print(e)
 
     def wait_for_element_not_visible(self, *locator):
-        wait = WebDriverWait(self.driver, 50)
+        wait = WebDriverWait(self.driver, 20)
         try:
             if locator.__len__() == 2:
                 return wait.until(expected_conditions.invisibility_of_element_located(locator))

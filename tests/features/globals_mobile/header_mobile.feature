@@ -8,14 +8,16 @@ Feature: As a user, I would like to interact with the header navigation on mobil
       And the user on <keyword> clicks the CTA See all product updates
       Then the user is redirected to <url>
       Examples:
-        |keyword           |url                    |submenu         |
-        |/                 | /products/            |product_updates |
-        |/intl/de-de/      | /intl/de-de/produkte/ |product_updates |
-        |/intl/en-au/      | /intl/en-au/products/ |product_updates |
-        |/intl/en-in/      | /intl/en-in/products/ |product_updates |
-        |/intl/en-ca/      | /intl/en-ca/products/ |product_updates |
-        |/intl/fr-ca/      | /intl/fr-ca/produits/ |product_updates |
-        |/intl/pt-br/      | /intl/pt-br/produtos/ |product_updates |
+        |keyword           |url                                        |submenu         |
+        |/                 | /products/                                |product_updates |
+        |/intl/de-de/      | /intl/de-de/produkte/                     |product_updates |
+        |/intl/en-au/      | /intl/en-au/products/                     |product_updates |
+        |/intl/en-in/      | /intl/en-in/products/                     |product_updates |
+        |/intl/en-ca/      | /intl/en-ca/products/                     |product_updates |
+        |/intl/fr-ca/      | /intl/fr-ca/produits/                     |product_updates |
+        |/intl/pt-br/      | /intl/pt-br/produtos/                     |product_updates |
+        |/intl/es-419/     | /intl/es-419/actualizaciones-de-producto/ |product_updates |
+        |/intl/it-it/      | /intl/it-it/prodotti/                     |product_updates |
 
 
   @header-mobile
@@ -87,6 +89,8 @@ Feature: As a user, I would like to interact with the header navigation on mobil
         |/intl/en-ca/  |
         |/intl/fr-ca/  |
         |/intl/pt-br/  |
+        |/intl/es-419/ |
+        |/intl/it-it/  |
 
   @header-mobile
   Scenario Outline: Test the keyword logo in the nav menu on mobile
@@ -96,11 +100,13 @@ Feature: As a user, I would like to interact with the header navigation on mobil
       Then the user is redirected to <url>
 
       Examples:
-        |keyword      | url        |
-        |/            | /          |
-        |/intl/de-de/ |/intl/de-de/|
-        |/intl/en-in/ |/intl/en-in/|
-        |/intl/en-au/ |/intl/en-au/|
-        |/intl/en-ca/ |/intl/en-ca/|
-        |/intl/fr-ca/ |/intl/fr-ca/|
-        |/intl/pt-br/ |/intl/pt-br/|
+        |keyword      | url         |
+        |/            |/           |
+        |/intl/de-de/ |/intl/de-de/ |
+        |/intl/en-in/ |/intl/en-in/ |
+        |/intl/en-au/ |/intl/en-au/ |
+        |/intl/en-ca/ |/intl/en-ca/ |
+        |/intl/fr-ca/ |/intl/fr-ca/ |
+        |/intl/pt-br/ |/intl/pt-br/ |
+        |/intl/es-419/|/intl/es-419/|
+        |/intl/it-it/ |/intl/it-it/ |

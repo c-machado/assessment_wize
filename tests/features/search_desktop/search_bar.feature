@@ -18,6 +18,8 @@ Feature: As a user, I want to search for content in the article progress bar
             | nouvelles      | /intl/fr-ca/  |
             | pessoas        | /intl/pt-br/  |
             | subsea         | /intl/en-ca/  |
+            | privacidad     | /intl/es-419/ |
+            | intelligente   | /intl/it-it/  |
 
 
     @search-article
@@ -37,6 +39,8 @@ Feature: As a user, I want to search for content in the article progress bar
             | l'Asie                    | /intl/fr-ca/  |
             | informações               | /intl/pt-br/  |
             | Canada's K-12             | /intl/en-ca/  |
+            | año                       | /intl/es-419/ |
+            | L'intrattenimento         | /intl/it-it/  |
 
 
     @search-article
@@ -57,6 +61,8 @@ Feature: As a user, I want to search for content in the article progress bar
             | nouvelles      | /intl/fr-ca/  |
             | pessoas        | /intl/pt-br/  |
             | subsea         | /intl/en-ca/  |
+            | privacidad     | /intl/es-419/ |
+            | intelligente   | /intl/it-it/  |
 
 
     @search-article
@@ -77,6 +83,8 @@ Feature: As a user, I want to search for content in the article progress bar
             | l'Asie                    | /intl/fr-ca/  |
             | informações               | /intl/pt-br/  |
             | Canada's K-12             | /intl/en-ca/  |
+            | información               | /intl/es-419/ |
+            | un’attività               | /intl/it-it/  |
 
 
     @search-article
@@ -97,6 +105,8 @@ Feature: As a user, I want to search for content in the article progress bar
             | sondern                   | /intl/pt-br/  | pt       |
             | pesquisa                  | /intl/fr-ca/  | fr       |
             | retornou                  | /intl/en-ca/  | en       |
+            | retornou                  | /intl/es-419/ | es       |
+            | retornou                  | /intl/it-it/  | it       |
 
 
     @search-article
@@ -112,7 +122,7 @@ Feature: As a user, I want to search for content in the article progress bar
             | text_to_search    | keyword                       |
             | español           | /perspectives/sundar-pichai/  |
 
-     @search-article
+    @search-article
     Scenario Outline: Test search suggestions in a perspectives article page progress bar
         Given a user is at the <keyword> site
         And the user selects an article in <keyword> feed

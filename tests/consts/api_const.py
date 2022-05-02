@@ -6,6 +6,8 @@ LATEST_FEED = {
     '/intl/en-ca/': '/api/v2/latest?author_ids=&category=&date_start=&date_stop=&hero_template=heroArticleItem&is_main_hero=&paginate=7&site_id=11&tags=&template=latestArticleItem',
     '/intl/fr-ca/': '/api/v2/latest?author_ids=&category=&date_start=&date_stop=&hero_template=heroArticleItem&is_main_hero=&paginate=7&site_id=12&tags=&template=latestArticleItem',
     '/intl/pt-br/': '/api/v2/latest?author_ids=&category=&date_start=&date_stop=&hero_template=heroArticleItem&is_main_hero=&paginate=7&site_id=14&tags=&template=latestArticleItem',
+    '/intl/es-419/': '/api/v2/latest?author_ids=&category=&date_start=&date_stop=&hero_template=heroArticleItem&is_main_hero=&paginate=3&show_hero=False&site_id=13&tags=&template=latestArticleItem',
+    '/intl/it-it/': '/api/v2/latest?author_ids=&category=&date_start=&date_stop=&hero_template=heroArticleItem&is_main_hero=&paginate=6&show_hero=True&site_id=15&tags=&template=latestArticleItem',
      '/perspectives/sundar-pichai/': '/api/v2/latest?author_ids=3453,41,1614,102,1402,399,150&category=&date_start=&date_stop=&hero_template=heroArticleItem&is_main_hero=&paginate=7&site_id=2&tags=&template=latestArticleItem',
     '/outreach-initiatives/': '/api/v2/latest?author_ids=&category=&date_start=&date_stop=&hero_template=heroArticleItem&is_main_hero=True&paginate=7&site_id=2&tags=accessibility,arts-and-culture,civics,digital-wellbeing,diversity-and-inclusion,education,entrepreneurs,google-news-initiative,googleorg,grow-with-google,nonprofits,public-policy,small-business,topics-student-programs,sustainability&template=latestArticleItem',
     '/technology/': '/api/v2/latest?author_ids=&category=&date_start=&date_stop=&hero_template=heroArticleItem&is_main_hero=True&paginate=7&site_id=2&tags=ai,area-120,design,developers,families,health,next-billion-users,safety-and-security&template=latestArticleItem',
@@ -28,6 +30,8 @@ SEARCH_API = {
     '/intl/fr-ca/': '/api/v2/search?paginate=12&order=relevance&site_id=12&query=text_to_search',
     '/intl/pt-br/': '/api/v2/search?paginate=12&order=relevance&site_id=14&query=text_to_search',
     '/intl/en-ca/': '/api/v2/search?paginate=12&order=relevance&site_id=11&query=text_to_search',
+    '/intl/es-419/': '/api/v2/search?paginate=12&order=relevance&site_id=13&query=text_to_search',
+    '/intl/it-it/': '/api/v2/search?paginate=12&order=relevance&site_id=15&query=text_to_search',
     '/perspectives/sundar-pichai/': '/api/v2/search?paginate=12&order=relevance&site_id=2&query=text_to_search',
 
 }
@@ -40,6 +44,8 @@ SEARCH_SUGGESTIONS_API = {
     '/intl/fr-ca/': '/api/v2/search-suggestions/?query=text_to_search&site_id=12&format=json',
     '/intl/pt-br/': '/api/v2/search-suggestions/?query=text_to_search&site_id=14&format=json',
     '/intl/en-ca/': '/api/v2/search-suggestions/?query=text_to_search&site_id=11&format=json',
+    '/intl/es-419/': '/api/v2/search-suggestions/?query=text_to_search&site_id=13&format=json',
+    '/intl/it-it/': '/api/v2/search-suggestions/?query=text_to_search&site_id=15&format=json',
     '/perspectives/sundar-pichai/': '/api/v2/search-suggestions/?query=text_to_search&site_id=2&format=json'
 }
 

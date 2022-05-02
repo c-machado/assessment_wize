@@ -74,8 +74,8 @@ def user_clicks_ok_cookies_msg(cookie_banner):
 
 
 @given("the user clicks on the hero article")
-def user_clicks_hero_article(cookie_banner):
-    cookie_banner.click_to_read_more_article()
+def user_clicks_hero_article(cookie_banner, get_viewport):
+    cookie_banner.click_to_read_more_article(get_viewport)
 
 
 @when("the user clicks the see details CTA")

@@ -158,6 +158,8 @@ class BasePageAPI(object):
         substring = keyword_url[0:6]
         if substring == '/intl/':
             url = keyword_url[0:12]
+            if url == '/intl/es-419':
+                url = keyword_url[0:13]
         else:
             url = keyword_url[0]
         return url

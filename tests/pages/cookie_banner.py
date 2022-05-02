@@ -11,8 +11,11 @@ class CookieBanner(BasePage):
         super().__init__(driver)
         self.driver = driver
 
-    def click_to_read_more_article(self):
-        self.driver.click_to_element(PageLocators.article_read_more_cta)
+    def click_to_read_more_article(self, viewport):
+        if viewport == "mobile":
+            self.driver.click_to_element(PageLocators.article_read_more_mobile)
+        elif viewport == "desktop":
+            self.driver.click_to_element(PageLocators.article_read_more_cta)
 
     def close_cookie_banner(self):
         self.close_bar(PageLocators.cookie_banner_ok_cta)
