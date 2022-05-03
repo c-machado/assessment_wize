@@ -5,10 +5,11 @@ from dataclasses import dataclass
 class Constants:
     # BASE_URL = 'https://blog.google'
     SEARCH_URL = "search/?query="
-    # BASE_URL = 'https://gweb-uniblog-publish-stage.appspot.com'
-    BASE_URL = 'https://gweb-uniblog-publish-dev.appspot.com'
+    BASE_URL = 'https://gweb-uniblog-publish-stage.appspot.com'
+    # BASE_URL = 'https://gweb-uniblog-publish-dev.appspot.com'
     PROD_URL = 'blog.google'
     CHROME_PROFILE = '/Users/machadoca/Documents/chrome_huge_inc'
+    CHROME_PROFILE_LINUX = '/usr/local/google/home/machadoca/Documents/chrome_google'
     FIREFOX_PROFILE = '/Users/machadoca/Library/Application Support/Firefox/Profiles/4jwzwjvm.default'
     COOKIE_BANNER_TXT = {
         "en": "Google serves cookies to analyze traffic to this site. Information about your use of our site is "
@@ -44,6 +45,8 @@ class Constants:
         'fr_CA': '%d %b',
         'en_CA': '%b %d',
         'pt_BR': '%d %b',
+        'es_419': '%d %b',
+        'it_it': '%d %b',
     }
     DATE_FORMAT_IN_FEED_PAST_YEAR_PER_LOCALE = {
         'en_US': '%b %Y',
@@ -53,6 +56,8 @@ class Constants:
         'fr_CA': '%b %Y',
         'en_CA': '%b %Y',
         'pt_BR': '%b %Y',
+        'es_419': '%d %Y',
+        'it_it': '%b %Y',
     }
     DATE_FORMAT_PER_LOCALE = {
         'en_US': '%b %d, %Y',
@@ -62,6 +67,8 @@ class Constants:
         'pt_BR': '%d %b, %Y',
         'en_CA': '%b %d, %Y',
         'fr_CA': '%d %b, %Y',
+        'es_419': '%d %b, %Y',
+        'it_it': '%d %b, %Y',
     }
     DESKTOP_PLATFORMS = [
         'WIN10',
@@ -217,7 +224,9 @@ class Constants:
         '/intl/fr-ca/produits/explorez-obtenez-des-reponses/',
         '/intl/de-de/produkte/android-chrome-mehr/#android',
         '/intl/en-in/products/platforms/#android',
-        '/intl/pt-br/produtos/android-chrome-play/'
+        '/intl/pt-br/produtos/android-chrome-play/',
+        '/intl/es-419/actualizaciones-de-producto/android-chrome-play/#android',
+        '/intl/it-it/prodotti/android-chrome-play/',
     ]
     US_LOCALE = "/"
     INDIA_LOCALE = "/intl/en-in/"

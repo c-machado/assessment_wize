@@ -73,6 +73,7 @@ class BasePage(object):
 
     def get_format_current_year(self, locale, constants_date_format, date_article_in_api):
         self.set_locale(locale)
+        print(locale)
         format_expected = self.get_date_format_per_locale(locale, constants_date_format)
         self.logger.info('%s format expected', format_expected)
         date_expected = datetime.datetime.strptime(date_article_in_api, Constants.DATE_FORMAT_IN_API).strftime(
@@ -277,6 +278,7 @@ class BasePage(object):
 
     @staticmethod
     def set_locale(locale_string):
+        print('locale_string', locale_string)
         import locale
         locale.setlocale(locale.LC_ALL, locale_string)
         loc = locale.getlocale()

@@ -17,8 +17,8 @@ Feature: As a user, I would like to search for the content while navigating on a
             | COVID          | /intl/en-ca/products/cloud/                        |
             | voyager        | /intl/fr-ca/produits/explorez-obtenez-des-reponses/|
             | vacinas        | /intl/pt-br/produtos/explore-e-encontre-respostas/ |
-            | privacidad     | /intl/es-419/actualizaciones-de-producto/sobre-youtube/|
-            | intelligente   | /intl/it-it/prodotti/ |
+            | privacidad     | /intl/es-419/actualizaciones-de-producto/android-chrome-play/#android|
+            | intelligente   | /intl/it-it/prodotti/android-chrome-play/ |
 
     @search-category
     Scenario Outline: Test search suggestions on a category page using special characters
@@ -38,8 +38,8 @@ Feature: As a user, I would like to search for the content while navigating on a
 #            | possèdent                  | /intl/fr-ca/produits/explorez-obtenez-des-reponses/|
             | téléphone                  | /intl/fr-ca/produits/explorez-obtenez-des-reponses/|
             | desinformação              | /intl/pt-br/produtos/explore-e-encontre-respostas/ |
-            | año                        | /intl/es-419/actualizaciones-de-producto/sobre-youtube/|
-            | intrattenimento            | /intl/it-it/prodotti/ |
+            | año                        | /intl/es-419/actualizaciones-de-producto/android-chrome-play/#android|
+            | intrattenimento            | /intl/it-it/prodotti/android-chrome-play/          |
 
 
     @search-category
@@ -59,8 +59,8 @@ Feature: As a user, I would like to search for the content while navigating on a
             | COVID          | /intl/en-ca/products/cloud/                        |
             | voyager        | /intl/fr-ca/produits/explorez-obtenez-des-reponses/|
             | vacinas        | /intl/pt-br/produtos/explore-e-encontre-respostas/ |
-            | privacidad     | /intl/es-419/actualizaciones-de-producto/sobre-youtube/|
-            | intelligente   | /intl/it-it/prodotti/ |
+            | privacidad     | /intl/es-419/actualizaciones-de-producto/android-chrome-play/#android|
+            | intelligente   | /intl/it-it/prodotti/android-chrome-play/          |
 
     @search-category
     Scenario Outline: Test search results in a category page using special characters
@@ -79,8 +79,8 @@ Feature: As a user, I would like to search for the content while navigating on a
             | Google’s                   | /intl/en-ca/products/cloud/                        |
             | téléphone                  | /intl/fr-ca/produits/explorez-obtenez-des-reponses/|
             | desinformação              | /intl/pt-br/produtos/explore-e-encontre-respostas/ |
-            | año                        | /intl/es-419/actualizaciones-de-producto/sobre-youtube/|
-            | intrattenimento            | /intl/it-it/prodotti/ |
+            | año                        | /intl/es-419/actualizaciones-de-producto/android-chrome-play/#android|
+            | intrattenimento            | /intl/it-it/prodotti/android-chrome-play/          |
 
     @search-category
     Scenario Outline: Test search results when there are no results on a category page
@@ -99,5 +99,5 @@ Feature: As a user, I would like to search for the content while navigating on a
             | jeunes              | /intl/en-ca/products/cloud/                        | en       |
             | Themenverwandte     | /intl/fr-ca/produits/explorez-obtenez-des-reponses/| fr       |
             | Datenaustausch      | /intl/pt-br/produtos/explore-e-encontre-respostas/ | pt       |
-            | retornou                  | /intl/es-419/ | es       |
-            | retornou                  | /intl/it-it/  | it       |
+            | retornou            | /intl/es-419/actualizaciones-de-producto/android-chrome-play/#android | es       |
+            | retornou            | /intl/it-it/prodotti/android-chrome-play/          | it       |

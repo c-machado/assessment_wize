@@ -222,9 +222,9 @@ def user_fills_out_form_with_invalid_data(newsletter):
 
 
 @given("the toast bar has appeared")
-def toast_bar_visible(cookie_banner, homepage, newsletter, toast_bar):
+def toast_bar_visible(cookie_banner, homepage, newsletter, toast_bar, get_viewport):
     cookie_banner.close_cookie_banner()
-    homepage.click_to_read_more_article()
+    homepage.click_to_read_more_article(get_viewport)
     toast_bar.make_toast_bar_visible()
 
 

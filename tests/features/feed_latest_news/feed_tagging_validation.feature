@@ -16,6 +16,8 @@ Feature: As a user, I want to confirm articles in the feed list are shown to the
             | /intl/fr-ca/ |
             | /intl/en-ca/ |
             | /intl/pt-br/ |
+            | /intl/es-419/ |
+            | /intl/it-it/ |
 
     @feed-article-tagging
     Scenario Outline: Test articles listed in the feed in the category page are tagged accordingly
@@ -31,6 +33,8 @@ Feature: As a user, I want to confirm articles in the feed list are shown to the
            | /intl/fr-ca/produits/explorez-obtenez-des-reponses/    |
            | /intl/en-ca/products/explore-get-answers/              |
            | /intl/pt-br/produtos/android-chrome-play/              |
+           | /intl/es-419/actualizaciones-de-producto/android-chrome-play/|
+           | /intl/it-it/prodotti/android-chrome-play/               |
 
     @feed-article-tagging
     Scenario Outline: Test articles listed in the feed on the subcategory page are tagged accordingly

@@ -12,7 +12,6 @@ from selenium.webdriver.support import expected_conditions
 from selenium import webdriver
 from selenium.common import exceptions
 
-from selenium.webdriver.safari.options import Options
 from selenium.webdriver.safari.service import Service
 from selenium.webdriver.edge.options import Options
 from selenium.webdriver.edge.service import Service
@@ -81,6 +80,7 @@ class Driver(IDriver):
         # chrome://inspect/#devices
         options.add_argument(r'--user-data-dir='+Constants.CHROME_PROFILE)  # your chrome user data directory
         options.add_argument(r'--profile-directory=Person 2')  # the profile with the extensions loaded
+        # options.add_argument(r'--profile-directory=Person 1')  # the profile in LINUX
         s = Service(driver_path)
         self.driver = webdriver.Chrome(service=s,
                                        options=options)
