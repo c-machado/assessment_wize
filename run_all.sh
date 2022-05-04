@@ -18,12 +18,12 @@ printf "STARTING TESTS:\n"
 #
 #pytest tests/ -m "feed-article-load-more" --html=reports/blog/feed-load-more.html
 #pytest tests/ -m "feed-article-tagging" --html=reports/blog/feed-tagging.html
-#pytest tests/ -m "feed-article-date-format" --html=reports/blog/feed-date-format.html #error in es_419
+pytest tests/ -m "feed-article-date-format" --html=reports/blog/feed-date-format1.html #error in es_419
 #
-pytest tests/ -m "article" --html=reports/blog/article-videos.html
+#pytest tests/ -m "article" --html=reports/blog/article-videos.html
 #pytest tests/ -m "article-inline" --html=reports/blog/article-inline.html
 #pytest tests/ -m "article-related" --html=reports/blog/article-related.html
-#pytest tests/ -m "article-date-format-related-stories" --html=reports/blog/article-related-date.html
-
+pytest tests/ -m "article-date-format-related-stories" --html=reports/blog/article-related-date.html
+#
 #pytest tests/ -m "press" --html=reports/blog/press.html
 

@@ -45,7 +45,7 @@ class Constants:
         'fr_CA': '%d %b',
         'en_CA': '%b %d',
         'pt_BR': '%d %b',
-        'es_419': '%d %b',
+        'es_ES': '%b %d',
         'it_it': '%d %b',
     }
     DATE_FORMAT_IN_FEED_PAST_YEAR_PER_LOCALE = {
@@ -56,7 +56,7 @@ class Constants:
         'fr_CA': '%b %Y',
         'en_CA': '%b %Y',
         'pt_BR': '%b %Y',
-        'es_419': '%d %Y',
+        'es_ES': '%b %Y',
         'it_it': '%b %Y',
     }
     DATE_FORMAT_PER_LOCALE = {
@@ -67,7 +67,7 @@ class Constants:
         'pt_BR': '%d %b, %Y',
         'en_CA': '%b %d, %Y',
         'fr_CA': '%d %b, %Y',
-        'es_419': '%d %b, %Y',
+        'es_ES': '%b %d, %Y',
         'it_it': '%d %b, %Y',
     }
     DESKTOP_PLATFORMS = [

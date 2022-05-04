@@ -79,11 +79,20 @@ class BasePage(object):
         date_expected = datetime.datetime.strptime(date_article_in_api, Constants.DATE_FORMAT_IN_API).strftime(
             format_expected)
         """This validation is required because fr_CA locale is returning the month in lower case"""
+        self.logger.info('%s date_expected 1', date_expected)
         if locale == 'fr_CA':
+            date_expected.capitalize()
+            self.logger.info('%s date_expected 1', date_expected)
             month = date_expected.split(' ')[1]
             day = date_expected.split(' ')[0]+' '
             date_expected = day + month.capitalize()
-        self.logger.info('%s date_expected', date_expected)
+        elif locale == 'es_ES':
+            date_expected.capitalize()
+            self.logger.info('%s date_expected 1', date_expected)
+            month = date_expected.split(' ')[0] + ' '
+            day = date_expected.split(' ')[1]
+            date_expected = month.capitalize() + day
+        self.logger.info('%s date_expected 2', date_expected)
         return date_expected
 
     def get_format_previous_year(self, locale, constants_date_format, date_article_in_api):
