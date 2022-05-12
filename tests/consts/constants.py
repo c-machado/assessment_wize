@@ -3,9 +3,9 @@ from dataclasses import dataclass
 
 @dataclass
 class Constants:
-    # BASE_URL = 'https://blog.google'
+    BASE_URL = 'https://blog.google'
     SEARCH_URL = "search/?query="
-    BASE_URL = 'https://gweb-uniblog-publish-stage.appspot.com'
+    # BASE_URL = 'https://gweb-uniblog-publish-stage.appspot.com'
     # BASE_URL = 'https://gweb-uniblog-publish-dev.appspot.com'
     PROD_URL = 'blog.google'
     CHROME_PROFILE = '/Users/machadoca/Documents/chrome_huge_inc'
@@ -225,7 +225,7 @@ class Constants:
         '/intl/de-de/produkte/android-chrome-mehr/#android',
         '/intl/en-in/products/platforms/#android',
         '/intl/pt-br/produtos/android-chrome-play/',
-        '/intl/es-419/actualizaciones-de-producto/android-chrome-play/#android',
+        '/intl/es-419/actualizaciones-de-producto/android-chrome-play/',
         '/intl/it-it/prodotti/android-chrome-play/',
     ]
     US_LOCALE = "/"

@@ -1,5 +1,5 @@
 # Created by machadoca at 9/03/22
-Feature: As a user I want to be sure links within the article are accessible
+Feature: As a user, I want to be sure links within the article are accessible
 
     @article-inline
     Scenario Outline: Test the links in the paragraph are opened according to the domain

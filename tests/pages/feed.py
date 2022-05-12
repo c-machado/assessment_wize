@@ -44,8 +44,11 @@ class Feed(BasePage, BasePageAPI):
         article_titles_list = self.driver.find_elements(*PageLocators.feed_article_titles_list)
         titles_list = []
         for article_title in article_titles_list:
-            titles_list.append(article_title.get_attribute("innerHTML"))
-            print('article_title.get_attribute("innerHTML")', article_title.get_attribute("innerHTML"))
+            if self.contains_ampersand_char(article_title.get_attribute("innerHTML")):
+                titles_list.append(self.replace_ampersand_char(article_title.get_attribute("innerHTML")))
+            else:
+                titles_list.append(article_title.get_attribute("innerHTML"))
+            self.logger.info('%s article_title.get_attribute("innerHTML")', article_title.get_attribute("innerHTML"))
         return titles_list
 
     def get_date_article_in_feed(self):
@@ -53,16 +56,18 @@ class Feed(BasePage, BasePageAPI):
         """:return e.g. Jan 20 / Dec 2021"""
         article_date_list = self.get_article_dates_in_feed_list()
         for article_date_index in range(0, len(article_date_list)):
+            self.logger.info('%s article_date_index', article_date_index)
+            self.logger.info('%s actual_article_date_in_feed_to_return', article_date_list[article_date_index])
             if article_date_index == self.random_article:
-                print('article_date_index', article_date_index, 'actual_article_date_in_feed_to_return ',
-                      article_date_list[article_date_index])
+                self.logger.info('%s article_date_index', article_date_index)
+                self.logger.info('%s actual_article_date_in_feed_to_return', article_date_list[article_date_index])
                 return article_date_list[article_date_index]
 
     def get_date_first_article_in_feed(self, keyword_url):
         self.go_back_previous_page()
         self.close_bar(PageLocators.cookie_banner_ok_cta)
         date_in_first_article = self.get_article_dates_in_latest_api(keyword_url)[0]
-        print('date_in_api', date_in_first_article)
+        self.logger.info('%s date_in_api', date_in_first_article)
         self.logger.info(date_in_first_article)
         return date_in_first_article
 
@@ -76,8 +81,12 @@ class Feed(BasePage, BasePageAPI):
             start_range = 1
         random_temp = start_range + self.random_article
         for index in range(start_range, len(article_dates_in_api)):
+            self.logger.info('%s index api', index)
+            self.logger.info('%s date expected in api format:', article_dates_in_api[index])
             if index == random_temp:
-                print('index', index, 'date expected in api format: ', article_dates_in_api[index])
+                self.logger.info('%s random temp', random_temp)
+                self.logger.info('%s index api', index)
+                self.logger.info('%s date expected in api format:', article_dates_in_api[index])
                 return article_dates_in_api[index]
 
     def get_date_format_in_feed_per_locale(self, locale, date):
@@ -98,9 +107,9 @@ class Feed(BasePage, BasePageAPI):
         article_list = self.get_articles_in_feed_list()
         print('random_article in click article_index:', self.random_article, 'len(article_list)', len(article_list))
         for article_index in range(0, len(article_list)):
+            print('article_index', article_index)
             if article_index == self.random_article:
-                print('article_index', article_index, 'self.random_article', self.random_article,
-                      'article_index to clickx: ', article_list[article_index].get_attribute("innerHTML"))
+                print('article_index', article_index)
                 self.driver.wait_for_feed_to_load(*PageLocators.feed_articles_list)
                 self.driver.wait_for_element_visible(article_list[article_index])
                 self.driver.wait_for_element_clickable(article_list[article_index])

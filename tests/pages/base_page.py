@@ -78,21 +78,15 @@ class BasePage(object):
         self.logger.info('%s format expected', format_expected)
         date_expected = datetime.datetime.strptime(date_article_in_api, Constants.DATE_FORMAT_IN_API).strftime(
             format_expected)
-        """This validation is required because fr_CA locale is returning the month in lower case"""
-        self.logger.info('%s date_expected 1', date_expected)
+        """This validation is required because fr_CA & es_ES locales are returning the month in lower case"""
         if locale == 'fr_CA':
             date_expected.capitalize()
-            self.logger.info('%s date_expected 1', date_expected)
             month = date_expected.split(' ')[1]
             day = date_expected.split(' ')[0]+' '
             date_expected = day + month.capitalize()
         elif locale == 'es_ES':
-            date_expected.capitalize()
-            self.logger.info('%s date_expected 1', date_expected)
-            month = date_expected.split(' ')[0] + ' '
-            day = date_expected.split(' ')[1]
-            date_expected = month.capitalize() + day
-        self.logger.info('%s date_expected 2', date_expected)
+            date_expected = date_expected.capitalize()
+        self.logger.info('%s date_expected', date_expected)
         return date_expected
 
     def get_format_previous_year(self, locale, constants_date_format, date_article_in_api):
@@ -101,11 +95,13 @@ class BasePage(object):
         self.logger.info('%s format expected', format_expected)
         date_expected = datetime.datetime.strptime(date_article_in_api, Constants.DATE_FORMAT_IN_API).strftime(
             format_expected)
-        """This validation is required because fr_CA locale is returning the month in lower case"""
+        """This validation is required because fr_CA & es_ES locales are returning the month in lower case"""
         if locale == 'fr_CA':
             month = date_expected.split(' ')[0].capitalize() + ' '
             year = date_expected.split(' ')[1]
             date_expected = month + year
+        elif locale == 'es_ES':
+            date_expected = date_expected.capitalize()
         self.logger.info('%s date_expected', date_expected)
         return date_expected
 
@@ -119,8 +115,9 @@ class BasePage(object):
     def get_random_index_in_list(self, element_list):
         # time.sleep(1)
         element_list_length = len(element_list)
-        # self.logger.info('%s length list in random', element_list_length)
+        self.logger.info('%s length list in random', element_list_length)
         self.random_article = random.randint(0, element_list_length - 1)
+        self.logger.info('%s element list in random', element_list[self.random_article].get_attribute("innerHTML"))
         return self.random_article
 
     def get_scroll_locator(self, url, random_article):
