@@ -50,8 +50,8 @@ Feature: As a user I want to confirm articles in the feed list are shown to the 
         When the user clicks on load more stories cta
         Then the articles are shown order by date desc
         Examples:
-           | keyword                               |
-           | /inside-google/googlers/she-word/     |
+           | keyword                       |
+           | /inside-google/talks-google/  |
 
     @feed-article-load-more
     Scenario Outline: Test articles listed in the feed on a perspective landing page are ordered by desc date

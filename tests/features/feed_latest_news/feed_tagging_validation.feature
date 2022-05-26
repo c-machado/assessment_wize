@@ -51,8 +51,8 @@ Feature: As a user, I want to confirm articles in the feed list are shown to the
         When the user chooses a random article
         Then the tags associated match with the content in the <keyword>
         Examples:
-           | keyword                            |
-           | /inside-google/googlers/she-word/  |
+           | keyword                       |
+           | /inside-google/talks-google/  |
 
     @feed-article-tagging
     Scenario Outline: Test articles listed in the feed on a perspective landing page are tagged accordingly
@@ -69,5 +69,6 @@ Feature: As a user, I want to confirm articles in the feed list are shown to the
         When the user chooses a random article
         Then the tags associated match with the content in the <keyword>
         Examples:
-           | keyword   |
-           | /waze/    |
+           | keyword                       |
+           | /waze/                        |
+           | /products/marketingplatform   |

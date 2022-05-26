@@ -3,10 +3,10 @@ from dataclasses import dataclass
 
 @dataclass
 class Constants:
-    BASE_URL = 'https://blog.google'
+    # BASE_URL = 'https://blog.google'
     SEARCH_URL = "search/?query="
     # BASE_URL = 'https://gweb-uniblog-publish-stage.appspot.com'
-    # BASE_URL = 'https://gweb-uniblog-publish-dev.appspot.com'
+    BASE_URL = 'https://gweb-uniblog-publish-dev.appspot.com'
     PROD_URL = 'blog.google'
     CHROME_PROFILE = '/Users/machadoca/Documents/chrome_huge_inc'
     CHROME_PROFILE_LINUX = '/usr/local/google/home/machadoca/Documents/chrome_google'
@@ -46,7 +46,7 @@ class Constants:
         'en_CA': '%b %d',
         'pt_BR': '%d %b',
         'es_ES': '%b %d',
-        'it_it': '%d %b',
+        'it_IT': '%d %b',
     }
     DATE_FORMAT_IN_FEED_PAST_YEAR_PER_LOCALE = {
         'en_US': '%b %Y',
@@ -57,7 +57,7 @@ class Constants:
         'en_CA': '%b %Y',
         'pt_BR': '%b %Y',
         'es_ES': '%b %Y',
-        'it_it': '%b %Y',
+        'it_IT': '%b %Y',
     }
     DATE_FORMAT_PER_LOCALE = {
         'en_US': '%b %d, %Y',
@@ -68,7 +68,7 @@ class Constants:
         'en_CA': '%b %d, %Y',
         'fr_CA': '%d %b, %Y',
         'es_ES': '%b %d, %Y',
-        'it_it': '%d %b, %Y',
+        'it_IT': '%d %b, %Y',
     }
     DESKTOP_PLATFORMS = [
         'WIN10',
@@ -103,7 +103,7 @@ class Constants:
         "press_fr_ca": "Salle de presse",
         "press_pt_br": "Imprensa",
         "press_es_419": "Prensa",
-        "press_it_it": "Giornalisti",
+        "press_it_it": "Stampa",
     }
     LANGUAGE_SELECTOR = {
         "English",

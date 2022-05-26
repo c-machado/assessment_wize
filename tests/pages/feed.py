@@ -26,6 +26,8 @@ class Feed(BasePage, BasePageAPI):
 
     def get_article_dates_in_feed_list(self):
         """:return list of strings with the article dates in the feed """
+        self.driver.wait_for_page_load()
+        self.driver.wait_for_feed_to_load(*PageLocators.feed_articles_list)
         article_dates = self.driver.find_elements(*PageLocators.feed_article_dates_list)
         article_dates_in_feed = []
         for article_date in article_dates:
@@ -48,19 +50,22 @@ class Feed(BasePage, BasePageAPI):
                 titles_list.append(self.replace_ampersand_char(article_title.get_attribute("innerHTML")))
             else:
                 titles_list.append(article_title.get_attribute("innerHTML"))
-            self.logger.info('%s article_title.get_attribute("innerHTML")', article_title.get_attribute("innerHTML"))
+            self.logger.info('%s self.replace_ampersand_char(article_title.get_attribute("innerHTML"))',
+                             self.replace_ampersand_char(article_title.get_attribute("innerHTML")))
         return titles_list
 
     def get_date_article_in_feed(self):
         """To capture the date shown in an article in the feed"""
         """:return e.g. Jan 20 / Dec 2021"""
         article_date_list = self.get_article_dates_in_feed_list()
+        self.logger.info('%s len(article_date_list)', len(article_date_list))
         for article_date_index in range(0, len(article_date_list)):
             self.logger.info('%s article_date_index', article_date_index)
             self.logger.info('%s actual_article_date_in_feed_to_return', article_date_list[article_date_index])
             if article_date_index == self.random_article:
                 self.logger.info('%s article_date_index', article_date_index)
-                self.logger.info('%s actual_article_date_in_feed_to_return', article_date_list[article_date_index])
+                self.logger.info('%s actual_article_date_in_feed_to_return',
+                                 article_date_list[article_date_index])
                 return article_date_list[article_date_index]
 
     def get_date_first_article_in_feed(self, keyword_url):
@@ -121,7 +126,9 @@ class Feed(BasePage, BasePageAPI):
     def click_load_more_stories_in_feed(self):
         self.driver.wait_for_feed_to_load(*PageLocators.feed_articles_list)
         self.scroll_to_bottom()
-        if len(self.get_articles_in_feed_list()) > 6:
+        length_list = len(self.get_articles_in_feed_list())
+        assert length_list >= 1
+        if length_list > 3:
             self.driver.click_to_element(PageLocators.feed_load_more)
 
     def close_toast_banner(self):
@@ -130,7 +137,8 @@ class Feed(BasePage, BasePageAPI):
     def confirm_articles_in_feed_homepage(self, keyword_url):
         headlines_in_feed = self.get_article_titles_in_feed()
         headlines_in_api = self.get_article_titles_in_latest_api(keyword_url)
-        if headlines_in_api == headlines_in_feed:
+        print('all', all(item in headlines_in_api for item in headlines_in_feed))
+        if all(item in headlines_in_api for item in headlines_in_feed):
             return True
         else:
             return False

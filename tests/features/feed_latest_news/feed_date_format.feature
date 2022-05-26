@@ -19,7 +19,7 @@ Feature: As a user, I want to confirm dates are showing according to the expecte
             | en_CA     | /intl/en-ca/ |
             | pt_BR     | /intl/pt-br/ |
             | es_ES     | /intl/es-419/|
-            | it_it     | /intl/it-it/ |
+            | it_IT     | /intl/it-it/ |
 
     @feed-article-date-format
     Scenario Outline: Confirm article's date is in the correct format in category page feed
@@ -37,8 +37,8 @@ Feature: As a user, I want to confirm dates are showing according to the expecte
             | fr_CA     | /intl/fr-ca/produits/explorez-obtenez-des-reponses/   |
             | en_CA     | /intl/en-ca/products/explore-get-answers/             |
             | pt_BR     | /intl/pt-br/produtos/android-chrome-play/             |
-            | es_ES    | /intl/es-419/actualizaciones-de-producto/android-chrome-play/|
-            | it_it     | /intl/it-it/prodotti/android-chrome-play/              |
+            | es_ES     | /intl/es-419/actualizaciones-de-producto/android-chrome-play/|
+            | it_IT     | /intl/it-it/prodotti/android-chrome-play/              |
 
 
     #Add subcategory pages for other locales if the content gets updated

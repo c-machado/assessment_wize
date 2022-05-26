@@ -117,7 +117,6 @@ class BasePage(object):
         element_list_length = len(element_list)
         self.logger.info('%s length list in random', element_list_length)
         self.random_article = random.randint(0, element_list_length - 1)
-        self.logger.info('%s element list in random', element_list[self.random_article].get_attribute("innerHTML"))
         return self.random_article
 
     def get_scroll_locator(self, url, random_article):

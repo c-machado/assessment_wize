@@ -1,6 +1,8 @@
 # Created by machadoca at 23/12/21
 Feature: As a user, I would like to interact with the header navigation on desktop
 
+
+  #TODO: separate US which is the unique locale that contains the 'see all' CTA
   @header-desktop
   Scenario Outline: Test link to product updates page
       Given a user is at the <keyword> site
@@ -40,6 +42,7 @@ Feature: As a user, I would like to interact with the header navigation on deskt
         |keyword    | submenu       |
         |/          | company_news  |
 
+  #TODO: separate RSS options and add assertion on the HTTP status
   @header-desktop
   Scenario Outline: Test options in the kebab menu
       Given a user is at the <keyword> site
