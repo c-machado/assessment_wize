@@ -71,4 +71,4 @@ Feature: As a user, I want to confirm articles in the feed list are shown to the
         Examples:
            | keyword                       |
            | /waze/                        |
-           | /products/marketingplatform   |
+           | /products/marketingplatform/  |

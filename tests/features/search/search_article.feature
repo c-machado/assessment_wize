@@ -13,7 +13,7 @@ Feature: As a user, I would like to search content within the blog within an art
      Examples:
             | text_to_search | keyword       |
             | google           | /             |
-            | sicherer       | /intl/de-de/  |
+            | beim           | /intl/de-de/  |
             | digital        | /intl/en-in/  |
             | australians    | /intl/en-au/  |
             | nouvelles      | /intl/fr-ca/  |

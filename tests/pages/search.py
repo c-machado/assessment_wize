@@ -21,7 +21,7 @@ class Search(BasePage, BasePageAPI):
     def click_search_icon_in_nav_bar(self):
         self.driver.click_to_element(PageLocators.search_icon_nav_desktop)
         self.driver.wait_for_element_visible(*PageLocators.search_bar_text_field)
-        # time.sleep(2)
+        time.sleep(1)
 
     def click_search_icon_in_bar_expanded(self):
         self.driver.click_to_element(PageLocators.search_icon_nav_expanded)
@@ -32,7 +32,6 @@ class Search(BasePage, BasePageAPI):
         self.get_random_element_to_filter(filter_by_options_list)
         self.tag_to_filter = filter_by_options_list[self.random_filter].get_attribute("innerHTML")
         self.tag_to_filter = self.replace_ampersand_char(self.tag_to_filter)
-        print('tag to filter', self.tag_to_filter)
         filter_by_options_list[self.random_filter].click()
         self.driver.wait_for_page_load()
         self.driver.wait_for_element_visible(PageLocators.search_tag_filter_selected)
@@ -90,21 +89,27 @@ class Search(BasePage, BasePageAPI):
         articles_tags_in_feed_results = self.get_tag_eyebrow_in_feed_results_page(articles_in_feed, keyword)
         for tag in articles_tags_in_feed_results:
             if tag != self.tag_to_filter:
-                print('tag in feed', tag)
+                self.logger.info('%s tag in feed', tag)
                 return False
         return True
 
     def get_suggested_results_expected(self, keyword_url, text_to_search):
-        return self.get_suggested_results_in_search_api(keyword_url, text_to_search)
+        suggested_results_api = self.get_suggested_results_in_search_api(keyword_url, text_to_search)
+        self.logger.info('%s suggested_results_api', suggested_results_api)
+        return suggested_results_api
 
     def get_search_results_in_page(self):
         results_in_page = self.driver.find_elements(*PageLocators.search_results_list)
-        return self.get_search_results_headlines(results_in_page)
+        headlines_in_results_page = self.get_search_results_headlines(results_in_page)
+        self.logger.info('%s headlines_in_results_page', headlines_in_results_page)
+        return headlines_in_results_page
 
     # TODO: add validation when there are not suggested results
     def get_suggested_results_in_page(self):
         suggested_results_in_page = self.driver.find_elements(*PageLocators.search_suggestions_results_list)
-        return self.get_search_results_headlines(suggested_results_in_page)
+        headlines_suggested_results = self.get_search_results_headlines(suggested_results_in_page)
+        self.logger.info('%s headlines_suggested_results', headlines_suggested_results)
+        return headlines_suggested_results
 
     def get_tag_eyebrow_in_feed_results_page(self, eyebrow_in_articles, keyword):
         tag_articles_eyebrow = []
@@ -113,7 +118,8 @@ class Search(BasePage, BasePageAPI):
         for element in eyebrow_in_articles:
             tag_eyebrow = self.remove_html_tags(element.get_attribute("innerHTML"))
             tag_eyebrow_principal = tag_eyebrow.split("/ ")[1]
-            print('tag eyebrow principal', tag_eyebrow_principal)
+            self.logger.info('%s tag_eyebrow_principal', tag_eyebrow_principal)
+            self.logger.info('%s tag_to_filter', self.tag_to_filter)
             index += 1
             if 'collection' in tag_eyebrow_principal:
                 collection_index += 1
@@ -135,12 +141,13 @@ class Search(BasePage, BasePageAPI):
         primary_tags_list = []
         for item in self.collections_dict.values():
             index = item[0]
-            print('self.collections_dict', self.collections_dict)
-            self.scroll_to_feed(index, keyword)
+            self.logger.info('%s elf.collections_dict', self.collections_dict)
+            self.scroll_to_feed(index-1, keyword)
             self.click_on_collection_element(index)
             data_analytics = self.driver.find_element(*PageLocators.collection_data_analytics)
             primary_tag = (data_analytics.get_attribute("outerHTML").split("primaryTag")[1]).split("&quot;")[2]
             print('primary_tag', primary_tag)
+            self.logger.info('%s primary_tag', primary_tag)
             primary_tags_list.append(primary_tag)
             self.driver.go_back_to_url()
         return self.contains_filtered_tag(self.tag_to_filter, primary_tags_list)

@@ -5,8 +5,8 @@ from dataclasses import dataclass
 class Constants:
     # BASE_URL = 'https://blog.google'
     SEARCH_URL = "search/?query="
-    # BASE_URL = 'https://gweb-uniblog-publish-stage.appspot.com'
-    BASE_URL = 'https://gweb-uniblog-publish-dev.appspot.com'
+    BASE_URL = 'https://gweb-uniblog-publish-stage.appspot.com'
+    # BASE_URL = 'https://gweb-uniblog-publish-dev.appspot.com'
     PROD_URL = 'blog.google'
     CHROME_PROFILE = '/Users/machadoca/Documents/chrome_huge_inc'
     CHROME_PROFILE_LINUX = '/usr/local/google/home/machadoca/Documents/chrome_google'

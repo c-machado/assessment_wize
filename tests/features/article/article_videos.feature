@@ -33,5 +33,5 @@ Feature: As a user, I want to be able to interact with videos shown in the conte
       | /intl/es-419/noticias-de-la-empresa/iniciativas/google-arts-and-culture-y-naciones-unidas-muestran-el-impacto-del-cambio-climatico-con-el-latido-de-la-tierra/        | body   |
       | /intl/it-it/prodotti/youtube/uno-sguardo-al-2022-youtube/                   | body   |
       #TODO: This video is actually not playing in the live site, because the author name contains a special character
-#      | /intl/fr-ca/produits/appareils-services/la-star-canadienne-du-tennis-leylah-fernandez-rejoint-teampixel/ |body|
+      | /intl/fr-ca/produits/appareils-services/la-star-canadienne-du-tennis-leylah-fernandez-rejoint-teampixel/ |body|
 

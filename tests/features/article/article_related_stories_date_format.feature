@@ -17,5 +17,5 @@ Feature: As a user, I want to confirm dates in the related stories section are s
             | fr_CA     | /intl/fr-ca/ |
             | pt_BR     | /intl/pt-br/ |
             | es_ES     | /intl/es-419/|
-            | it_it     | /intl/it-it/ |
+            | it_IT     | /intl/it-it/ |
 

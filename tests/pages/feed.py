@@ -202,10 +202,10 @@ class Feed(BasePage, BasePageAPI):
     def get_articles_indexes_matching_sitespace_tag(self, eyebrow_in_articles, sitespace):
         """:return: a list of indexes of the articles that has the same tag from the site space"""
         articles_indexes_with_sitespace_tag = []
-        print(len(eyebrow_in_articles))
         for index, element in enumerate(eyebrow_in_articles):
             tag_eyebrow = self.remove_html_tags(element.get_attribute("innerHTML"))
-            tag_eyebrow_principal = tag_eyebrow.split("/ ")[1]
+            tag_eyebrow_principal = tag_eyebrow.split("·")[1]
+            self.logger.info(tag_eyebrow_principal)
             if sitespace == tag_eyebrow_principal:
                 articles_indexes_with_sitespace_tag.append(index)
         return articles_indexes_with_sitespace_tag

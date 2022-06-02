@@ -20,6 +20,7 @@ LATEST_FEED = {
     '/intl/es-419/actualizaciones-de-producto/android-chrome-play/': '/api/v2/latest?author_ids=&category=&date_start=&date_stop=&hero_template=heroArticleItem&is_main_hero=True&paginate=10&show_hero=True&site_id=13&tags=android,chrome,google-play,wear-os-by-google',
     '/intl/it-it/prodotti/android-chrome-play/': '/api/v2/latest?author_ids=&category=&date_start=&date_stop=&hero_template=heroArticleItem&is_main_hero=True&paginate=10&show_hero=True&site_id=15&tags=android,chrome,chromebooks,google-play,google-tv',
     '/products/chrome/': '/api/v2/latest?author_ids=&category=&date_start=&date_stop=&hero_template=heroArticleItem&is_main_hero=&paginate=6&show_hero=True&site_id=2&tags=chrome',
+    '/products/android/': '/api/v2/latest?author_ids=&category=&date_start=&date_stop=&hero_template=heroArticleItem&is_main_hero=&paginate=6&show_hero=True&site_id=2&tags=android',
     '/inside-google/googlers/she-word/': '/api/v2/latest?author_ids=&category=article,perspective&date_start=&date_stop=&hero_template=heroArticleItem&is_main_hero=&paginate=6&site_id=2&tags=the-she-word',
     '/inside-google/talks-google/': '/api/v2/latest?author_ids=&category=article,perspective&date_start=&date_stop=&hero_template=heroArticleItem&is_main_hero=&paginate=9&show_hero=True&site_id=2&tags=talks-at-google',
     '/waze/': '/api/v2/latest?author_ids=&category=&date_start=&date_stop=&hero_template=heroArticleItem&is_main_hero=&paginate=9&site_id=2&tags=products-waze',

@@ -95,6 +95,8 @@ def correct_search_results_per_criteria(text_to_search, keyword, search):
     assert search.is_search_results_header_visible()
     actual_results = search.get_search_results_in_page()
     expected_results = search.get_suggested_results_expected(keyword, text_to_search)
+    assert len(actual_results) > 0
+    assert len(expected_results) > 0
     assert expected_results == actual_results
 
 

@@ -28,7 +28,7 @@ class ArticlePage(BasePage):
 
     def click_to_play_video(self, video_type):
         self.driver.wait_for_page_load()
-        time.sleep(2)
+        time.sleep(3)
         if video_type == 'hero':
             self.driver.click_to_element(PageLocators.article_play_hero_video)
             self.driver.switch_to_iframe(PageLocators.article_video_hero_frame)
