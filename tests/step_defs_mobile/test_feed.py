@@ -15,7 +15,9 @@ def at_the_blog(keyword, driver, get_web_browser, get_viewport):
     print('keyword url', Constants.BASE_URL + keyword)
     print('get_web_browser', get_web_browser)
     print('get_viewport', get_viewport)
+    # time.sleep(2)
     driver.start(get_web_browser, get_viewport)
+    # time.sleep(5)
     driver.go_to_URL(Constants.BASE_URL + keyword)
     driver.wait_for_page_load()
     # browser.set_cookie()
@@ -36,7 +38,8 @@ def user_check_date_in_feed(keyword, locale, feed, driver, base_page):
 
 
 @when("the user opens the selected random article in <keyword> feed")
-def user_open_random_article_in_feed(feed, keyword):
+def user_open_random_article_in_feed(feed, base_page, keyword):
+    # base_page.close_bar(PageLocators.cookie_banner_ok_cta)
     feed.click_to_random_article_in_feed(keyword)
 
 

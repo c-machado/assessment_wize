@@ -131,6 +131,39 @@ class BasePage(object):
             self.logger.info('%s locator feed starts at 1', locator)
             return locator
 
+    def get_scroll_locator_(self, url, random_article):
+        if random_article == 0:
+            random_index = random_article + 1
+            locator = re.sub("index_to_scroll", str(random_index), Constants.SCROLL_TO_HOME_FEED)
+            self.logger.info('%s locator feed random 0', locator)
+            return locator
+        elif random_article == 1:
+            random_index = random_article
+            locator = re.sub("index_to_scroll", str(random_index), Constants.SCROLL_TO_HOME_FEED)
+            self.logger.info('%s locator feed random 1', locator)
+            return locator
+        elif 2 <= random_article < 5:
+            random_index = random_article - 1
+            locator = re.sub("index_to_scroll", str(random_index), Constants.SCROLL_TO_HOME_FEED)
+            self.logger.info('%s locator feed random 2', locator)
+            return locator
+        elif random_article >= 5:
+            random_index = random_article - 2
+            locator = re.sub("index_to_scroll", str(random_index), Constants.SCROLL_TO_HOME_FEED)
+            self.logger.info('%s locator feed random 5', locator)
+            return locator
+
+    def get_locator_to_click(self, url, random_article):
+        if random_article == 0:
+            random_index = random_article + 1
+            locator = re.sub("index_to_scroll", str(random_index), Constants.SCROLL_TO_HOME_FEED)
+            self.logger.info('%s locator feed starts at 1', locator)
+            return locator
+        elif random_article > 0:
+            locator = re.sub("index_to_scroll", str(random_article), Constants.SCROLL_TO_HOME_FEED)
+            self.logger.info('%s locator feed starts at 1', locator)
+            return locator
+
     @staticmethod
     def get_text_from_span(element):
         soup = BeautifulSoup(element.get_attribute("outerHTML"), 'xml')

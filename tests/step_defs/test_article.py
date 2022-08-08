@@ -13,7 +13,9 @@ def at_the_blog(keyword, driver, get_web_browser, get_viewport):
     print('keyword url', Constants.BASE_URL + keyword)
     print('get_web_browser', get_web_browser)
     print('get_viewport', get_viewport)
+    # time.sleep(2)
     driver.start(get_web_browser, get_viewport)
+    # time.sleep(2)
     driver.go_to_URL(Constants.BASE_URL + keyword)
     driver.wait_for_page_load()
 

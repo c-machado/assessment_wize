@@ -44,6 +44,7 @@ class Driver(IDriver):
 
     def build_driver_for_local(self, web_browser, viewport):
         if web_browser == "chrome":
+            # self.build_chrome_driver(ChromeDriverManager("104.0.5112.20").install(), viewport)
             self.build_chrome_driver(ChromeDriverManager().install(), viewport)
         # elif web_browser == 'firefox':
         #     self.build_firefox_driver(GeckoDriverManager().install(), viewport)
@@ -73,15 +74,16 @@ class Driver(IDriver):
         options.add_argument(size_viewport)
         options.set_capability("acceptInsecureCerts", True)
         options.add_argument('--start-maximized')
-        # options.add_argument('--headless')
+        options.add_argument('--headless')
         options.add_argument('--no-sandbox')
         options.add_argument("--disable-dev-shm-usage")
         # options.add_argument("--remote-debugging-port=9222")
         # chrome://inspect/#devices
-        options.add_argument(r'--user-data-dir='+Constants.CHROME_PROFILE)  # your chrome user data directory
-        options.add_argument(r'--profile-directory=Person 2')  # the profile with the extensions loaded
+        # options.add_argument(r'--user-data-dir='+Constants.CHROME_PROFILE)  # your chrome user data directory
+        # options.add_argument(r'--profile-directory=Person 2')  # the profile with the extensions loaded
         # options.add_argument(r'--profile-directory=Person 1')  # the profile in LINUX
         s = Service(driver_path)
+        # s = Service("chromedriver")
         self.driver = webdriver.Chrome(service=s,
                                        options=options)
 
@@ -155,6 +157,7 @@ class Driver(IDriver):
         return self.driver.execute_script(script, locator)
 
     def find_element(self, *locator):
+        print(locator)
         self.wait_for_element_visible(*locator)
         if locator.__len__() == 2:
             return self.driver.find_element(*locator)
@@ -213,7 +216,8 @@ class Driver(IDriver):
     def move_to_element(self, to_element):
         from selenium.webdriver.common.action_chains import ActionChains
         action = ActionChains(self.driver)
-        action.move_to_element(to_element).click().perform()
+        # action.move_to_element(to_element).perform()
+        action.move_to_element(to_element).release().perform()
 
     def set_window_size(self, width, height):
         self.driver.set_window_size(width, height)

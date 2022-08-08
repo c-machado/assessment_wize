@@ -3,9 +3,9 @@ from dataclasses import dataclass
 
 @dataclass
 class Constants:
-    # BASE_URL = 'https://blog.google'
+    BASE_URL = 'https://blog.google'
     SEARCH_URL = "search/?query="
-    BASE_URL = 'https://gweb-uniblog-publish-stage.appspot.com'
+    # BASE_URL = 'https://gweb-uniblog-publish-stage.appspot.com'
     # BASE_URL = 'https://gweb-uniblog-publish-dev.appspot.com'
     PROD_URL = 'blog.google'
     CHROME_PROFILE = '/Users/machadoca/Documents/chrome_huge_inc'
@@ -235,13 +235,13 @@ class Constants:
     FR_CANADA_LOCALE = "/intl/fr-ca/"
     GERMANY_LOCALE = "/intl/de-de/"
     PT_BRAZIL_LOCALE = "/intl/pt-br/"
-    NEWSLETTER_FIRST_NAME = 'AT TEST'
-    NEWSLETTER_INVALID_FIRST_NAME = 'AT TEST.*'
-    NEWSLETTER_ERROR_MSG_NAME = 'Sorry, only letters (a-z), numbers (0-9) and hyphens are allowed.'
     NEWSLETTER_ERROR_MSG_EMAIL = 'Email address contains error(s).'
     NEWSLETTER_EMAIL = 'at_test@hugeinc.com'
-    NEWSLETTER_INVALID_EMAIL = 'at_test@'
-    NEWSLETTER_CONFIRMATION = 'Done! Check your inbox toconfirm your subscription.'
+    NEWSLETTER_INVALID_EMAIL = "at_'%^test@hmail.com"
+    NEWSLETTER_CONFIRMATION = 'Done. Just one step more.Check your inbox to confirm your subscription.'
+    NEWSLETTER_CONFIRMATION_STICKY = 'Done. Just one step more. Check your inbox to confirm your subscription.'
+    NEWSLETTER_CONFIRMATION_MOBILE = 'Done. Just one step more.\nCheck your inbox to confirm your subscription.'
+    # NEWSLETTER_CONFIRMATION = 'OK, take me to the homepage'
     PLATFORM_IOS = 'IOS'
     PLATFORM_MAC = 'MAC'
     PLATFORM_WIN = "WIN"
@@ -263,6 +263,7 @@ class Constants:
     }
     SCROLL_TO_HOME_FEED = '.feed-article.ng-scope:nth-child(index_to_scroll)'
     SCROLL_TO_CATEGORY_HORIZONTAL_FEED = '.feed-article.ng-scope:nth-child(index_to_scroll)'
+    SCROLL_TO_FEED = '.article-list__feed'
     SITESPACE_TITLE_IN_PRODUCTS = [
         'AdSense',
         'Google Ads & Commerce',

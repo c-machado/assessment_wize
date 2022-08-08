@@ -2,6 +2,8 @@ import logging
 import datetime
 import time
 
+from selenium.webdriver.common.by import By
+
 from tests.consts import api_const
 from tests.consts.constants import Constants
 from tests.pages.base_page import BasePage
@@ -120,8 +122,16 @@ class Feed(BasePage, BasePageAPI):
                 self.driver.wait_for_element_clickable(article_list[article_index])
                 time.sleep(2)
                 self.scroll_to_feed(self.random_article, keyword)
+                time.sleep(2)
                 article_list[article_index].click()
-                # time.sleep(1)
+                time.sleep(2)
+                # locator = self.get_locator_to_click(keyword, self.random_article)
+                # print('locator to click', locator)
+                # element = self.driver.find_element(By.CSS_SELECTOR, locator)
+                # time.sleep(3)
+                # # self.driver.move_to_element(element)
+                # element.click()
+                # self.driver.execute_script_locator('arguments[0].click();', element)
 
     def click_load_more_stories_in_feed(self):
         self.driver.wait_for_feed_to_load(*PageLocators.feed_articles_list)
@@ -133,6 +143,7 @@ class Feed(BasePage, BasePageAPI):
 
     def close_toast_banner(self):
         self.close_bar(PageLocators.toast_bar_close_cta)
+        time.sleep(1)
 
     def confirm_articles_in_feed_homepage(self, keyword_url):
         headlines_in_feed = self.get_article_titles_in_feed()

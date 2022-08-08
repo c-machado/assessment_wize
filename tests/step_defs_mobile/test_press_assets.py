@@ -1,5 +1,6 @@
 import pytest
 import requests
+import time
 from pytest_bdd import scenarios, given, when, then
 
 from tests.consts.constants import Constants
@@ -13,7 +14,9 @@ def at_the_blog(keyword, driver, get_web_browser, get_viewport):
     print('get_web_browser', get_web_browser)
     print('get_viewport', get_viewport)
     driver.start(get_web_browser, get_viewport)
+    # time.sleep(5)
     driver.go_to_URL(Constants.BASE_URL + keyword)
+    # time.sleep(5)
     driver.wait_for_page_load()
 
 

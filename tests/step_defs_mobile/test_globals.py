@@ -16,7 +16,9 @@ def at_the_blog(keyword, driver, get_web_browser, get_viewport):
     print('keyword url', Constants.BASE_URL + keyword)
     print('get_web_browser', get_web_browser)
     print('get_viewport', get_viewport)
+    # time.sleep(2)
     driver.start(get_web_browser, get_viewport)
+    # time.sleep(5)
     driver.go_to_URL(Constants.BASE_URL + keyword)
     driver.wait_for_page_load()
 
@@ -142,15 +144,42 @@ def user_clicks_subscribe_cta_mobile(header):
     time.sleep(2)
 
 
+@when("the user clicks on the subscribe cta in the sticky bar")
+def user_clicks_subscribe_cta_mobile(header):
+    header.click_on_subscribe_cta_mobile_sticky()
+    time.sleep(2)
+
+
+@when("the user fills out the email in the sticky bar")
+def user_fills_out_newsletter_form(newsletter):
+    newsletter.enter_email_in_sticky(Constants.NEWSLETTER_EMAIL)
+
+
+@when("the user fills out the email on the sticky with invalid data")
+def user_fills_out_form_with_invalid_data(newsletter):
+    newsletter.enter_email_in_sticky(Constants.NEWSLETTER_INVALID_EMAIL)
+    newsletter.submit_newsletter_sticky_form()
+
+
 @when("the user fills out the form")
 def user_fills_out_newsletter_form(newsletter):
-    newsletter.enter_first_name(Constants.NEWSLETTER_FIRST_NAME)
     newsletter.enter_email(Constants.NEWSLETTER_EMAIL)
+
+
+@when("the user submits the information on the sticky")
+def user_submit_form(newsletter):
+    newsletter.submit_newsletter_sticky_form()
 
 
 @when("the user submits the information")
 def user_submit_form(newsletter):
     newsletter.submit_newsletter_form()
+
+
+@then("the system displays a confirmation message on the sticky")
+def verify_confirmation_msg(newsletter, base_page):
+    message = newsletter.confirm_newsletter_sticky_subscription().text
+    assert Constants.NEWSLETTER_CONFIRMATION_MOBILE == message
 
 
 @then("the system displays a confirmation message")
@@ -159,6 +188,16 @@ def verify_confirmation_msg(newsletter, base_page):
     formatted_message = base_page.remove_enter(message)
     assert Constants.NEWSLETTER_CONFIRMATION == formatted_message
 
+
+@then("the system displays a confirmation message on the homepage")
+def verify_confirmation_msg(newsletter, base_page):
+    message = newsletter.confirm_newsletter_homepage_subscription().text
+    formatted_message = base_page.remove_enter(message)
+    assert Constants.NEWSLETTER_CONFIRMATION == formatted_message
+
+@then("the user sees an error message on sticky")
+def newsletter_error_message(newsletter):
+    assert newsletter.get_email_message_error_in_sticky() == Constants.NEWSLETTER_ERROR_MSG_EMAIL
 
 @when("the user clicks on subscribe cta in the toast")
 def user_clicks_subscribe_cta_toast(footer, header):
@@ -216,7 +255,6 @@ def user_closes_cookie_banner(cookie_banner):
 
 @when("the user fills out the form with invalid data")
 def user_fills_out_form_with_invalid_data(newsletter):
-    newsletter.enter_first_name(Constants.NEWSLETTER_INVALID_FIRST_NAME)
     newsletter.enter_email(Constants.NEWSLETTER_INVALID_EMAIL)
     newsletter.submit_newsletter_form()
 
@@ -230,7 +268,6 @@ def toast_bar_visible(cookie_banner, homepage, newsletter, toast_bar, get_viewpo
 
 @then("the user sees an error message")
 def newsletter_error_message(newsletter):
-    assert newsletter.get_name_message_error() == Constants.NEWSLETTER_ERROR_MSG_NAME
     assert newsletter.get_email_message_error() == Constants.NEWSLETTER_ERROR_MSG_EMAIL
 
 
@@ -296,3 +333,20 @@ def url_per_social_media_is_secure(footer):
 def test_header_waze_sitespace(header):
     title_sitespace_in_nav = header.get_site_space_title_in_navigation()
     assert title_sitespace_in_nav == Constants.SITESPACE_WAZE_IN_NAV_MENU
+
+
+@given("a user navigates to <url_from>")
+def user_navigate_to_previous_redirect(url_from, driver):
+    time.sleep(5)
+    driver.go_to_URL(Constants.BASE_URL + url_from)
+    time.sleep(4)
+
+
+@then("the user gets a 400 error")
+def redirected_to_page(base_page):
+    assert base_page.get_status_redirect() == 400
+
+
+@when("the user scroll to see the progress bar")
+def user_scroll_in_article_page(base_page):
+    base_page.scroll_to_bottom()
