@@ -18,6 +18,7 @@ Feature: As a user, I would like to interact with the header navigation on mobil
         |/intl/pt-br/      | /intl/pt-br/produtos/                     |product_updates |
         |/intl/es-419/     | /intl/es-419/actualizaciones-de-producto/ |product_updates |
         |/intl/it-it/      | /intl/it-it/prodotti/                     |product_updates |
+        |/intl/en-africa/  | /intl/en-africa/products/                 |product_updates |
 
 
   @header-mobile
@@ -81,16 +82,17 @@ Feature: As a user, I would like to interact with the header navigation on mobil
       Then the dates in RSS and <keyword> matches
 
       Examples:
-        |keyword       |
-        |/             |
-        |/intl/de-de/  |
-        |/intl/en-in/  |
-        |/intl/en-au/  |
-        |/intl/en-ca/  |
-        |/intl/fr-ca/  |
-        |/intl/pt-br/  |
-        |/intl/es-419/ |
-        |/intl/it-it/  |
+        |keyword           |
+        |/                 |
+        |/intl/de-de/      |
+        |/intl/en-in/      |
+        |/intl/en-au/      |
+        |/intl/en-ca/      |
+        |/intl/fr-ca/      |
+        |/intl/pt-br/      |
+        |/intl/es-419/     |
+        |/intl/it-it/      |
+        |/intl/en-africa/  |
 
   @header-mobile
   Scenario Outline: Test the keyword logo in the nav menu on mobile
@@ -100,13 +102,14 @@ Feature: As a user, I would like to interact with the header navigation on mobil
       Then the user is redirected to <url>
 
       Examples:
-        |keyword      | url         |
-        |/            |/           |
-        |/intl/de-de/ |/intl/de-de/ |
-        |/intl/en-in/ |/intl/en-in/ |
-        |/intl/en-au/ |/intl/en-au/ |
-        |/intl/en-ca/ |/intl/en-ca/ |
-        |/intl/fr-ca/ |/intl/fr-ca/ |
-        |/intl/pt-br/ |/intl/pt-br/ |
-        |/intl/es-419/|/intl/es-419/|
-        |/intl/it-it/ |/intl/it-it/ |
+        |keyword          | url             |
+        |/                |/                |
+        |/intl/de-de/     |/intl/de-de/     |
+        |/intl/en-in/     |/intl/en-in/     |
+        |/intl/en-au/     |/intl/en-au/     |
+        |/intl/en-ca/     |/intl/en-ca/     |
+        |/intl/fr-ca/     |/intl/fr-ca/     |
+        |/intl/pt-br/     |/intl/pt-br/     |
+        |/intl/es-419/    |/intl/es-419/    |
+        |/intl/it-it/     |/intl/it-it/     |
+        |/intl/en-africa/ |/intl/en-africa/ |

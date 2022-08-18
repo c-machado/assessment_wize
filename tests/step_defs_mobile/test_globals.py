@@ -220,6 +220,8 @@ def user_clicks_google_logo(footer):
     footer.click_google_logo()
 
 
+# Per each new locale add the latest feed URL to the api_const.py, this is because the
+# RSS should match the content in the feed
 @then("the dates in RSS and <keyword> matches")
 def confirm_date_format_in_rss(header, feed, keyword):
     publish_date_rss = header.get_publish_date_in_rss()
