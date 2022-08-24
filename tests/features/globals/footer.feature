@@ -8,6 +8,7 @@ Feature: As a user, I would like to access the content in the footer
       |/intl/en-au/           |
       |/intl/en-in/           |
       |/intl/en-ca/           |
+      |/intl/en-africa/       |
       |/intl/fr-ca/           |
       |/intl/pt-br/           |
       |/intl/es-419/          |
@@ -39,7 +40,7 @@ Feature: As a user, I would like to access the content in the footer
       |url                     |
       |https://www.google.com  |
 
-  @footer
+  @footer1
   Scenario: Test language selector contains expected locales
     Given a user is at the <keyword> site
     When the user clicks on every language in the selector

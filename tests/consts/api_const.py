@@ -38,7 +38,9 @@ SEARCH_API = {
     '/intl/en-ca/': '/api/v2/search?paginate=12&order=relevance&site_id=11&query=text_to_search',
     '/intl/es-419/': '/api/v2/search?paginate=12&order=relevance&site_id=13&query=text_to_search',
     '/intl/it-it/': '/api/v2/search?paginate=12&order=relevance&site_id=15&query=text_to_search',
+    '/intl/en-africa/': '/api/v2/search?paginate=12&order=relevance&site_id=20&query=African',
     '/perspectives/sundar-pichai/': '/api/v2/search?paginate=12&order=relevance&site_id=2&query=text_to_search',
+
 
 }
 
@@ -52,6 +54,7 @@ SEARCH_SUGGESTIONS_API = {
     '/intl/en-ca/': '/api/v2/search-suggestions/?query=text_to_search&site_id=11&format=json',
     '/intl/es-419/': '/api/v2/search-suggestions/?query=text_to_search&site_id=13&format=json',
     '/intl/it-it/': '/api/v2/search-suggestions/?query=text_to_search&site_id=15&format=json',
+    '/intl/en-africa/': '/api/v2/search-suggestions/?query=text_to_search&site_id=20&format=json',
     '/perspectives/sundar-pichai/': '/api/v2/search-suggestions/?query=text_to_search&site_id=2&format=json'
 }
 

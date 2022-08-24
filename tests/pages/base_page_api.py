@@ -114,7 +114,9 @@ class BasePageAPI(object):
         article_results_suggestions = []
         urls_list = self.get_api_url_per_type_of_search()
         api_url = self.get_api_url_with_updated_parameters(urls_list, keyword_url, text_to_search)
+        print(f"test{api_url}")
         result = self.get_results_in_api(Constants.BASE_URL + api_url)
+
         for article in result['results']:
             headline = article['headline'].replace(u'\xa0', u' ')
             article_results_suggestions.append(headline)
@@ -153,6 +155,7 @@ class BasePageAPI(object):
             return True
 
     @staticmethod
+    # TODO: Find a solution to avoid adding if for each locale with long path
     def get_base_keyword_url(keyword_url):
         """:return: the portion of the keyword url that contains the locale information. e.g: / or /intl/en-in/"""
         substring = keyword_url[0:6]
@@ -160,6 +163,8 @@ class BasePageAPI(object):
             url = keyword_url[0:12]
             if url == '/intl/es-419':
                 url = keyword_url[0:13]
+            if url == '/intl/en-afr':
+                url = keyword_url[0:17]
         else:
             url = keyword_url[0]
         return url

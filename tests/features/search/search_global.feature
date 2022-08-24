@@ -2,16 +2,17 @@
 Feature: As a user, I want to be able to search for content within the blog
 
     Examples:
-        |keyword      |
-        |/            |
-        |/intl/de-de/ |
-        |/intl/en-in/ |
-        |/intl/en-au/ |
-        |/intl/fr-ca/ |
-        |/intl/pt-br/ |
-        |/intl/en-ca/ |
-        |/intl/es-419/ |
-        |/intl/it-it/ |
+         |keyword         |
+         |/               |
+         |/intl/de-de/    |
+         |/intl/en-in/    |
+         |/intl/en-au/    |
+         |/intl/fr-ca/    |
+         |/intl/pt-br/    |
+         |/intl/en-ca/    |
+         |/intl/en-africa/|
+         |/intl/es-419/   |
+         |/intl/it-it/    |
 
     @search
     Scenario: Test the search bar  - expanding the search bar
