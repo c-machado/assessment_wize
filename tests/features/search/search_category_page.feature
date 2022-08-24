@@ -35,7 +35,9 @@ Feature: As a user, I would like to search for the content while navigating on a
             | Australia’s non-profits    | /intl/en-au/products/android-chrome-more/          |
             #TODO: this example is not working in the stage env but it does in the production env
             | Google’s                   | /intl/en-ca/products/cloud/                        |
-#            | possèdent                  | /intl/fr-ca/produits/explorez-obtenez-des-reponses/|
+            | possèdent                  | /intl/fr-ca/produits/explorez-obtenez-des-reponses/|
+#            | possèdent                  | /intl/en-africa/products/android-chrome-more/      |
+            | possèdent                  | /intl/en-africa/products/    |
             | téléphone                  | /intl/fr-ca/produits/explorez-obtenez-des-reponses/|
             | desinformação              | /intl/pt-br/produtos/explore-e-encontre-respostas/ |
             | año                        | /intl/es-419/actualizaciones-de-producto/android-chrome-play/#android|
@@ -61,6 +63,7 @@ Feature: As a user, I would like to search for the content while navigating on a
             | vacinas        | /intl/pt-br/produtos/explore-e-encontre-respostas/ |
             | privacidad     | /intl/es-419/actualizaciones-de-producto/android-chrome-play/#android|
             | intelligente   | /intl/it-it/prodotti/android-chrome-play/          |
+            | africa   | /intl/en-africa/products/      |
 
     @search-category
     Scenario Outline: Test search results in a category page using special characters

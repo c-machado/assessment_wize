@@ -33,17 +33,19 @@ class PressAssets(BasePage, BasePageAPI):
     def get_api_url_with_type_and_tag(self, type_filter, tag_filter, keyword):
         print(type_filter)
         print(tag_filter)
-        urls_list = api_const.PRESS_ASSETS_PER_TYPE_AND_TAG_API
+        locale_url = self.get_locale_url(keyword)
+        api_url = api_const.PRESS_ASSETS_PER_TYPE_AND_TAG_API[locale_url]
         type_filter = self.format_ampersand_in_type_url(type_filter)
         tag_filter = self.format_ampersand_in_url(tag_filter)
-        api_url = self.get_api_url_with_type_and_tag_parameters(urls_list, keyword, type_filter, tag_filter)
-        return api_url
+        api_url_with_type_and_tag = self.get_api_url_with_type_and_tag_parameters(api_url, type_filter, tag_filter)
+        return api_url_with_type_and_tag
 
     def get_api_url_with_type(self, type_filter, keyword):
-        urls_list = api_const.PRESS_ASSETS_PER_TYPE_API
+        locale_url = self.get_locale_url(keyword)
+        api_url = api_const.PRESS_ASSETS_PER_TYPE_API[locale_url]
         type_filter = self.format_ampersand_in_type_url(type_filter)
-        api_url = self.get_api_url_with_updated_parameters(urls_list, keyword, type_filter)
-        return api_url
+        api_url_with_type = self.get_api_url_with_updated_parameters(api_url, type_filter)
+        return api_url_with_type
 
     def get_results_filter_by_type(self, filter_by_type):
         select_opts_per_type = self.driver.get_select_options(PageLocators.press_filter_by_type)
