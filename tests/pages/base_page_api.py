@@ -114,9 +114,7 @@ class BasePageAPI(object):
         article_results_suggestions = []
         urls_list = self.get_api_url_per_type_of_search()
         api_url = self.get_api_url_with_updated_parameters(urls_list, keyword_url, text_to_search)
-        print(f"test{api_url}")
         result = self.get_results_in_api(Constants.BASE_URL + api_url)
-
         for article in result['results']:
             headline = article['headline'].replace(u'\xa0', u' ')
             article_results_suggestions.append(headline)

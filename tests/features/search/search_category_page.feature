@@ -21,7 +21,7 @@ Feature: As a user, I would like to search for the content while navigating on a
             #| privacidad     | /intl/es-419/actualizaciones-de-producto/android-chrome-play/#android|
             #| intelligente   | /intl/it-it/prodotti/android-chrome-play/ |
 
-    @search-category1
+    @search-category
     Scenario Outline: Test search suggestions on a category page using special characters
         Given a user is at the <keyword> site
         When the user clicks the search icon

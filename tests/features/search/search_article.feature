@@ -2,7 +2,7 @@
 Feature: As a user, I would like to search content within the blog within an article page
 
 
-    @search-article1
+    @search-article
     Scenario Outline: Test search suggestions on an article page
         Given a user is at the <keyword> site
         And the user clicks on the hero article
@@ -92,7 +92,6 @@ Feature: As a user, I would like to search content within the blog within an art
 
 
     @search-article
-
     Scenario Outline: Test search results when there are no results on an article page
         Given a user is at the <keyword> site
         And the user clicks on the hero article

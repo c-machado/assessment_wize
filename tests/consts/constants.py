@@ -160,7 +160,6 @@ class Constants:
             "Google Produits": "https://about.google/products/",
             "Aide": "https://support.google.com/?hl=fr"
         },
-
         '/intl/de-de/': {
             "Datenschutz": "https://policies.google.com/privacy?hl=de&fg=1",
             "Nutzungsbedingungen": "https://policies.google.com/terms?hl=de",
