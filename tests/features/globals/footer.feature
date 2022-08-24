@@ -40,7 +40,7 @@ Feature: As a user, I would like to access the content in the footer
       |url                     |
       |https://www.google.com  |
 
-  @footer1
+  @footer
   Scenario: Test language selector contains expected locales
     Given a user is at the <keyword> site
     When the user clicks on every language in the selector
