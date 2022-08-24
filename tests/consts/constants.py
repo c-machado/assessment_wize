@@ -8,9 +8,9 @@ class Constants:
     BASE_URL = 'https://gweb-uniblog-publish-stage.appspot.com'
     # BASE_URL = 'https://gweb-uniblog-publish-dev.appspot.com'
     PROD_URL = 'blog.google'
-    CHROME_PROFILE = '/Users/machadoca/Documents/chrome_huge_inc'
-    CHROME_PROFILE_LINUX = '/usr/local/google/home/machadoca/Documents/chrome_google'
-    FIREFOX_PROFILE = '/Users/machadoca/Library/Application Support/Firefox/Profiles/4jwzwjvm.default'
+    CHROME_PROFILE = '/Users/jortiz/Library/Application Support/Google/Chrome/Default'
+    #CHROME_PROFILE_LINUX = '/usr/local/google/home/machadoca/Documents/chrome_google'
+    #FIREFOX_PROFILE = '/Users/machadoca/Library/Application Support/Firefox/Profiles/4jwzwjvm.default'
     COOKIE_BANNER_TXT = {
         "en": "Google serves cookies to analyze traffic to this site. Information about your use of our site is "
               "shared with Google for that purpose.",
@@ -98,6 +98,7 @@ class Constants:
     LANGUAGE_SELECTOR = {
         "English",
         "Deutsch",
+        "English (Africa)",
         "English (India)",
         "English (Australia)",
         "English (Canada)",
@@ -129,6 +130,13 @@ class Constants:
             "Help": "https://support.google.com/"
         },
         '/intl/en-ca/': {
+            "Privacy": "https://policies.google.com/privacy",
+            "Terms": "https://policies.google.com/terms",
+            "About Google": "https://about.google/",
+            "Google Products": "https://about.google/products/",
+            "Help": "https://support.google.com/"
+        },
+        '/intl/en-africa/': {
             "Privacy": "https://policies.google.com/privacy",
             "Terms": "https://policies.google.com/terms",
             "About Google": "https://about.google/",
@@ -190,6 +198,7 @@ class Constants:
         "/intl/en-in/": "About the blog",
         '/intl/en-au/': "About the blog",
         '/intl/en-ca/': "About the blog",
+        '/intl/en-africa/': "About the blog",
         '/intl/fr-ca/': "À propos du blogue",
         '/intl/de-de/': "Über unseren Blog",
         '/intl/pt-br/': "Sobre o blog",
@@ -200,6 +209,7 @@ class Constants:
         "/": "/inside-google/company-announcements/about/",
         "/intl/en-in/": "/intl/en-in/about",
         '/intl/en-au/': "/intl/en-au/about",
+        '/intl/en-africa/': "/intl/en-africa/about",
         '/intl/en-ca/': "/intl/en-ca/about",
         '/intl/fr-ca/': "/intl/fr-ca/a-propos",
         '/intl/de-de/': "/intl/de-de/uber",
@@ -222,6 +232,7 @@ class Constants:
     INDIA_LOCALE = "/intl/en-in/"
     AUSTRALIA_LOCALE = "/intl/en-au/"
     EN_CANADA_LOCALE = "/intl/en-ca/"
+    EN_AFRICA_LOCALE = "/intl/en-africa/"
     FR_CANADA_LOCALE = "/intl/fr-ca/"
     GERMANY_LOCALE = "/intl/de-de/"
     PT_BRAZIL_LOCALE = "/intl/pt-br/"

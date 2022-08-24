@@ -2,7 +2,7 @@
 Feature: As a user, I would like to access the content in the footer
 
   Examples:
-      |keyword                |
+       |keyword                |
 #      |/                      |
 #      |/intl/de-de/           |
 #      |/intl/en-au/           |
@@ -12,7 +12,7 @@ Feature: As a user, I would like to access the content in the footer
 #      |/intl/pt-br/           |
 #      |/intl/es-419/          |
 #      |/intl/it-it/           |
-      |/intl/en-africa/       |
+       |/intl/en-africa/       |
 #      |/products/ads-commerce |
 #      |/waze/                 |
 
