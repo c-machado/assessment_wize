@@ -18,11 +18,14 @@ class BasePageAPI(object):
         self.driver = driver
         self.logger = logging.getLogger(__name__)
 
-    def get_api_url_per_type_of_search(self):
+    def get_api_url_per_type_of_search(self, keyword_url):
+        locale_api_url = self.get_locale_url(keyword_url)
         if self.driver.current_url().__contains__('search'):
-            return api_const.SEARCH_API
+            self.logger.info('%s api_url_search', api_const.SEARCH_API[locale_api_url])
+            return api_const.SEARCH_API[locale_api_url]
         else:
-            return api_const.SEARCH_SUGGESTIONS_API
+            self.logger.info('%s api_url_suggestions', api_const.SEARCH_SUGGESTIONS_API[locale_api_url])
+            return api_const.SEARCH_SUGGESTIONS_API[locale_api_url]
 
     def get_article_dates_in_latest_api(self, keyword_url):
         """:return a list with the article dates in the API format e.g. 2021-11-15"""
@@ -62,24 +65,16 @@ class BasePageAPI(object):
                 self.logger.info(api_url)
                 return api_url
 
-    def get_api_url_with_updated_parameters(self, urls_list, keyword_url, text_to_search):
+    def get_api_url_with_updated_parameters(self, api_url, text_to_search):
         """:return api url per locale with the text_to_search updated in the parameters in the api_url """
-        locale_url = self.get_base_keyword_url(keyword_url)
-        for page, url in urls_list.items():
-            if page == locale_url:
-                api_url = self.replace_query_parameter(text_to_search, "text_to_search", url)
-                self.logger.info(api_url)
-                return api_url
+        return self.replace_query_parameter(text_to_search, "text_to_search", api_url)
 
-    def get_api_url_with_type_and_tag_parameters(self, urls_list, keyword_url, type_filter, tag_filter):
+    def get_api_url_with_type_and_tag_parameters(self, api_url, type_filter, tag_filter):
         """:return api url per locale with the type and tag filters updated in the parameters in the api_url """
-        locale_url = self.get_base_keyword_url(keyword_url)
-        for page, url in urls_list.items():
-            if page == locale_url:
-                api_url = self.replace_query_parameter(type_filter, "type_filter", url)
-                api_url = self.replace_query_parameter(tag_filter, "tag_filter", api_url)
-                self.logger.info(api_url)
-                return api_url
+        api_url_with_type = self.replace_query_parameter(type_filter, "type_filter", api_url)
+        api_url_with_type_and_tag = self.replace_query_parameter(tag_filter, "tag_filter", api_url_with_type)
+        self.logger.info(api_url_with_type_and_tag)
+        return api_url_with_type_and_tag
 
     def get_tags_in_api_url(self, api_url):
         tags = re.split(r'tags=|&template', api_url)[1]
@@ -112,9 +107,10 @@ class BasePageAPI(object):
 
     def get_suggested_results_in_search_api(self, keyword_url, text_to_search):
         article_results_suggestions = []
-        urls_list = self.get_api_url_per_type_of_search()
-        api_url = self.get_api_url_with_updated_parameters(urls_list, keyword_url, text_to_search)
-        result = self.get_results_in_api(Constants.BASE_URL + api_url)
+        api_url = self.get_api_url_per_type_of_search(keyword_url)
+        api_url_with_txt_to_search = self.get_api_url_with_updated_parameters(api_url, text_to_search)
+        self.logger.info('%s BASE_URL + api_url_with_txt_to_search', Constants.BASE_URL + api_url_with_txt_to_search)
+        result = self.get_results_in_api(Constants.BASE_URL + api_url_with_txt_to_search)
         for article in result['results']:
             headline = article['headline'].replace(u'\xa0', u' ')
             article_results_suggestions.append(headline)
@@ -153,16 +149,10 @@ class BasePageAPI(object):
             return True
 
     @staticmethod
-    # TODO: Find a solution to avoid adding if for each locale with long path
-    def get_base_keyword_url(keyword_url):
-        """:return: the portion of the keyword url that contains the locale information. e.g: / or /intl/en-in/"""
-        substring = keyword_url[0:6]
-        if substring == '/intl/':
-            url = keyword_url[0:12]
-            if url == '/intl/es-419':
-                url = keyword_url[0:13]
-            if url == '/intl/en-afr':
-                url = keyword_url[0:17]
+    def get_locale_url(keyword_url):
+        keyword_url = keyword_url.split('/')
+        if keyword_url[1] != 'intl':
+            locale_url = '/'
         else:
-            url = keyword_url[0]
-        return url
+            locale_url = '/'.join(keyword_url[0:3]) + '/'
+        return locale_url

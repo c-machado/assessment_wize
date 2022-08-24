@@ -35,13 +35,15 @@ Feature: As a user, I would like to search for the content while navigating on a
             #| India’s mini-masterpieces  | /intl/en-in/products/platforms/#android            |
             #| Australia’s non-profits    | /intl/en-au/products/android-chrome-more/          |
             #TODO: this example is not working in the stage env but it does in the production env
-            #|# Google’s                  | /intl/en-ca/products/cloud/                        |
-             | Meroë                      | /intl/en-africa/products/android-chrome-more/      |
-#            | possèdent                  | /intl/fr-ca/produits/explorez-obtenez-des-reponses/|
-            #| téléphone                  | /intl/fr-ca/produits/explorez-obtenez-des-reponses/|
-            #| desinformação              | /intl/pt-br/produtos/explore-e-encontre-respostas/ |
-            #| año                        | /intl/es-419/actualizaciones-de-producto/android-chrome-play/#android|
-            #| intrattenimento            | /intl/it-it/prodotti/android-chrome-play/          |
+
+            | Google’s                   | /intl/en-ca/products/cloud/                        |
+            | possèdent                  | /intl/fr-ca/produits/explorez-obtenez-des-reponses/|
+#           | possèdent                  | /intl/en-africa/products/android-chrome-more/      |
+            | possèdent                  | /intl/en-africa/products/    |
+            | téléphone                  | /intl/fr-ca/produits/explorez-obtenez-des-reponses/|
+            | desinformação              | /intl/pt-br/produtos/explore-e-encontre-respostas/ |
+            | año                        | /intl/es-419/actualizaciones-de-producto/android-chrome-play/#android|
+            | intrattenimento            | /intl/it-it/prodotti/android-chrome-play/          |
 
 
     @search-category
@@ -54,16 +56,16 @@ Feature: As a user, I would like to search for the content while navigating on a
 
      Examples:
             | text_to_search | keyword                                            |
-            #| google         | /technology/                                       |
-            #| sicherer       | /intl/de-de/produkte/android-chrome-mehr/#android  |
-            #| digital        | /intl/en-in/products/platforms/#android            |
-            #| australians    | /intl/en-au/products/android-chrome-more/          |
-            #| COVID          | /intl/en-ca/products/cloud/                        |
-             | African        | /intl/en-africa/company-news/                      |
-            #| voyager        | /intl/fr-ca/produits/explorez-obtenez-des-reponses/|
-            #| vacinas        | /intl/pt-br/produtos/explore-e-encontre-respostas/ |
-            #| privacidad     | /intl/es-419/actualizaciones-de-producto/android-chrome-play/#android|
-            #| intelligente   | /intl/it-it/prodotti/android-chrome-play/          |
+            | google         | /technology/                                       |
+            | sicherer       | /intl/de-de/produkte/android-chrome-mehr/#android  |
+            | digital        | /intl/en-in/products/platforms/#android            |
+            | australians    | /intl/en-au/products/android-chrome-more/          |
+            | COVID          | /intl/en-ca/products/cloud/                        |
+            | voyager        | /intl/fr-ca/produits/explorez-obtenez-des-reponses/|
+            | vacinas        | /intl/pt-br/produtos/explore-e-encontre-respostas/ |
+            | privacidad     | /intl/es-419/actualizaciones-de-producto/android-chrome-play/#android|
+            | intelligente   | /intl/it-it/prodotti/android-chrome-play/          |
+            | africa         | /intl/en-africa/products/                          |
 
     @search-category
     Scenario Outline: Test search results in a category page using special characters

@@ -20,6 +20,7 @@ Feature: As a user, I would like to interact with the header navigation on deskt
         |/intl/pt-br/      | /intl/pt-br/produtos/                     |product_updates |
         |/intl/es-419/     | /intl/es-419/actualizaciones-de-producto/ |product_updates |
         |/intl/it-it/      | /intl/it-it/prodotti/                     |product_updates |
+        |/intl/en-africa/  | /intl/en-africa/products/                 |product_updates |
 
 
   @header-desktop
@@ -47,28 +48,30 @@ Feature: As a user, I would like to interact with the header navigation on deskt
   Scenario Outline: Test options in the kebab menu
       Given a user is at the <keyword> site
       When the user triggers the kebab menu
-      Then the user sees <kebab_option> according to <locale>
+      Then the user sees <kebab_option> according to <language>
 
       Examples:
-        |keyword      | kebab_option | locale |
-        |/            | rss          | us     |
-        |/            | press        | us     |
-        |/intl/de-de/ | rss          | de     |
-        |/intl/de-de/ | press        | de     |
-        |/intl/en-au/ | rss          | au     |
-        |/intl/en-au/ | press        | au     |
-        |/intl/en-in/ | rss          | in     |
-        |/intl/en-in/ | press        | in     |
-        |/intl/en-ca/ | rss          | en_ca  |
-        |/intl/en-ca/ | press        | en_ca  |
-        |/intl/fr-ca/ | rss          | fr_ca  |
-        |/intl/fr-ca/ | press        | fr_ca  |
-        |/intl/pt-br/ | rss          | pt_br  |
-        |/intl/pt-br/ | press        | pt_br  |
-        |/intl/es-419/| rss          | es_419 |
-        |/intl/es-419/| press        | es_419 |
-        |/intl/it-it/ | rss          | it_it  |
-        |/intl/it-it/ | press        | it_it  |
+        |keyword      | kebab_option | language |
+        |/            | rss          | en       |
+        |/            | press        | en       |
+        |/intl/de-de/ | rss          | de       |
+        |/intl/de-de/ | press        | de       |
+        |/intl/en-au/ | rss          | en       |
+        |/intl/en-au/ | press        | en       |
+        |/intl/en-in/ | rss          | en       |
+        |/intl/en-in/ | press        | en       |
+        |/intl/en-ca/ | rss          | en       |
+        |/intl/en-ca/ | press        | en       |
+        |/intl/fr-ca/ | rss          | en       |
+        |/intl/fr-ca/ | press        | fr_ca    |
+        |/intl/pt-br/ | rss          | en       |
+        |/intl/pt-br/ | press        | pt_br    |
+        |/intl/es-419/| rss          | en       |
+        |/intl/es-419/| press        | es_419   |
+        |/intl/it-it/ | rss          | en       |
+        |/intl/it-it/ | press        | it_it    |
+        |/intl/en-africa/  | rss     | en       |
+        |/intl/en-africa/  | press   | en       |
 
   @header-desktop
   #TODO: add a new case sitespace and subcategory in en-us
@@ -90,6 +93,7 @@ Feature: As a user, I would like to interact with the header navigation on deskt
         |/intl/pt-br/ | rss          |
         |/intl/es-419/| rss          |
         |/intl/it-it/ | rss          |
+        |/intl/en-africa/ | rss      |
 
   @header-desktop
   Scenario Outline: Test the keyword logo in the nav menu
@@ -109,6 +113,7 @@ Feature: As a user, I would like to interact with the header navigation on deskt
         |/intl/pt-br/ |/intl/pt-br/|
         |/intl/es-419/|/intl/es-419/|
         |/intl/it-it/ |/intl/it-it/|
+        |/intl/en-africa/ |/intl/en-africa/|
 
   @header-desktop
   Scenario Outline: Test navigation in sitespaces within products in Ads&Analytics list

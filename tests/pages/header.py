@@ -87,11 +87,11 @@ class Header(BasePage, BasePageAPI):
     def close_cookie_banner(self):
         self.close_bar(PageLocators.cookie_banner_ok_cta)
 
-    def confirm_kebab_menu_opts(self, locale, option):
+    def confirm_kebab_menu_opts(self, language, option):
         kebab_option_selector = self.get_item_selector(option, PageLocators.kebab__options_locators)
         option_text_in_page = self.driver.find_element(*kebab_option_selector).text
         self.logger.info('%s option_text_in_page', option_text_in_page)
-        option_text_expected = self.get_kebab_opt_expected_text(locale, option)
+        option_text_expected = self.get_kebab_opt_expected_text(language, option)
         self.logger.info('%s option_text_expected', option_text_expected)
         assert option_text_in_page == option_text_expected
 
@@ -126,9 +126,9 @@ class Header(BasePage, BasePageAPI):
         return date_formatted
 
     @staticmethod
-    def get_kebab_opt_expected_text(locale, option):
+    def get_kebab_opt_expected_text(language, option):
         for element, text in Constants.KEBAB_MENU_OPTIONS.items():
-            if element == option + "_" + locale:
+            if element == option + "_" + language:
                 return text
 
     def get_url_submenu_items(self, item, locators):

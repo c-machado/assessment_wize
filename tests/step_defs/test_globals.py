@@ -120,9 +120,9 @@ def user_trigger_kebab_menu(header):
     header.click_on_kebab_menu()
 
 
-@then("the user sees <kebab_option> according to <locale>")
-def user_sees_rss_and_press_options(header, kebab_option, locale):
-    header.confirm_kebab_menu_opts(locale, kebab_option)
+@then("the user sees <kebab_option> according to <language>")
+def user_sees_rss_and_press_options(header, kebab_option, language):
+    header.confirm_kebab_menu_opts(language, kebab_option)
 
 
 @then("the cookie banner is not displayed")

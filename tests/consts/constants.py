@@ -5,8 +5,8 @@ from dataclasses import dataclass
 class Constants:
     # BASE_URL = 'https://blog.google'
     SEARCH_URL = "search/?query="
-    #BASE_URL = 'https://gweb-uniblog-publish-stage.appspot.com'
-    BASE_URL = 'https://gweb-uniblog-publish-dev.appspot.com'
+    BASE_URL = 'https://gweb-uniblog-publish-stage.appspot.com'
+    # BASE_URL = 'https://gweb-uniblog-publish-dev.appspot.com'
     PROD_URL = 'blog.google'
     CHROME_PROFILE = '/Users/jortiz/Library/Application Support/Google/Chrome/Default'
     #CHROME_PROFILE_LINUX = '/usr/local/google/home/machadoca/Documents/chrome_google'
@@ -86,20 +86,10 @@ class Constants:
     }
     HTML_string = '''<!DOCTYPE html><html><head><style>table …'''
     KEBAB_MENU_OPTIONS = {
-        "rss_us": "RSS feed",
+        "rss_en": "RSS feed",
         "rss_de": "RSS-Feed",
-        "rss_in": "RSS feed",
-        "rss_au": "RSS feed",
-        "rss_en_ca": "RSS feed",
-        "rss_fr_ca": "RSS feed",
-        "rss_pt_br": "RSS feed",
-        "rss_es_419": "RSS feed",
-        "rss_it_it": "RSS feed",
-        "press_us": "Press corner",
+        "press_en": "Press corner",
         "press_de": "Pressezentrum",
-        "press_in": "Press corner",
-        "press_au": "Press corner",
-        "press_en_ca": "Press corner",
         "press_fr_ca": "Salle de presse",
         "press_pt_br": "Imprensa",
         "press_es_419": "Prensa",
