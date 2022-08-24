@@ -41,7 +41,6 @@ SEARCH_API = {
     '/intl/en-africa/': '/api/v2/search?paginate=12&order=relevance&site_id=20&query=African',
     '/perspectives/sundar-pichai/': '/api/v2/search?paginate=12&order=relevance&site_id=2&query=text_to_search',
 
-
 }
 
 SEARCH_SUGGESTIONS_API = {
