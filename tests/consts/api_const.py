@@ -8,7 +8,8 @@ LATEST_FEED = {
     '/intl/pt-br/': '/api/v2/latest?author_ids=&category=&date_start=&date_stop=&hero_template=heroArticleItem&is_main_hero=&paginate=9&show_hero=False&site_id=14&tags=',
     '/intl/es-419/': '/api/v2/latest?author_ids=&category=&date_start=&date_stop=&hero_template=heroArticleItem&is_main_hero=&paginate=9&show_hero=True&site_id=13&tags=',
     '/intl/it-it/': '/api/v2/latest?author_ids=&category=&date_start=&date_stop=&hero_template=heroArticleItem&is_main_hero=&paginate=9&show_hero=True&site_id=15&tags=',
-    '/intl/en-africa/': '/api/v2/latest?author_ids=&category=&date_start=&date_stop=&hero_template=heroArticleItem&is_main_hero=&paginate=6&show_hero=True&site_id=20&tags=',
+    # dev '/intl/en-africa/': '/api/v2/latest?author_ids=&category=&date_start=&date_stop=&hero_template=heroArticleItem&is_main_hero=&paginate=6&show_hero=True&site_id=20&tags=',
+    '/intl/en-africa/': '/api/v2/latest?author_ids=&category=&date_start=&date_stop=&hero_template=heroArticleItem&is_main_hero=&paginate=6&show_hero=True&site_id=18&tags=',
      '/perspectives/sundar-pichai/': '/api/v2/latest?author_ids=3453,41,1614,102,1402,399,150&category=&date_start=&date_stop=&hero_template=heroArticleItem&is_main_hero=&paginate=9&show_hero=True&site_id=2&tags=',
     '/outreach-initiatives/': '/api/v2/latest?author_ids=&category=&date_start=&date_stop=&hero_template=heroArticleItem&is_main_hero=True&paginate=6&show_hero=True&site_id=2&tags=accessibility,arts-and-culture,civics,digital-wellbeing,diversity-and-inclusion,education,entrepreneurs,google-news-initiative,googleorg,grow-with-google,nonprofits,public-policy,small-business,topics-student-programs,sustainability',
     '/technology/': '/api/v2/latest?author_ids=&category=&date_start=&date_stop=&hero_template=heroArticleItem&is_main_hero=True&paginate=9&show_hero=True&site_id=2&tags=ai,area-120,design,developers,families,health,next-billion-users,safety-and-security',
@@ -20,6 +21,8 @@ LATEST_FEED = {
     '/intl/pt-br/produtos/android-chrome-play/': '/api/v2/latest?author_ids=&category=&date_start=&date_stop=&hero_template=heroArticleItem&is_main_hero=True&paginate=10&show_hero=True&site_id=14&tags=android,chrome,classroom,google-play,wear-os-by-google',
     '/intl/es-419/actualizaciones-de-producto/android-chrome-play/': '/api/v2/latest?author_ids=&category=&date_start=&date_stop=&hero_template=heroArticleItem&is_main_hero=True&paginate=10&show_hero=True&site_id=13&tags=android,chrome,google-play,wear-os-by-google',
     '/intl/it-it/prodotti/android-chrome-play/': '/api/v2/latest?author_ids=&category=&date_start=&date_stop=&hero_template=heroArticleItem&is_main_hero=True&paginate=10&show_hero=True&site_id=15&tags=android,chrome,chromebooks,google-play,google-tv',
+    # dev '/intl/en-africa/products/': '/api/v2/latest?author_ids=&category=&date_start=&date_stop=&hero_template=heroArticleItem&is_main_hero=True&paginate=6&show_hero=True&site_id=20&tags=',
+    '/intl/en-africa/products/': '/api/v2/latest?author_ids=&category=&date_start=&date_stop=&hero_template=heroArticleItem&is_main_hero=True&paginate=6&show_hero=True&site_id=18&tags=',
     '/products/chrome/': '/api/v2/latest?author_ids=&category=&date_start=&date_stop=&hero_template=heroArticleItem&is_main_hero=&paginate=6&show_hero=True&site_id=2&tags=chrome',
     '/products/android/': '/api/v2/latest?author_ids=&category=&date_start=&date_stop=&hero_template=heroArticleItem&is_main_hero=&paginate=6&show_hero=True&site_id=2&tags=android',
     '/inside-google/googlers/she-word/': '/api/v2/latest?author_ids=&category=article,perspective&date_start=&date_stop=&hero_template=heroArticleItem&is_main_hero=&paginate=6&site_id=2&tags=the-she-word',
@@ -38,6 +41,8 @@ SEARCH_API = {
     '/intl/en-ca/': '/api/v2/search?paginate=12&order=relevance&site_id=11&query=text_to_search',
     '/intl/es-419/': '/api/v2/search?paginate=12&order=relevance&site_id=13&query=text_to_search',
     '/intl/it-it/': '/api/v2/search?paginate=12&order=relevance&site_id=15&query=text_to_search',
+    #  dev'/intl/en-africa/': '/api/v2/search?paginate=12&order=relevance&site_id=20&query=text_to_search',
+    '/intl/en-africa/': '/api/v2/search?paginate=12&order=relevance&site_id=18&query=text_to_search',
     '/perspectives/sundar-pichai/': '/api/v2/search?paginate=12&order=relevance&site_id=2&query=text_to_search',
 
 }
@@ -52,6 +57,8 @@ SEARCH_SUGGESTIONS_API = {
     '/intl/en-ca/': '/api/v2/search-suggestions/?query=text_to_search&site_id=11&format=json',
     '/intl/es-419/': '/api/v2/search-suggestions/?query=text_to_search&site_id=13&format=json',
     '/intl/it-it/': '/api/v2/search-suggestions/?query=text_to_search&site_id=15&format=json',
+    # dev '/intl/en-africa/': '/api/v2/search-suggestions/?query=text_to_search&site_id=20&format=json',
+    '/intl/en-africa/': '/api/v2/search-suggestions/?query=text_to_search&site_id=18&format=json',
     '/perspectives/sundar-pichai/': '/api/v2/search-suggestions/?query=text_to_search&site_id=2&format=json'
 }
 
