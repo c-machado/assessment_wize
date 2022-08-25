@@ -3,9 +3,9 @@ from dataclasses import dataclass
 
 @dataclass
 class Constants:
-    # BASE_URL = 'https://blog.google'
+    BASE_URL = 'https://blog.google'
     SEARCH_URL = "search/?query="
-    BASE_URL = 'https://gweb-uniblog-publish-stage.appspot.com'
+    # BASE_URL = 'https://gweb-uniblog-publish-stage.appspot.com'
     # BASE_URL = 'https://gweb-uniblog-publish-dev.appspot.com'
     PROD_URL = 'blog.google'
     CHROME_PROFILE = '/Users/jortiz/Library/Application Support/Google/Chrome/Default'
@@ -98,7 +98,7 @@ class Constants:
     LANGUAGE_SELECTOR = {
         "English",
         "Deutsch",
-        "English (Africa)",
+        # "English (Africa)",
         "English (India)",
         "English (Australia)",
         "English (Canada)",

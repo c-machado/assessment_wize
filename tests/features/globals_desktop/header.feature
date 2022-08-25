@@ -20,7 +20,7 @@ Feature: As a user, I would like to interact with the header navigation on deskt
         |/intl/pt-br/      | /intl/pt-br/produtos/                     |product_updates |
         |/intl/es-419/     | /intl/es-419/actualizaciones-de-producto/ |product_updates |
         |/intl/it-it/      | /intl/it-it/prodotti/                     |product_updates |
-        |/intl/en-africa/  | /intl/en-africa/products/                 |product_updates |
+#        |/intl/en-africa/  | /intl/en-africa/products/                 |product_updates |
 
 
   @header-desktop
@@ -70,8 +70,8 @@ Feature: As a user, I would like to interact with the header navigation on deskt
         |/intl/es-419/| press        | es_419   |
         |/intl/it-it/ | rss          | en       |
         |/intl/it-it/ | press        | it_it    |
-        |/intl/en-africa/  | rss     | en       |
-        |/intl/en-africa/  | press   | en       |
+#        |/intl/en-africa/  | rss     | en       |
+#        |/intl/en-africa/  | press   | en       |
 
   @header-desktop
   #TODO: add a new case sitespace and subcategory in en-us
@@ -93,7 +93,7 @@ Feature: As a user, I would like to interact with the header navigation on deskt
         |/intl/pt-br/ | rss          |
         |/intl/es-419/| rss          |
         |/intl/it-it/ | rss          |
-        |/intl/en-africa/ | rss      |
+#        |/intl/en-africa/ | rss      |
 
   @header-desktop
   Scenario Outline: Test the keyword logo in the nav menu
@@ -113,7 +113,7 @@ Feature: As a user, I would like to interact with the header navigation on deskt
         |/intl/pt-br/ |/intl/pt-br/|
         |/intl/es-419/|/intl/es-419/|
         |/intl/it-it/ |/intl/it-it/|
-        |/intl/en-africa/ |/intl/en-africa/|
+#        |/intl/en-africa/ |/intl/en-africa/|
 
   @header-desktop
   Scenario Outline: Test navigation in sitespaces within products in Ads&Analytics list

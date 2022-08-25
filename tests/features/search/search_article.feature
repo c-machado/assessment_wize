@@ -16,7 +16,7 @@ Feature: As a user, I would like to search content within the blog within an art
             | beim           | /intl/de-de/    |
             | digital        | /intl/en-in/    |
             | australians    | /intl/en-au/    |
-            | African        | /intl/en-africa/|
+#            | African        | /intl/en-africa/|
             | nouvelles      | /intl/fr-ca/    |
             | parcerias      | /intl/pt-br/    |
             | cloud          | /intl/en-ca/    |
@@ -41,7 +41,7 @@ Feature: As a user, I would like to search content within the blog within an art
             | câble                     | /intl/fr-ca/    |
             | desinformação             | /intl/pt-br/    |
             | trans-Pacific             | /intl/en-ca/    |
-            | Meroë                     | /intl/en-africa/|
+#            | Meroë                     | /intl/en-africa/|
             | año                       | /intl/es-419/   |
             | L'intrattenimento         | /intl/it-it/    |
 
@@ -64,7 +64,7 @@ Feature: As a user, I would like to search content within the blog within an art
             | nouvelles      | /intl/fr-ca/     |
             | pessoas        | /intl/pt-br/     |
             | subsea         | /intl/en-ca/     |
-            | Android        | /intl/en-africa/ |
+#            | Android        | /intl/en-africa/ |
             | privacidad     | /intl/es-419/    |
             | intelligente   | /intl/it-it/     |
 
@@ -86,7 +86,7 @@ Feature: As a user, I would like to search content within the blog within an art
             | l'Asie                    | /intl/fr-ca/    |
             | informações               | /intl/pt-br/    |
             | Canada's K-12             | /intl/en-ca/    |
-            | Google*                   | /intl/en-africa/|
+#            | Google*                   | /intl/en-africa/|
             | información               | /intl/es-419/   |
             | un’attività               | /intl/it-it/    |
 
@@ -109,6 +109,6 @@ Feature: As a user, I would like to search content within the blog within an art
             | sondern                   | /intl/pt-br/    | pt       |
             | pesquisa                  | /intl/fr-ca/    | fr       |
             | retornou                  | /intl/en-ca/    | en       |
-            | matati                    | /intl/en-africa/| en       |
+#            | matati                    | /intl/en-africa/| en       |
             | retornou                  | /intl/es-419/   | es       |
             | retornou                  | /intl/it-it/    | it       |

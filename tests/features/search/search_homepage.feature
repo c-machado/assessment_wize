@@ -16,7 +16,7 @@ Feature: As a user, I would like to search for the content while navigating the 
             | australians    | /intl/en-au/    |
             | nouvelles      | /intl/fr-ca/    |
             | parcerias      | /intl/pt-br/    |
-            | African        | /intl/en-africa/|
+#            | African        | /intl/en-africa/|
             | cloud          | /intl/en-ca/    |
             | privacidad     | /intl/es-419/   |
             | intelligente   | /intl/it-it/    |
@@ -35,7 +35,7 @@ Feature: As a user, I would like to search for the content while navigating the 
             | India’s mini-masterpieces | /intl/en-in/    |
             | Australia’s non-profits   | /intl/en-au/    |
             | câble                     | /intl/fr-ca/    |
-            | Meroë                     | /intl/en-africa/|
+#            | Meroë                     | /intl/en-africa/|
             | desinformação             | /intl/pt-br/    |
             | trans-Pacific             | /intl/en-ca/    |
             | año                       | /intl/es-419/   |
@@ -59,7 +59,7 @@ Feature: As a user, I would like to search for the content while navigating the 
             | nouvelles      | /intl/fr-ca/    |
             | pessoas        | /intl/pt-br/    |
             | subsea         | /intl/en-ca/    |
-            | Android         |/intl/en-africa/ |
+#            | Android         |/intl/en-africa/ |
             | privacidad     | /intl/es-419/   |
             | intelligente   | /intl/it-it/    |
 
@@ -82,7 +82,7 @@ Feature: As a user, I would like to search for the content while navigating the 
             | l'Asie                    | /intl/fr-ca/     |
             | informações               | /intl/pt-br/     |
             | Canada's K-12             | /intl/en-ca/     |
-            | Google*                    | /intl/en-africa/ |
+#            | Google*                    | /intl/en-africa/ |
             | información               | /intl/es-419/    |
             | un’attività               | /intl/it-it/     |
 
@@ -103,6 +103,6 @@ Feature: As a user, I would like to search for the content while navigating the 
             | sondern                   | /intl/pt-br/    | pt       |
             | pesquisa                  | /intl/fr-ca/    | fr       |
             | retornou                  | /intl/en-ca/    | en       |
-            | matati                    | /intl/en-africa/| en       |
+#            | matati                    | /intl/en-africa/| en       |
             | retornou                  | /intl/es-419/   | es       |
             | retornou                  | /intl/it-it/    | it       |

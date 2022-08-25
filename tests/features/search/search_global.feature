@@ -10,7 +10,7 @@ Feature: As a user, I want to be able to search for content within the blog
          |/intl/fr-ca/    |
          |/intl/pt-br/    |
          |/intl/en-ca/    |
-         |/intl/en-africa/|
+#         |/intl/en-africa/|
          |/intl/es-419/   |
          |/intl/it-it/    |
 
