@@ -97,6 +97,12 @@ def redirected_to_page(url, base_page, driver):
     assert driver.current_url().__contains__(url)
 
 
+@then("the user is redirected to <keyword>")
+def redirected_to_page(keyword, base_page, driver):
+    assert base_page.get_status_redirect() == 200
+    assert driver.current_url().__contains__(keyword)
+
+
 @when("the user clicks on the <submenu>")
 def user_clicks_to_submenu(header, submenu, get_viewport):
     header.click_on_hamburger_menu()

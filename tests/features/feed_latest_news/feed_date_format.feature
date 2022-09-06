@@ -21,7 +21,7 @@ Feature: As a user, I want to confirm dates are showing according to the expecte
             | es_ES     | /intl/es-419/|
             | it_IT     | /intl/it-it/ |
             #TODO: Update locale code date format
-            | en_US     | /intl/en-africa/ |
+#            | en_US     | /intl/en-africa/ |
 
 
     @feed-article-date-format
@@ -42,7 +42,7 @@ Feature: As a user, I want to confirm dates are showing according to the expecte
             | pt_BR     | /intl/pt-br/produtos/android-chrome-play/             |
             | es_ES     | /intl/es-419/actualizaciones-de-producto/android-chrome-play/|
             | it_IT     | /intl/it-it/prodotti/android-chrome-play/              |
-            | en_US     | /intl/en-africa/products/                             |
+#            | en_US     | /intl/en-africa/products/                             |
 
 
     #Add subcategory pages for other locales if the content gets updated

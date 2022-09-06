@@ -97,6 +97,12 @@ def redirected_to_page(url, base_page, driver):
     assert driver.current_url().__contains__(url)
 
 
+@then("the user is redirected to <keyword>")
+def redirected_to_page(keyword, base_page, driver):
+    assert base_page.get_status_redirect() == 200
+    assert driver.current_url().__contains__(keyword)
+
+
 @when("the user clicks on the <submenu>")
 def user_clicks_to_submenu(header, submenu, get_viewport):
     header.click_on_submenu_item(submenu, get_viewport)
@@ -341,3 +347,8 @@ def redirected_to_page(base_page):
 def user_scroll_in_page(base_page):
     base_page.scroll_to_bottom()
 
+
+@then("the user can see the homepage per <keyword> locale")
+def url_per_locale_and_language_selector(footer, keyword):
+    print('footer.languages_urls', footer.languages_urls)
+    assert Constants.LANGUAGE_SELECTOR_URLS == footer.languages_urls

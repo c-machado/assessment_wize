@@ -5,10 +5,11 @@ from dataclasses import dataclass
 class Constants:
     # BASE_URL = 'https://blog.google'
     SEARCH_URL = "search/?query="
-    BASE_URL = 'https://gweb-uniblog-publish-stage.appspot.com'
-    # BASE_URL = 'https://gweb-uniblog-publish-dev.appspot.com'
+    # BASE_URL = 'https://gweb-uniblog-publish-stage.appspot.com'
+    BASE_URL = 'https://gweb-uniblog-publish-dev.appspot.com'
     PROD_URL = 'blog.google'
-    CHROME_PROFILE = '/Users/jortiz/Library/Application Support/Google/Chrome/Default'
+    CHROME_PROFILE = '/Users/machadoca/Documents/chrome_huge_inc'
+    CHROME_PROFILE_JD = '/Users/jortiz/Library/Application Support/Google/Chrome/Default'
     #CHROME_PROFILE_LINUX = '/usr/local/google/home/machadoca/Documents/chrome_google'
     #FIREFOX_PROFILE = '/Users/machadoca/Library/Application Support/Firefox/Profiles/4jwzwjvm.default'
     COOKIE_BANNER_TXT = {
@@ -98,7 +99,7 @@ class Constants:
     LANGUAGE_SELECTOR = {
         "English",
         "Deutsch",
-        "English (Africa)",
+        # "English (Africa)",
         "English (India)",
         "English (Australia)",
         "English (Canada)",
@@ -106,6 +107,18 @@ class Constants:
         "Português (Brasil)",
         "Español (Latinoamérica)",
         "Italiano",
+    }
+    LANGUAGE_SELECTOR_URLS = {
+        "English": "/",
+        "Deutsch": "/intl/de-de/",
+        # "English (Africa)": "/intl/en-africa/,
+        "English (India)": "/intl/en-in/",
+        "English (Australia)": "/intl/en-au/",
+        "English (Canada)": "/intl/en-ca/",
+        "Français (Canada)": "/intl/fr-ca/",
+        "Português (Brasil)": "/intl/pt-br/",
+        "Español (Latinoamérica)": "/intl/es-419/",
+        "Italiano": "/intl/it-it/",
     }
     LEGAL_LINKS = {
         '/': {

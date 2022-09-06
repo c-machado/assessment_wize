@@ -15,6 +15,7 @@ class Footer(BasePage):
         super().__init__(driver)
         self.driver = driver
         self.languages = []
+        self.languages_urls = {}
         self.logger = logging.getLogger(__name__)
 
     def click_social_media_item(self, social_media):
@@ -33,6 +34,8 @@ class Footer(BasePage):
             if response.status_code != 200:
                 is_status_valid = False
             self.languages.append(opt.text)
+            self.languages_urls = self.languages_urls['index'].append[opt.text]
+            self.languages_urls = self.languages_urls['value'].append[url]
         return is_status_valid
 
     def click_all_social_media_links(self):
