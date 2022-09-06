@@ -14,14 +14,14 @@ Feature: As a user, I want to be able to search for content within the blog
          |/intl/es-419/   |
          |/intl/it-it/    |
 
-    @search
+    @search_nav_business_critical
     Scenario: Test the search bar  - expanding the search bar
         Given a user is at the <keyword> site
         When the user clicks the search icon
         Then the system shows the search bar expanded
 
 
-    @search
+    @search_nav_business_critical
     Scenario: Test the search bar  - collapsing the search bar
         Given a user is at the <keyword> site
         When the user clicks the search icon
@@ -29,7 +29,7 @@ Feature: As a user, I want to be able to search for content within the blog
         Then the system collapsed the search bar
 
 
-    @search
+    @search_nav_business_critical
     Scenario Outline: Test the results page
         Given a user is at the <keyword> site
         When the user clicks the search icon
@@ -41,7 +41,7 @@ Feature: As a user, I want to be able to search for content within the blog
             | text_to_search |
             | google         |
 
-    @search
+    @search_regression
     Scenario Outline: Test filter by random tag in the results page
         Given a user is at the <keyword> site
         When the user clicks the search icon
