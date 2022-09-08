@@ -136,3 +136,15 @@ free to contact me at **cmachado@hugeinc.com**, I'll be happy to take a look at 
 
 Thank you! 
 :sunglasses:
+
+### How to do authentication
+
+1. Terminal should ask for an user, use your hugeinc username, e.g mguevara
+2. Terminal should ask for a password, to generate it:
+   - Go to https://github.hugeinc.com/settings/developers
+   - Go to Personal access tokens
+   - Click on Generate new token
+   - Select **all** the main options of the list
+   - Click on Generate token
+   - Copy and save the token, even if you only have to enter the toke once. You won't be able to see it again. If you lose it is necessary to generate a new one.
+   - Use the token as the password asked by the terminal

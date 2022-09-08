@@ -99,7 +99,7 @@ class Constants:
     LANGUAGE_SELECTOR = {
         "English",
         "Deutsch",
-        # "English (Africa)",
+        "English (Africa)",
         "English (India)",
         "English (Australia)",
         "English (Canada)",
