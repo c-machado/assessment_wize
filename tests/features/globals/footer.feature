@@ -5,16 +5,16 @@ Feature: As a user, I would like to access the content in the footer
       |keyword                |
       |/                      |
       |/intl/de-de/           |
-#      |/intl/en-au/           |
-#      |/intl/en-in/           |
-#      |/intl/en-ca/           |
-#      |/intl/fr-ca/           |
-#      |/intl/pt-br/           |
-#      |/intl/es-419/          |
-#      |/intl/it-it/           |
-##      |/intl/en-africa/       |
-#      |/products/ads-commerce |
-#      |/waze/                 |
+      |/intl/en-au/           |
+      |/intl/en-in/           |
+      |/intl/en-ca/           |
+      |/intl/fr-ca/           |
+      |/intl/pt-br/           |
+      |/intl/es-419/          |
+      |/intl/it-it/           |
+#      |/intl/en-africa/       |
+      |/products/ads-commerce |
+      |/waze/                 |
 
 
   @footer_regression
@@ -40,18 +40,25 @@ Feature: As a user, I would like to access the content in the footer
       |url                     |
       |https://www.google.com  |
 
-  # TODO: Add a validation to confirm the user is redirected to the locale
   @footer_business_critical
-  Scenario: Test language selector contains expected locales
+  Scenario Outline: Test language selector redirect to the corresponding homepage
     Given a user is at the <keyword> site
-    When the user clicks on every language in the selector
-    Then the user can see all expected locales in the selector
+    When the user clicks on <language> in the selector
+    Then the user can see the homepage per <language>
 
-  @footer_business_critical1
-  Scenario: Test language selector redirect to the corresponding homepage
-    Given a user is at the <keyword> site
-    When the user clicks on every language in the selector
-    And the user can see the homepage per <keyword> locale
+  Examples:
+      |language              |
+      | English              |
+      | Deutsch              |
+#      |   "English (Africa) |
+      | English (India)      |
+      | English (Australia)  |
+      | English (Canada)     |
+      | Français (Canada)    |
+      | Português (Brasil)   |
+      | Español (Latinoamérica)|
+      | Italiano"              |
+
 
 
 

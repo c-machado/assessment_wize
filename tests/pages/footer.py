@@ -15,7 +15,8 @@ class Footer(BasePage):
         super().__init__(driver)
         self.driver = driver
         self.languages = []
-        self.languages_urls = {}
+        self.language_label = ''
+        self.language_url = ''
         self.logger = logging.getLogger(__name__)
 
     def click_social_media_item(self, social_media):
@@ -34,9 +35,20 @@ class Footer(BasePage):
             if response.status_code != 200:
                 is_status_valid = False
             self.languages.append(opt.text)
-            self.languages_urls = self.languages_urls['index'].append[opt.text]
-            self.languages_urls = self.languages_urls['value'].append[url]
         return is_status_valid
+
+    def click_to_language_in_selector(self, language):
+        self.close_cookie_banner()
+        languages = self.driver.get_select_options(PageLocators.language_selector)
+        for lang in languages.options:
+            if lang.get_attribute("label") == language:
+                self.logger.info('%s language', language)
+                self.language_url = lang.get_attribute("value")
+                self.language_label = lang.get_attribute("label")
+                response = requests.get(Constants.BASE_URL + self.language_url)
+                if response.status_code != 200:
+                    return False
+        return True
 
     def click_all_social_media_links(self):
         social_media_items = self.get_social_media_items()
@@ -49,6 +61,12 @@ class Footer(BasePage):
 
     def close_cookie_banner(self):
         self.close_bar(PageLocators.cookie_banner_ok_cta)
+
+    def confirm_url_per_language(self, language):
+        for lang, url_lang in Constants.LANGUAGE_SELECTOR_URLS.items():
+            if lang == language:
+                assert self.language_url == url_lang
+        self.language_label = ''
 
     def confirm_links_opened_in_a_new_tab(self):
         social_media_items = self.get_social_media_items()

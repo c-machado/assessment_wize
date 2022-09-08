@@ -59,6 +59,11 @@ def user_clicks_on_every_language_in_selector(footer):
     footer.click_to_each_language_in_selector()
 
 
+@when("the user clicks on <language> in the selector")
+def user_clicks_on_every_language_in_selector(footer, language):
+    footer.click_to_language_in_selector(language)
+
+
 @then("the user can see all expected locales in the selector")
 def confirm_language_options(footer):
     assert set(footer.languages) == set(Constants.LANGUAGE_SELECTOR)
@@ -353,3 +358,8 @@ def redirected_to_page(base_page):
 @when("the user scroll to see the progress bar")
 def user_scroll_in_article_page(base_page):
     base_page.scroll_to_bottom()
+
+
+@then("the user can see the homepage per <language>")
+def url_per_locale_and_language_selector(footer, language):
+    footer.confirm_url_per_language(language)
