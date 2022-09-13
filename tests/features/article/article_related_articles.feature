@@ -9,8 +9,8 @@ Feature: As a user I want to confirm related articles tags are matching the curr
 
      Examples:
             | keyword                                                                       |
-            | /outreach-initiatives/accessibility/ml-making-sign-language-more-accessible/  |
-            | /technology/ai/discover-ai-in-daily-life/                                     |
+            | /products/search/how-were-improving-search-results-when-you-use-quotes/       |
+            | /products/android/android-13/                                                 |
             | /outreach-initiatives/diversity/international-womens-day-2022/                |
             | /intl/de-de/unternehmen/inside-google/unterstuetzung-fuer-die-ukraine/            |
             | /intl/en-in/company-news/technology/empowering-women-speak-solutions/             |

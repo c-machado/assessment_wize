@@ -1,8 +1,12 @@
 # Created by machadoca at 17/02/22
+#Search functionality works as follows:
+#Suggestions: Look for the content that matches the article's title.
+#Results page: Look within the article's content.
+#The results appeared order by relevance, that may cause the oldest content be shown at the top.
 Feature: As a user, I would like to search for the content while navigating the homepage
 
-    @search-home
-    Scenario Outline: Test search suggestions in the homepage
+    @search_suggestions_business_critical
+    Scenario Outline: Test search suggestions on the homepage
         Given a user is at the <keyword> site
         When the user clicks the search icon
         And the user types the <text_to_search>
@@ -21,7 +25,7 @@ Feature: As a user, I would like to search for the content while navigating the 
             | privacidad     | /intl/es-419/   |
             | intelligente   | /intl/it-it/    |
 
-    @search-home
+    @search_suggestions_special_char_business_critical
     Scenario Outline: Test search suggestions on the homepage using special characters
         Given a user is at the <keyword> site
         When the user clicks the search icon
@@ -42,7 +46,7 @@ Feature: As a user, I would like to search for the content while navigating the 
             | L'intrattenimento         | /intl/it-it/    |
 
 
-    @search-home
+    @search_results_page_business_critical
     Scenario Outline: Test search results on the homepage
         Given a user is at the <keyword> site
         When the user clicks the search icon
@@ -64,7 +68,7 @@ Feature: As a user, I would like to search for the content while navigating the 
             | intelligente   | /intl/it-it/    |
 
     # TODO: Error with texts with special characters in the wrong format. https://hugeinc.atlassian.net/browse/UNI-6398
-    @search-home
+    @search_results_page_special_char_business_critical
     Scenario Outline: Test search results on the homepage using special characters
         Given a user is at the <keyword> site
         When the user clicks the search icon
@@ -86,7 +90,7 @@ Feature: As a user, I would like to search for the content while navigating the 
             | información               | /intl/es-419/    |
             | un’attività               | /intl/it-it/     |
 
-    @search-home
+    @search_no_results_regression
     Scenario Outline: Test search results when there are no results on the homepage
         Given a user is at the <keyword> site
         When the user clicks the search icon

@@ -5,8 +5,8 @@ from dataclasses import dataclass
 class Constants:
     # BASE_URL = 'https://blog.google'
     SEARCH_URL = "search/?query="
-    # BASE_URL = 'https://gweb-uniblog-publish-stage.appspot.com'
-    BASE_URL = 'https://gweb-uniblog-publish-dev.appspot.com'
+    BASE_URL = 'https://gweb-uniblog-publish-stage.appspot.com'
+    # BASE_URL = 'https://gweb-uniblog-publish-dev.appspot.com'
     PROD_URL = 'blog.google'
     CHROME_PROFILE = '/Users/machadoca/Documents/chrome_huge_inc'
     CHROME_PROFILE_JD = '/Users/jortiz/Library/Application Support/Google/Chrome/Default'
@@ -24,7 +24,9 @@ class Constants:
         "es": "Google utiliza cookies para analizar el tráfico a este sitio. La información sobre tu uso "
               "de nuestro sitio se comparte con Google para ese propósito.",
         "it": "Google utilizza i cookie per analizzare il traffico su questo sito. Le informazioni sulla "
-              "tua visita sono condivise con Google per questo scopo."
+              "tua visita sono condivise con Google per questo scopo.",
+        "ar": "تستخدم Google ملفات تعريف الارتباط لتحليل عدد الزيارات إلى هذا "
+                   "الموقع الإلكتروني. ولهذا الغرض، تتم مشاركة المعلومات حول استخدامك للموقع الإلكتروني مع Google."
     }
 
     CHROME_WINDOWS_SIZE = {
