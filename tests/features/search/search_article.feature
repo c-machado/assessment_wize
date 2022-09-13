@@ -1,8 +1,11 @@
 # Created by machadoca at 14/01/22
+#Search functionality works as follows:
+#Suggestions: Look for the content that matches the article's title.
+#Results page: Look within the article's content.
+#The results appeared order by relevance, that may cause the oldest content be shown at the top.
 Feature: As a user, I would like to search content within the blog within an article page
 
-
-    @search-article
+    @search_suggestions_business_critical
     Scenario Outline: Test search suggestions on an article page
         Given a user is at the <keyword> site
         And the user clicks on the hero article
@@ -24,7 +27,7 @@ Feature: As a user, I would like to search content within the blog within an art
             | intelligente   | /intl/it-it/    |
 
 
-    @search-article
+    @search_suggestions_special_char_business_critical
     Scenario Outline: Test the search suggestions in an article page using special characters
         Given a user is at the <keyword> site
         And the user clicks on the hero article
@@ -46,7 +49,7 @@ Feature: As a user, I would like to search content within the blog within an art
             | L'intrattenimento         | /intl/it-it/    |
 
 
-    @search-article
+    @search_results_page_business_critical
     Scenario Outline: Test search results on an article page
         Given a user is at the <keyword> site
         And the user clicks on the hero article
@@ -68,7 +71,7 @@ Feature: As a user, I would like to search content within the blog within an art
             | privacidad     | /intl/es-419/    |
             | intelligente   | /intl/it-it/     |
 
-    @search-article
+    @search_results_page_special_char_business_critical
     Scenario Outline: Test search results in an article page using special characters
         Given a user is at the <keyword> site
         And the user clicks on the hero article
@@ -91,7 +94,7 @@ Feature: As a user, I would like to search content within the blog within an art
             | un’attività               | /intl/it-it/    |
 
 
-    @search-article
+    @search_no_results_regression
     Scenario Outline: Test search results when there are no results on an article page
         Given a user is at the <keyword> site
         And the user clicks on the hero article

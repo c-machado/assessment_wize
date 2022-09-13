@@ -1,7 +1,7 @@
 # Created by machadoca at 25/03/22
 Feature: As a user, I want to confirm dates in the related stories section are showing according to the expected format
 
-    @article-date-format-related-stories
+    @article-related
     Scenario Outline: Confirm article's date is in the correct format in the related stories section
         Given a user is at the <keyword> site
         And the user chooses a random article

@@ -1,4 +1,8 @@
 # Created by machadoca at 6/01/22
+#Search functionality works as follows:
+#Suggestions: Look for the content that matches the article's title.
+#Results page: Look within the article's content.
+#The results appeared order by relevance, that may cause the oldest content be shown at the top.
 Feature: As a user, I want to be able to search for content within the blog
 
     Examples:
@@ -41,7 +45,7 @@ Feature: As a user, I want to be able to search for content within the blog
             | text_to_search |
             | google         |
 
-    @search_regression
+    @search_nav_business_critical
     Scenario Outline: Test filter by random tag in the results page
         Given a user is at the <keyword> site
         When the user clicks the search icon

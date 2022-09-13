@@ -1,4 +1,8 @@
 # Created by machadoca at 18/04/22
+#Search functionality works as follows:
+#Suggestions: Look for the content that matches the article's title.
+#Results page: Look within the article's content.
+#The results appeared order by relevance, that may cause the oldest content be shown at the top.
 Feature: As a user, I want to search for content in the article progress bar
 
     @search-article

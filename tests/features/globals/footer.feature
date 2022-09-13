@@ -17,14 +17,6 @@ Feature: As a user, I would like to access the content in the footer
       |/waze/                 |
 
 
-  @footer_regression
-  # TODO: facebook URLs are not secure (locales: in & au) https://jira.hugeinc.com/browse/UNI-5897
-  Scenario: Test social media links are not broken
-    Given a user is at the <keyword> site
-    When the user clicks on every social media
-    Then the system opens each link in a new tab
-    And the system shows a secure url per each link
-
   @footer_business_critical
   Scenario: Test legal links are not broken
     Given a user is at the <keyword> site
@@ -59,7 +51,10 @@ Feature: As a user, I would like to access the content in the footer
       | Español (Latinoamérica)|
       | Italiano"              |
 
-
-
-
-
+  @footer_regression
+  # TODO: facebook URLs are not secure (locales: in & au) https://jira.hugeinc.com/browse/UNI-5897
+  Scenario: Test social media links are not broken
+    Given a user is at the <keyword> site
+    When the user clicks on every social media
+    Then the system opens each link in a new tab
+    And the system shows a secure url per each link
