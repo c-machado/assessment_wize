@@ -8,6 +8,7 @@ LATEST_FEED = {
     '/intl/pt-br/': '/api/v2/latest?author_ids=&category=&date_start=&date_stop=&hero_template=heroArticleItem&is_main_hero=&paginate=9&show_hero=False&site_id=14&tags=',
     '/intl/es-419/': '/api/v2/latest?author_ids=&category=&date_start=&date_stop=&hero_template=heroArticleItem&is_main_hero=&paginate=9&show_hero=True&site_id=13&tags=',
     '/intl/it-it/': '/api/v2/latest?author_ids=&category=&date_start=&date_stop=&hero_template=heroArticleItem&is_main_hero=&paginate=9&show_hero=True&site_id=15&tags=',
+    '/intl/ar-mena/': '/api/v2/latest?author_ids=&category=&date_start=&date_stop=&hero_template=heroArticleItem&is_main_hero=&paginate=6&show_hero=True&site_id=17&tags=',
     # dev '/intl/en-africa/': '/api/v2/latest?author_ids=&category=&date_start=&date_stop=&hero_template=heroArticleItem&is_main_hero=&paginate=6&show_hero=True&site_id=20&tags=',
     '/intl/en-africa/': '/api/v2/latest?author_ids=&category=&date_start=&date_stop=&hero_template=heroArticleItem&is_main_hero=&paginate=6&show_hero=True&site_id=18&tags=',
      '/perspectives/sundar-pichai/': '/api/v2/latest?author_ids=3453,41,1614,102,1402,399,150&category=&date_start=&date_stop=&hero_template=heroArticleItem&is_main_hero=&paginate=9&show_hero=True&site_id=2&tags=',
@@ -41,6 +42,7 @@ SEARCH_API = {
     '/intl/en-ca/': '/api/v2/search?paginate=12&order=relevance&site_id=11&query=text_to_search',
     '/intl/es-419/': '/api/v2/search?paginate=12&order=relevance&site_id=13&query=text_to_search',
     '/intl/it-it/': '/api/v2/search?paginate=12&order=relevance&site_id=15&query=text_to_search',
+    '/intl/ar-mena/': '/api/v2/search?paginate=12&order=relevance&site_id=17&query=text_to_search',
     #  dev'/intl/en-africa/': '/api/v2/search?paginate=12&order=relevance&site_id=20&query=text_to_search',
     '/intl/en-africa/': '/api/v2/search?paginate=12&order=relevance&site_id=18&query=text_to_search',
     '/perspectives/sundar-pichai/': '/api/v2/search?paginate=12&order=relevance&site_id=2&query=text_to_search',
@@ -57,6 +59,7 @@ SEARCH_SUGGESTIONS_API = {
     '/intl/en-ca/': '/api/v2/search-suggestions/?query=text_to_search&site_id=11&format=json',
     '/intl/es-419/': '/api/v2/search-suggestions/?query=text_to_search&site_id=13&format=json',
     '/intl/it-it/': '/api/v2/search-suggestions/?query=text_to_search&site_id=15&format=json',
+    '/intl/ar-mena/': '/api/v2/search-suggestions/?query=text_to_search&site_id=17&format=json',
     # dev '/intl/en-africa/': '/api/v2/search-suggestions/?query=text_to_search&site_id=20&format=json',
     '/intl/en-africa/': '/api/v2/search-suggestions/?query=text_to_search&site_id=18&format=json',
     '/perspectives/sundar-pichai/': '/api/v2/search-suggestions/?query=text_to_search&site_id=2&format=json'

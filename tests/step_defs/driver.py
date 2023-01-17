@@ -72,15 +72,16 @@ class Driver(IDriver):
         options.add_experimental_option("excludeSwitches", ['enable-automation'])
         size_viewport = self.get_window_size(viewport)
         options.add_argument(size_viewport)
+        # options.add_argument("user-data-dir=selenium")
         options.set_capability("acceptInsecureCerts", True)
         options.add_argument('--start-maximized')
-        options.add_argument('--headless')
+        # options.add_argument('--headless')
         options.add_argument('--no-sandbox')
         options.add_argument("--disable-dev-shm-usage")
         # options.add_argument("--remote-debugging-port=9222")
         # chrome://inspect/#devices
-        # options.add_argument(r'--user-data-dir='+Constants.CHROME_PROFILE)  # your chrome user data directory
-        # options.add_argument(r'--profile-directory=Person 2')  # the profile with the extensions loaded
+        options.add_argument(r'--user-data-dir='+Constants.CHROME_PROFILE)  # your chrome user data directory
+        options.add_argument(r'--profile-directory=Person 2')  # the profile with the extensions loaded
         # options.add_argument(r'--profile-directory=Person 1')  # the profile in LINUX
         s = Service(driver_path)
         # s = Service("chromedriver")

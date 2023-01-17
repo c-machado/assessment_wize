@@ -5,7 +5,7 @@
 #The results appeared order by relevance, that may cause the oldest content be shown at the top.
 Feature: As a user, I want to search for content in the article progress bar
 
-    @search-article
+    @search_article_progress_bar
     Scenario Outline: Test search suggestions in an article page progress bar
         Given a user is at the <keyword> site
         And the progress bar is visible
@@ -24,9 +24,10 @@ Feature: As a user, I want to search for content in the article progress bar
             | subsea         | /intl/en-ca/  |
             | privacidad     | /intl/es-419/ |
             | intelligente   | /intl/it-it/  |
+            | كأس            | /intl/ar-mena/|
 
 
-    @search-article
+    @search_article_progress_bar
     Scenario Outline: Test the search suggestions in an article page progress bar using special characters
         Given a user is at the <keyword> site
         And the progress bar is visible
@@ -45,9 +46,10 @@ Feature: As a user, I want to search for content in the article progress bar
             | Canada's K-12             | /intl/en-ca/  |
             | año                       | /intl/es-419/ |
             | L'intrattenimento         | /intl/it-it/  |
+            | الأشخاص                    | /intl/ar-mena/|
 
 
-    @search-article
+    @search_article_progress_bar
     Scenario Outline: Test search results in an article page progress bar
         Given a user is at the <keyword> site
         And the progress bar is visible
@@ -67,9 +69,10 @@ Feature: As a user, I want to search for content in the article progress bar
             | subsea         | /intl/en-ca/  |
             | privacidad     | /intl/es-419/ |
             | intelligente   | /intl/it-it/  |
+            | المحتوى        | /intl/ar-mena/|
 
 
-    @search-article
+    @search_article_progress_bar
     Scenario Outline: Test search results in an article page progress bar using special characters
         Given a user is at the <keyword> site
         And the progress bar is visible
@@ -89,9 +92,10 @@ Feature: As a user, I want to search for content in the article progress bar
             | Canada's K-12             | /intl/en-ca/  |
             | información               | /intl/es-419/ |
             | un’attività               | /intl/it-it/  |
+            | الفرنسية                  | /intl/ar-mena/|
 
 
-    @search-article
+    @search_article_progress_bar
     Scenario Outline: Test search results when there are no results in an article page progress bar
         Given a user is at the <keyword> site
         And the progress bar is visible
@@ -111,9 +115,10 @@ Feature: As a user, I want to search for content in the article progress bar
             | retornou                  | /intl/en-ca/  | en       |
             | retornou                  | /intl/es-419/ | es       |
             | retornou                  | /intl/it-it/  | it       |
+            | copa                      | /intl/ar-mena/| ar       |
 
 
-    @search-article
+    @search_article_progress_bar
     Scenario Outline: Test the search suggestions in a perspective's article progress bar using special characters
         Given a user is at the <keyword> site
         And the user selects an article in <keyword> feed
@@ -126,7 +131,7 @@ Feature: As a user, I want to search for content in the article progress bar
             | text_to_search    | keyword                       |
             | español           | /perspectives/sundar-pichai/  |
 
-    @search-article
+    @search_article_progress_bar
     Scenario Outline: Test search suggestions in a perspectives article page progress bar
         Given a user is at the <keyword> site
         And the user selects an article in <keyword> feed
@@ -139,7 +144,7 @@ Feature: As a user, I want to search for content in the article progress bar
             | google         | /perspectives/sundar-pichai/ |
 
 
-    @search-article
+    @search_article_progress_bar
     Scenario Outline: Test search results in a perspective's article progress bar
         Given a user is at the <keyword> site
         And the user selects an article in <keyword> feed
@@ -154,7 +159,7 @@ Feature: As a user, I want to search for content in the article progress bar
             | google         | /perspectives/sundar-pichai/ |
 
 
-    @search-article
+    @search_article_progress_bar
     Scenario Outline: Test search results in a perspective's article progress bar using special characters
         Given a user is at the <keyword> site
         And the user selects an article in <keyword> feed
@@ -169,7 +174,7 @@ Feature: As a user, I want to search for content in the article progress bar
             | Valentine's     | /perspectives/sundar-pichai/ |
 
 
-    @search-article
+    @search_article_progress_bar
     Scenario Outline: Test search results when there are no results in a perspective's article progress bar
         Given a user is at the <keyword> site
         And the user selects an article in <keyword> feed

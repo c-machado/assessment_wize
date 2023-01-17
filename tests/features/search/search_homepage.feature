@@ -24,6 +24,7 @@ Feature: As a user, I would like to search for the content while navigating the 
             | cloud          | /intl/en-ca/    |
             | privacidad     | /intl/es-419/   |
             | intelligente   | /intl/it-it/    |
+            | الأشخاص         | /intl/ar-mena/  |
 
     @search_suggestions_special_char_business_critical
     Scenario Outline: Test search suggestions on the homepage using special characters
@@ -44,6 +45,7 @@ Feature: As a user, I would like to search for the content while navigating the 
             | trans-Pacific             | /intl/en-ca/    |
             | año                       | /intl/es-419/   |
             | L'intrattenimento         | /intl/it-it/    |
+            | الأشخاص                    | /intl/ar-mena/  |
 
 
     @search_results_page_business_critical
@@ -66,6 +68,7 @@ Feature: As a user, I would like to search for the content while navigating the 
 #            | Android         |/intl/en-africa/ |
             | privacidad     | /intl/es-419/   |
             | intelligente   | /intl/it-it/    |
+            | الأشخاص         | /intl/ar-mena/  |
 
     # TODO: Error with texts with special characters in the wrong format. https://hugeinc.atlassian.net/browse/UNI-6398
     @search_results_page_special_char_business_critical
@@ -89,6 +92,7 @@ Feature: As a user, I would like to search for the content while navigating the 
 #            | Google*                    | /intl/en-africa/ |
             | información               | /intl/es-419/    |
             | un’attività               | /intl/it-it/     |
+            | الأشخاص                    | /intl/ar-mena/   |
 
     @search_no_results_regression
     Scenario Outline: Test search results when there are no results on the homepage
@@ -110,3 +114,4 @@ Feature: As a user, I would like to search for the content while navigating the 
 #            | matati                    | /intl/en-africa/| en       |
             | retornou                  | /intl/es-419/   | es       |
             | retornou                  | /intl/it-it/    | it       |
+            | copa                      | /intl/ar-mena/  | ar       |

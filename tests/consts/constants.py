@@ -3,9 +3,10 @@ from dataclasses import dataclass
 
 @dataclass
 class Constants:
-    BASE_URL = 'https://blog.google'
+    # BASE_URL = 'https://blog.google'
+    # BASE_URL = 'https://gweb-uniblog-publish-prod.appspot.com'
     SEARCH_URL = "search/?query="
-    # BASE_URL = 'https://gweb-uniblog-publish-stage.appspot.com'
+    BASE_URL = 'https://gweb-uniblog-publish-stage.appspot.com'
     # BASE_URL = 'https://gweb-uniblog-publish-dev.appspot.com'
     PROD_URL = 'blog.google'
     CHROME_PROFILE = '/Users/machadoca/Documents/chrome_huge_inc'
@@ -50,6 +51,7 @@ class Constants:
         'pt_BR': '%d %b',
         'es_ES': '%b %d',
         'it_IT': '%d %b',
+        'ar_MENA': '%d %b'
     }
     DATE_FORMAT_IN_FEED_PAST_YEAR_PER_LOCALE = {
         'en_US': '%b %Y',
@@ -61,6 +63,7 @@ class Constants:
         'pt_BR': '%b %Y',
         'es_ES': '%b %Y',
         'it_IT': '%b %Y',
+        'ar_MENA': '%b %Y'
     }
     DATE_FORMAT_PER_LOCALE = {
         'en_US': '%b %d, %Y',
@@ -72,6 +75,7 @@ class Constants:
         'fr_CA': '%d %b, %Y',
         'es_ES': '%b %d, %Y',
         'it_IT': '%d %b, %Y',
+        'ar_MENA': '%d %b, %Y'
     }
     DESKTOP_PLATFORMS = [
         'WIN10',
@@ -91,12 +95,14 @@ class Constants:
     KEBAB_MENU_OPTIONS = {
         "rss_en": "RSS feed",
         "rss_de": "RSS-Feed",
+        "rss_ar_mena": "خلاصة RSS",
         "press_en": "Press corner",
         "press_de": "Pressezentrum",
         "press_fr_ca": "Salle de presse",
         "press_pt_br": "Imprensa",
         "press_es_419": "Prensa",
         "press_it_it": "Stampa",
+        "press_ar_mena": "ركن الصحافة"
     }
     LANGUAGE_SELECTOR = {
         "English",
@@ -193,6 +199,13 @@ class Constants:
             "Prodotti di Google": "https://about.google/products/",
             "Aiuto": "https://support.google.com/?hl=it"
         },
+        '/intl/ar-mena/': {
+            "الخصوصية": "https://policies.google.com/privacy?hl=ar",
+            "بنود الخدمة": "https://policies.google.com/terms?hl=ar",
+            "لمحة عن Google": "https://about.google/",
+            "منتجات Google": "https://about.google/products/",
+            "مساعدة": "https://support.google.com/?hl=ar"
+        },
         '/products/ads-commerce': {
             "Privacy": "https://policies.google.com/privacy",
             "Terms": "https://policies.google.com/terms",
@@ -219,6 +232,7 @@ class Constants:
         '/intl/pt-br/': "Sobre o blog",
         '/intl/es-419/': "Sobre el blog",
         '/intl/it-it/': "Il blog",
+        '/intl/ar-mena/': "لمحة عن المدونة"
         }
     LEGAL_LINKS_ABOUT_THE_BLOG_URL = {
         "/": "/inside-google/company-announcements/about/",
@@ -231,6 +245,7 @@ class Constants:
         '/intl/pt-br/': "/intl/pt-br/sobre-o-blog",
         '/intl/es-419/': "/intl/es-419/sobre-el-blog",
         '/intl/it-it/': "/intl/it-it/sul-blog",
+        '/intl/ar-mena/': "/intl/ar-mena/about"
     }
 
     CATEGORY_HORIZONTAL = [
@@ -303,7 +318,8 @@ class Constants:
         'fr': "Oups, votre recherche “text_to_search” n’a générée aucun résultat.",
         'pt': "Ops, sua pesquisa por “text_to_search” não retornou nenhum resultado.",
         'es': "Oops, tu búsqueda “text_to_search” no arrojó resultados",
-        'it': "Ops, la tua ricerca per “text_to_search” non ha avuto risultati."
+        'it': "Ops, la tua ricerca per “text_to_search” non ha avuto risultati.",
+        'ar': "عذرًا، ليس هناك نتائج بحث عن “text_to_search” ."
     }
     MOBILE_PLATFORMS = [
         'ANDROID',
