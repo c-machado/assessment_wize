@@ -106,6 +106,7 @@ def visibility_of_no_search_results_message(text_to_search, language, search):
     actual_msg = search.get_msg_no_search_results_in_page()
     assert expected_msg == actual_msg
 
+
 @given("the user selects an article in <keyword> feed")
 def user_selects_article_in_feed(keyword, feed, base_page):
     base_page.close_bar(PageLocators.cookie_banner_ok_cta)

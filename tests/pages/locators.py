@@ -78,7 +78,7 @@ class PageLocators(object):
     search_tag_filter_selected = (By.CSS_SELECTOR, ".uni-search-results__selected-facets")
     search_results_list = (By.CSS_SELECTOR, ".feed-article__title.ng-binding")
     search_no_results_header = (By.CSS_SELECTOR, ".h-c-page > h3")
-    search_results_header = (By.CSS_SELECTOR, ".uni-search-results__header")
+    search_results_header = (By.CSS_SELECTOR, ".uni-search-results__header h1")
     search_suggestions_results_list = (By.CSS_SELECTOR, ".uni-search__auto-complete-title")
     site_spaces_in_ads_and_analytics = (By.CSS_SELECTOR, ".all-products-list__category:nth-child(7) > a")
     site_space_title_in_nav_menu = (By.CSS_SELECTOR, ".uni-header__sitespace-text")

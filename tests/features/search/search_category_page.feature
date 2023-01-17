@@ -24,6 +24,7 @@ Feature: As a user, I would like to search for the content while navigating on a
             | vacinas        | /intl/pt-br/produtos/explore-e-encontre-respostas/ |
             | privacidad     | /intl/es-419/actualizaciones-de-producto/android-chrome-play/#android|
             | intelligente   | /intl/it-it/prodotti/android-chrome-play/ |
+            | الأشخاص         | /intl/ar-mena/products/android-chrome-play/ |
 
     @search_suggestions_special_char_business_critical
     Scenario Outline: Test search suggestions on a category page using special characters
@@ -46,6 +47,7 @@ Feature: As a user, I would like to search for the content while navigating on a
             | desinformação              | /intl/pt-br/produtos/explore-e-encontre-respostas/ |
             | año                        | /intl/es-419/actualizaciones-de-producto/android-chrome-play/#android|
             | intrattenimento            | /intl/it-it/prodotti/android-chrome-play/          |
+            | الأشخاص                     | /intl/ar-mena/products/android-chrome-play/        |
 
 
     @search_results_page_business_critical
@@ -67,6 +69,7 @@ Feature: As a user, I would like to search for the content while navigating on a
             | vacinas        | /intl/pt-br/produtos/explore-e-encontre-respostas/ |
             | privacidad     | /intl/es-419/actualizaciones-de-producto/android-chrome-play/#android|
             | intelligente   | /intl/it-it/prodotti/android-chrome-play/          |
+            | الأشخاص         | /intl/ar-mena/products/android-chrome-play/        |
 #            | africa         | /intl/en-africa/products/                          |
 
     @search_results_page_special_char_business_critical
@@ -89,6 +92,7 @@ Feature: As a user, I would like to search for the content while navigating on a
             | desinformação              | /intl/pt-br/produtos/explore-e-encontre-respostas/ |
             | año                        | /intl/es-419/actualizaciones-de-producto/android-chrome-play/#android|
             | intrattenimento            | /intl/it-it/prodotti/android-chrome-play/          |
+            | الأشخاص                     | /intl/ar-mena/products/android-chrome-play/        |
 
     @search_no_results_regression
     Scenario Outline: Test search results when there are no results on a category page
@@ -110,3 +114,4 @@ Feature: As a user, I would like to search for the content while navigating on a
             | Datenaustausch      | /intl/pt-br/produtos/explore-e-encontre-respostas/ | pt       |
             | retornou            | /intl/es-419/actualizaciones-de-producto/android-chrome-play/#android | es       |
             | retornou            | /intl/it-it/prodotti/android-chrome-play/          | it       |
+            | copa                | /intl/ar-mena/products/android-chrome-play/        | ar       |

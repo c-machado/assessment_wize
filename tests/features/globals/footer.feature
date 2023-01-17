@@ -12,6 +12,7 @@ Feature: As a user, I would like to access the content in the footer
       |/intl/pt-br/           |
       |/intl/es-419/          |
       |/intl/it-it/           |
+      |/intl/ar-mena/         |
 #      |/intl/en-africa/       |
       |/products/ads-commerce |
       |/waze/                 |
@@ -49,7 +50,8 @@ Feature: As a user, I would like to access the content in the footer
       | Français (Canada)    |
       | Português (Brasil)   |
       | Español (Latinoamérica)|
-      | Italiano"              |
+      | Italiano               |
+      | اللغة العربية (MENA)   |
 
   @footer_regression
   # TODO: facebook URLs are not secure (locales: in & au) https://jira.hugeinc.com/browse/UNI-5897

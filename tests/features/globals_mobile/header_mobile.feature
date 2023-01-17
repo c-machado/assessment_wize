@@ -18,6 +18,7 @@ Feature: As a user, I would like to interact with the header navigation on mobil
             |/intl/pt-br/ | latest_stories  |
             |/intl/es-419/| latest_stories  |
             |/intl/it-it/ | latest_stories  |
+            |/intl/ar-mena/ | latest_stories  |
 
   @header_business_critical
   Scenario Outline: Test the header items within products and company news submenus on mobile
@@ -48,6 +49,7 @@ Feature: As a user, I would like to interact with the header navigation on mobil
         |/intl/pt-br/      |
         |/intl/es-419/     |
         |/intl/it-it/      |
+        |/intl/ar-mena/    |
 #        |/intl/en-africa/  |
 
   @header_business_critical
@@ -98,6 +100,7 @@ Feature: As a user, I would like to interact with the header navigation on mobil
         |/intl/pt-br/     |
         |/intl/es-419/    |
         |/intl/it-it/     |
+        |/intl/ar-mena/   |
 #        |/intl/en-africa/ |
 
   @header_regression
@@ -117,6 +120,7 @@ Feature: As a user, I would like to interact with the header navigation on mobil
         |/intl/pt-br/      | /intl/pt-br/produtos/                     |product_updates |
         |/intl/es-419/     | /intl/es-419/actualizaciones-de-producto/ |product_updates |
         |/intl/it-it/      | /intl/it-it/prodotti/                     |product_updates |
+        |/intl/ar-mena/    | /intl/ar-mena/products/                   |product_updates |
 #        |/intl/en-africa/  | /intl/en-africa/products/                 |product_updates |
 
 

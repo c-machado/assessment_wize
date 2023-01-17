@@ -25,6 +25,7 @@ Feature: As a user, I would like to search content within the blog within an art
             | cloud          | /intl/en-ca/    |
             | privacidad     | /intl/es-419/   |
             | intelligente   | /intl/it-it/    |
+            | كأس            | /intl/ar-mena/  |
 
 
     @search_suggestions_special_char_business_critical
@@ -47,6 +48,7 @@ Feature: As a user, I would like to search content within the blog within an art
 #            | Meroë                     | /intl/en-africa/|
             | año                       | /intl/es-419/   |
             | L'intrattenimento         | /intl/it-it/    |
+            | الأشخاص                    | /intl/ar-mena/  |
 
 
     @search_results_page_business_critical
@@ -70,6 +72,7 @@ Feature: As a user, I would like to search content within the blog within an art
 #            | Android        | /intl/en-africa/ |
             | privacidad     | /intl/es-419/    |
             | intelligente   | /intl/it-it/     |
+            | المحتوى        | /intl/ar-mena/|
 
     @search_results_page_special_char_business_critical
     Scenario Outline: Test search results in an article page using special characters
@@ -92,6 +95,7 @@ Feature: As a user, I would like to search content within the blog within an art
 #            | Google*                   | /intl/en-africa/|
             | información               | /intl/es-419/   |
             | un’attività               | /intl/it-it/    |
+            | المحتوى                   | /intl/ar-mena/  |
 
 
     @search_no_results_regression
@@ -115,3 +119,4 @@ Feature: As a user, I would like to search content within the blog within an art
 #            | matati                    | /intl/en-africa/| en       |
             | retornou                  | /intl/es-419/   | es       |
             | retornou                  | /intl/it-it/    | it       |
+            | copa                      | /intl/ar-mena/  | ar       |

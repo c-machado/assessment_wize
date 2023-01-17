@@ -9,16 +9,17 @@ Feature: As a user, I would like to interact with the header navigation on deskt
           When the user clicks on the <submenu>
           Then the user is redirected to <keyword>
           Examples:
-            |keyword      | submenu         |
-            |/            | latest_stories  |
-            |/intl/de-de/ | latest_stories  |
-            |/intl/en-au/ | latest_stories  |
-            |/intl/en-in/ | latest_stories  |
-            |/intl/en-ca/ | latest_stories  |
-            |/intl/fr-ca/ | latest_stories  |
-            |/intl/pt-br/ | latest_stories  |
-            |/intl/es-419/| latest_stories  |
-            |/intl/it-it/ | latest_stories  |
+            |keyword        | submenu         |
+            |/              | latest_stories  |
+            |/intl/de-de/   | latest_stories  |
+            |/intl/en-au/   | latest_stories  |
+            |/intl/en-in/   | latest_stories  |
+            |/intl/en-ca/   | latest_stories  |
+            |/intl/fr-ca/   | latest_stories  |
+            |/intl/pt-br/   | latest_stories  |
+            |/intl/es-419/  | latest_stories  |
+            |/intl/it-it/   | latest_stories  |
+            |/intl/ar-mena/ | latest_stories  |
 
       @header_business_critical
       Scenario Outline: Test the header items within products and company news submenus
@@ -30,7 +31,7 @@ Feature: As a user, I would like to interact with the header navigation on deskt
             |/          | product_updates |
             |/          | company_news    |
 
-      @header-business_critical
+      @header_business_critical
       #TODO: add a new case sitespace and subcategory in en-us
       #TODO: add a comparison between 5 first articles
       Scenario Outline: Test RSS matches the content on desktop
@@ -40,19 +41,20 @@ Feature: As a user, I would like to interact with the header navigation on deskt
           Then the dates in RSS and <keyword> matches
 
           Examples:
-            |keyword      | kebab_option |
-            |/            | rss          |
-            |/intl/de-de/ | rss          |
-            |/intl/en-au/ | rss          |
-            |/intl/en-in/ | rss          |
-            |/intl/en-ca/ | rss          |
-            |/intl/fr-ca/ | rss          |
-            |/intl/pt-br/ | rss          |
-            |/intl/es-419/| rss          |
-            |/intl/it-it/ | rss          |
+            |keyword       | kebab_option |
+            |/             | rss          |
+            |/intl/de-de/  | rss          |
+            |/intl/en-au/  | rss          |
+            |/intl/en-in/  | rss          |
+            |/intl/en-ca/  | rss          |
+            |/intl/fr-ca/  | rss          |
+            |/intl/pt-br/  | rss          |
+            |/intl/es-419/ | rss          |
+            |/intl/it-it/  | rss          |
+            |/intl/ar-mena/| rss          |
     #        |/intl/en-africa/ | rss      |
 
-      @header-business_critical1
+      @header_business_critical
       Scenario Outline: Test the keyword logo in the nav menu
           Given a user is at the <keyword> site
           And the user clicks on the hero article
@@ -70,9 +72,10 @@ Feature: As a user, I would like to interact with the header navigation on deskt
             |/intl/pt-br/ |
             |/intl/es-419/|
             |/intl/it-it/ |
-    #        |/intl/en-africa/ |/intl/en-africa/|
+            |/intl/ar-mena/|
+#           |/intl/en-africa/
 
-      @header-business_critical
+      @header_business_critical
       Scenario Outline: Test navigation in sitespaces within products in Ads&Analytics list
           Given a user is at the <keyword> site
           When the user clicks on a random sitespace
@@ -82,7 +85,7 @@ Feature: As a user, I would like to interact with the header navigation on deskt
           |keyword   |
           |/products |
 
-      @header-business_critical
+      @header_business_critical
       Scenario Outline: Test navigation in waze sitespace
           Given a user is at the <keyword> site
           Then the system shows the waze header
@@ -91,7 +94,7 @@ Feature: As a user, I would like to interact with the header navigation on deskt
           |keyword   |
           |/waze     |
 
-      @header-business_critical
+      @header_business_critical
       Scenario Outline: Test navigation in an article belonging to a sitespace
           Given a user is at the <keyword> site
           When the user clicks in an article in a <sitespace_tag> in <keyword>
@@ -119,6 +122,7 @@ Feature: As a user, I would like to interact with the header navigation on deskt
             |/intl/pt-br/      | /intl/pt-br/produtos/                     |product_updates |
             |/intl/es-419/     | /intl/es-419/actualizaciones-de-producto/ |product_updates |
             |/intl/it-it/      | /intl/it-it/prodotti/                     |product_updates |
+            |/intl/ar-mena/    | /intl/ar-mena/products/                   |product_updates |
     #        |/intl/en-africa/  | /intl/en-africa/products/                 |product_updates |
 
 
@@ -158,5 +162,7 @@ Feature: As a user, I would like to interact with the header navigation on deskt
             |/intl/es-419/| press        | es_419   |
             |/intl/it-it/ | rss          | en       |
             |/intl/it-it/ | press        | it_it    |
+            |/intl/ar-mena/ | rss        | ar_mena   |
+            |/intl/ar-mena/ | press      | ar_mena   |
     #        |/intl/en-africa/  | rss     | en       |
     #        |/intl/en-africa/  | press   | en       |

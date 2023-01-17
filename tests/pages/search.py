@@ -162,6 +162,8 @@ class Search(BasePage, BasePageAPI):
         return self.driver.find_element(*PageLocators.search_icon_nav_desktop).is_displayed()
 
     def is_search_results_header_visible(self):
+        self.logger.info('%s search_bar',
+                         self.driver.find_element(*PageLocators.search_results_header).get_attribute("outerHTML"))
         return self.driver.find_element(*PageLocators.search_results_header).is_displayed()
 
     def type_search_criteria(self, search_criteria):
