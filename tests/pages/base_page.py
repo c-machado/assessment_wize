@@ -253,6 +253,12 @@ class BasePage(object):
             return True
 
     @staticmethod
+    def contains_hyphen_char(string):
+        regexp = re.compile("–&nbsp;")
+        if regexp.search(string):
+            return True
+
+    @staticmethod
     def contains_space_char(string):
         regexp = re.compile("&nbsp;")
         if regexp.search(string):
@@ -271,6 +277,12 @@ class BasePage(object):
     def replace_ampersand_char(self, string):
         if self.contains_ampersand_char(string):
             return re.sub("&amp;", "&", string)
+        else:
+            return string
+
+    def replace_hyphen_char(self, string):
+        if self.contains_hyphen_char(string):
+            return re.sub("–&nbsp;", "– ", string)
         else:
             return string
 

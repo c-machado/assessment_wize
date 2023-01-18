@@ -117,7 +117,9 @@ class Search(BasePage, BasePageAPI):
         collection_index = 0
         for element in eyebrow_in_articles:
             tag_eyebrow = self.remove_html_tags(element.get_attribute("innerHTML"))
-            tag_eyebrow_principal = tag_eyebrow.split("/ ")[1]
+            self.logger.info('%s tag_eyebrow', tag_eyebrow)
+            tag_eyebrow_principal = tag_eyebrow.split("/ ")[1] if not (keyword.__contains__('ar-mena')) \
+                else tag_eyebrow.split("- ")[1] + '- ' + tag_eyebrow.split("- ")[2]
             self.logger.info('%s tag_eyebrow_principal', tag_eyebrow_principal)
             self.logger.info('%s tag_to_filter', self.tag_to_filter)
             index += 1
@@ -126,7 +128,8 @@ class Search(BasePage, BasePageAPI):
                 self.collections_dict.setdefault(collection_index, []).append(index)
                 self.collections_dict.setdefault(collection_index, []).append(element)
             elif not(tag_eyebrow_principal.strip().startswith('From')) and (tag_eyebrow_principal != self.tag_to_filter):
-                tag_eyebrow_secondary = tag_eyebrow.split("/ ")[2]
+                tag_eyebrow_secondary = tag_eyebrow.split("/ ")[2] if not (keyword.__contains__('ar-mena')) \
+                        else tag_eyebrow.split("- ")[1] + '- ' + tag_eyebrow.split("- ")[2]
                 tag_articles_eyebrow.append(tag_eyebrow_secondary)
             elif self.tag_to_filter in tag_eyebrow_principal:
                 if tag_eyebrow_principal.strip().startswith("From"):

@@ -5,7 +5,7 @@ printf "STARTING TESTS BUSINESS CRITICAL:\n"
 
 #pytest tests/ -m "header_business_critical" --html=reports/blog/business_critical_header.html # BEI
 #To Fix
-#pytest tests/ -m "search_nav_business_critical" --html=reports/blog/business_critical_search_nav.html # GABO
+pytest tests/ -m "search_nav_business_critical1" --html=reports/blog/business_critical_search_nav.html # GABO
 ##/ok--ar-mena 6 fails
 #pytest tests/ -m "search_suggestions_business_critical" --html=reports/blog/business_critical_search_suggestions.html # GABO
 #pytest tests/ -m "search_suggestions_special_char_business_critical" --html=reports/blog/business_critical_search_suggestions_special_char.html # GABO
@@ -26,8 +26,8 @@ printf "STARTING TESTS BUSINESS CRITICAL:\n"
 #pytest tests/ -m "cookie" --html=reports/blog/business_critical_cookie.html #BEI
 
 #pytest tests/ -m "feed-article-load-more" --html=reports/blog/feed-load-more.html # GABO
-#pytest tests/ -m "feed-article-tagging" --html=reports/blog/feed-tagging-lf1.html # GABO
-#pytest tests/ -m "feed-article-date-format" --html=reports/blog/feed-date-format-lf.html # GABO
+#pytest tests/ -m "feed-article-tagging" --html=reports/blog/feed-tagging.html # GABO
+#pytest tests/ -m "feed-article-date-format" --html=reports/blog/feed-date-format.html # GABO
 
 #printf "STARTING TESTS REGRESSION:\n"
 #
@@ -37,15 +37,15 @@ printf "STARTING TESTS BUSINESS CRITICAL:\n"
 #
 #pytest tests/ -m "article-inline" --html=reports/blog/regression_article-inline.html # GABO
 
-pytest tests/ -m "search_suggestions_regression" --html=reports/blog/regression_search_suggestions.html # GABO
-pytest tests/ -m "search_suggestions_special_char_regression" --html=reports/blog/regression_search_suggestions_special_char.html # GABO
-pytest tests/ -m "search_results_page_regression" --html=reports/blog/regression_search_results_page.html # GABO
-pytest tests/ -m "search_results_page_special_char_regression" --html=reports/blog/regression_search_results_page_special_char.html # GABO
-# run already pytest tests/ -m "search_no_results_regression" --html=reports/blog/regression_search_no_results.html # GABO
-pytest tests/ -m "search_article_progress_bar" --html=reports/blog/regression_search_article_progress_bar.html # GABO
-
-
-
-pytest tests/ -m "press" --html=reports/blog/press.html # GABO
-#pytest tests/ -m "redirects" --html=reports/blog/redirects.html # IN PROGRESS
+#pytest tests/ -m "search_suggestions_regression" --html=reports/blog/regression_search_suggestions.html # GABO
+#pytest tests/ -m "search_suggestions_special_char_regression" --html=reports/blog/regression_search_suggestions_special_char.html # GABO
+#pytest tests/ -m "search_results_page_regression" --html=reports/blog/regression_search_results_page.html # GABO
+#pytest tests/ -m "search_results_page_special_char_regression" --html=reports/blog/regression_search_results_page_special_char.html # GABO
+## run already pytest tests/ -m "search_no_results_regression" --html=reports/blog/regression_search_no_results.html # GABO
+#pytest tests/ -m "search_article_progress_bar" --html=reports/blog/regression_search_article_progress_bar.html # GABO
+#
+#
+#
+#pytest tests/ -m "press" --html=reports/blog/press.html # GABO
+##pytest tests/ -m "redirects" --html=reports/blog/redirects.html # IN PROGRESS
 
