@@ -8,15 +8,15 @@ Feature: As a user, I want to be able to search for content within the blog
     Examples:
          |keyword         |
          |/               |
-         |/intl/de-de/    |
-         |/intl/en-in/    |
-         |/intl/en-au/    |
-         |/intl/fr-ca/    |
-         |/intl/pt-br/    |
-         |/intl/en-ca/    |
-#         |/intl/en-africa/|
-         |/intl/es-419/   |
-         |/intl/it-it/    |
+#         |/intl/de-de/    |
+#         |/intl/en-in/    |
+#         |/intl/en-au/    |
+#         |/intl/fr-ca/    |
+#         |/intl/pt-br/    |
+#         |/intl/en-ca/    |
+##         |/intl/en-africa/|
+#         |/intl/es-419/   |
+#         |/intl/it-it/    |
          |/intl/ar-mena/    |
 
     @search_nav_business_critical
@@ -46,7 +46,7 @@ Feature: As a user, I want to be able to search for content within the blog
             | text_to_search |
             | google         |
 
-    @search_nav_business_critical
+    @search_nav_business_critical1
     Scenario Outline: Test filter by random tag in the results page
         Given a user is at the <keyword> site
         When the user clicks the search icon

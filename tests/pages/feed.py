@@ -50,10 +50,16 @@ class Feed(BasePage, BasePageAPI):
         for article_title in article_titles_list:
             if self.contains_ampersand_char(article_title.get_attribute("innerHTML")):
                 titles_list.append(self.replace_ampersand_char(article_title.get_attribute("innerHTML")))
+                self.logger.info('%s amp char',
+                                 self.replace_ampersand_char(article_title.get_attribute("innerHTML")))
+            elif self.contains_hyphen_char(article_title.get_attribute("innerHTML")):
+                titles_list.append(self.replace_hyphen_char(article_title.get_attribute("innerHTML")))
+                self.logger.info('%s hyphen char',
+                                 self.replace_hyphen_char(article_title.get_attribute("innerHTML")))
             else:
                 titles_list.append(article_title.get_attribute("innerHTML"))
-            self.logger.info('%s self.replace_ampersand_char(article_title.get_attribute("innerHTML"))',
-                             self.replace_ampersand_char(article_title.get_attribute("innerHTML")))
+                self.logger.info('%s no update',
+                                 article_title.get_attribute("innerHTML"))
         return titles_list
 
     def get_date_article_in_feed(self):

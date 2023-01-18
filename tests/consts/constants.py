@@ -50,8 +50,7 @@ class Constants:
         'en_CA': '%b %d',
         'pt_BR': '%d %b',
         'es_ES': '%b %d',
-        'it_IT': '%d %b',
-        'ar_MENA': '%d %b'
+        'it_IT': '%d %b'
     }
     DATE_FORMAT_IN_FEED_PAST_YEAR_PER_LOCALE = {
         'en_US': '%b %Y',
@@ -62,8 +61,7 @@ class Constants:
         'en_CA': '%b %Y',
         'pt_BR': '%b %Y',
         'es_ES': '%b %Y',
-        'it_IT': '%b %Y',
-        'ar_MENA': '%b %Y'
+        'it_IT': '%b %Y'
     }
     DATE_FORMAT_PER_LOCALE = {
         'en_US': '%b %d, %Y',
@@ -74,8 +72,7 @@ class Constants:
         'en_CA': '%b %d, %Y',
         'fr_CA': '%d %b, %Y',
         'es_ES': '%b %d, %Y',
-        'it_IT': '%d %b, %Y',
-        'ar_MENA': '%d %b, %Y'
+        'it_IT': '%d %b, %Y'
     }
     DESKTOP_PLATFORMS = [
         'WIN10',
