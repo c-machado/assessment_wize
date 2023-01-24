@@ -6,7 +6,7 @@ Feature: As a user, I want to be able to filter the assets as needed
     |keyword |
     |/press  |
 
-    @press
+    @press1
     Scenario Outline: Test filter by type
         Given a user is at the <keyword> site
         When the user chooses the <type_filter>

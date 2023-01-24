@@ -65,6 +65,13 @@ def user_load_more_stories(feed, base_page):
     feed.click_load_more_stories_in_feed()
 
 
+@when("the user clicks on load more stories cta on <keyword> feed")
+def user_load_more_stories_count(feed, base_page, keyword):
+    base_page.close_bar(PageLocators.cookie_banner_ok_cta)
+    time.sleep(1)
+    assert feed.click_load_more_stories_in_feed(keyword)
+
+
 @then("the articles are shown order by date desc")
 def validate_descendent_order(feed):
     original_list = feed.get_article_dates_in_feed_with_year()

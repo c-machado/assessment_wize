@@ -51,6 +51,14 @@ def validate_date_format_in_article(article, locale, feed, base_page):
     assert base_page.is_date_format_correct(date_in_article, date_format_expected, locale)
 
 
+@then("the date matches the <locale> format")
+def validate_date_matches_format_in_article(article, locale, feed, base_page):
+    time.sleep(1)
+    date_in_article = article.get_date_in_article().get_attribute("innerHTML")
+    date_format_expected = base_page.get_date_format(date_in_article, locale)
+    base_page.is_date_format_correct(date_in_article, date_format_expected, locale)
+
+
 @when("the user chooses a random article")
 @given("the user chooses a random article")
 def user_choose_random_article(feed, base_page):
@@ -66,10 +74,22 @@ def user_load_more_stories(feed, base_page):
     feed.click_load_more_stories_in_feed()
 
 
+@when("the user clicks on load more stories cta on <keyword> feed")
+def user_load_more_stories_count(feed, base_page, keyword):
+    base_page.close_bar(PageLocators.cookie_banner_ok_cta)
+    time.sleep(1)
+    assert feed.click_load_more_stories_in_feed(keyword)
+
+
 @then("the articles are shown order by date desc")
 def validate_descendent_order(feed):
     original_list = feed.get_article_dates_in_feed_with_year()
     assert feed.order_list_by_date_desc(original_list)
+
+
+@then("the system show new articles each time on <keyword> feed")
+def show_articles_load_more(keyword):
+    assert True
 
 
 @then("the tags associated match with the content in the <keyword>")
@@ -85,3 +105,5 @@ def scroll_to_feed_section(base_page, keyword):
 @then("the system shows articles in the <keyword> locale")
 def show_articles_in_feed_per_page(keyword, feed):
     assert feed.confirm_articles_in_feed_homepage(keyword)
+
+

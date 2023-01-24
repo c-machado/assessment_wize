@@ -20,8 +20,20 @@ Feature: As a user, I want to confirm dates are showing according to the expecte
             | pt_BR     | /intl/pt-br/ |
             | es_ES     | /intl/es-419/|
             | it_IT     | /intl/it-it/ |
+            | ar_IL     | /intl/ar-mena/ |
             #TODO: Update locale code date format
 #            | en_US     | /intl/en-africa/ |
+
+    @feed-article-date-format1
+    Scenario Outline: Confirm article's date is in the correct format in homepage feed
+        Given a user is at the <keyword> site
+        And the user chooses a random article
+        When the user in <keyword> <locale> check the date in the feed
+        And the user opens the selected random article in <keyword> feed
+        Then the date matches the <locale> format
+        Examples:
+            | locale    | keyword        |
+            | ar_IL     | /intl/ar-mena/ |
 
 
     @feed-article-date-format
