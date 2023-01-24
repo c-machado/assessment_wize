@@ -33,6 +33,7 @@ class PageLocators(object):
     feed_article_dates_list = (By.CSS_SELECTOR, ".feed-article.ng-scope .eyebrow__date time")
     feed_article_titles_list = (By.CSS_SELECTOR, ".feed-article__title")
     feed_load_more = (By.CSS_SELECTOR, ".article-list__load-more--cards")
+    feed_load_more_text = (By.CSS_SELECTOR, ".article-list__loader-text")
     footer_google_logo = (By.CSS_SELECTOR, ".h-c-footer__logo")
     hamburger_menu = (By.CSS_SELECTOR, ".uni-header__hamburguer-button")
     hamburger_menu_rss = (By.CSS_SELECTOR, "ul.uni-header__kebab-menu--mobile > li:nth-child(2) > a")

@@ -22,31 +22,32 @@ RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key
 # TODO: add firefox
 
 # Install python dependencies.
-WORKDIR /chrome-test
-COPY ./requirements.txt /chrome-test
+WORKDIR /tests
+COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 # Copy test drives.
-WORKDIR /chrome-test/bin/linux
-COPY ./bin/linux .
+WORKDIR /tests/bin/linux
+COPY /tests/bin/linux /tests/bin/linux
 ENV PATH="/:${PATH}"
-ENV PATH="/chrome-test/bin/linux:${PATH}"
+ENV PATH="/tests/bin/linux:${PATH}"
 
 # Copy test source code.
-WORKDIR /chrome-test/tests
+WORKDIR /tests
 COPY tests/consts/* consts/
-COPY tests/features/linux_platform/* features/linux_platform/
+COPY tests/features/* features/
 COPY tests/pages/* pages/
 COPY tests/step_defs/* step_defs/
+COPY tests/step_defs_mobile/* step_defs_mobile/
 COPY tests/__init__.py .
 COPY tests/conftest.py .
 COPY tests/pytest.ini .
 COPY tests/run_tests.sh .
 
-#RUN echo $(ls -laR /chrome-test/tests/)
+#RUN echo $(ls -laR /tests/)
 
 # Reports.
-# VOLUME [ "/chrome-test/html_reports" ]
+# VOLUME [ "reports" ]
 
 # Run the test command.
-CMD ["/chrome-test/tests/run_tests.sh"]
+CMD ["/tests/run_tests.sh"]

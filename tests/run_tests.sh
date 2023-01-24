@@ -2,7 +2,6 @@
 
 printf "STARTING DOCKER TEST:\n"
 
-#python -m pytest -m "linux-env" --html=reports/linux/env-linux.html
-
-python -m pytest -m "linux-env-other" --html=reports/linux/env-linux-other.html
+pytest tests/ -m "feed-article-date-format1" --html=reports/blog/feed-date-format.html # GABO
+#pytest tests/ -m "press1" --html=reports/blog/press.html
 

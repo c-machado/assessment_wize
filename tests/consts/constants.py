@@ -4,9 +4,9 @@ from dataclasses import dataclass
 @dataclass
 class Constants:
     # BASE_URL = 'https://blog.google'
-    # BASE_URL = 'https://gweb-uniblog-publish-prod.appspot.com'
+    BASE_URL = 'https://gweb-uniblog-publish-prod.appspot.com'
     SEARCH_URL = "search/?query="
-    BASE_URL = 'https://gweb-uniblog-publish-stage.appspot.com'
+    # BASE_URL = 'https://gweb-uniblog-publish-stage.appspot.com'
     # BASE_URL = 'https://gweb-uniblog-publish-dev.appspot.com'
     PROD_URL = 'blog.google'
     CHROME_PROFILE = '/Users/machadoca/Documents/chrome_huge_inc'
