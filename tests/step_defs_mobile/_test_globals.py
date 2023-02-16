@@ -2,7 +2,7 @@ import time
 
 import pytest
 import requests
-from pytest_bdd import scenarios, given, when, then
+from pytest_bdd import scenarios, given, when, then, parsers
 
 from tests.consts.constants import Constants
 from tests.pages.locators import PageLocators
@@ -11,16 +11,16 @@ scenarios("../features/globals/")
 scenarios("../features/globals_mobile")
 
 
-@given("a user is at the <keyword> site")
-def at_the_blog(keyword, driver, get_web_browser, get_viewport):
-    print('keyword url', Constants.BASE_URL + keyword)
-    print('get_web_browser', get_web_browser)
-    print('get_viewport', get_viewport)
-    # time.sleep(2)
-    driver.start(get_web_browser, get_viewport)
-    # time.sleep(5)
-    driver.go_to_URL(Constants.BASE_URL + keyword)
-    driver.wait_for_page_load()
+# @given("a user is at the <keyword> site")
+# def at_the_blog(keyword, driver, get_web_browser, get_viewport):
+#     print('keyword url', Constants.BASE_URL + keyword)
+#     print('get_web_browser', get_web_browser)
+#     print('get_viewport', get_viewport)
+#     # time.sleep(2)
+#     driver.start(get_web_browser, get_viewport)
+#     # time.sleep(5)
+#     driver.go_to_URL(Constants.BASE_URL + keyword)
+#     driver.wait_for_page_load()
 
 
 @when("the user clicks on every <social_media> item")
@@ -81,9 +81,9 @@ def user_clicks_ok_cookies_msg(cookie_banner):
     cookie_banner.close_cookie_banner()
 
 
-@given("the user clicks on the hero article")
-def user_clicks_hero_article(cookie_banner, get_viewport):
-    cookie_banner.click_to_read_more_article(get_viewport)
+# @given("the user clicks on the hero article")
+# def user_clicks_hero_article(cookie_banner, get_viewport):
+#     cookie_banner.click_to_read_more_article(get_viewport)
 
 
 @when("the user clicks the see details CTA")
@@ -102,13 +102,13 @@ def redirected_to_page(url, base_page, driver):
     assert driver.current_url().__contains__(url)
 
 
-@then("the user is redirected to <keyword>")
+@then(parsers.parse("the user is redirected to {keyword}"))
 def redirected_to_page(keyword, base_page, driver):
     assert base_page.get_status_redirect() == 200
     assert driver.current_url().__contains__(keyword)
 
 
-@when("the user clicks on the <submenu>")
+@when(parsers.parse("the user clicks on the {submenu}"))
 def user_clicks_to_submenu(header, submenu, get_viewport):
     header.click_on_hamburger_menu()
     header.click_on_submenu_item(submenu, get_viewport)

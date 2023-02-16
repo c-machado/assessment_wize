@@ -6,6 +6,9 @@ from datetime import datetime
 
 import pytest
 
+from pytest_bdd import parsers, given
+
+from tests.consts.constants import Constants
 from tests.pages.press_assets import PressAssets
 from tests.pages.homepage import Homepage
 from tests.pages.article import ArticlePage
@@ -113,7 +116,7 @@ def pytest_html_results_table_header(cells):
 
 
 def pytest_html_results_table_row(report, cells):
-    cells.insert(2, html.td(report.description))
+    cells.insert(2, html.td(getattr(report, 'description', '')))
     cells.insert(1, html.td(datetime.utcnow(), class_="col-time"))
     cells.pop()
 
@@ -128,3 +131,16 @@ def pytest_runtest_makereport(item, call):
 
 def pytest_html_report_title(report):
     report.title = "Release Keyword Site"
+
+
+@given(parsers.parse("a user is at the {keyword} site"))
+def at_the_blog(keyword, driver, get_web_browser, get_viewport):
+    print(get_web_browser)
+    driver.start(get_web_browser, get_viewport)
+    driver.go_to_URL(Constants.BASE_URL + keyword)
+    driver.wait_for_page_load()
+
+
+@given("the user clicks on the hero article")
+def user_clicks_hero_article(cookie_banner, get_viewport):
+    cookie_banner.click_to_read_more_article(get_viewport)

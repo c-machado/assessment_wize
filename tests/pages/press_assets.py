@@ -31,8 +31,8 @@ class PressAssets(BasePage, BasePageAPI):
 
     # TODO: Find a way to send the parameter tag_filter as optional, so we can use the same function to get the api_url
     def get_api_url_with_type_and_tag(self, type_filter, tag_filter, keyword):
-        print(type_filter)
-        print(tag_filter)
+        print('type_filter', type_filter)
+        print('tag_filter', tag_filter)
         locale_url = self.get_locale_url(keyword)
         api_url = api_const.PRESS_ASSETS_PER_TYPE_AND_TAG_API[locale_url]
         type_filter = self.format_ampersand_in_type_url(type_filter)
@@ -51,7 +51,7 @@ class PressAssets(BasePage, BasePageAPI):
         select_opts_per_type = self.driver.get_select_options(PageLocators.press_filter_by_type)
         self.click_option_in_filter_by(select_opts_per_type, filter_by_type)
         # TODO: Explore a different solution to avoid using time sleep.
-        #  This is required because the stage is taking a long to load the content filtered.
+        #  This is required because the stage is taking too long to load the content filtered.
         #  It's the same in the examples below
         time.sleep(1)
 

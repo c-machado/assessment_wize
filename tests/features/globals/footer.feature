@@ -18,7 +18,7 @@ Feature: As a user, I would like to access the content in the footer
       |/waze/                 |
 
 
-  @footer_business_critical
+  @footer_regression
   Scenario: Test legal links are not broken
     Given a user is at the <keyword> site
     When the user clicks on legal items

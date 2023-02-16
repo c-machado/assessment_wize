@@ -1,4 +1,4 @@
-# Created by machadoca at 15/02/22
+x# Created by machadoca at 15/02/22
 #Search functionality works as follows:
 #Suggestions: Look for the content that matches the article's title.
 #Results page: Look within the article's content.
