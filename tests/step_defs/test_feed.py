@@ -7,7 +7,9 @@ from pytest_bdd import scenarios, given, when, then, parsers
 from tests.consts.constants import Constants
 from tests.pages.locators import PageLocators
 
-scenarios("../features/feed_latest_news/feed_load_more_stories.feature")
+scenarios("../features/feed_latest_news/feed_load_more_stories.feature",
+          "../features/feed_latest_news/feed_date_format.feature",
+          "../features/feed_latest_news/feed_tagging_validation.feature")
 
 
 @when(parsers.parse("the user in {keyword} {locale} check the date in the feed"))
@@ -52,16 +54,16 @@ def validate_descendent_order(feed):
     assert feed.order_list_by_date_desc(original_list)
 
 
-@then("the tags associated match with the content in the <keyword>")
+@then(parsers.parse("the tags associated match with the content in the {keyword}"))
 def validate_tags_in_content(feed, keyword):
     assert feed.confirm_tagging_in_feed_articles(keyword)
 
 
-@when("the user scrolls to the feed in <keyword> locale")
+@when(parsers.parse("the user scrolls to the feed in {keyword} locale"))
 def scroll_to_feed_section(base_page, keyword):
     base_page.scroll_to_feed(0, keyword)
 
 
-@then("the system shows articles in the <keyword> locale")
+@then(parsers.parse("the system shows articles in the {keyword} locale"))
 def show_articles_in_feed_per_page(keyword, feed):
     assert feed.confirm_articles_in_feed_homepage(keyword)

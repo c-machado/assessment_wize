@@ -1,26 +1,17 @@
 import time
 
-from pytest_bdd import scenarios, given, when, then
+from pytest_bdd import scenarios, given, when, then, parsers
 
 from tests.consts.constants import Constants
 
 
-scenarios("../features/article/")
+scenarios("../features/article/article_inline_links.feature",
+          "../features/article/article_related_articles.feature",
+          "../features/article/article_related_stories_date_format.feature",
+          "../features/article/article_videos.feature")
 
 
-@given("a user is at the <keyword> site")
-def at_the_blog(keyword, driver, get_web_browser, get_viewport):
-    print('keyword url', Constants.BASE_URL + keyword)
-    print('get_web_browser', get_web_browser)
-    print('get_viewport', get_viewport)
-    # time.sleep(2)
-    driver.start(get_web_browser, get_viewport)
-    # time.sleep(2)
-    driver.go_to_URL(Constants.BASE_URL + keyword)
-    driver.wait_for_page_load()
-
-
-@given("the user clicks to play the <video_type>")
+@given(parsers.parse("the user clicks to play the {video_type}"))
 def user_play_video(article, video_type):
     article.close_cookie_banner()
     article.click_to_play_video(video_type)
@@ -55,7 +46,7 @@ def user_sees_articles_matching_current_tag(article):
     assert article.validate_tags_in_related_stories()
 
 
-@then("the date shown in the related stories articles are according to the <locale> format")
+@then(parsers.parse("the date shown in the related stories articles are according to the {locale} format"))
 def date_format_in_related_stories(article, base_page, locale):
     time.sleep(1)
     date_in_article_list = article.get_date_in_related_articles()
