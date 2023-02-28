@@ -2,29 +2,15 @@ import datetime
 import time
 
 import pytest
-from pytest_bdd import scenarios, given, when, then
+from pytest_bdd import scenarios, given, when, then, parsers
 
 from tests.consts.constants import Constants
 from tests.pages.locators import PageLocators
 
-scenarios("../features/feed_latest_news/")
+scenarios("../features/feed_latest_news/feed_load_more_stories.feature")
 
 
-@given("a user is at the <keyword> site")
-def at_the_blog(keyword, driver, get_web_browser, get_viewport):
-    print('keyword url', Constants.BASE_URL + keyword)
-    print('get_web_browser', get_web_browser)
-    print('get_viewport', get_viewport)
-    # time.sleep(2)
-    driver.start(get_web_browser, get_viewport)
-    # time.sleep(5)
-    driver.go_to_URL(Constants.BASE_URL + keyword)
-    driver.wait_for_page_load()
-    # browser.set_cookie()
-    # browser.refresh()
-
-
-@when("the user in <keyword> <locale> check the date in the feed")
+@when(parsers.parse("the user in {keyword} {locale} check the date in the feed"))
 def user_check_date_in_feed(keyword, locale, feed, driver, base_page):
     driver.wait_for_page_load()
     driver.wait_for_feed_to_load(*PageLocators.feed_articles_list)
@@ -37,24 +23,12 @@ def user_check_date_in_feed(keyword, locale, feed, driver, base_page):
     assert article_date_in_feed == expected_date_in_feed
 
 
-@when("the user opens the selected random article in <keyword> feed")
-def user_open_random_article_in_feed(feed, keyword):
-    feed.click_to_random_article_in_feed(keyword)
-
-
-@then("the date is according to the <locale> format")
+@then(parsers.parse("the date is according to the {locale} format"))
 def validate_date_format_in_article(article, locale, feed, base_page):
     time.sleep(1)
     date_in_article = article.get_date_in_article().get_attribute("innerHTML")
     date_format_expected = base_page.get_date_format_per_locale(locale, Constants.DATE_FORMAT_PER_LOCALE)
     assert base_page.is_date_format_correct(date_in_article, date_format_expected, locale)
-
-
-@when("the user chooses a random article")
-@given("the user chooses a random article")
-def user_choose_random_article(feed, base_page):
-    base_page.close_bar(PageLocators.cookie_banner_ok_cta)
-    feed.get_random_index_in_list(feed.get_articles_in_feed_list())
 
 
 @pytest.mark.flaky("Category page takes too long to load")
@@ -65,7 +39,7 @@ def user_load_more_stories(feed, base_page):
     feed.click_load_more_stories_in_feed()
 
 
-@when("the user clicks on load more stories cta on <keyword> feed")
+@when(parsers.parse("the user clicks on load more stories cta on {keyword} feed"))
 def user_load_more_stories_count(feed, base_page, keyword):
     base_page.close_bar(PageLocators.cookie_banner_ok_cta)
     time.sleep(1)

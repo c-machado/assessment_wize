@@ -2,7 +2,7 @@
 Feature: As a user, I would like to interact with the header navigation on desktop
 
 
-      @header_business_critical1
+      @header_business_critical
       Scenario Outline: Test the latest stories submenu
           Given a user is at the <keyword> site
           And the user clicks on the hero article
@@ -21,28 +21,28 @@ Feature: As a user, I would like to interact with the header navigation on deskt
 #            |/intl/it-it/   | latest_stories  |
 #            |/intl/ar-mena/ | latest_stories  |
 
-#      @header_business_critical
-#      Scenario Outline: Test the header items within products and company news submenus
-#          Given a user is at the <keyword> site
-#          When the user clicks on the <submenu>
-#          Then every link in the <submenu> selected return an Http 200
-#          Examples:
-#            |keyword    | submenu         |
-#            |/          | product_updates |
+      @header_business_critical
+      Scenario Outline: Test the header items within products and company news submenus
+          Given a user is at the <keyword> site
+          When the user clicks on the <submenu>
+          Then every link in the <submenu> selected return an Http 200
+          Examples:
+            |keyword    | submenu         |
+            |/          | product_updates |
 #            |/          | company_news    |
-#
-#      @header_business_critical
-#      #TODO: add a new case sitespace and subcategory in en-us
-#      #TODO: add a comparison between 5 first articles
-#      Scenario Outline: Test RSS matches the content on desktop
-#          Given a user is at the <keyword> site
-#          When the user triggers the kebab menu
-#          And the user clicks <kebab_option>
-#          Then the dates in RSS and <keyword> matches
-#
-#          Examples:
-#            |keyword       | kebab_option |
-#            |/             | rss          |
+
+      @header_business_critical
+      #TODO: add a new case sitespace and subcategory in en-us
+      #TODO: add a comparison between 5 first articles
+      Scenario Outline: Test RSS matches the content on desktop
+          Given a user is at the <keyword> site
+          When the user triggers the kebab menu
+          And the user clicks the <kebab_option>
+          Then the dates in RSS and <keyword> matches
+
+          Examples:
+            |keyword       | kebab_option |
+            |/             | rss          |
 #            |/intl/de-de/  | rss          |
 #            |/intl/en-au/  | rss          |
 #            |/intl/en-in/  | rss          |
@@ -52,18 +52,18 @@ Feature: As a user, I would like to interact with the header navigation on deskt
 #            |/intl/es-419/ | rss          |
 #            |/intl/it-it/  | rss          |
 #            |/intl/ar-mena/| rss          |
-#    #        |/intl/en-africa/ | rss      |
-#
-#      @header_business_critical
-#      Scenario Outline: Test the keyword logo in the nav menu
-#          Given a user is at the <keyword> site
-#          And the user clicks on the hero article
-#          When the user clicks on the keyword logo
-#          Then the user is redirected to <keyword>
-#
-#          Examples:
-#            |keyword      |
-#            |/            |
+#            |/intl/en-africa/ | rss      |
+
+      @header_business_critical
+      Scenario Outline: Test the keyword logo in the nav menu
+          Given a user is at the <keyword> site
+          And the user clicks on the hero article
+          When the user clicks on the main logo
+          Then the user is redirected to <keyword>
+
+          Examples:
+            |keyword      |
+            |/            |
 #            |/intl/de-de/ |
 #            |/intl/en-in/ |
 #            |/intl/en-au/ |
@@ -73,47 +73,47 @@ Feature: As a user, I would like to interact with the header navigation on deskt
 #            |/intl/es-419/|
 #            |/intl/it-it/ |
 #            |/intl/ar-mena/|
-##           |/intl/en-africa/
+#           |/intl/en-africa/
 #
-#      @header_business_critical
-#      Scenario Outline: Test navigation in sitespaces within products in Ads&Analytics list
-#          Given a user is at the <keyword> site
-#          When the user clicks on a random sitespace
-#          Then the system shows the updated header
-#
-#          Examples:
-#          |keyword   |
-#          |/products |
-#
-#      @header_business_critical
-#      Scenario Outline: Test navigation in waze sitespace
-#          Given a user is at the <keyword> site
-#          Then the system shows the waze header
-#
-#          Examples:
-#          |keyword   |
-#          |/waze     |
-#
-#      @header_business_critical
-#      Scenario Outline: Test navigation in an article belonging to a sitespace
-#          Given a user is at the <keyword> site
-#          When the user clicks in an article in a <sitespace_tag> in <keyword>
-#          Then the system shows the <sitespace_title> nav menu in an article
-#
-#          Examples:
-#          |keyword                 |sitespace_tag         |sitespace_title      |
-#          |/products/ads-commerce  |Google Ads & Commerce |Ads & Commerce Blog  |
-#
-#    #TODO: separate US which is the unique locale that contains the 'see all' CTA
-#      @header-regression
-#      Scenario Outline: Test link to product updates page
-#          Given a user is at the <keyword> site
-#          When the user clicks on the <submenu>
-#          And the user on <keyword> clicks the CTA See all product updates
-#          Then the user is redirected to <url>
-#          Examples:
-#            |keyword           |url                                        |submenu         |
-#            |/                 | /products/                                |product_updates |
+      @header_business_critical
+      Scenario Outline: Test navigation in sitespaces within products in Ads&Analytics list
+          Given a user is at the <keyword> site
+          When the user clicks on a random sitespace
+          Then the system shows the updated header
+
+          Examples:
+          |keyword   |
+          |/products |
+
+      @header_business_critical
+      Scenario Outline: Test navigation in waze sitespace
+          Given a user is at the <keyword> site
+          Then the system shows the waze header
+
+          Examples:
+          |keyword   |
+          |/waze     |
+
+      @header_business_critical
+      Scenario Outline: Test navigation in an article belonging to a sitespace
+          Given a user is at the <keyword> site
+          When the user clicks in an article in a <sitespace_tag> in <keyword>
+          Then the system shows the <sitespace_title> nav menu in an article
+
+          Examples:
+          |keyword                 |sitespace_tag         |sitespace_title      |
+          |/products/ads-commerce  |Google Ads & Commerce |Ads & Commerce Blog  |
+
+    #TODO: separate US which is the unique locale that contains the 'see all' CTA
+      @header-regression
+      Scenario Outline: Test link to product updates page
+          Given a user is at the <keyword> site
+          When the user clicks on the <submenu>
+          And the user on <keyword> clicks the CTA See all product updates
+          Then the user is redirected to <url>
+          Examples:
+            |keyword           |url                                        |submenu         |
+            |/                 | /products/                                |product_updates |
 #            |/intl/de-de/      | /intl/de-de/produkte/                     |product_updates |
 #            |/intl/en-au/      | /intl/en-au/products/                     |product_updates |
 #            |/intl/en-in/      | /intl/en-in/products/                     |product_updates |
@@ -123,29 +123,29 @@ Feature: As a user, I would like to interact with the header navigation on deskt
 #            |/intl/es-419/     | /intl/es-419/actualizaciones-de-producto/ |product_updates |
 #            |/intl/it-it/      | /intl/it-it/prodotti/                     |product_updates |
 #            |/intl/ar-mena/    | /intl/ar-mena/products/                   |product_updates |
-#    #        |/intl/en-africa/  | /intl/en-africa/products/                 |product_updates |
-#
-#
-#      @header-regression
-#      Scenario Outline: Test the header cta's 'see all' within the company submenu
-#          Given a user is at the <keyword> site
-#          When the user clicks on the <submenu>
-#          Then every 'see all' CTA selected return an http 200
-#          Examples:
-#            |keyword    | submenu       |
-#            |/          | company_news  |
-#
-#      #TODO: separate RSS options and add assertion on the HTTP status
-#      @header-regression
-#      Scenario Outline: Test options in the kebab menu
-#          Given a user is at the <keyword> site
-#          When the user triggers the kebab menu
-#          Then the user sees <kebab_option> according to <language>
-#
-#          Examples:
-#            |keyword      | kebab_option | language |
-#            |/            | rss          | en       |
-#            |/            | press        | en       |
+#            |/intl/en-africa/  | /intl/en-africa/products/                 |product_updates |
+
+
+      @header-regression
+      Scenario Outline: Test the header cta's 'see all' within the company submenu
+          Given a user is at the <keyword> site
+          When the user clicks on the <submenu>
+          Then every 'see all' CTA selected return an http 200
+          Examples:
+            |keyword    | submenu       |
+            |/          | company_news  |
+
+      #TODO: separate RSS options and add assertion on the HTTP status
+      @header-regression
+      Scenario Outline: Test options in the kebab menu
+          Given a user is at the <keyword> site
+          When the user triggers the kebab menu
+          Then the user sees <kebab_option> according to <language>
+
+          Examples:
+            |keyword      | kebab_option | language |
+            |/            | rss          | en       |
+            |/            | press        | en       |
 #            |/intl/de-de/ | rss          | de       |
 #            |/intl/de-de/ | press        | de       |
 #            |/intl/en-au/ | rss          | en       |
@@ -164,5 +164,5 @@ Feature: As a user, I would like to interact with the header navigation on deskt
 #            |/intl/it-it/ | press        | it_it    |
 #            |/intl/ar-mena/ | rss        | ar_mena   |
 #            |/intl/ar-mena/ | press      | ar_mena   |
-#    #        |/intl/en-africa/  | rss     | en       |
-#    #        |/intl/en-africa/  | press   | en       |
+#            |/intl/en-africa/  | rss     | en       |
+#            |/intl/en-africa/  | press   | en       |

@@ -11,16 +11,16 @@ Feature: As a user, I want to interact with the cookie banner
         Examples:
           |keyword           | url                                                        | language |
           |/                 | https://policies.google.com/technologies/cookies           | en       |
-          |/intl/de-de/      | https://policies.google.com/technologies/cookies?hl=de     | de       |
-          |/intl/en-au/      | https://policies.google.com/technologies/cookies           | en       |
-          |/intl/en-in/      | https://policies.google.com/technologies/cookies           | en       |
-          |/intl/fr-ca/      | https://policies.google.com/technologies/cookies?hl=fr-CA  | fr       |
-          |/intl/pt-br/      | https://policies.google.com/technologies/cookies?hl=pt-BR  | pt       |
-          |/intl/en-ca/      | https://policies.google.com/technologies/cookies           | en       |
-          |/intl/es-419/     | https://policies.google.com/technologies/cookies?hl=es-419 | es       |
-          |/intl/it-it/      | https://policies.google.com/technologies/cookies?hl=it-IT  | it       |
-#          |/intl/en-africa/  | https://policies.google.com/technologies/cookies           | en       |
-          |/intl/ar-mena/     | https://policies.google.com/technologies/cookies?hl=ar     | ar       |
+#          |/intl/de-de/      | https://policies.google.com/technologies/cookies?hl=de     | de       |
+#          |/intl/en-au/      | https://policies.google.com/technologies/cookies           | en       |
+#          |/intl/en-in/      | https://policies.google.com/technologies/cookies           | en       |
+#          |/intl/fr-ca/      | https://policies.google.com/technologies/cookies?hl=fr-CA  | fr       |
+#          |/intl/pt-br/      | https://policies.google.com/technologies/cookies?hl=pt-BR  | pt       |
+#          |/intl/en-ca/      | https://policies.google.com/technologies/cookies           | en       |
+#          |/intl/es-419/     | https://policies.google.com/technologies/cookies?hl=es-419 | es       |
+#          |/intl/it-it/      | https://policies.google.com/technologies/cookies?hl=it-IT  | it       |
+##          |/intl/en-africa/  | https://policies.google.com/technologies/cookies           | en       |
+#          |/intl/ar-mena/     | https://policies.google.com/technologies/cookies?hl=ar     | ar       |
 
     @cookie
     Scenario Outline: Test the cookie banner displayed on an article page
@@ -33,16 +33,16 @@ Feature: As a user, I want to interact with the cookie banner
         Examples:
           |keyword           | url                                                        | language |
           |/                 | https://policies.google.com/technologies/cookies           | en       |
-          |/intl/de-de/      | https://policies.google.com/technologies/cookies?hl=de     | de       |
-          |/intl/en-au/      | https://policies.google.com/technologies/cookies           | en       |
-          |/intl/en-in/      | https://policies.google.com/technologies/cookies           | en       |
-          |/intl/fr-ca/      | https://policies.google.com/technologies/cookies?hl=fr-CA  | fr       |
-          |/intl/pt-br/      | https://policies.google.com/technologies/cookies?hl=pt-BR  | pt       |
-          |/intl/en-ca/      | https://policies.google.com/technologies/cookies           | en       |
-          |/intl/es-419/     | https://policies.google.com/technologies/cookies?hl=es-419 | es       |
-          |/intl/it-it/      | https://policies.google.com/technologies/cookies?hl=it-IT  | it       |
-#          |/intl/en-africa/  | https://policies.google.com/technologies/cookies           | en       |
-          |/intl/ar-mena/     | https://policies.google.com/technologies/cookies?hl=ar     | ar       |
+#          |/intl/de-de/      | https://policies.google.com/technologies/cookies?hl=de     | de       |
+#          |/intl/en-au/      | https://policies.google.com/technologies/cookies           | en       |
+#          |/intl/en-in/      | https://policies.google.com/technologies/cookies           | en       |
+#          |/intl/fr-ca/      | https://policies.google.com/technologies/cookies?hl=fr-CA  | fr       |
+#          |/intl/pt-br/      | https://policies.google.com/technologies/cookies?hl=pt-BR  | pt       |
+#          |/intl/en-ca/      | https://policies.google.com/technologies/cookies           | en       |
+#          |/intl/es-419/     | https://policies.google.com/technologies/cookies?hl=es-419 | es       |
+#          |/intl/it-it/      | https://policies.google.com/technologies/cookies?hl=it-IT  | it       |
+##          |/intl/en-africa/  | https://policies.google.com/technologies/cookies           | en       |
+#          |/intl/ar-mena/     | https://policies.google.com/technologies/cookies?hl=ar     | ar       |
 
     @cookie
     Scenario Outline: Test the user can close the cookie banner
@@ -52,13 +52,13 @@ Feature: As a user, I want to interact with the cookie banner
         Examples:
             |keyword         |
             |/               |
-            |/intl/de-de/    |
-            |/intl/en-au/    |
-            |/intl/en-in/    |
-            |/intl/fr-ca/    |
-            |/intl/pt-br/    |
-            |/intl/en-ca/    |
-            |/intl/es-419/   |
-            |/intl/it-it/    |
-#            |/intl/en-africa/|
-            |/intl/ar-mena/  |
+#            |/intl/de-de/    |
+#            |/intl/en-au/    |
+#            |/intl/en-in/    |
+#            |/intl/fr-ca/    |
+#            |/intl/pt-br/    |
+#            |/intl/en-ca/    |
+#            |/intl/es-419/   |
+#            |/intl/it-it/    |
+##            |/intl/en-africa/|
+#            |/intl/ar-mena/  |

@@ -63,14 +63,3 @@ def date_format_in_related_stories(article, base_page, locale):
     for date_in_article in date_in_article_list:
         assert base_page.is_date_format_correct(date_in_article, date_format_expected, locale)
 
-
-@given("the user chooses a random article")
-def user_choose_random_article(feed, article):
-    article.close_cookie_banner()
-    article_feed_list = feed.get_articles_in_feed_list()
-    feed.get_random_index_in_list(article_feed_list)
-
-
-@when("the user opens the selected random article in <keyword> feed")
-def user_open_random_article_in_feed(feed, keyword):
-    feed.click_to_random_article_in_feed(keyword)

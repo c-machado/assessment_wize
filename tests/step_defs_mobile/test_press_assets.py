@@ -1,7 +1,5 @@
-import pytest
-from pytest_bdd import scenarios, given, when, then, parsers
 
-from tests.consts.constants import Constants
+from pytest_bdd import scenarios, when, then, parsers
 
 scenarios("../features/press/press_filters.feature")
 
