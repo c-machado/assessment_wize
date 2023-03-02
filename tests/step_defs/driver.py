@@ -46,12 +46,12 @@ class Driver(IDriver):
         if web_browser == "chrome":
             # self.build_chrome_driver(ChromeDriverManager("104.0.5112.20").install(), viewport)
             self.build_chrome_driver(ChromeDriverManager().install(), viewport)
-        elif web_browser == "firefox":
-            self.build_firefox_driver(GeckoDriverManager().install(), viewport)
-        # elif web_browser == 'safari':
-        #     self.build_safari_driver(viewport)
-        elif web_browser == "edge":
-            self.build_edge_driver(viewport)
+        # elif web_browser == "firefox":
+        #     self.build_firefox_driver(GeckoDriverManager().install(), viewport)
+        # # elif web_browser == 'safari':
+        # #     self.build_safari_driver(viewport)
+        # elif web_browser == "edge":
+        #     self.build_edge_driver(viewport)
         warnings.filterwarnings(action="ignore", message="unclosed", category=ResourceWarning)
         return self.driver
 
@@ -104,7 +104,10 @@ class Driver(IDriver):
         # options.add_argument(width)
         # options.add_argument(height)
         #
-        options.set_preference('profile', Constants.FIREFOX_PROFILE)
+
+        # options.set_preference('profile', Constants.FIREFOX_PROFILE)
+        options.add_argument("-profile")
+        options.add_argument(Constants.FIREFOX_PROFILE)
 
         options.set_preference("dom.webdriver.enabled", False)
         options.set_preference('useAutomationExtension', False)

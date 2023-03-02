@@ -14,6 +14,7 @@ class Constants:
     CHROME_PROFILE_JD = '/Users/jortiz/Library/Application Support/Google/Chrome/Default'
     #CHROME_PROFILE_LINUX = '/usr/local/google/home/machadoca/Documents/chrome_google'
     FIREFOX_PROFILE = '/Users/machadoca/Library/Application Support/Firefox/Profiles/4jwzwjvm.default'
+    # FIREFOX_PROFILE = '	/Users/machadoca/Library/Application Support/Firefox/Profiles/e0zi780p.Keyword_test'
     COOKIE_BANNER_TXT = {
         "en": "Google serves cookies to analyze traffic to this site. Information about your use of our site is "
               "shared with Google for that purpose.",
@@ -324,9 +325,9 @@ class Constants:
         'IOS'
     ]
     UA_BROWSERS = [
-        # 'edge',
+        'edge',
         'ie',
-        # 'firefox',
+        'firefox',
         'safari',
         'ios',
         'android'

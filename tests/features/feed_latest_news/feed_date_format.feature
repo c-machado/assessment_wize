@@ -12,17 +12,17 @@ Feature: As a user, I want to confirm dates are showing according to the expecte
         Examples:
             | locale    | keyword      |
             | en_US     | /            |
-#            | de_DE     | /intl/de-de/ |
-#            | en_AU     | /intl/en-au/ |
-#            | en_GB     | /intl/en-in/ |
-#            | fr_CA     | /intl/fr-ca/ |
-#            | en_CA     | /intl/en-ca/ |
-#            | pt_BR     | /intl/pt-br/ |
-#            | es_ES     | /intl/es-419/|
-#            | it_IT     | /intl/it-it/ |
-#            | ar_IL     | /intl/ar-mena/ |
-            #TODO: Update locale code date format
-#            | en_US     | /intl/en-africa/ |
+            | de_DE     | /intl/de-de/ |
+            | en_AU     | /intl/en-au/ |
+            | en_GB     | /intl/en-in/ |
+            | fr_CA     | /intl/fr-ca/ |
+            | en_CA     | /intl/en-ca/ |
+            | pt_BR     | /intl/pt-br/ |
+            | es_ES     | /intl/es-419/|
+            | it_IT     | /intl/it-it/ |
+            | ar_IL     | /intl/ar-mena/ |
+#            TODO: Update locale code date format
+            | en_US     | /intl/en-africa/ |
 
 #    @feed-article-date-format
 #    Scenario Outline: Confirm article's date is in the correct format in homepage feed
@@ -46,17 +46,16 @@ Feature: As a user, I want to confirm dates are showing according to the expecte
         Examples:
             | locale    | keyword                                               |
             | en_US     | /technology/                                          |
-#            | de_DE     | /intl/de-de/produkte/android-chrome-mehr/#android     |
-#            | en_GB     | /intl/en-in/products/platforms/#android               |
-#            | en_AU     | /intl/en-au/products/android-chrome-more/             |
-#            | fr_CA     | /intl/fr-ca/produits/explorez-obtenez-des-reponses/   |
-#            | en_CA     | /intl/en-ca/products/explore-get-answers/             |
-#            | pt_BR     | /intl/pt-br/produtos/android-chrome-play/             |
-#            | es_ES     | /intl/es-419/actualizaciones-de-producto/android-chrome-play/|
-#            | it_IT     | /intl/it-it/prodotti/android-chrome-play/              |
-##            | en_US     | /intl/en-africa/products/                             |
-#
-#
+            | de_DE     | /intl/de-de/produkte/android-chrome-mehr/#android     |
+            | en_GB     | /intl/en-in/products/platforms/#android               |
+            | en_AU     | /intl/en-au/products/android-chrome-more/             |
+            | fr_CA     | /intl/fr-ca/produits/explorez-obtenez-des-reponses/   |
+            | en_CA     | /intl/en-ca/products/explore-get-answers/             |
+            | pt_BR     | /intl/pt-br/produtos/android-chrome-play/             |
+            | es_ES     | /intl/es-419/actualizaciones-de-producto/android-chrome-play/|
+            | it_IT     | /intl/it-it/prodotti/android-chrome-play/              |
+            | en_US     | /intl/en-africa/products/                             |
+
     #Add subcategory pages for other locales if the content gets updated
     @feed-article-date-format
     Scenario Outline: Confirm article's date is in the correct format in the subcategory page feed

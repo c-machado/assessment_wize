@@ -23,7 +23,7 @@ RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key
 
 # Install python dependencies.
 WORKDIR /tests
-COPY requirements.txt .
+COPY requirements_.txt .
 RUN pip install -r requirements.txt
 
 # Copy test drives.

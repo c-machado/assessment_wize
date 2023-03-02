@@ -11,18 +11,18 @@ Feature: As a user, I would like to access the content in the footer
     Examples:
       |keyword                |
       |/                      |
-#      |/intl/de-de/           |
-#      |/intl/en-au/           |
-#      |/intl/en-in/           |
-#      |/intl/en-ca/           |
-#      |/intl/fr-ca/           |
-#      |/intl/pt-br/           |
-#      |/intl/es-419/          |
-#      |/intl/it-it/           |
-#      |/intl/ar-mena/         |
-##      |/intl/en-africa/       |
-#      |/products/ads-commerce |
-#      |/waze/                 |
+      |/intl/de-de/           |
+      |/intl/en-au/           |
+      |/intl/en-in/           |
+      |/intl/en-ca/           |
+      |/intl/fr-ca/           |
+      |/intl/pt-br/           |
+      |/intl/es-419/          |
+      |/intl/it-it/           |
+      |/intl/ar-mena/         |
+#      |/intl/en-africa/       |
+      |/products/ads-commerce |
+      |/waze/                 |
 
   @footer_business_critical
   Scenario Outline: Test Google link is not broken
@@ -32,18 +32,18 @@ Feature: As a user, I would like to access the content in the footer
     Examples:
       |keyword                |url                     |
       |/                      |https://www.google.com  |
-#      |/intl/de-de/           |https://www.google.com  |
-#      |/intl/en-au/           |https://www.google.com  |
-#      |/intl/en-in/           |https://www.google.com  |
-#      |/intl/en-ca/           |https://www.google.com  |
-#      |/intl/fr-ca/           |https://www.google.com  |
-#      |/intl/pt-br/           |https://www.google.com  |
-#      |/intl/es-419/          |https://www.google.com  |
-#      |/intl/it-it/           |https://www.google.com  |
-#      |/intl/ar-mena/         |https://www.google.com  |
-##      |/intl/en-africa/       |
-#      |/products/ads-commerce |https://www.google.com  |
-#      |/waze/                 |https://www.google.com  |
+      |/intl/de-de/           |https://www.google.com  |
+      |/intl/en-au/           |https://www.google.com  |
+      |/intl/en-in/           |https://www.google.com  |
+      |/intl/en-ca/           |https://www.google.com  |
+      |/intl/fr-ca/           |https://www.google.com  |
+      |/intl/pt-br/           |https://www.google.com  |
+      |/intl/es-419/          |https://www.google.com  |
+      |/intl/it-it/           |https://www.google.com  |
+      |/intl/ar-mena/         |https://www.google.com  |
+#      |/intl/en-africa/       |
+      |/products/ads-commerce |https://www.google.com  |
+      |/waze/                 |https://www.google.com  |
 
   @footer_business_critical
   Scenario Outline: Test language selector redirect to the corresponding homepage
@@ -54,16 +54,16 @@ Feature: As a user, I would like to access the content in the footer
   Examples:
       |language              |keyword           |
       | English              |/                 |
-#      | Deutsch              |/intl/de-de/      |
-##      |   "English (Africa) |
-#      | English (India)      |/intl/en-in/      |
-#      | English (Australia)  |/intl/en-au/      |
-#      | English (Canada)     |/intl/en-ca/      |
-#      | Français (Canada)    |/intl/fr-ca/      |
-#      | Português (Brasil)   |/intl/pt-br/      |
-#      | Español (Latinoamérica)|/intl/es-419/   |
-#      | Italiano               |/intl/it-it/    |
-#      | اللغة العربية (MENA)   |/intl/ar-mena/  |
+      | Deutsch              |/intl/de-de/      |
+#      |   "English (Africa) |
+      | English (India)      |/intl/en-in/      |
+      | English (Australia)  |/intl/en-au/      |
+      | English (Canada)     |/intl/en-ca/      |
+      | Français (Canada)    |/intl/fr-ca/      |
+      | Português (Brasil)   |/intl/pt-br/      |
+      | Español (Latinoamérica)|/intl/es-419/   |
+      | Italiano               |/intl/it-it/    |
+      | اللغة العربية (MENA)   |/intl/ar-mena/  |
 
   @footer_regression
   # TODO: facebook URLs are not secure (locales: in & au) https://jira.hugeinc.com/browse/UNI-5897
@@ -76,15 +76,15 @@ Feature: As a user, I would like to access the content in the footer
     Examples:
           |keyword                |
           |/                      |
-#          |/intl/de-de/           |
-#          |/intl/en-au/           |
-#          |/intl/en-in/           |
-#          |/intl/en-ca/           |
-#          |/intl/fr-ca/           |
-#          |/intl/pt-br/           |
-#          |/intl/es-419/          |
-#          |/intl/it-it/           |
-#          |/intl/ar-mena/         |
-#    #      |/intl/en-africa/       |
-#          |/products/ads-commerce |
-#          |/waze/                 |
+          |/intl/de-de/           |
+          |/intl/en-au/           |
+          |/intl/en-in/           |
+          |/intl/en-ca/           |
+          |/intl/fr-ca/           |
+          |/intl/pt-br/           |
+          |/intl/es-419/          |
+          |/intl/it-it/           |
+          |/intl/ar-mena/         |
+    #      |/intl/en-africa/       |
+          |/products/ads-commerce |
+          |/waze/                 |

@@ -2,7 +2,7 @@
 Feature: As a user, I would like to interact with the header navigation on desktop
 
 
-      @header_business_critical
+      @header_business_critical1
       Scenario Outline: Test the latest stories submenu
           Given a user is at the <keyword> site
           And the user clicks on the hero article
@@ -11,15 +11,15 @@ Feature: As a user, I would like to interact with the header navigation on deskt
           Examples:
             |keyword        | submenu         |
             |/              | latest_stories  |
-#            |/intl/de-de/   | latest_stories  |
-#            |/intl/en-au/   | latest_stories  |
-#            |/intl/en-in/   | latest_stories  |
-#            |/intl/en-ca/   | latest_stories  |
-#            |/intl/fr-ca/   | latest_stories  |
-#            |/intl/pt-br/   | latest_stories  |
-#            |/intl/es-419/  | latest_stories  |
-#            |/intl/it-it/   | latest_stories  |
-#            |/intl/ar-mena/ | latest_stories  |
+            |/intl/de-de/   | latest_stories  |
+            |/intl/en-au/   | latest_stories  |
+            |/intl/en-in/   | latest_stories  |
+            |/intl/en-ca/   | latest_stories  |
+            |/intl/fr-ca/   | latest_stories  |
+            |/intl/pt-br/   | latest_stories  |
+            |/intl/es-419/  | latest_stories  |
+            |/intl/it-it/   | latest_stories  |
+            |/intl/ar-mena/ | latest_stories  |
 
       @header_business_critical
       Scenario Outline: Test the header items within products and company news submenus
@@ -29,7 +29,7 @@ Feature: As a user, I would like to interact with the header navigation on deskt
           Examples:
             |keyword    | submenu         |
             |/          | product_updates |
-#            |/          | company_news    |
+            |/          | company_news    |
 
       @header_business_critical
       #TODO: add a new case sitespace and subcategory in en-us
@@ -43,16 +43,16 @@ Feature: As a user, I would like to interact with the header navigation on deskt
           Examples:
             |keyword       | kebab_option |
             |/             | rss          |
-#            |/intl/de-de/  | rss          |
-#            |/intl/en-au/  | rss          |
-#            |/intl/en-in/  | rss          |
-#            |/intl/en-ca/  | rss          |
-#            |/intl/fr-ca/  | rss          |
-#            |/intl/pt-br/  | rss          |
-#            |/intl/es-419/ | rss          |
-#            |/intl/it-it/  | rss          |
-#            |/intl/ar-mena/| rss          |
-#            |/intl/en-africa/ | rss      |
+            |/intl/de-de/  | rss          |
+            |/intl/en-au/  | rss          |
+            |/intl/en-in/  | rss          |
+            |/intl/en-ca/  | rss          |
+            |/intl/fr-ca/  | rss          |
+            |/intl/pt-br/  | rss          |
+            |/intl/es-419/ | rss          |
+            |/intl/it-it/  | rss          |
+            |/intl/ar-mena/| rss          |
+            |/intl/en-africa/ | rss      |
 
       @header_business_critical
       Scenario Outline: Test the keyword logo in the nav menu
@@ -64,16 +64,16 @@ Feature: As a user, I would like to interact with the header navigation on deskt
           Examples:
             |keyword      |
             |/            |
-#            |/intl/de-de/ |
-#            |/intl/en-in/ |
-#            |/intl/en-au/ |
-#            |/intl/en-ca/ |
-#            |/intl/fr-ca/ |
-#            |/intl/pt-br/ |
-#            |/intl/es-419/|
-#            |/intl/it-it/ |
-#            |/intl/ar-mena/|
-#           |/intl/en-africa/
+            |/intl/de-de/ |
+            |/intl/en-in/ |
+            |/intl/en-au/ |
+            |/intl/en-ca/ |
+            |/intl/fr-ca/ |
+            |/intl/pt-br/ |
+            |/intl/es-419/|
+            |/intl/it-it/ |
+            |/intl/ar-mena/|
+           |/intl/en-africa/|
 #
       @header_business_critical
       Scenario Outline: Test navigation in sitespaces within products in Ads&Analytics list
@@ -114,16 +114,16 @@ Feature: As a user, I would like to interact with the header navigation on deskt
           Examples:
             |keyword           |url                                        |submenu         |
             |/                 | /products/                                |product_updates |
-#            |/intl/de-de/      | /intl/de-de/produkte/                     |product_updates |
-#            |/intl/en-au/      | /intl/en-au/products/                     |product_updates |
-#            |/intl/en-in/      | /intl/en-in/products/                     |product_updates |
-#            |/intl/en-ca/      | /intl/en-ca/products/                     |product_updates |
-#            |/intl/fr-ca/      | /intl/fr-ca/produits/                     |product_updates |
-#            |/intl/pt-br/      | /intl/pt-br/produtos/                     |product_updates |
-#            |/intl/es-419/     | /intl/es-419/actualizaciones-de-producto/ |product_updates |
-#            |/intl/it-it/      | /intl/it-it/prodotti/                     |product_updates |
-#            |/intl/ar-mena/    | /intl/ar-mena/products/                   |product_updates |
-#            |/intl/en-africa/  | /intl/en-africa/products/                 |product_updates |
+            |/intl/de-de/      | /intl/de-de/produkte/                     |product_updates |
+            |/intl/en-au/      | /intl/en-au/products/                     |product_updates |
+            |/intl/en-in/      | /intl/en-in/products/                     |product_updates |
+            |/intl/en-ca/      | /intl/en-ca/products/                     |product_updates |
+            |/intl/fr-ca/      | /intl/fr-ca/produits/                     |product_updates |
+            |/intl/pt-br/      | /intl/pt-br/produtos/                     |product_updates |
+            |/intl/es-419/     | /intl/es-419/actualizaciones-de-producto/ |product_updates |
+            |/intl/it-it/      | /intl/it-it/prodotti/                     |product_updates |
+            |/intl/ar-mena/    | /intl/ar-mena/products/                   |product_updates |
+            |/intl/en-africa/  | /intl/en-africa/products/                 |product_updates |
 
 
       @header-regression
@@ -146,23 +146,23 @@ Feature: As a user, I would like to interact with the header navigation on deskt
             |keyword      | kebab_option | language |
             |/            | rss          | en       |
             |/            | press        | en       |
-#            |/intl/de-de/ | rss          | de       |
-#            |/intl/de-de/ | press        | de       |
-#            |/intl/en-au/ | rss          | en       |
-#            |/intl/en-au/ | press        | en       |
-#            |/intl/en-in/ | rss          | en       |
-#            |/intl/en-in/ | press        | en       |
-#            |/intl/en-ca/ | rss          | en       |
-#            |/intl/en-ca/ | press        | en       |
-#            |/intl/fr-ca/ | rss          | en       |
-#            |/intl/fr-ca/ | press        | fr_ca    |
-#            |/intl/pt-br/ | rss          | en       |
-#            |/intl/pt-br/ | press        | pt_br    |
-#            |/intl/es-419/| rss          | en       |
-#            |/intl/es-419/| press        | es_419   |
-#            |/intl/it-it/ | rss          | en       |
-#            |/intl/it-it/ | press        | it_it    |
-#            |/intl/ar-mena/ | rss        | ar_mena   |
-#            |/intl/ar-mena/ | press      | ar_mena   |
-#            |/intl/en-africa/  | rss     | en       |
-#            |/intl/en-africa/  | press   | en       |
+            |/intl/de-de/ | rss          | de       |
+            |/intl/de-de/ | press        | de       |
+            |/intl/en-au/ | rss          | en       |
+            |/intl/en-au/ | press        | en       |
+            |/intl/en-in/ | rss          | en       |
+            |/intl/en-in/ | press        | en       |
+            |/intl/en-ca/ | rss          | en       |
+            |/intl/en-ca/ | press        | en       |
+            |/intl/fr-ca/ | rss          | en       |
+            |/intl/fr-ca/ | press        | fr_ca    |
+            |/intl/pt-br/ | rss          | en       |
+            |/intl/pt-br/ | press        | pt_br    |
+            |/intl/es-419/| rss          | en       |
+            |/intl/es-419/| press        | es_419   |
+            |/intl/it-it/ | rss          | en       |
+            |/intl/it-it/ | press        | it_it    |
+            |/intl/ar-mena/ | rss        | ar_mena   |
+            |/intl/ar-mena/ | press      | ar_mena   |
+            |/intl/en-africa/  | rss     | en       |
+            |/intl/en-africa/  | press   | en       |

@@ -1,5 +1,6 @@
 import shutil
 import os
+import time
 
 from py.xml import html
 from datetime import datetime

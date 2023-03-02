@@ -9,16 +9,16 @@ Feature: As a user I want to confirm articles in the feed list are shown to the 
         Examples:
             | keyword          |
             | /                |
-#            | /intl/de-de/     |
-#            | /intl/en-au/     |
-#            | /intl/en-in/     |
-#            | /intl/fr-ca/     |
-#            | /intl/en-ca/     |
-#            | /intl/pt-br/     |
-#            | /intl/es-419/    |
-#            | /intl/it-it/     |
-#            | /intl/ar-mena/   |
-#            | /intl/en-africa/ |
+            | /intl/de-de/     |
+            | /intl/en-au/     |
+            | /intl/en-in/     |
+            | /intl/fr-ca/     |
+            | /intl/en-ca/     |
+            | /intl/pt-br/     |
+            | /intl/es-419/    |
+            | /intl/it-it/     |
+            | /intl/ar-mena/   |
+            | /intl/en-africa/ |
 
 
     @feed-article-load-more
@@ -29,16 +29,16 @@ Feature: As a user I want to confirm articles in the feed list are shown to the 
         Examples:
            | keyword                                                      |
            | /technology/                                                 |
-#           | /intl/de-de/produkte/android-chrome-mehr/#android            |
-#           | /intl/en-in/products/platforms/#chrome                       |
-#           | /intl/en-au/products/devices-services/                       |
-#           | /intl/fr-ca/produits/explorez-obtenez-des-reponses/          |
-#           | /intl/en-ca/products/explore-get-answers/                    |
-#           | /intl/pt-br/produtos/android-chrome-play/                    |
-#           | /intl/es-419/actualizaciones-de-producto/android-chrome-play/|
-#           | /intl/it-it/prodotti/android-chrome-play/                    |
-#           | /intl/ar-mena/products/android-chrome-play/                  |
-#           | /intl/en-africa/products/                                    |
+           | /intl/de-de/produkte/android-chrome-mehr/#android            |
+           | /intl/en-in/products/platforms/#chrome                       |
+           | /intl/en-au/products/devices-services/                       |
+           | /intl/fr-ca/produits/explorez-obtenez-des-reponses/          |
+           | /intl/en-ca/products/explore-get-answers/                    |
+           | /intl/pt-br/produtos/android-chrome-play/                    |
+           | /intl/es-419/actualizaciones-de-producto/android-chrome-play/|
+           | /intl/it-it/prodotti/android-chrome-play/                    |
+           | /intl/ar-mena/products/android-chrome-play/                  |
+           | /intl/en-africa/products/                                    |
 
     @feed-article-load-more
     Scenario Outline: Test articles listed in the feed on the subcategory page are ordered by desc date
