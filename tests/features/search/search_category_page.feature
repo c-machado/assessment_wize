@@ -1,4 +1,4 @@
-# Created by machadoca at 15/02/22
+x# Created by machadoca at 15/02/22
 #Search functionality works as follows:
 #Suggestions: Look for the content that matches the article's title.
 #Results page: Look within the article's content.
@@ -18,7 +18,7 @@ Feature: As a user, I would like to search for the content while navigating on a
             | sicherer       | /intl/de-de/produkte/android-chrome-mehr/#android  |
             | digital        | /intl/en-in/products/platforms/#android            |
             | australians    | /intl/en-au/products/android-chrome-more/          |
-#            | African        | /intl/en-africa/company-news/                      |
+            | African        | /intl/en-africa/company-news/                      |
             | COVID          | /intl/en-ca/products/cloud/                        |
             | voyager        | /intl/fr-ca/produits/explorez-obtenez-des-reponses/|
             | vacinas        | /intl/pt-br/produtos/explore-e-encontre-respostas/ |
@@ -41,8 +41,8 @@ Feature: As a user, I would like to search for the content while navigating on a
             | Australia’s non-profits    | /intl/en-au/products/android-chrome-more/          |
             | Google’s                   | /intl/en-ca/products/cloud/                        |
             | possèdent                  | /intl/fr-ca/produits/explorez-obtenez-des-reponses/|
-#           | possèdent                  | /intl/en-africa/products/android-chrome-more/      |
-#            | possèdent                  | /intl/en-africa/products/    |
+            | possèdent                  | /intl/en-africa/products/android-chrome-more/      |
+            | possèdent                  | /intl/en-africa/products/    |
             | téléphone                  | /intl/fr-ca/produits/explorez-obtenez-des-reponses/|
             | desinformação              | /intl/pt-br/produtos/explore-e-encontre-respostas/ |
             | año                        | /intl/es-419/actualizaciones-de-producto/android-chrome-play/#android|
@@ -70,7 +70,7 @@ Feature: As a user, I would like to search for the content while navigating on a
             | privacidad     | /intl/es-419/actualizaciones-de-producto/android-chrome-play/#android|
             | intelligente   | /intl/it-it/prodotti/android-chrome-play/          |
             | الأشخاص         | /intl/ar-mena/products/android-chrome-play/        |
-#            | africa         | /intl/en-africa/products/                          |
+            | africa         | /intl/en-africa/products/                          |
 
     @search_results_page_special_char_business_critical
     Scenario Outline: Test search results in a category page using special characters
@@ -87,7 +87,7 @@ Feature: As a user, I would like to search for the content while navigating on a
             | India’s mini-masterpieces  | /intl/en-in/products/platforms/#android            |
             | Australia’s non-profits    | /intl/en-au/products/android-chrome-more/          |
             | Google’s                   | /intl/en-ca/products/cloud/                        |
-#             | Meroë                      | /intl/en-africa/company-news/                      |
+            | Meroë                      | /intl/en-africa/company-news/                      |
             | téléphone                  | /intl/fr-ca/produits/explorez-obtenez-des-reponses/|
             | desinformação              | /intl/pt-br/produtos/explore-e-encontre-respostas/ |
             | año                        | /intl/es-419/actualizaciones-de-producto/android-chrome-play/#android|
@@ -109,7 +109,7 @@ Feature: As a user, I would like to search for the content while navigating on a
             | Themenverwandte     | /intl/en-in/products/platforms/#android            | en       |
             | Datenaustausch      | /intl/en-au/products/android-chrome-more/          | en       |
             | jeunes              | /intl/en-ca/products/cloud/                        | en       |
-#             | matati              | /intl/en-africa/company-news/                      | en       |
+            | matati              | /intl/en-africa/company-news/                      | en       |
             | Themenverwandte     | /intl/fr-ca/produits/explorez-obtenez-des-reponses/| fr       |
             | Datenaustausch      | /intl/pt-br/produtos/explore-e-encontre-respostas/ | pt       |
             | retornou            | /intl/es-419/actualizaciones-de-producto/android-chrome-play/#android | es       |

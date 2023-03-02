@@ -4,15 +4,17 @@ from dataclasses import dataclass
 @dataclass
 class Constants:
     # BASE_URL = 'https://blog.google'
-    BASE_URL = 'https://gweb-uniblog-publish-prod.appspot.com'
+    # BASE_URL = 'https://gweb-uniblog-publish-prod.appspot.com'
     SEARCH_URL = "search/?query="
-    # BASE_URL = 'https://gweb-uniblog-publish-stage.appspot.com'
+    BASE_URL = 'https://gweb-uniblog-publish-stage.appspot.com'
     # BASE_URL = 'https://gweb-uniblog-publish-dev.appspot.com'
+    # BASE_URL = 'https://gweb-uniblog-author-dev.appspot.com/admin'
     PROD_URL = 'blog.google'
     CHROME_PROFILE = '/Users/machadoca/Documents/chrome_huge_inc'
     CHROME_PROFILE_JD = '/Users/jortiz/Library/Application Support/Google/Chrome/Default'
     #CHROME_PROFILE_LINUX = '/usr/local/google/home/machadoca/Documents/chrome_google'
-    #FIREFOX_PROFILE = '/Users/machadoca/Library/Application Support/Firefox/Profiles/4jwzwjvm.default'
+    FIREFOX_PROFILE = '/Users/machadoca/Library/Application Support/Firefox/Profiles/4jwzwjvm.default'
+    # FIREFOX_PROFILE = '	/Users/machadoca/Library/Application Support/Firefox/Profiles/e0zi780p.Keyword_test'
     COOKIE_BANNER_TXT = {
         "en": "Google serves cookies to analyze traffic to this site. Information about your use of our site is "
               "shared with Google for that purpose.",

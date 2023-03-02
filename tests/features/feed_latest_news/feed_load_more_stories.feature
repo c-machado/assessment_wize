@@ -18,7 +18,7 @@ Feature: As a user I want to confirm articles in the feed list are shown to the 
             | /intl/es-419/    |
             | /intl/it-it/     |
             | /intl/ar-mena/   |
-#            | /intl/en-africa/ |
+            | /intl/en-africa/ |
 
 
     @feed-article-load-more
@@ -38,7 +38,7 @@ Feature: As a user I want to confirm articles in the feed list are shown to the 
            | /intl/es-419/actualizaciones-de-producto/android-chrome-play/|
            | /intl/it-it/prodotti/android-chrome-play/                    |
            | /intl/ar-mena/products/android-chrome-play/                  |
-#           | /intl/en-africa/products/                                    |
+           | /intl/en-africa/products/                                    |
 
     @feed-article-load-more
     Scenario Outline: Test articles listed in the feed on the subcategory page are ordered by desc date

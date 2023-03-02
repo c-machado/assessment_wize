@@ -2,7 +2,7 @@
 Feature: As a user, I would like to interact with the header navigation on desktop
 
 
-      @header_business_critical
+      @header_business_critical1
       Scenario Outline: Test the latest stories submenu
           Given a user is at the <keyword> site
           And the user clicks on the hero article
@@ -37,7 +37,7 @@ Feature: As a user, I would like to interact with the header navigation on deskt
       Scenario Outline: Test RSS matches the content on desktop
           Given a user is at the <keyword> site
           When the user triggers the kebab menu
-          And the user clicks <kebab_option>
+          And the user clicks the <kebab_option>
           Then the dates in RSS and <keyword> matches
 
           Examples:
@@ -52,13 +52,13 @@ Feature: As a user, I would like to interact with the header navigation on deskt
             |/intl/es-419/ | rss          |
             |/intl/it-it/  | rss          |
             |/intl/ar-mena/| rss          |
-    #        |/intl/en-africa/ | rss      |
+            |/intl/en-africa/ | rss      |
 
       @header_business_critical
       Scenario Outline: Test the keyword logo in the nav menu
           Given a user is at the <keyword> site
           And the user clicks on the hero article
-          When the user clicks on the keyword logo
+          When the user clicks on the main logo
           Then the user is redirected to <keyword>
 
           Examples:
@@ -73,8 +73,8 @@ Feature: As a user, I would like to interact with the header navigation on deskt
             |/intl/es-419/|
             |/intl/it-it/ |
             |/intl/ar-mena/|
-#           |/intl/en-africa/
-
+           |/intl/en-africa/|
+#
       @header_business_critical
       Scenario Outline: Test navigation in sitespaces within products in Ads&Analytics list
           Given a user is at the <keyword> site
@@ -123,7 +123,7 @@ Feature: As a user, I would like to interact with the header navigation on deskt
             |/intl/es-419/     | /intl/es-419/actualizaciones-de-producto/ |product_updates |
             |/intl/it-it/      | /intl/it-it/prodotti/                     |product_updates |
             |/intl/ar-mena/    | /intl/ar-mena/products/                   |product_updates |
-    #        |/intl/en-africa/  | /intl/en-africa/products/                 |product_updates |
+            |/intl/en-africa/  | /intl/en-africa/products/                 |product_updates |
 
 
       @header-regression
@@ -164,5 +164,5 @@ Feature: As a user, I would like to interact with the header navigation on deskt
             |/intl/it-it/ | press        | it_it    |
             |/intl/ar-mena/ | rss        | ar_mena   |
             |/intl/ar-mena/ | press      | ar_mena   |
-    #        |/intl/en-africa/  | rss     | en       |
-    #        |/intl/en-africa/  | press   | en       |
+            |/intl/en-africa/  | rss     | en       |
+            |/intl/en-africa/  | press   | en       |

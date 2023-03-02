@@ -46,11 +46,11 @@ class Driver(IDriver):
         if web_browser == "chrome":
             # self.build_chrome_driver(ChromeDriverManager("104.0.5112.20").install(), viewport)
             self.build_chrome_driver(ChromeDriverManager().install(), viewport)
-        # elif web_browser == 'firefox':
+        # elif web_browser == "firefox":
         #     self.build_firefox_driver(GeckoDriverManager().install(), viewport)
-        # elif web_browser == 'safari':
-        #     self.build_safari_driver(viewport)
-        # elif web_browser == 'edge':
+        # # elif web_browser == 'safari':
+        # #     self.build_safari_driver(viewport)
+        # elif web_browser == "edge":
         #     self.build_edge_driver(viewport)
         warnings.filterwarnings(action="ignore", message="unclosed", category=ResourceWarning)
         return self.driver
@@ -84,26 +84,30 @@ class Driver(IDriver):
         options.add_argument(r'--profile-directory=Person 2')  # the profile with the extensions loaded
         # options.add_argument(r'--profile-directory=Person 1')  # the profile in LINUX
         s = Service(driver_path)
-        # s = Service("chromedriver")
         self.driver = webdriver.Chrome(service=s,
                                        options=options)
 
-    def build_edge_driver(self, driver_path, viewport):
-        options = Options()
+    def build_edge_driver(self, viewport):
+        from selenium.webdriver.edge.options import Options as EdgeOptions
+        options = EdgeOptions()
+        options.set_capability("acceptInsecureCerts", True)
         # options.add_argument('--headless')
-        s = Service(driver_path)
         self.driver = webdriver.Edge(options=options)
 
     # https://stackoverflow.com/questions/66209119/automation-google-login-with-python-and-selenium-shows-this-browser-or-app-may
     def build_firefox_driver(self, driver_path, viewport):
+        self.logger.info('%s build firefox')
         options = Options()
         # options.add_argument('--headless')
-        width = self.get_win_width(viewport, Constants.FF_WINDOWS_WIDTH)
-        height = self.get_win_height(viewport, Constants.FF_WINDOWS_HEIGHT)
-        options.add_argument(width)
-        options.add_argument(height)
+        # width = self.get_win_width(viewport, Constants.FF_WINDOWS_WIDTH)
+        # height = self.get_win_height(viewport, Constants.FF_WINDOWS_HEIGHT)
+        # options.add_argument(width)
+        # options.add_argument(height)
+        #
 
-        options.set_preference('profile', Constants.FIREFOX_PROFILE)
+        # options.set_preference('profile', Constants.FIREFOX_PROFILE)
+        options.add_argument("-profile")
+        options.add_argument(Constants.FIREFOX_PROFILE)
 
         options.set_preference("dom.webdriver.enabled", False)
         options.set_preference('useAutomationExtension', False)

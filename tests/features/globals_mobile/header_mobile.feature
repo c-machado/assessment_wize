@@ -30,7 +30,7 @@ Feature: As a user, I would like to interact with the header navigation on mobil
         |keyword    | submenu         |
         |/          | product_updates |
         |/          | company_news    |
-
+#
   @header_business_critical
   Scenario Outline: Test RSS matches the content on mobile
       Given a user is at the <keyword> site
@@ -50,7 +50,7 @@ Feature: As a user, I would like to interact with the header navigation on mobil
         |/intl/es-419/     |
         |/intl/it-it/      |
         |/intl/ar-mena/    |
-#        |/intl/en-africa/  |
+        |/intl/en-africa/  |
 
   @header_business_critical
   Scenario Outline: Test navigation in sitespaces within products in Ads&Analytics list on mobile
@@ -86,7 +86,7 @@ Feature: As a user, I would like to interact with the header navigation on mobil
   Scenario Outline: Test the keyword logo in the nav menu on mobile
       Given a user is at the <keyword> site
       And the user clicks on the hero article
-      When the user clicks on the keyword logo
+      When the user clicks on the main logo
       Then the user is redirected to <keyword>
 
       Examples:
@@ -101,9 +101,9 @@ Feature: As a user, I would like to interact with the header navigation on mobil
         |/intl/es-419/    |
         |/intl/it-it/     |
         |/intl/ar-mena/   |
-#        |/intl/en-africa/ |
+        |/intl/en-africa/ |
 
-  @header_regression
+  @header-regression
   Scenario Outline: Test link to product updates page on mobile
       Given a user is at the <keyword> site
       When the user clicks on the <submenu>
@@ -121,10 +121,10 @@ Feature: As a user, I would like to interact with the header navigation on mobil
         |/intl/es-419/     | /intl/es-419/actualizaciones-de-producto/ |product_updates |
         |/intl/it-it/      | /intl/it-it/prodotti/                     |product_updates |
         |/intl/ar-mena/    | /intl/ar-mena/products/                   |product_updates |
-#        |/intl/en-africa/  | /intl/en-africa/products/                 |product_updates |
+        |/intl/en-africa/  | /intl/en-africa/products/                 |product_updates |
 
 
-  @header_regression
+  @header-regression
   Scenario Outline: Test the header cta's 'see all' within the company submenu on mobile
       Given a user is at the <keyword> site
       When the user clicks on the <submenu>

@@ -2,6 +2,11 @@ import pytest
 
 
 # print a message with the step in case of error
+from pytest_bdd import parsers, given
+
+from tests.consts.constants import Constants
+
+
 def pytest_bdd_step_error(request, feature, scenario, step, step_func, step_func_args, exception):
     print(f'Step failed: {step}', f'Scenario: {scenario}', f'Feature: {feature}')
 
@@ -20,4 +25,5 @@ def get_web_browser(request):
 @pytest.fixture(params=["mobile"], scope="module", autouse=True)
 def get_viewport(request):
     return request.param
+
 
