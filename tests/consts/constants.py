@@ -3,10 +3,10 @@ from dataclasses import dataclass
 
 @dataclass
 class Constants:
-    # BASE_URL = 'https://blog.google'
+    BASE_URL = 'https://blog.google'
     # BASE_URL = 'https://gweb-uniblog-publish-prod.appspot.com'
     SEARCH_URL = "search/?query="
-    BASE_URL = 'https://gweb-uniblog-publish-stage.appspot.com'
+    # BASE_URL = 'https://gweb-uniblog-publish-stage.appspot.com'
     # BASE_URL = 'https://gweb-uniblog-publish-dev.appspot.com'
     # BASE_URL = 'https://gweb-uniblog-author-dev.appspot.com/admin'
     PROD_URL = 'blog.google'
@@ -256,6 +256,8 @@ class Constants:
         '/intl/pt-br/produtos/android-chrome-play/',
         '/intl/es-419/actualizaciones-de-producto/android-chrome-play/',
         '/intl/it-it/prodotti/android-chrome-play/',
+        '/intl/it-it/prodotti/devices-services/#pixel',
+        '/intl/en-africa/products/android-chrome-play/#googleplay'
     ]
     US_LOCALE = "/"
     INDIA_LOCALE = "/intl/en-in/"

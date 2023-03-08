@@ -43,7 +43,7 @@ def confirm_date_format_in_rss(header, feed, keyword):
     assert publish_date_rss == date_in_first_article
 
 
-@when("the user clicks on the main logo")
+@when(parsers.parse("the user clicks on main logo"))
 def user_clicks_keyword_logo(header):
     header.click_on_nav_logo()
 

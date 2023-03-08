@@ -2,6 +2,7 @@ import json
 import logging
 import re
 import urllib.parse
+from datetime import date, timedelta
 
 import requests
 from selenium.common.exceptions import WebDriverException
@@ -35,8 +36,6 @@ class BasePageAPI(object):
         result = self.get_results_in_api(Constants.BASE_URL + api_url)
         return result['meta']
 
-
-
     def get_article_dates_in_latest_api(self, keyword_url):
         """:return a list with the article dates in the API format e.g. 2021-11-15"""
         self.logger.info(keyword_url)
@@ -45,18 +44,30 @@ class BasePageAPI(object):
         result = self.get_results_in_api(Constants.BASE_URL + api_url)
         article_dates = []
         for article in result['results']:
-            article_dates.append(article['published'][0:10])
-            self.logger.info(article['published'])
+            self.logger.info('%s published date', article['published'])
+            published_date = article['published'][0:10]
+            if published_date <= (date.today()+timedelta(days=1)).strftime("%Y-%m-%d"):
+                article_dates.append(published_date)
         return article_dates
+
+    def is_the_article_published(self, article):
+        # self.logger.info('%s current date', (date.today() + timedelta(days=1)).strftime("%Y-%m-%d"))
+        # self.logger.info('%s published date', article['published'])
+        published_date = article['published'][0:10]
+        return True if published_date <= (date.today() + timedelta(days=1)).strftime("%Y-%m-%d") else False
 
     def get_article_tags_in_latest_api(self, keyword_url):
         """:return a list with the article tag in the API e.g. diversity-and-inclusion"""
         article_tags = []
         api_url = self.get_api_url(keyword_url, api_const.LATEST_FEED)
         result = self.get_results_in_api(Constants.BASE_URL + api_url)
+        self.logger.info('%s current date', (date.today() + timedelta(days=1)).strftime("%Y-%m-%d"))
         for article in result['results']:
-            article_tags.append(article['tag'])
             self.logger.info('%s article[tag]', article['tag'])
+            self.logger.info('%s published date', article['published'])
+            if self.is_the_article_published(article):
+                article_tags.append(article['tag'])
+                self.logger.info('%s article[tag]', article['tag'])
         return article_tags
 
     def get_article_titles_in_latest_api(self, keyword_url):
@@ -64,8 +75,9 @@ class BasePageAPI(object):
         api_url = self.get_api_url(keyword_url, api_const.LATEST_FEED)
         result = self.get_results_in_api(Constants.BASE_URL + api_url)
         for article in result['results']:
-            article_headlines.append(article['headline'])
-            self.logger.info('%s article[headline]', article['headline'])
+            if self.is_the_article_published(article):
+                article_headlines.append(article['headline'])
+                self.logger.info('%s article[headline]', article['headline'])
         return article_headlines
 
     def get_api_url(self, keyword_url, api_urls):

@@ -86,7 +86,7 @@ Feature: As a user, I would like to interact with the header navigation on mobil
   Scenario Outline: Test the keyword logo in the nav menu on mobile
       Given a user is at the <keyword> site
       And the user clicks on the hero article
-      When the user clicks on the main logo
+      When the user clicks on main logo
       Then the user is redirected to <keyword>
 
       Examples:

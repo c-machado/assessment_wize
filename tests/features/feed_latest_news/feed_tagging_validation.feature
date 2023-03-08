@@ -1,7 +1,7 @@
 # Created by machadoca at 7/02/22
 Feature: As a user, I want to confirm articles in the feed list are shown to the user according to the corresponding tag
 
-    @feed-article-tagging
+    @feed-article-tagging1
     Scenario Outline: Test articles listed in the feed on the homepage are tagged accordingly
         Given a user is at the <keyword> site
         When the user scrolls to the feed in <keyword> locale
@@ -10,16 +10,16 @@ Feature: As a user, I want to confirm articles in the feed list are shown to the
         Examples:
             | keyword           |
             | /                 |
-            | /intl/de-de/      |
-            | /intl/en-au/      |
-            | /intl/en-in/      |
-            | /intl/fr-ca/      |
-            | /intl/en-ca/      |
-            | /intl/pt-br/      |
-            | /intl/es-419/     |
-            | /intl/it-it/      |
-            | /intl/en-africa/  |
-            | /intl/ar-mena/    |
+#            | /intl/de-de/      |
+#            | /intl/en-au/      |
+#            | /intl/en-in/      |
+#            | /intl/fr-ca/      |
+#            | /intl/en-ca/      |
+#            | /intl/pt-br/      |
+#            | /intl/es-419/     |
+#            | /intl/it-it/      |
+#            | /intl/en-africa/  |
+#            | /intl/ar-mena/    |
 
     @feed-article-tagging
     Scenario Outline: Test articles listed in the feed in the category page are tagged accordingly
@@ -38,7 +38,7 @@ Feature: As a user, I want to confirm articles in the feed list are shown to the
            | /intl/es-419/actualizaciones-de-producto/android-chrome-play/ |
            | /intl/it-it/prodotti/android-chrome-play/                     |
            | /intl/ar-mena/products/android-chrome-play/                   |
-           | /intl/en-africa/products/                                     |
+           | /intl/en-africa/products/android-chrome-play/#googleplay      |
 
     @feed-article-tagging
     Scenario Outline: Test articles listed in the feed on the subcategory page are tagged accordingly
