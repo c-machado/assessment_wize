@@ -69,9 +69,8 @@ class Feed(BasePage, BasePageAPI):
         self.logger.info('%s len(article_date_list)', len(article_date_list))
         for article_date_index in range(0, len(article_date_list)):
             self.logger.info('%s article_date_index', article_date_index)
-            self.logger.info('%s actual_article_date_in_feed_to_return', article_date_list[article_date_index])
             if article_date_index == self.random_article:
-                self.logger.info('%s article_date_index', article_date_index)
+                self.logger.info('%s article_date_index chosen randomly', article_date_index)
                 self.logger.info('%s actual_article_date_in_feed_to_return',
                                  article_date_list[article_date_index])
                 return article_date_list[article_date_index]
@@ -81,13 +80,12 @@ class Feed(BasePage, BasePageAPI):
         self.close_bar(PageLocators.cookie_banner_ok_cta)
         date_in_first_article = self.get_article_dates_in_latest_api(keyword_url)[0]
         self.logger.info('%s date_in_api', date_in_first_article)
-        self.logger.info(date_in_first_article)
         return date_in_first_article
 
     def get_date_from_article_in_feed_in_latest_api(self, keyword_url):
         """:return published date from the current random article in API format"""
-        """we need to navigate different new category pages, since the first article in the api is not showed in the 
-        feed as in the other pages"""
+        """ In category pages, the first article returned by the API will be shown in the hero, so the start range is 
+        initialized in 1 instead of 0."""
         article_dates_in_api = self.get_article_dates_in_latest_api(keyword_url)
         start_range = 0
         if self.is_category_page_horizontal(keyword_url):
@@ -103,31 +101,33 @@ class Feed(BasePage, BasePageAPI):
                 return article_dates_in_api[index]
 
     def get_date_format_in_feed_per_locale(self, locale, date):
-        """:return date in API in corresponding format based on the locale and year"""
+        """:return date in API in the corresponding format based on the locale and year"""
         """To capture the format that applies based on the current random article"""
-        """It should be Month Day (if the year is the same as the current one)"""
-        """It should be Month Year (if the year is the previous tp the current one)"""
+        """According to product definition the format should be Month Day (if the year is the same as the current one)"""
+        """or Month Year (if the year is the previous to the current one)"""
         # date_article_in_api = self.get_date_from_article_in_feed_in_latest_api(keyword_url)
         year_current_article = self.get_year_in_given_date(date, Constants.DATE_FORMAT_IN_API)
         current_year = datetime.datetime.now().year
         if current_year == year_current_article:
+            self.logger.info('%s date expected in feed', self.get_format_current_year(locale, Constants.DATE_FORMAT_IN_FEED_PER_LOCALE, date))
             return self.get_format_current_year(locale, Constants.DATE_FORMAT_IN_FEED_PER_LOCALE, date)
         elif year_current_article < current_year:
+            self.logger.info('%s date expected in feed', self.get_format_previous_year(locale, Constants.DATE_FORMAT_IN_FEED_PAST_YEAR_PER_LOCALE, date))
             return self.get_format_previous_year(locale, Constants.DATE_FORMAT_IN_FEED_PAST_YEAR_PER_LOCALE, date)
 
-    def click_to_random_article_in_feed(self, keyword):
+    def click_to_random_article_in_feed(self, keyword, get_viewport):
         time.sleep(1)
         article_list = self.get_articles_in_feed_list()
-        print('random_article in click article_index:', self.random_article, 'len(article_list)', len(article_list))
+        self.logger.info('%s random_article in click article_index:', self.random_article)
+        self.logger.info('%s len(article_list)', len(article_list))
         for article_index in range(0, len(article_list)):
-            print('article_index', article_index)
             if article_index == self.random_article:
-                print('article_index', article_index)
+                print('%s article_index', article_index)
                 self.driver.wait_for_feed_to_load(*PageLocators.feed_articles_list)
                 self.driver.wait_for_element_visible(article_list[article_index])
                 self.driver.wait_for_element_clickable(article_list[article_index])
                 time.sleep(2)
-                self.scroll_to_feed(self.random_article, keyword)
+                self.scroll_to_feed(self.random_article, keyword, get_viewport)
                 time.sleep(2)
                 article_list[article_index].click()
                 time.sleep(2)
@@ -170,16 +170,16 @@ class Feed(BasePage, BasePageAPI):
 
     # TODO: sometimes this test is failing in mobile because the toast bar is appearing in the category pages,
     #  we need to confirm if that what is expected
-    def confirm_tagging_in_feed_articles(self, keyword_url):
+    def confirm_tagging_in_feed_articles(self, keyword_url, get_viewport):
         """:return True if the article randomly selected contains a valid tag according to the current category page"""
         primary_tags_articles_in_feed = self.get_article_tags_in_latest_api(keyword_url)
         # primary_tags_articles_in_feed = self.get_tag_articles_in_feed()
-        self.scroll_to_feed(self.random_article, keyword_url)
+        self.scroll_to_feed(self.random_article, keyword_url, get_viewport)
         article_tag_in_feed = primary_tags_articles_in_feed[self.random_article]
         # print('RANDOM in tag', self.random_article, 'TAG IN FEED:', article_tag_in_feed)
         tags_per_cat_page = self.get_primary_tags(keyword_url)
         # print('tags_per_cat_page', tags_per_cat_page)
-        secondary_tags = self.get_secondary_tags(keyword_url)
+        secondary_tags = self.get_secondary_tags(keyword_url, get_viewport)
         # print('secondary_tags', secondary_tags)
         tags_intersection = set(secondary_tags) & set(tags_per_cat_page)
         # print('tags_intersection', tags_intersection)
@@ -202,10 +202,10 @@ class Feed(BasePage, BasePageAPI):
         self.logger.info('%s primary_tags', primary_tags)
         return primary_tags
 
-    def get_secondary_tags(self, keyword_url):
+    def get_secondary_tags(self, keyword_url, get_viewport):
         from tests.pages.article import ArticlePage
         articles_in_feed = self.get_articles_in_feed_list()
-        self.scroll_to_feed(self.random_article, keyword_url)
+        self.scroll_to_feed(self.random_article, keyword_url, get_viewport)
         articles_in_feed[self.random_article].click()
         secondary_tags = ArticlePage(self.driver).get_secondary_tags_in_article_api_format()
         self.logger.info('%s secondary_tags', secondary_tags)
@@ -238,9 +238,9 @@ class Feed(BasePage, BasePageAPI):
     def get_eyebrows_in_feed_site_space_page(self):
         return self.driver.find_elements(*PageLocators.search_eyebrow_articles_in_feed)
 
-    def click_on_sitespace_element(self, index, keyword):
+    def click_on_sitespace_element(self, index, keyword, get_viewport):
         self.close_bar(PageLocators.cookie_banner_ok_cta)
-        self.scroll_to_feed(index, keyword)
+        self.scroll_to_feed(index, keyword, get_viewport)
         index += 1
         from selenium.webdriver.common.by import By
         self.driver.find_element(By.CSS_SELECTOR, '.feed-article.ng-scope:nth-child(' + "% s" % index + ')').click()

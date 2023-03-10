@@ -27,7 +27,8 @@ from tests.pages.locators import PageLocators
 
 # print a message with the step in case of error
 def pytest_bdd_step_error(request, feature, scenario, step, step_func, step_func_args, exception):
-    print(f'Step failed: {step}', f'Scenario: {scenario}', f'Feature: {feature}')
+    # print(f'Step failed: {step}', f'Scenario: {scenario}', f'Feature: {feature}')
+    print(f'Exception: {exception}')
 
 
 @pytest.fixture(autouse=True)
@@ -188,12 +189,13 @@ def user_clicks_google_logo(footer):
 
 @when("the user chooses a random article")
 @given("the user chooses a random article")
-def user_choose_random_article(feed, base_page):
+def user_choose_random_article(feed, base_page, get_viewport):
     base_page.close_bar(PageLocators.cookie_banner_ok_cta)
-    feed.get_random_index_in_list(feed.get_articles_in_feed_list())
+    feed.get_random_index_in_list(feed.get_articles_in_feed_list(), get_viewport)
 
 
 @when(parsers.parse("the user opens the selected random article in {keyword} feed"))
-def user_open_random_article_in_feed(feed, keyword):
+def user_open_random_article_in_feed(feed, keyword, get_viewport):
     # base_page.close_bar(PageLocators.cookie_banner_ok_cta)
-    feed.click_to_random_article_in_feed(keyword)
+    feed.click_to_random_article_in_feed(keyword, get_viewport)
+

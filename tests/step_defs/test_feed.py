@@ -55,13 +55,13 @@ def validate_descendent_order(feed):
 
 
 @then(parsers.parse("the tags associated match with the content in the {keyword}"))
-def validate_tags_in_content(feed, keyword):
-    assert feed.confirm_tagging_in_feed_articles(keyword)
+def validate_tags_in_content(feed, keyword, get_viewport):
+    assert feed.confirm_tagging_in_feed_articles(keyword, get_viewport)
 
 
 @when(parsers.parse("the user scrolls to the feed in {keyword} locale"))
-def scroll_to_feed_section(base_page, keyword):
-    base_page.scroll_to_feed(0, keyword)
+def scroll_to_feed_section(base_page, keyword, get_viewport):
+    base_page.scroll_to_feed(0, keyword, get_viewport)
 
 
 @then(parsers.parse("the system shows articles in the {keyword} locale"))

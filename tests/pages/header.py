@@ -120,9 +120,10 @@ class Header(BasePage, BasePageAPI):
 
     def get_publish_date_in_rss(self):
         soup = BeautifulSoup(self.driver.get_page_source(), 'xml')
-        publish_date = soup.find('lastBuildDate').text
+        publish_date = soup.find('pubDate').text
+        self.logger.info('%s pubDate', publish_date)
         date_formatted = self.get_date_in_api_format(publish_date[5:16], Constants.DATE_FORMAT_IN_RSS)
-        self.logger.info(date_formatted)
+        self.logger.info('%s date_formatted', date_formatted)
         return date_formatted
 
     @staticmethod

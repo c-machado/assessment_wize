@@ -15,6 +15,11 @@ def user_clicks_to_submenu(header, submenu, get_viewport):
     header.click_on_submenu_item(submenu, get_viewport)
 
 
+@when(parsers.parse("the user clicks on main logo"))
+def user_clicks_keyword_logo(header):
+    header.click_on_nav_logo()
+
+
 @then(parsers.parse("the user is redirected to {keyword}"))
 def redirected_to_page(keyword, base_page, driver):
     assert base_page.get_status_redirect() == 200

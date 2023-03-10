@@ -2,7 +2,7 @@
 Feature: As a user, I would like to interact with the header navigation on desktop
 
 
-      @header_business_critical1
+      @header_business_critical
       Scenario Outline: Test the latest stories submenu
           Given a user is at the <keyword> site
           And the user clicks on the hero article
@@ -58,7 +58,7 @@ Feature: As a user, I would like to interact with the header navigation on deskt
       Scenario Outline: Test the keyword logo in the nav menu
           Given a user is at the <keyword> site
           And the user clicks on the hero article
-          When the user clicks on the main logo
+          When the user clicks on main logo
           Then the user is redirected to <keyword>
 
           Examples:
@@ -73,8 +73,8 @@ Feature: As a user, I would like to interact with the header navigation on deskt
             |/intl/es-419/|
             |/intl/it-it/ |
             |/intl/ar-mena/|
-           |/intl/en-africa/|
-#
+            |/intl/en-africa/|
+
       @header_business_critical
       Scenario Outline: Test navigation in sitespaces within products in Ads&Analytics list
           Given a user is at the <keyword> site

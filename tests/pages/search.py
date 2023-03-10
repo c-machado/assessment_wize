@@ -140,12 +140,12 @@ class Search(BasePage, BasePageAPI):
             assert self.get_collection_primary_tag(keyword)
         return tag_articles_eyebrow
 
-    def get_collection_primary_tag(self, keyword):
+    def get_collection_primary_tag(self, keyword, get_viewport):
         primary_tags_list = []
         for item in self.collections_dict.values():
             index = item[0]
             self.logger.info('%s elf.collections_dict', self.collections_dict)
-            self.scroll_to_feed(index-1, keyword)
+            self.scroll_to_feed(index-1, keyword, get_viewport)
             self.click_on_collection_element(index)
             data_analytics = self.driver.find_element(*PageLocators.collection_data_analytics)
             primary_tag = (data_analytics.get_attribute("outerHTML").split("primaryTag")[1]).split("&quot;")[2]

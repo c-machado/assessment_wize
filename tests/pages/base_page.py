@@ -33,6 +33,8 @@ class BasePage(object):
 
     def close_bar(self, locator):
         self.driver.wait_for_page_load()
+        self.logger.info('%s local storage',
+                         self.driver.execute_script("window.localStorage.getItem('cookieConsent');"))
         if Constants.PROD_URL not in self.driver.current_url():
             self.clear_local_storage()
             self.driver.click_to_element(locator)
@@ -118,55 +120,26 @@ class BasePage(object):
                 self.logger.info('%s submenu', item)
                 return locator_item
 
-    def get_random_index_in_list(self, element_list):
+    # If the viewport is mobile the article to select will be the first one visible in the feed
+    def get_random_index_in_list(self, element_list, get_viewport):
         # time.sleep(1)
         element_list_length = len(element_list)
         self.logger.info('%s length list in random', element_list_length)
-        self.random_article = random.randint(0, element_list_length - 1)
+        try:
+            self.random_article = random.randint(0, element_list_length - 1) if get_viewport == 'desktop' else 0
+        except Exception as e:
+            print(e)
         return self.random_article
 
     def get_scroll_locator(self, url, random_article):
         if self.is_category_page_horizontal(url) and random_article == 0:
-            random_index = random_article + 2
-            locator = re.sub("index_to_scroll", str(random_index), Constants.SCROLL_TO_CATEGORY_HORIZONTAL_FEED)
+            random_articlem_index = random_article + 1
+            locator = re.sub("index_to_scroll", str(random_articlem_index), Constants.SCROLL_TO_CATEGORY_HORIZONTAL_FEED)
             self.logger.info('%s locator cat horizontal', locator)
             return locator
         elif random_article >= 0:
             random_index = random_article + 1
             locator = re.sub("index_to_scroll", str(random_index), Constants.SCROLL_TO_HOME_FEED)
-            self.logger.info('%s locator feed starts at 1', locator)
-            return locator
-
-    def get_scroll_locator_(self, url, random_article):
-        if random_article == 0:
-            random_index = random_article + 1
-            locator = re.sub("index_to_scroll", str(random_index), Constants.SCROLL_TO_HOME_FEED)
-            self.logger.info('%s locator feed random 0', locator)
-            return locator
-        elif random_article == 1:
-            random_index = random_article
-            locator = re.sub("index_to_scroll", str(random_index), Constants.SCROLL_TO_HOME_FEED)
-            self.logger.info('%s locator feed random 1', locator)
-            return locator
-        elif 2 <= random_article < 5:
-            random_index = random_article - 1
-            locator = re.sub("index_to_scroll", str(random_index), Constants.SCROLL_TO_HOME_FEED)
-            self.logger.info('%s locator feed random 2', locator)
-            return locator
-        elif random_article >= 5:
-            random_index = random_article - 2
-            locator = re.sub("index_to_scroll", str(random_index), Constants.SCROLL_TO_HOME_FEED)
-            self.logger.info('%s locator feed random 5', locator)
-            return locator
-
-    def get_locator_to_click(self, url, random_article):
-        if random_article == 0:
-            random_index = random_article + 1
-            locator = re.sub("index_to_scroll", str(random_index), Constants.SCROLL_TO_HOME_FEED)
-            self.logger.info('%s locator feed starts at 1', locator)
-            return locator
-        elif random_article > 0:
-            locator = re.sub("index_to_scroll", str(random_article), Constants.SCROLL_TO_HOME_FEED)
             self.logger.info('%s locator feed starts at 1', locator)
             return locator
 
@@ -322,7 +295,15 @@ class BasePage(object):
                                    " behavior: 'smooth'});")
         time.sleep(1)
 
-    def scroll_to_feed(self, random_article, keyword_url):
+    def scroll_to_feed_mobile(self):
+        self.driver.execute_script("document.querySelector('.article-list__feed').scrollIntoView();")
+
+    def scroll_to_feed(self, random_article, keyword_url, get_viewport):
+        self.scroll_to_feed_desktop(random_article, keyword_url) if get_viewport == 'desktop' else \
+            self.scroll_to_feed_mobile()
+
+    def scroll_to_feed_desktop(self, random_article, keyword_url):
+        self.scroll_to_bottom()
         print('RANDOM IN scroll_to_feed', random_article)
         locator = self.get_scroll_locator(keyword_url, random_article)
         print('locator', locator)
