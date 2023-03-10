@@ -17,7 +17,7 @@ printf "STARTING TESTS BUSINESS CRITICAL:\n"
 ##
 #pytest tests/ -m "feed-article-load-more1" --html=reports/blog/feed-load-more.html #r
 #pytest tests/ -m "feed-article-tagging1" --html=reports/blog/feed-tagging.html #r
-pytest tests/ -m "feed-article-date-format1" --html=reports/blog/feed-date-format.html #r
+pytest tests/ -m "feed-article-date-format" --html=reports/blog/feed-date-format.html #r
 #
 #pytest tests/ -m "search_nav_business_critical" --html=reports/blog/business_critical_search_nav.html #url_africa
 #
@@ -48,7 +48,7 @@ pytest tests/ -m "feed-article-date-format1" --html=reports/blog/feed-date-forma
 #pytest tests/ -m "search_no_results_regression" --html=reports/blog/regression_search_no_results.html # GABO
 
 #This tag needs to be run in Blog.google, not in publish-prod
-pytest tests/ -m "search_article_progress_bar1" --html=reports/blog/regression_search_article_progress_bar.html # GABO
+#pytest tests/ -m "search_article_progress_bar1" --html=reports/blog/regression_search_article_progress_bar.html # GABO
 #
 
 #pytest tests/ -m "redirects" --html=reports/blog/redirects.html # IN PROGRESS

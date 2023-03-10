@@ -37,7 +37,9 @@ class BasePageAPI(object):
         return result['meta']
 
     def get_article_dates_in_latest_api(self, keyword_url):
-        """:return a list with the article dates in the API format e.g. 2021-11-15"""
+        """:return a list with the article dates in the API format e.g. 2021-11-15
+        If the current date is minor than the published date, it means the article is not
+         visible in the feed """
         self.logger.info(keyword_url)
         api_url = self.get_api_url(keyword_url, api_const.LATEST_FEED)
         self.logger.info(api_url)

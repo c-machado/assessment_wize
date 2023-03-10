@@ -69,9 +69,8 @@ class Feed(BasePage, BasePageAPI):
         self.logger.info('%s len(article_date_list)', len(article_date_list))
         for article_date_index in range(0, len(article_date_list)):
             self.logger.info('%s article_date_index', article_date_index)
-            self.logger.info('%s actual_article_date_in_feed_to_return', article_date_list[article_date_index])
             if article_date_index == self.random_article:
-                self.logger.info('%s article_date_index', article_date_index)
+                self.logger.info('%s article_date_index chosen randomly', article_date_index)
                 self.logger.info('%s actual_article_date_in_feed_to_return',
                                  article_date_list[article_date_index])
                 return article_date_list[article_date_index]
@@ -85,8 +84,8 @@ class Feed(BasePage, BasePageAPI):
 
     def get_date_from_article_in_feed_in_latest_api(self, keyword_url):
         """:return published date from the current random article in API format"""
-        """we need to navigate different new category pages, since the first article in the api is not showed in the 
-        feed as in the other pages"""
+        """ In category pages, the first article returned by the API will be shown in the hero, so the start range is 
+        initialized in 1 instead of 0."""
         article_dates_in_api = self.get_article_dates_in_latest_api(keyword_url)
         start_range = 0
         if self.is_category_page_horizontal(keyword_url):
@@ -102,16 +101,18 @@ class Feed(BasePage, BasePageAPI):
                 return article_dates_in_api[index]
 
     def get_date_format_in_feed_per_locale(self, locale, date):
-        """:return date in API in corresponding format based on the locale and year"""
+        """:return date in API in the corresponding format based on the locale and year"""
         """To capture the format that applies based on the current random article"""
-        """It should be Month Day (if the year is the same as the current one)"""
-        """It should be Month Year (if the year is the previous tp the current one)"""
+        """According to product definition the format should be Month Day (if the year is the same as the current one)"""
+        """or Month Year (if the year is the previous to the current one)"""
         # date_article_in_api = self.get_date_from_article_in_feed_in_latest_api(keyword_url)
         year_current_article = self.get_year_in_given_date(date, Constants.DATE_FORMAT_IN_API)
         current_year = datetime.datetime.now().year
         if current_year == year_current_article:
+            self.logger.info('%s date expected in feed', self.get_format_current_year(locale, Constants.DATE_FORMAT_IN_FEED_PER_LOCALE, date))
             return self.get_format_current_year(locale, Constants.DATE_FORMAT_IN_FEED_PER_LOCALE, date)
         elif year_current_article < current_year:
+            self.logger.info('%s date expected in feed', self.get_format_previous_year(locale, Constants.DATE_FORMAT_IN_FEED_PAST_YEAR_PER_LOCALE, date))
             return self.get_format_previous_year(locale, Constants.DATE_FORMAT_IN_FEED_PAST_YEAR_PER_LOCALE, date)
 
     def click_to_random_article_in_feed(self, keyword, get_viewport):

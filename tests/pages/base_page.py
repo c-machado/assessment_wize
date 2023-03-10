@@ -120,6 +120,7 @@ class BasePage(object):
                 self.logger.info('%s submenu', item)
                 return locator_item
 
+    # If the viewport is mobile the article to select will be the first one visible in the feed
     def get_random_index_in_list(self, element_list, get_viewport):
         # time.sleep(1)
         element_list_length = len(element_list)
@@ -139,39 +140,6 @@ class BasePage(object):
         elif random_article >= 0:
             random_index = random_article + 1
             locator = re.sub("index_to_scroll", str(random_index), Constants.SCROLL_TO_HOME_FEED)
-            self.logger.info('%s locator feed starts at 1', locator)
-            return locator
-
-    def get_scroll_locator_(self, url, random_article):
-        if random_article == 0:
-            random_index = random_article + 1
-            locator = re.sub("index_to_scroll", str(random_index), Constants.SCROLL_TO_HOME_FEED)
-            self.logger.info('%s locator feed random 0', locator)
-            return locator
-        elif random_article == 1:
-            random_index = random_article
-            locator = re.sub("index_to_scroll", str(random_index), Constants.SCROLL_TO_HOME_FEED)
-            self.logger.info('%s locator feed random 1', locator)
-            return locator
-        elif 2 <= random_article < 5:
-            random_index = random_article - 1
-            locator = re.sub("index_to_scroll", str(random_index), Constants.SCROLL_TO_HOME_FEED)
-            self.logger.info('%s locator feed random 2', locator)
-            return locator
-        elif random_article >= 5:
-            random_index = random_article - 2
-            locator = re.sub("index_to_scroll", str(random_index), Constants.SCROLL_TO_HOME_FEED)
-            self.logger.info('%s locator feed random 5', locator)
-            return locator
-
-    def get_locator_to_click(self, url, random_article):
-        if random_article == 0:
-            random_index = random_article + 1
-            locator = re.sub("index_to_scroll", str(random_index), Constants.SCROLL_TO_HOME_FEED)
-            self.logger.info('%s locator feed starts at 1', locator)
-            return locator
-        elif random_article > 0:
-            locator = re.sub("index_to_scroll", str(random_article), Constants.SCROLL_TO_HOME_FEED)
             self.logger.info('%s locator feed starts at 1', locator)
             return locator
 
@@ -328,23 +296,11 @@ class BasePage(object):
         time.sleep(1)
 
     def scroll_to_feed_mobile(self):
-        self.driver.execute_script("window.scroll({"
-                                   "top: document.getElementsByClassName('article-list__feed').offsetTop+70,"
-                                   "left: 0,"
-                                   " behavior: 'smooth'});")
-        time.sleep(5)
+        self.driver.execute_script("document.querySelector('.article-list__feed').scrollIntoView();")
 
     def scroll_to_feed(self, random_article, keyword_url, get_viewport):
         self.scroll_to_feed_desktop(random_article, keyword_url) if get_viewport == 'desktop' else \
             self.scroll_to_feed_mobile()
-        # print('RANDOM IN scroll_to_feed', random_article)
-        # locator = self.get_scroll_locator(keyword_url, random_article)
-        # print('locator', locator)
-        # from selenium.webdriver.common.by import By
-        # element = self.driver.find_element(By.CSS_SELECTOR, locator)
-        # from selenium.webdriver import Keys
-        # element.send_keys(Keys.PAGE_DOWN)
-        # time.sleep(1)
 
     def scroll_to_feed_desktop(self, random_article, keyword_url):
         self.scroll_to_bottom()
