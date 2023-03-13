@@ -1,4 +1,4 @@
-import datetime
+
 import time
 
 import pytest
@@ -22,6 +22,7 @@ def user_check_date_in_feed(keyword, locale, feed, driver, base_page):
     """date expected according to format per locale and published_date in api"""
     date_article_in_api = feed.get_date_from_article_in_feed_in_latest_api(keyword)
     expected_date_in_feed = feed.get_date_format_in_feed_per_locale(locale, date_article_in_api)
+    # feed.get_date_format(locale, date_article_in_api)
     assert article_date_in_feed == expected_date_in_feed
 
 

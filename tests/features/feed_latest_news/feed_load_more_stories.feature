@@ -1,7 +1,7 @@
 # Created by machadoca at 1/02/22
 Feature: As a user I want to confirm articles in the feed list are shown to the user order by descendent date
 
-    @feed-article-load-more1
+    @feed-article-load-more
     Scenario Outline: Test articles listed in the homepage's feed are order by desc date
         Given a user is at the <keyword> site
         When the user clicks on load more stories cta on <keyword> feed
@@ -9,16 +9,16 @@ Feature: As a user I want to confirm articles in the feed list are shown to the 
         Examples:
             | keyword          |
             | /                |
-#            | /intl/de-de/     |
-#            | /intl/en-au/     |
-#            | /intl/en-in/     |
-#            | /intl/fr-ca/     |
-#            | /intl/en-ca/     |
-#            | /intl/pt-br/     |
-#            | /intl/es-419/    |
-#            | /intl/it-it/     |
-#            | /intl/ar-mena/   |
-#            | /intl/en-africa/ |
+            | /intl/de-de/     |
+            | /intl/en-au/     |
+            | /intl/en-in/     |
+            | /intl/fr-ca/     |
+            | /intl/en-ca/     |
+            | /intl/pt-br/     |
+            | /intl/es-419/    |
+            | /intl/it-it/     |
+            | /intl/ar-mena/   |
+            | /intl/en-africa/ |
 
 
     @feed-article-load-more

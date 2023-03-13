@@ -78,8 +78,8 @@ def user_selects_random_filter(search):
 
 
 @then(parsers.parse("the system filters the results on {keyword}"))
-def results_per_filter_by_option(keyword, search):
-    assert search.get_results_filtered(keyword)
+def results_per_filter_by_option(keyword, search, get_viewport):
+    assert search.get_results_filtered(keyword, get_viewport)
 
 
 @then(parsers.parse("the system shows suggestions per {text_to_search} in {keyword} page"))
@@ -108,7 +108,7 @@ def visibility_of_no_search_results_message(text_to_search, language, search):
 
 
 @given(parsers.parse("the user selects an article in {keyword} feed"))
-def user_selects_article_in_feed(keyword, feed, base_page):
+def user_selects_article_in_feed(keyword, feed, base_page, get_viewport):
     base_page.close_bar(PageLocators.cookie_banner_ok_cta)
-    feed.get_random_index_in_list(feed.get_articles_in_feed_list())
+    feed.get_random_index_in_list(feed.get_articles_in_feed_list(), get_viewport)
     feed.click_to_random_article_in_feed(keyword)

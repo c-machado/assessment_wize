@@ -3,10 +3,10 @@ from dataclasses import dataclass
 
 @dataclass
 class Constants:
-    BASE_URL = 'https://blog.google'
+    # BASE_URL = 'https://blog.google'
     # BASE_URL = 'https://gweb-uniblog-publish-prod.appspot.com'
     SEARCH_URL = "search/?query="
-    # BASE_URL = 'https://gweb-uniblog-publish-stage.appspot.com'
+    BASE_URL = 'https://gweb-uniblog-publish-stage.appspot.com'
     # BASE_URL = 'https://gweb-uniblog-publish-dev.appspot.com'
     # BASE_URL = 'https://gweb-uniblog-author-dev.appspot.com/admin'
     PROD_URL = 'blog.google'

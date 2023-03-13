@@ -73,11 +73,19 @@ class BasePage(object):
             if locale_format == locale:
                 return date_format
 
-    def get_date_format(self, date_in_article, locale):
+    def get_date_format(self, locale, date_article_in_api):
+        from datetime import datetime
+        self.logger.info('date_article_in_api babel ', date_article_in_api)
+        # date_in_api = datetime.strptime(date_article_in_api, "%Y-%m-%d")
+        # date_in_api = datetime.strptime(date_article_in_api, Constants.DATE_FORMAT_IN_API)
+        # self.logger.info('date api locale ', locale)
+        # self.logger.info('date api type ', type(date_in_api))
+        # self.logger.info('date api in format date', date_in_api)
         from babel.dates import format_date, format_datetime, format_time
-        self.logger.info('%s format date', format_date(date_in_article, locale=locale))
-        self.logger.info('%s format datetime', format_datetime(date_in_article, locale=locale))
-        self.logger.info('%s format time', format_time(date_in_article, locale=locale))
+        # self.logger.info('%s format date babel en', format_date(date_in_api, locale='en'))
+        # self.logger.info('%s format date babel en', format_date(date_in_api, locale='de'))
+        # self.logger.info('%s format datetime', format_datetime(date_in_article, locale=locale))
+        # self.logger.info('%s format time', format_time(date_in_article, locale=locale))
 
     def get_format_current_year(self, locale, constants_date_format, date_article_in_api):
         self.set_locale(locale)
