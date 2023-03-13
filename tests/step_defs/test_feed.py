@@ -21,8 +21,16 @@ def user_check_date_in_feed(keyword, locale, feed, driver, base_page):
     article_date_in_feed = feed.get_date_article_in_feed()
     """date expected according to format per locale and published_date in api"""
     date_article_in_api = feed.get_date_from_article_in_feed_in_latest_api(keyword)
-    expected_date_in_feed = feed.get_date_format_in_feed_per_locale(locale, date_article_in_api)
     # feed.get_date_format(locale, date_article_in_api)
+    print('date_article_in_api babel ', date_article_in_api)
+    date_in_api = datetime.datetime.strptime(date_article_in_api, "%Y-%m-%d")
+    print('date_article_in_api_converted babel ', date_in_api)
+    from babel.dates import format_date, format_datetime, format_time
+    print('%s format date babel en', format_date(date_in_api, locale='en'))
+    print('%s format datetime', format_datetime(date_in_api, locale='en'))
+    print('%s format time', format_time(date_in_api, locale='en'))
+    expected_date_in_feed = feed.get_date_format_in_feed_per_locale(locale, date_article_in_api)
+
     assert article_date_in_feed == expected_date_in_feed
 
 
