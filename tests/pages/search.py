@@ -84,9 +84,9 @@ class Search(BasePage, BasePageAPI):
         self.random_filter = random.randint(1, len(element_list) - 1)
         return self.random_filter
 
-    def get_results_filtered(self, keyword):
+    def get_results_filtered(self, keyword, get_viewport):
         articles_in_feed = self.get_articles_in_feed_search_results_page()
-        articles_tags_in_feed_results = self.get_tag_eyebrow_in_feed_results_page(articles_in_feed, keyword)
+        articles_tags_in_feed_results = self.get_tag_eyebrow_in_feed_results_page(articles_in_feed, keyword, get_viewport)
         for tag in articles_tags_in_feed_results:
             if tag != self.tag_to_filter:
                 self.logger.info('%s tag in feed', tag)
@@ -111,7 +111,7 @@ class Search(BasePage, BasePageAPI):
         self.logger.info('%s headlines_suggested_results', headlines_suggested_results)
         return headlines_suggested_results
 
-    def get_tag_eyebrow_in_feed_results_page(self, eyebrow_in_articles, keyword):
+    def get_tag_eyebrow_in_feed_results_page(self, eyebrow_in_articles, keyword, get_viweport):
         tag_articles_eyebrow = []
         index = 0
         collection_index = 0
@@ -137,7 +137,7 @@ class Search(BasePage, BasePageAPI):
                 else:
                     tag_articles_eyebrow.append(tag_eyebrow_principal)
         if collection_index >= 1:
-            assert self.get_collection_primary_tag(keyword)
+            assert self.get_collection_primary_tag(keyword, get_viweport)
         return tag_articles_eyebrow
 
     def get_collection_primary_tag(self, keyword, get_viewport):
