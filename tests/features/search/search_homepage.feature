@@ -89,7 +89,7 @@ Feature: As a user, I would like to search for the content while navigating the 
             | l'Asie                    | /intl/fr-ca/     |
             | informações               | /intl/pt-br/     |
             | Canada's K-12             | /intl/en-ca/     |
-            | Google*                    | /intl/en-africa/ |
+            | Google*                   | /intl/en-africa/ |
             | información               | /intl/es-419/    |
             | un’attività               | /intl/it-it/     |
             | الأشخاص                    | /intl/ar-mena/   |

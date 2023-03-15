@@ -3,7 +3,7 @@
 
 #printf "STARTING TESTS BUSINESS CRITICAL:\n"
 
-
+#ANI
 pytest tests/ -m "header_business_critical" --html=reports/blog/business_critical_header.html
 pytest tests/ -m "standalone_newsletter" --html=reports/blog/business_critical_standalone_newsletter.html #r
 pytest tests/ -m "homepage_newsletter" --html=reports/blog/business_critical_homepage_newsletter.html
@@ -19,12 +19,14 @@ pytest tests/ -m "feed-article-load-more" --html=reports/blog/feed-load-more.htm
 pytest tests/ -m "feed-article-tagging" --html=reports/blog/feed-tagging.html #r
 pytest tests/ -m "feed-article-date-format" --html=reports/blog/feed-date-format.html #r
 
-pytest tests/ -m "search_nav_business_critical" --html=reports/blog/business_critical_search_nav.html #url_africa
-
 
 # If the videos tests fail please try them without headless mode
 pytest tests/ -m "videos" --html=reports/blog/business_critical_article-videos.html
 pytest tests/ -m "article-related" --html=reports/blog/business_critical_article-related.html
+
+
+#DAVE
+pytest tests/ -m "search_nav_business_critical" --html=reports/blog/business_critical_search_nav.html #url_africa
 
 pytest tests/ -m "search_suggestions_business_critical" --html=reports/blog/business_critical_search_suggestions.html
 pytest tests/ -m "search_suggestions_special_char_business_critical" --html=reports/blog/business_critical_search_suggestions_special_char.html

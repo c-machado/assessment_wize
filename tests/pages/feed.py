@@ -103,8 +103,8 @@ class Feed(BasePage, BasePageAPI):
     def get_date_format_in_feed_per_locale(self, locale, date):
         """:return date in API in the corresponding format based on the locale and year"""
         """To capture the format that applies based on the current random article"""
-        """According to product definition the format should be Month Day (if the year is the same as the current one)"""
-        """or Month Year (if the year is the previous to the current one)"""
+        """According to product definition, the format should be Month Day (if the year is the same as the current one)"""
+        """or Month Year (if the year is previous to the current one)"""
         # date_article_in_api = self.get_date_from_article_in_feed_in_latest_api(keyword_url)
         year_current_article = self.get_year_in_given_date(date, Constants.DATE_FORMAT_IN_API)
         current_year = datetime.datetime.now().year

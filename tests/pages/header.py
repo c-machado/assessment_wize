@@ -101,8 +101,8 @@ class Header(BasePage, BasePageAPI):
         self.logger.info('%s site_space_list ', site_spaces_list)
         return site_spaces_list
 
-    def get_random_sitespace(self, site_spaces_list):
-        self.random_site_space_index = self.get_random_index_in_list(site_spaces_list)
+    def get_random_sitespace(self, site_spaces_list, get_viewport):
+        self.random_site_space_index = self.get_random_index_in_list(site_spaces_list, get_viewport)
 
     def get_sitespace_title_expected_in_products(self):
         self.logger.info('%s random', self.random_site_space_index)

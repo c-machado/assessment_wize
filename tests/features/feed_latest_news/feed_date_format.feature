@@ -20,7 +20,7 @@ Feature: As a user, I want to confirm dates are showing according to the expecte
             | pt_BR     | /intl/pt-br/ |
             | es_ES     | /intl/es-419/|
             | it_IT     | /intl/it-it/ |
-            | ar_IL     | /intl/ar-mena/ |
+            | ar_MENA    | /intl/ar-mena/ |
 #            TODO: Update locale code date format
             | en_US     | /intl/en-africa/ |
 

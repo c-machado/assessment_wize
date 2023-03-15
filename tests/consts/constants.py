@@ -11,7 +11,8 @@ class Constants:
     # BASE_URL = 'https://gweb-uniblog-author-dev.appspot.com/admin'
     PROD_URL = 'blog.google'
     CHROME_PROFILE = '/Users/machadoca/Documents/chrome_huge_inc'
-    CHROME_PROFILE_JD = '/Users/jortiz/Library/Application Support/Google/Chrome/Default'
+    CHROME_PROFILE_APJ = '/Users/pieschaconjoya/Documents/Chrome_Profile'
+    CHROME_PROFILE_DZ = '/Users/luisdavid/Documents/automation/keyword/chrome_profile'
     #CHROME_PROFILE_LINUX = '/usr/local/google/home/machadoca/Documents/chrome_google'
     FIREFOX_PROFILE = '/Users/machadoca/Library/Application Support/Firefox/Profiles/4jwzwjvm.default'
     # FIREFOX_PROFILE = '	/Users/machadoca/Library/Application Support/Firefox/Profiles/e0zi780p.Keyword_test'
@@ -52,7 +53,8 @@ class Constants:
         'en_CA': '%b %d',
         'pt_BR': '%d %b',
         'es_ES': '%b %d',
-        'it_IT': '%d %b'
+        'it_IT': '%d %b',
+        'ar_MENA': '%d %b'
     }
     DATE_FORMAT_IN_FEED_PAST_YEAR_PER_LOCALE = {
         'en_US': '%b %Y',
@@ -63,7 +65,8 @@ class Constants:
         'en_CA': '%b %Y',
         'pt_BR': '%b %Y',
         'es_ES': '%b %Y',
-        'it_IT': '%b %Y'
+        'it_IT': '%b %Y',
+        'ar_MENA': '%b %Y'
     }
     DATE_FORMAT_PER_LOCALE = {
         'en_US': '%b %d, %Y',
@@ -74,7 +77,8 @@ class Constants:
         'en_CA': '%b %d, %Y',
         'fr_CA': '%d %b, %Y',
         'es_ES': '%b %d, %Y',
-        'it_IT': '%d %b, %Y'
+        'it_IT': '%d %b, %Y',
+        'ar_MENA': '%d %b, %Y'
     }
     DESKTOP_PLATFORMS = [
         'WIN10',

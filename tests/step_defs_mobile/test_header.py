@@ -26,6 +26,12 @@ def redirected_to_page(keyword, base_page, driver):
     assert driver.current_url().__contains__(keyword)
 
 
+@then(parsers.parse("the user is redirected to {url}"))
+def redirected_to_page(url, base_page, driver):
+    assert base_page.get_status_redirect() == 200
+    assert driver.current_url().__contains__(url)
+
+
 @when(parsers.parse("the user clicks on each list in the {submenu}"))
 def user_clicks_to_expand_submenus(header, submenu):
     header.click_submenu_items_mobile(submenu)
@@ -66,11 +72,11 @@ def test_header_waze_sitespace(header):
 
 
 @when(parsers.parse("the user clicks in an article in a {sitespace_tag} in {keyword}"))
-def user_clicks_on_random_site_space(sitespace_tag, keyword, feed):
+def user_clicks_on_random_site_space(sitespace_tag, keyword, feed, get_viewport):
     tags_list = feed.get_eyebrows_in_feed_site_space_page()
     articles_within_sitespace = feed.get_articles_indexes_matching_sitespace_tag(tags_list, sitespace_tag)
-    random_index = feed.get_random_index_in_list(articles_within_sitespace)
-    feed.click_on_sitespace_element(articles_within_sitespace[random_index], keyword)
+    random_index = feed.get_random_index_in_list(articles_within_sitespace, get_viewport)
+    feed.click_on_sitespace_element(articles_within_sitespace[random_index], keyword, get_viewport)
 
 
 @then(parsers.parse("the system shows the {sitespace_title} nav menu in an article"))
@@ -82,12 +88,6 @@ def user_sees_nav_sitespace_in_article(sitespace_title, header):
 @when(parsers.parse("the user on {keyword} clicks the CTA See all product updates"))
 def click_on_cta_all_product_updates(header, keyword, get_viewport):
     header.click_cta_all_product_updates(keyword, get_viewport)
-
-
-@then(parsers.parse("the user is redirected to {url}"))
-def redirected_to_page(url, base_page, driver):
-    assert base_page.get_status_redirect() == 200
-    assert driver.current_url().__contains__(url)
 
 
 @then("every 'see all' CTA selected return an http 200")

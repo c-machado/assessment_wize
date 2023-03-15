@@ -55,11 +55,11 @@ def test_header_waze_sitespace(header):
 
 
 @when(parsers.parse("the user clicks in an article in a {sitespace_tag} in {keyword}"))
-def user_clicks_on_random_site_space(sitespace_tag, keyword, feed):
+def user_clicks_on_random_site_space(sitespace_tag, keyword, feed, get_viewport):
     tags_list = feed.get_eyebrows_in_feed_site_space_page()
     articles_within_sitespace = feed.get_articles_indexes_matching_sitespace_tag(tags_list, sitespace_tag)
-    random_index = feed.get_random_index_in_list(articles_within_sitespace)
-    feed.click_on_sitespace_element(articles_within_sitespace[random_index], keyword)
+    random_index = feed.get_random_index_in_list(articles_within_sitespace, get_viewport)
+    feed.click_on_sitespace_element(articles_within_sitespace[random_index], keyword, get_viewport)
 
 
 @then(parsers.parse("the system shows the {sitespace_title} nav menu in an article"))
