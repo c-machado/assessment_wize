@@ -151,9 +151,9 @@ def user_clicks_hero_article(cookie_banner, get_viewport):
 # HEADER
 
 @when("the user clicks on a random sitespace")
-def user_clicks_on_random_site_space(header):
+def user_clicks_on_random_site_space(header, get_viewport):
     site_spaces_list = header.get_sitespaces_list()
-    header.get_random_sitespace(site_spaces_list)
+    header.get_random_sitespace(site_spaces_list, get_viewport)
     title_expected_in_products = header.get_sitespace_title_expected_in_products()
     header.click_random_site_space(site_spaces_list)
     title_sitespace_in_products = header.site_space_title_in_products

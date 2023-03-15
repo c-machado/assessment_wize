@@ -66,7 +66,7 @@ Feature: As a user, I want to be able to search for content within the blog
          |/intl/fr-ca/    |entrepreneurs |
          |/intl/pt-br/    |translate     |
          |/intl/en-ca/    |ai            |
-         |/intl/en-africa/|ai            |
+         |/intl/en-africa/|africa        |
          |/intl/es-419/   |buscador      |
          |/intl/it-it/    |pixel         |
          |/intl/ar-mena/  |youtube       |
@@ -90,7 +90,7 @@ Feature: As a user, I want to be able to search for content within the blog
          |/intl/fr-ca/    |entrepreneurs |
          |/intl/pt-br/    |translate     |
          |/intl/en-ca/    |ai            |
-         |/intl/en-africa/|ai            |
+         |/intl/en-africa/|africa        |
          |/intl/es-419/   |buscador      |
          |/intl/it-it/    |pixel         |
          |/intl/ar-mena/  |youtube       |

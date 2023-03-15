@@ -92,9 +92,10 @@ class BasePage(object):
         print(locale)
         format_expected = self.get_date_format_per_locale(locale, constants_date_format)
         self.logger.info('%s format expected', format_expected)
+        """ Get the expected date according to format per locale and current date in the system """
         date_expected = datetime.datetime.strptime(date_article_in_api, Constants.DATE_FORMAT_IN_API).strftime(
             format_expected)
-        """This validation is required because fr_CA & es_ES locales are returning the month in lower case"""
+        """ This validation is required because fr_CA & es_ES locales are returning the month in lower case"""
         if locale == 'fr_CA':
             date_expected.capitalize()
             month = date_expected.split(' ')[1]
@@ -323,8 +324,18 @@ class BasePage(object):
 
     @staticmethod
     def set_locale(locale_string):
+        """The locale should be set so that when converting a date to the locale in testing the date format will match. e.g
+        Dec 2022 is correct for English but, not for French, if the locale is not set the system will expect Dec 2022
+        instead of Déc 2022"""
         print('locale_string', locale_string)
         import locale
         locale.setlocale(locale.LC_ALL, locale_string)
         loc = locale.getlocale()
         print(loc)
+        from babel import Locale
+        locale_ar = Locale('ar', 'SA')
+        locale_fr = Locale('fr', 'CA')
+
+        print('%s territories ar ',  locale_ar.date_formats['short'])
+        print('%s territories fr ',  locale_fr.date_formats['short'])
+
