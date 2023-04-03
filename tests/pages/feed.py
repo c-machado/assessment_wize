@@ -1,8 +1,9 @@
 import logging
 import datetime
 import time
-
+from babel.dates import format_date
 from selenium.webdriver.common.by import By
+from soupsieve.util import lower
 
 from tests.consts import api_const
 from tests.consts.constants import Constants
@@ -71,7 +72,7 @@ class Feed(BasePage, BasePageAPI):
             self.logger.info('%s article_date_index', article_date_index)
             if article_date_index == self.random_article:
                 self.logger.info('%s article_date_index chosen randomly', article_date_index)
-                self.logger.info('%s actual_article_date_in_feed_to_return',
+                self.logger.info('%s actual_article_date_in_feed_to_compare',
                                  article_date_list[article_date_index])
                 return article_date_list[article_date_index]
 
@@ -109,11 +110,48 @@ class Feed(BasePage, BasePageAPI):
         year_current_article = self.get_year_in_given_date(date, Constants.DATE_FORMAT_IN_API)
         current_year = datetime.datetime.now().year
         if current_year == year_current_article:
-            self.logger.info('%s date expected in feed', self.get_format_current_year(locale, Constants.DATE_FORMAT_IN_FEED_PER_LOCALE, date))
+            self.logger.info('%s date expected in feed',
+                             self.get_format_current_year(locale, Constants.DATE_FORMAT_IN_FEED_PER_LOCALE, date))
             return self.get_format_current_year(locale, Constants.DATE_FORMAT_IN_FEED_PER_LOCALE, date)
         elif year_current_article < current_year:
-            self.logger.info('%s date expected in feed', self.get_format_previous_year(locale, Constants.DATE_FORMAT_IN_FEED_PAST_YEAR_PER_LOCALE, date))
+            self.logger.info('%s date expected in feed',
+                             self.get_format_previous_year(locale, Constants.DATE_FORMAT_IN_FEED_PAST_YEAR_PER_LOCALE,
+                                                           date))
             return self.get_format_previous_year(locale, Constants.DATE_FORMAT_IN_FEED_PAST_YEAR_PER_LOCALE, date)
+
+    def get_date_article_in_feed_per_locale_and_year_babel(self, locale, date_article_in_api):
+        """:return date in API in the locale format based on the year the article was published"""
+        """Capture the format date that applies based on the current random article"""
+        """According to product definition, the date in the feed shows: Month & Day (if the year is the current one)"""
+        """or Month Year (if the year is previous to the current one)"""
+        """In the constants file we do have dictionaries to give the date taken from the API the expected format and 
+        then be able to compare the two values (the API will return the same format in all locales)"""
+        year_current_article = self.get_year_in_given_date(date_article_in_api, Constants.DATE_FORMAT_IN_API)
+        current_year = datetime.datetime.now().year
+        date_in_api = datetime.datetime.strptime(date_article_in_api, "%Y-%m-%d")
+        self.logger.info('%s date_article_in_api_converted_to_string babel ', date_in_api)
+        if current_year == year_current_article:
+            locale_format = self.get_babel_date_format_per_locale\
+                (locale, Constants.DATE_FORMAT_BABEL_IN_FEED_PER_LOCALE)
+            date_in_feed = self.get_date_in_babel_format(date_in_api, locale_format, locale)
+            self.logger.info('%s api date converted to locale format to compare', date_in_feed)
+            return date_in_feed
+        elif year_current_article < current_year:
+            locale_format = self.get_babel_date_format_per_locale\
+                (locale, Constants.DATE_FORMAT_BABEL_IN_FEED_PAST_YEAR_PER_LOCALE)
+            date_in_feed = self.get_date_in_babel_format(date_in_api, locale_format, locale)
+            self.logger.info('%s api date converted to locale format to compare', date_in_feed)
+            return date_in_feed
+
+    def get_date_in_babel_format(self, date, locale_format, locale):
+        date_in_babel_format = format_date(date, format=locale_format, locale=locale)
+        print('date_in_babel_format', format_date(date, format='MM dd', locale=locale))
+        print('date_in_babel_format', format_date(date, format='MMM dd', locale=locale))
+        print('date_in_babel_format', format_date(date, format='MMMM dd', locale=locale))
+        print('date_in_babel_format', format_date(date, format='MMMMM dd', locale=locale))
+        month_lower = lower(format_date(date, "MMM"))
+        mont_first_letters_lower = month_lower[:3]
+        return date_in_babel_format
 
     def click_to_random_article_in_feed(self, keyword, get_viewport):
         time.sleep(1)
@@ -151,7 +189,7 @@ class Feed(BasePage, BasePageAPI):
                              self.driver.find_element(*PageLocators.feed_load_more_text).get_attribute("innerHTML"))
             self.driver.wait_for_element_visible(PageLocators.feed_load_more_text)
             # time.sleep(2)
-            if len(self.get_articles_in_feed_list()) >= length_list+1:
+            if len(self.get_articles_in_feed_list()) >= length_list + 1:
                 self.logger.info('%s length list', len(self.get_articles_in_feed_list()))
                 return True
 

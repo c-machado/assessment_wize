@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
 
-#printf "STARTING TESTS BUSINESS CRITICAL:\n"
+printf "STARTING TESTS BUSINESS CRITICAL:\n"
 
 #ANI
 pytest tests/ -m "header_business_critical" --html=reports/blog/business_critical_header.html
 pytest tests/ -m "standalone_newsletter" --html=reports/blog/business_critical_standalone_newsletter.html #r
 pytest tests/ -m "homepage_newsletter" --html=reports/blog/business_critical_homepage_newsletter.html
 
-#This tag needs to be run in Blog.google, not in publish-prod
+This tag needs to be run in Blog.google, not in publish-prod
 pytest tests/ -m "toast_standalone_newsletter" --html=reports/blog/business_critical_toast_standalone_newsletter.html
 
 pytest tests/ -m "cookie" --html=reports/blog/business_critical_cookie.html #R
@@ -48,7 +48,7 @@ pytest tests/ -m "search_results_page_regression" --html=reports/blog/regression
 pytest tests/ -m "search_results_page_special_char_regression" --html=reports/blog/regression_search_results_page_special_char.html
 pytest tests/ -m "search_no_results_regression" --html=reports/blog/regression_search_no_results.html
 
-#This tag needs to be run in Blog.google, not in publish-prod
+This tag needs to be run in Blog.google, not in publish-prod
 pytest tests/ -m "search_article_progress_bar" --html=reports/blog/regression_search_article_progress_bar.html
 
 

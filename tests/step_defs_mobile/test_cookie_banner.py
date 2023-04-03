@@ -9,7 +9,7 @@ def verify_cookie_banner_displayed(cookie_banner, language):
     assert cookie_banner.get_cookie_text_per_language(language) == cookie_banner.get_cookie_text_in_page()
 
 
-@when("the user clicks the see details CTA")
+@when("the user clicks on see details CTA")
 def user_clicks_see_details_cta(cookie_banner):
     cookie_banner.click_see_details_cta()
 

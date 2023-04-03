@@ -24,18 +24,29 @@ Feature: As a user, I want to confirm dates are showing according to the expecte
 #            TODO: Update locale code date format
             | en_US     | /intl/en-africa/ |
 
-#    @feed-article-date-format
-#    Scenario Outline: Confirm article's date is in the correct format in homepage feed
-#        Given a user is at the <keyword> site
-#        And the user chooses a random article
-#        When the user in <keyword> <locale> check the date in the feed
+    @feed-article-date-format2
+    Scenario Outline: Confirm article's date is in the correct format in homepage feed
+        Given a user is at the <keyword> site
+        And the user chooses a random article
+        When the user confirm the format date in the feed corresponding to <keyword> <locale>
 #        And the user opens the selected random article in <keyword> feed
 #        Then the date matches the <locale> format
-#        Examples:
-#            | locale    | keyword        |
-#            | ar_IL     | /intl/ar-mena/ |
-#
-#
+        Examples:
+            | locale    | keyword        |
+            | en_US     | /            |
+#            | de_DE     | /intl/de-de/ |
+#            | en_AU     | /intl/en-au/ |
+#            | en_IN     | /intl/en-in/ |
+#            | fr_CA     | /intl/fr-ca/ |
+#            | en_CA     | /intl/en-ca/ |
+#            | pt_BR     | /intl/pt-br/ |
+#            | es_ES     | /intl/es-419/|
+#            | it_IT     | /intl/it-it/ |
+#            | ar_MENA    | /intl/ar-mena/ |
+##            TODO: Update locale code date format
+#            | en_africa  | /intl/en-africa/ |
+
+
     @feed-article-date-format
     Scenario Outline: Confirm article's date is in the correct format in category page feed
         Given a user is at the <keyword> site
@@ -90,7 +101,7 @@ Feature: As a user, I want to confirm dates are showing according to the expecte
         Then the date is according to the <locale> format
         Examples:
             | locale    | keyword                       |
-            | en_US     | /perspectives/sundar-pichai/  |
+            | en_US     | /authors/sundar-pichai/  |
 
     @feed-article-date-format
     Scenario Outline: Confirm article's date is in the correct format in the sitespace feed

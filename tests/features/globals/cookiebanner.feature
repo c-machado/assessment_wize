@@ -5,8 +5,8 @@ Feature: As a user, I want to interact with the cookie banner
     Scenario Outline: Test the cookie banner displaying
         Given a user is at the <keyword> site
         And the system displays the cookie banner per <language>
-        When the user clicks the see details CTA
-        Then the user is redirected to <url> in a new tab
+        When the user clicks on see details CTA
+        Then the user is redirected in a new tab to <url>
 
         Examples:
           |keyword           | url                                                        | language |
@@ -14,21 +14,21 @@ Feature: As a user, I want to interact with the cookie banner
           |/intl/de-de/      | https://policies.google.com/technologies/cookies?hl=de     | de       |
           |/intl/en-au/      | https://policies.google.com/technologies/cookies           | en       |
           |/intl/en-in/      | https://policies.google.com/technologies/cookies           | en       |
-          |/intl/fr-ca/      | https://policies.google.com/technologies/cookies?hl=fr-CA  | fr       |
+          |/intl/fr-ca/      | https://policies.google.com/technologies/cookies?hl=fr     | fr       |
           |/intl/pt-br/      | https://policies.google.com/technologies/cookies?hl=pt-BR  | pt       |
           |/intl/en-ca/      | https://policies.google.com/technologies/cookies           | en       |
-          |/intl/es-419/     | https://policies.google.com/technologies/cookies?hl=es-419 | es       |
-          |/intl/it-it/      | https://policies.google.com/technologies/cookies?hl=it-IT  | it       |
+          |/intl/es-419/     | https://policies.google.com/technologies/cookies?hl=es     | es       |
+          |/intl/it-it/      | https://policies.google.com/technologies/cookies?hl=it     | it       |
           |/intl/en-africa/  | https://policies.google.com/technologies/cookies           | en       |
-          |/intl/ar-mena/     | https://policies.google.com/technologies/cookies?hl=ar     | ar       |
+          |/intl/ar-mena/    | https://policies.google.com/technologies/cookies?hl=ar     | ar       |
 
     @cookie
     Scenario Outline: Test the cookie banner displayed on an article page
         Given a user is at the <keyword> site
         And the user clicks on the hero article
         And the system displays the cookie banner per <language>
-        When the user clicks the see details CTA
-        Then the user is redirected to <url> in a new tab
+        When the user clicks on see details CTA
+        Then the user is redirected in a new tab to <url>
 
         Examples:
           |keyword           | url                                                        | language |
@@ -36,13 +36,13 @@ Feature: As a user, I want to interact with the cookie banner
           |/intl/de-de/      | https://policies.google.com/technologies/cookies?hl=de     | de       |
           |/intl/en-au/      | https://policies.google.com/technologies/cookies           | en       |
           |/intl/en-in/      | https://policies.google.com/technologies/cookies           | en       |
-          |/intl/fr-ca/      | https://policies.google.com/technologies/cookies?hl=fr-CA  | fr       |
+          |/intl/fr-ca/      | https://policies.google.com/technologies/cookies?hl=fr     | fr       |
           |/intl/pt-br/      | https://policies.google.com/technologies/cookies?hl=pt-BR  | pt       |
           |/intl/en-ca/      | https://policies.google.com/technologies/cookies           | en       |
-          |/intl/es-419/     | https://policies.google.com/technologies/cookies?hl=es-419 | es       |
-          |/intl/it-it/      | https://policies.google.com/technologies/cookies?hl=it-IT  | it       |
+          |/intl/es-419/     | https://policies.google.com/technologies/cookies?hl=es     | es       |
+          |/intl/it-it/      | https://policies.google.com/technologies/cookies?hl=it     | it       |
           |/intl/en-africa/  | https://policies.google.com/technologies/cookies           | en       |
-          |/intl/ar-mena/     | https://policies.google.com/technologies/cookies?hl=ar     | ar       |
+          |/intl/ar-mena/    | https://policies.google.com/technologies/cookies?hl=ar     | ar       |
 
     @cookie
     Scenario Outline: Test the user can close the cookie banner

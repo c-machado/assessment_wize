@@ -38,7 +38,7 @@ def validate_date_format_in_article(article, locale, feed, base_page):
 def validate_date_matches_format_in_article(article, locale, feed, base_page):
     time.sleep(1)
     date_in_article = article.get_date_in_article().get_attribute("innerHTML")
-    date_format_expected = base_page.get_date_format(date_in_article, locale)
+    date_format_expected = base_page.get_date_article_in_feed_per_locale_and_year_babel(date_in_article, locale)
     base_page.is_date_format_correct(date_in_article, date_format_expected, locale)
 
 

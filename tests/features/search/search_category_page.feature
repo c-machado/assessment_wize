@@ -41,7 +41,7 @@ Feature: As a user, I would like to search for the content while navigating on a
             | Australia’s non-profits    | /intl/en-au/products/android-chrome-more/          |
             | Google’s                   | /intl/en-ca/products/cloud/                        |
             | possèdent                  | /intl/fr-ca/produits/explorez-obtenez-des-reponses/|
-            | possèdent                  | /intl/en-africa/products/android-chrome-more/      |
+            | possèdent                  | /intl/en-africa/products/android-chrome-play/#googleplay |
             | possèdent                  | /intl/en-africa/products/    |
             | téléphone                  | /intl/fr-ca/produits/explorez-obtenez-des-reponses/|
             | desinformação              | /intl/pt-br/produtos/explore-e-encontre-respostas/ |

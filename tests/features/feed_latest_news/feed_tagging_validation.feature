@@ -64,8 +64,8 @@ Feature: As a user, I want to confirm articles in the feed list are shown to the
         When the user scrolls to the feed in <keyword> locale
         Then the system shows articles in the <keyword> locale
         Examples:
-           | keyword                       |
-           | /perspectives/sundar-pichai/  |
+           | keyword                  |
+           | /authors/sundar-pichai/  |
 
     @feed-article-tagging
     Scenario Outline: Test articles listed in the feed in a sitespace are tagged accordingly
