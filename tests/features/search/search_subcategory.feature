@@ -16,7 +16,7 @@ Feature: As a user, I would like to search for the content navigating in a subca
             | text_to_search | keyword             |
             | google         | /products/android/  |
 
-    @search_suggestions_special_char_business_critical
+    @search_suggestions_special_char_regression
     Scenario Outline: Test search suggestions in a subcategory page using special characters
         Given a user is at the <keyword> site
         When the user clicks the search icon
@@ -40,7 +40,7 @@ Feature: As a user, I would like to search for the content navigating in a subca
             | text_to_search  | keyword               |
             | google          | /products/android/    |
 
-    @search_results_page_special_char_business_critical
+    @search_results_page_special_char_regression
     Scenario Outline: Test search results in a subcategory page using special characters
         Given a user is at the <keyword> site
         When the user clicks the search icon

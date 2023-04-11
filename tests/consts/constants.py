@@ -3,10 +3,10 @@ from dataclasses import dataclass
 
 @dataclass
 class Constants:
-    # BASE_URL = 'https://blog.google'
+    BASE_URL = 'https://blog.google'
     # BASE_URL = 'https://gweb-uniblog-publish-prod.appspot.com'
     SEARCH_URL = "search/?query="
-    BASE_URL = 'https://gweb-uniblog-publish-stage.appspot.com'
+    # BASE_URL = 'https://gweb-uniblog-publish-stage.appspot.com'
     # BASE_URL = 'https://gweb-uniblog-publish-dev.appspot.com'
     # BASE_URL = 'https://gweb-uniblog-author-dev.appspot.com/admin'
     PROD_URL = 'blog.google'
@@ -42,17 +42,17 @@ class Constants:
     DATE_FORMAT_IN_API = '%Y-%m-%d'
 
     DATE_FORMAT_BABEL_IN_FEED_PER_LOCALE = {
-        'en_US': 'MMM d',
-        'de_DE': 'd. MMM.',
-        'en_AU': 'MMM d',
-        'en_IN': 'd MMM',
-        'fr_CA': 'd MMM',
-        'en_CA': 'MMM d',
-        'pt_BR': 'd MMM',
-        'es_ES': 'MMM d',
-        'it_IT': 'd MMM',
-        'ar_MENA': 'd MMM',
-        'en_africa': 'd MMM'
+        'en_US': 'MMM dd',
+        'de_DE': 'dd. MMM.',
+        'en_AU': 'MMM dd',
+        'en_GB': 'dd MMM',
+        'fr_CA': 'dd MMM',
+        'en_CA': 'MMM dd',
+        'pt_BR': 'dd MMM',
+        'es_ES': 'MMM dd',
+        'it_IT': 'dd MMM',
+        'ar_MENA': 'dd MMM',
+        'en_africa': 'dd MMM'
     }
     DATE_FORMAT_IN_FEED_PER_LOCALE = {
         'en_US': '%b %d',
@@ -67,17 +67,17 @@ class Constants:
         'ar_MENA': '%d %b'
     }
     DATE_FORMAT_BABEL_IN_FEED_PAST_YEAR_PER_LOCALE = {
-        'en_US': '%MMM %yyyy',
-        'de_DE': '%MMM %yyyy',
-        'en_AU': '%MMM %yyyy',
-        'en_IN': '%MMM %yyyy',
-        'fr_CA': '%MMM %yyyy',
-        'en_CA': '%MMM %yyyy',
-        'pt_BR': '%MMM %yyyy',
-        'es_ES': '%MMM %yyyy',
-        'it_IT': '%MMM %yyyy',
-        'ar_MENA': '%MMM %yyyy',
-        'en_africa': '%MMM %yyyy'
+        'en_US': 'MMM yyyy',
+        'de_DE': 'MMM yyyy',
+        'en_AU': 'MMM yyyy',
+        'en_GB': 'MMM yyyy',
+        'fr_CA': 'MMM yyyy',
+        'en_CA': 'MMM yyyy',
+        'pt_BR': 'MMM yyyy',
+        'es_ES': 'MMM yyyy',
+        'it_IT': 'MMM yyyy',
+        'ar_MENA': 'MMM yyyy',
+        'en_africa': 'MMM yyyy'
     }
     DATE_FORMAT_IN_FEED_PAST_YEAR_PER_LOCALE = {
         'en_US': '%b %Y',
@@ -96,12 +96,25 @@ class Constants:
         'de_DE': '%d.%b.%Y',
         'en_AU': '%b %d, %Y',
         'en_GB': '%d %b, %Y',
+        'en_IN': '%d %b, %Y',
         'pt_BR': '%d %b, %Y',
         'en_CA': '%b %d, %Y',
         'fr_CA': '%d %b, %Y',
         'es_ES': '%b %d, %Y',
         'it_IT': '%d %b, %Y',
-        'ar_MENA': '%d %b, %Y'
+        'ar_MENA': '%b, %Y %d'
+    }
+    DATE_FORMAT_PER_LOCALE_BABEL = {
+        'en_US': 'MMM dd, yyyy',
+        'de_DE': 'dd.MMM.yyyy',
+        'en_AU': 'MMM dd, yyyy',
+        'en_GB': 'MMM dd, yyyy',
+        'pt_BR': 'dd MM, yyyy',
+        'en_CA': 'MMM dd, yyyy',
+        'fr_CA': 'dd MM, yyyy',
+        'es_ES': 'MMM dd, yyyy',
+        'it_IT': 'dd MM, yyyy',
+        'ar_MENA': 'dd MMM, yyyy'
     }
     DESKTOP_PLATFORMS = [
         'WIN10',

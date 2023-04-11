@@ -19,6 +19,7 @@ class Feed(BasePage, BasePageAPI):
         self.driver = driver
         self.random_article = 0
         self.logger = logging.getLogger(__name__)
+        self.article_date_in_api = ''
 
     def get_articles_in_feed_list(self):
         self.driver.wait_for_page_load()
@@ -99,7 +100,8 @@ class Feed(BasePage, BasePageAPI):
                 self.logger.info('%s random temp', random_temp)
                 self.logger.info('%s index api', index)
                 self.logger.info('%s date expected in api format:', article_dates_in_api[index])
-                return article_dates_in_api[index]
+                self.article_date_in_api = article_dates_in_api[index]
+                return self.article_date_in_api
 
     def get_date_format_in_feed_per_locale(self, locale, date):
         """:return date in API in the corresponding format based on the locale and year"""
@@ -131,27 +133,94 @@ class Feed(BasePage, BasePageAPI):
         date_in_api = datetime.datetime.strptime(date_article_in_api, "%Y-%m-%d")
         self.logger.info('%s date_article_in_api_converted_to_string babel ', date_in_api)
         if current_year == year_current_article:
-            locale_format = self.get_babel_date_format_per_locale\
+            locale_format = self.get_babel_date_format_per_locale \
                 (locale, Constants.DATE_FORMAT_BABEL_IN_FEED_PER_LOCALE)
             date_in_feed = self.get_date_in_babel_format(date_in_api, locale_format, locale)
             self.logger.info('%s api date converted to locale format to compare', date_in_feed)
             return date_in_feed
         elif year_current_article < current_year:
-            locale_format = self.get_babel_date_format_per_locale\
+            locale_format = self.get_babel_date_format_per_locale \
                 (locale, Constants.DATE_FORMAT_BABEL_IN_FEED_PAST_YEAR_PER_LOCALE)
-            date_in_feed = self.get_date_in_babel_format(date_in_api, locale_format, locale)
+            date_in_feed = self.get_date_in_babel_format_previous_year(date_in_api, locale_format, locale)
             self.logger.info('%s api date converted to locale format to compare', date_in_feed)
             return date_in_feed
 
     def get_date_in_babel_format(self, date, locale_format, locale):
         date_in_babel_format = format_date(date, format=locale_format, locale=locale)
-        print('date_in_babel_format', format_date(date, format='MM dd', locale=locale))
-        print('date_in_babel_format', format_date(date, format='MMM dd', locale=locale))
-        print('date_in_babel_format', format_date(date, format='MMMM dd', locale=locale))
-        print('date_in_babel_format', format_date(date, format='MMMMM dd', locale=locale))
-        month_lower = lower(format_date(date, "MMM"))
-        mont_first_letters_lower = month_lower[:3]
+        self.logger.info('%s date_in_babel_format1 ', date_in_babel_format)
+
+        month = format_date(date, format='MMM', locale=locale)
+        self.logger.info('%s month ', month)
+        day = format_date(date, format='dd', locale=locale)
+        self.logger.info('%s day ', day)
+
+        current_locale = Constants.DATE_FORMAT_BABEL_IN_FEED_PER_LOCALE[locale]
+        print('current_locale', current_locale)
+        if locale == 'de_DE':
+            date_in_babel_format = f'{day}. {month[:3]}.'
+        elif locale == 'en_africa':
+            date_in_babel_format = f'{month} {day}'
+        elif locale in ('fr_CA', 'pt_BR', 'it_IT', 'en_GB'):
+            date_in_babel_format = f'{day} {month[:3].capitalize()}'
+        else:
+            date_in_babel_format = format_date(date, format=current_locale, locale=locale).capitalize()
+
+        self.logger.info('%s date_in_babel_format ', date_in_babel_format)
+
         return date_in_babel_format
+
+    def get_date_in_babel_format_previous_year(self, date, locale_format, locale):
+        date_in_babel_format = format_date(date, format=locale_format, locale=locale)
+        self.logger.info('%s date_in_babel_format1 ', date_in_babel_format)
+
+        month = format_date(date, format='MMM', locale=locale)
+        self.logger.info('%s month ', month)
+        year = format_date(date, format='yyyy', locale=locale)
+        self.logger.info('%s year ', year)
+
+        current_locale = Constants.DATE_FORMAT_BABEL_IN_FEED_PAST_YEAR_PER_LOCALE[locale]
+        print('current_locale', current_locale)
+        if locale == 'de_DE':
+            date_in_babel_format = f'{month[:3]}. {year}'
+        elif locale == 'en_africa':
+            date_in_babel_format = f'{month} {year}'
+        elif locale in ('fr_CA', 'pt_BR', 'it_IT', 'en_GB', 'en_AU', 'es_ES'):
+            date_in_babel_format = f'{month[:3].capitalize()} {year}'
+        else:
+            date_in_babel_format = format_date(date, format=current_locale, locale=locale).capitalize()
+
+        self.logger.info('%s date_in_babel_format ', date_in_babel_format)
+
+        return date_in_babel_format
+
+    def get_date_in_article_in_babel_format(self, locale):
+        print('self.article_date_in_api', self.article_date_in_api)
+        date_in_article = datetime.datetime.strptime(self.article_date_in_api, Constants.DATE_FORMAT_IN_API)
+        date__article_in_babel_format = format_date(date_in_article,
+                                                    format=Constants.DATE_FORMAT_PER_LOCALE_BABEL[locale], locale=locale)
+        self.logger.info('%s date__article_in_babel_format ', date__article_in_babel_format)
+
+        month = format_date(date_in_article, format='MMM', locale=locale)
+        self.logger.info('%s month ', month)
+        day = format_date(date_in_article, format='dd', locale=locale)
+        self.logger.info('%s day ', day)
+        year = format_date(date_in_article, format='yyyy', locale=locale)
+        self.logger.info('%s year ', year)
+
+        current_locale = Constants.DATE_FORMAT_PER_LOCALE_BABEL[locale]
+        print('current_locale', current_locale)
+        if locale == 'de_DE':
+            date__article_in_babel_format = f'{day}.{month[:3]}.{year}'
+        elif locale == 'en_africa':
+            date__article_in_babel_format = f'{month} {day} {year}'
+        elif locale in ('fr_CA', 'pt_BR', 'it_IT', 'en_GB'):
+            date__article_in_babel_format = f'{day} {month[:3].capitalize()}, {year}'
+        else:
+            date__article_in_babel_format = format_date(date_in_article, format=current_locale, locale=locale).capitalize()
+
+        self.logger.info('%s date__article_in_babel_format ', date__article_in_babel_format)
+
+        return date__article_in_babel_format
 
     def click_to_random_article_in_feed(self, keyword, get_viewport):
         time.sleep(1)

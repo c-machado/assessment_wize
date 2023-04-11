@@ -26,7 +26,7 @@ Feature: As a user, I would like to search for the content while navigating on a
             | intelligente   | /intl/it-it/prodotti/android-chrome-play/ |
             | الأشخاص         | /intl/ar-mena/products/android-chrome-play/ |
 
-    @search_suggestions_special_char_business_critical
+    @search_suggestions_special_char_regression
     Scenario Outline: Test search suggestions on a category page using special characters
         Given a user is at the <keyword> site
         When the user clicks the search icon
@@ -72,7 +72,7 @@ Feature: As a user, I would like to search for the content while navigating on a
             | الأشخاص         | /intl/ar-mena/products/android-chrome-play/        |
             | africa         | /intl/en-africa/products/                          |
 
-    @search_results_page_special_char_business_critical
+    @search_results_page_special_char_regression
     Scenario Outline: Test search results in a category page using special characters
         Given a user is at the <keyword> site
         When the user clicks the search icon

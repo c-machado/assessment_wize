@@ -136,10 +136,10 @@ class BasePageAPI(object):
         self.logger.info('%s BASE_URL + api_url_with_txt_to_search', Constants.BASE_URL + api_url_with_txt_to_search)
         result = self.get_results_in_api(Constants.BASE_URL + api_url_with_txt_to_search)
         for article in result['results']:
-            if len(article_results_suggestions) <= 3:
-                headline = article['headline'].replace(u'\xa0', u' ')
-                article_results_suggestions.append(headline)
-                self.logger.info('%s article[headline] in api', headline)
+            # if len(article_results_suggestions) <= 3:
+            headline = article['headline'].replace(u'\xa0', u' ')
+            article_results_suggestions.append(headline)
+            self.logger.info('%s article[headline] in api', headline)
         return article_results_suggestions
 
     def get_titles_in_press_asset_api(self, api_url):

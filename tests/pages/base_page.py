@@ -7,6 +7,7 @@ import requests
 
 import datetime
 
+from babel.dates import format_date
 from bs4 import BeautifulSoup
 
 from tests.consts.constants import Constants
@@ -190,6 +191,15 @@ class BasePage(object):
             is_format_expected = False
         print("Does date match format? : " + str(is_format_expected))
         return is_format_expected
+
+    def get_date_babel_format(self, date_string, date_format, locale_string):
+        from datetime import datetime
+        self.logger.info('%s date_format', date_format)
+        date = datetime.strptime(date_string, Constants.DATE_FORMAT_IN_API)
+        self.logger.info('%s date_tr', date)
+        date_babel = format_date(date, format=date_format, locale=locale_string)
+        self.logger.info('%s date_article_babel', date_babel)
+        return date_babel
 
     @staticmethod
     def order_list_by_date_desc(article_dates_list):
