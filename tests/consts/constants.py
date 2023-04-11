@@ -68,7 +68,7 @@ class Constants:
     }
     DATE_FORMAT_BABEL_IN_FEED_PAST_YEAR_PER_LOCALE = {
         'en_US': 'MMM yyyy',
-        'de_DE': 'MMM yyyy',
+        'de_DE': 'MMM. yyyy',
         'en_AU': 'MMM yyyy',
         'en_GB': 'MMM yyyy',
         'fr_CA': 'MMM yyyy',
@@ -108,12 +108,12 @@ class Constants:
         'en_US': 'MMM dd, yyyy',
         'de_DE': 'dd.MMM.yyyy',
         'en_AU': 'MMM dd, yyyy',
-        'en_GB': 'MMM dd, yyyy',
-        'pt_BR': 'dd MM, yyyy',
+        'en_GB': 'dd MMM, yyyy',
+        'pt_BR': 'dd MMM, yyyy',
         'en_CA': 'MMM dd, yyyy',
-        'fr_CA': 'dd MM, yyyy',
+        'fr_CA': 'dd MMM, yyyy',
         'es_ES': 'MMM dd, yyyy',
-        'it_IT': 'dd MM, yyyy',
+        'it_IT': 'dd MMM, yyyy',
         'ar_MENA': 'dd MMM, yyyy'
     }
     DESKTOP_PLATFORMS = [
