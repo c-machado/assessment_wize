@@ -54,21 +54,21 @@ class Constants:
         'ar_MENA': 'dd MMM',
         'en_africa': 'dd MMM'
     }
-    DATE_FORMAT_IN_FEED_PER_LOCALE = {
-        'en_US': '%b %d',
-        'de_DE': '%d. %b.',
-        'en_AU': '%b %d',
-        'en_GB': '%d %b',
-        'fr_CA': '%d %b',
-        'en_CA': '%b %d',
-        'pt_BR': '%d %b',
-        'es_ES': '%b %d',
-        'it_IT': '%d %b',
-        'ar_MENA': '%d %b'
-    }
+    # DATE_FORMAT_IN_FEED_PER_LOCALE = {
+    #     'en_US': '%b %d',
+    #     'de_DE': '%d. %b.',
+    #     'en_AU': '%b %d',
+    #     'en_GB': '%d %b',
+    #     'fr_CA': '%d %b',
+    #     'en_CA': '%b %d',
+    #     'pt_BR': '%d %b',
+    #     'es_ES': '%b %d',
+    #     'it_IT': '%d %b',
+    #     'ar_MENA': '%d %b'
+    # }
     DATE_FORMAT_BABEL_IN_FEED_PAST_YEAR_PER_LOCALE = {
         'en_US': 'MMM yyyy',
-        'de_DE': 'MMM. yyyy',
+        'de_DE': 'MMM yyyy',
         'en_AU': 'MMM yyyy',
         'en_GB': 'MMM yyyy',
         'fr_CA': 'MMM yyyy',
@@ -79,31 +79,31 @@ class Constants:
         'ar_MENA': 'MMM yyyy',
         'en_africa': 'MMM yyyy'
     }
-    DATE_FORMAT_IN_FEED_PAST_YEAR_PER_LOCALE = {
-        'en_US': '%b %Y',
-        'de_DE': '%b %Y',
-        'en_AU': '%b %Y',
-        'en_GB': '%b %Y',
-        'fr_CA': '%b %Y',
-        'en_CA': '%b %Y',
-        'pt_BR': '%b %Y',
-        'es_ES': '%b %Y',
-        'it_IT': '%b %Y',
-        'ar_MENA': '%b %Y'
-    }
-    DATE_FORMAT_PER_LOCALE = {
-        'en_US': '%b %d, %Y',
-        'de_DE': '%d.%b.%Y',
-        'en_AU': '%b %d, %Y',
-        'en_GB': '%d %b, %Y',
-        'en_IN': '%d %b, %Y',
-        'pt_BR': '%d %b, %Y',
-        'en_CA': '%b %d, %Y',
-        'fr_CA': '%d %b, %Y',
-        'es_ES': '%b %d, %Y',
-        'it_IT': '%d %b, %Y',
-        'ar_MENA': '%b, %Y %d'
-    }
+    # DATE_FORMAT_IN_FEED_PAST_YEAR_PER_LOCALE = {
+    #     'en_US': '%b %Y',
+    #     'de_DE': '%b %Y',
+    #     'en_AU': '%b %Y',
+    #     'en_GB': '%b %Y',
+    #     'fr_CA': '%b %Y',
+    #     'en_CA': '%b %Y',
+    #     'pt_BR': '%b %Y',
+    #     'es_ES': '%b %Y',
+    #     'it_IT': '%b %Y',
+    #     'ar_MENA': '%b %Y'
+    # }
+    # DATE_FORMAT_PER_LOCALE = {
+    #     'en_US': '%b %d, %Y',
+    #     'de_DE': '%d.%b.%Y',
+    #     'en_AU': '%b %d, %Y',
+    #     'en_GB': '%d %b, %Y',
+    #     'en_IN': '%d %b, %Y',
+    #     'pt_BR': '%d %b, %Y',
+    #     'en_CA': '%b %d, %Y',
+    #     'fr_CA': '%d %b, %Y',
+    #     'es_ES': '%b %d, %Y',
+    #     'it_IT': '%d %b, %Y',
+    #     'ar_MENA': '%b, %Y %d'
+    # }
     DATE_FORMAT_PER_LOCALE_BABEL = {
         'en_US': 'MMM dd, yyyy',
         'de_DE': 'dd.MMM.yyyy',
