@@ -20,6 +20,8 @@ Feature: As a user, I would like to interact with the header navigation on deskt
             |/intl/es-419/  | latest_stories  |
             |/intl/it-it/   | latest_stories  |
             |/intl/ar-mena/ | latest_stories  |
+            |/intl/en-africa/ | latest_stories  |
+            |/intl/fr-fr/   | latest_stories  |
 
       @header_business_critical
       Scenario Outline: Test the header items within products and company news submenus

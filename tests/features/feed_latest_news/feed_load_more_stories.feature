@@ -64,8 +64,8 @@ Feature: As a user I want to confirm articles in the feed list are shown to the 
         When the user clicks on load more stories cta on <keyword> feed
         Then the articles are shown order by date desc
         Examples:
-           | keyword                         |
-           | /perspectives/sundar-pichai/    |
+           | keyword                    |
+           | /authors/sundar-pichai/    |
 
     @feed-article-load-more
     Scenario Outline: Test articles listed in the feed in a sitespace are ordered by desc date

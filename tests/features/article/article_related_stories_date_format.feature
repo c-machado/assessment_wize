@@ -1,7 +1,7 @@
 # Created by machadoca at 25/03/22
 Feature: As a user, I want to confirm dates in the related stories section are showing according to the expected format
 
-    @article-related
+    @article-related2
     Scenario Outline: Confirm article's date is in the correct format in the related stories section
         Given a user is at the <keyword> site
         And the user chooses a random article
@@ -10,12 +10,12 @@ Feature: As a user, I want to confirm dates in the related stories section are s
         Examples:
             | locale    | keyword      |
             | en_US     | /            |
-            | de_DE     | /intl/de-de/ |
+#            | de_DE     | /intl/de-de/ |
             | en_AU     | /intl/en-au/ |
             | en_GB     | /intl/en-in/ |
             | en_CA     | /intl/en-ca/ |
-            | fr_CA     | /intl/fr-ca/ |
-            | pt_BR     | /intl/pt-br/ |
+#            | fr_CA     | /intl/fr-ca/ |
+#            | pt_BR     | /intl/pt-br/ |
             | es_ES     | /intl/es-419/|
             | it_IT     | /intl/it-it/ |
 

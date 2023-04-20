@@ -47,10 +47,14 @@ def user_sees_articles_matching_current_tag(article):
 
 
 @then(parsers.parse("the date shown in the related stories articles are according to the {locale} format"))
-def date_format_in_related_stories(article, base_page, locale):
+def date_format_in_related_stories(article, feed, base_page, locale):
     time.sleep(1)
-    date_in_article_list = article.get_date_in_related_articles()
-    date_format_expected = article.get_date_format_per_locale(locale, Constants.DATE_FORMAT_PER_LOCALE)
+    date_in_article_list = article.get_list_dates_in_related_articles()
     for date_in_article in date_in_article_list:
-        assert base_page.is_date_format_correct(date_in_article, date_format_expected, locale)
+        date_format_expected = article.get_date_in_related_article_in_babel_format(feed, date_in_article, locale)
+        print('date_format_expected', date_format_expected)
+        print('date_article', date_in_article)
+        assert date_in_article == date_format_expected
+
+
 

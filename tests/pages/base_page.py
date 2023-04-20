@@ -7,6 +7,7 @@ import requests
 
 import datetime
 
+from babel.dates import format_date
 from bs4 import BeautifulSoup
 
 from tests.consts.constants import Constants
@@ -60,67 +61,24 @@ class BasePage(object):
         return (datetime.datetime.strptime(date_to_convert, format_date)).year
 
     @staticmethod
+    def get_month_in_given_date_babel_format(date, locale):
+        return format_date(date, format='MMM', locale=locale)
+
+    @staticmethod
+    def get_day_in_given_date_babel_format(date, locale):
+        return format_date(date, format='dd', locale=locale)
+
+    @staticmethod
+    def get_year_in_given_date_babel_format(date, locale):
+        return format_date(date, format='yyyy', locale=locale)
+
+    @staticmethod
     def get_date_in_api_format(date, format_date):
         # return a string in the converted format
         """Now, formatting datetime object into any date format.
         We can convert any datetime object to nearly any representation
         of date format using strftime() method."""
         return datetime.datetime.strptime(date, format_date).strftime(Constants.DATE_FORMAT_IN_API)
-
-    @staticmethod
-    def get_date_format_per_locale(locale, date_format_per_locale):
-        for locale_format, date_format in date_format_per_locale.items():
-            if locale_format == locale:
-                return date_format
-
-    def get_date_format(self, locale, date_article_in_api):
-        from datetime import datetime
-        self.logger.info('date_article_in_api babel ', date_article_in_api)
-        # date_in_api = datetime.strptime(date_article_in_api, "%Y-%m-%d")
-        # date_in_api = datetime.strptime(date_article_in_api, Constants.DATE_FORMAT_IN_API)
-        # self.logger.info('date api locale ', locale)
-        # self.logger.info('date api type ', type(date_in_api))
-        # self.logger.info('date api in format date', date_in_api)
-        from babel.dates import format_date, format_datetime, format_time
-        # self.logger.info('%s format date babel en', format_date(date_in_api, locale='en'))
-        # self.logger.info('%s format date babel en', format_date(date_in_api, locale='de'))
-        # self.logger.info('%s format datetime', format_datetime(date_in_article, locale=locale))
-        # self.logger.info('%s format time', format_time(date_in_article, locale=locale))
-
-    def get_format_current_year(self, locale, constants_date_format, date_article_in_api):
-        self.set_locale(locale)
-        print(locale)
-        format_expected = self.get_date_format_per_locale(locale, constants_date_format)
-        self.logger.info('%s format expected', format_expected)
-        """ Get the expected date according to format per locale and current date in the system """
-        date_expected = datetime.datetime.strptime(date_article_in_api, Constants.DATE_FORMAT_IN_API).strftime(
-            format_expected)
-        """ This validation is required because fr_CA & es_ES locales are returning the month in lower case"""
-        if locale == 'fr_CA':
-            date_expected.capitalize()
-            month = date_expected.split(' ')[1]
-            day = date_expected.split(' ')[0]+' '
-            date_expected = day + month.capitalize()
-        elif locale == 'es_ES':
-            date_expected = date_expected.capitalize()
-        self.logger.info('%s date_expected', date_expected)
-        return date_expected
-
-    def get_format_previous_year(self, locale, constants_date_format, date_article_in_api):
-        self.set_locale(locale)
-        format_expected = self.get_date_format_per_locale(locale, constants_date_format)
-        self.logger.info('%s format expected', format_expected)
-        date_expected = datetime.datetime.strptime(date_article_in_api, Constants.DATE_FORMAT_IN_API).strftime(
-            format_expected)
-        """This validation is required because fr_CA & es_ES locales are returning the month in lower case"""
-        if locale == 'fr_CA':
-            month = date_expected.split(' ')[0].capitalize() + ' '
-            year = date_expected.split(' ')[1]
-            date_expected = month + year
-        elif locale == 'es_ES':
-            date_expected = date_expected.capitalize()
-        self.logger.info('%s date_expected', date_expected)
-        return date_expected
 
     def get_item_selector(self, item, locators):
         for item_id, locator_item in locators.items():
@@ -182,19 +140,14 @@ class BasePage(object):
         if re.search(str1, str2):
             return True
 
-    # TODO: Install a new locale on MAC, so India can be tested with the corresponding label en_IN,
-    # meanwhile it will be tested with en_GB which is basically the same format than en_IN
-    def is_date_format_correct(self, date_string, date_format, locale_string):
-        self.logger.info('%s date_format', date_format)
+    def get_date_babel_format(self, date_string, date_format, locale_string):
         from datetime import datetime
-        self.set_locale(locale_string)
-        self.logger.info('%s date locale updated', datetime.strptime(date_string, date_format))
-        try:
-            is_format_expected = bool(datetime.strptime(date_string, date_format))
-        except ValueError:  # wrong date format
-            is_format_expected = False
-        print("Does date match format? : " + str(is_format_expected))
-        return is_format_expected
+        self.logger.info('%s date_format', date_format)
+        date = datetime.strptime(date_string, Constants.DATE_FORMAT_IN_API)
+        self.logger.info('%s date_tr', date)
+        date_babel = format_date(date, format=date_format, locale=locale_string)
+        self.logger.info('%s date_article_babel', date_babel)
+        return date_babel
 
     @staticmethod
     def order_list_by_date_desc(article_dates_list):
@@ -283,6 +236,14 @@ class BasePage(object):
         else:
             return clean_text
 
+    @staticmethod
+    def set_locale(locale_string):
+        print('locale_string', locale_string)
+        import locale
+        locale.setlocale(locale.LC_ALL, locale_string)
+        loc = locale.getlocale()
+        print(loc)
+
     def scroll_to_bottom(self):
         self.driver.wait_for_page_load()
         self.driver.execute_script("window.scroll({"
@@ -321,21 +282,3 @@ class BasePage(object):
         from selenium.webdriver import Keys
         element.send_keys(Keys.PAGE_DOWN)
         time.sleep(1)
-
-    @staticmethod
-    def set_locale(locale_string):
-        """The locale should be set so that when converting a date to the locale in testing the date format will match. e.g
-        Dec 2022 is correct for English but, not for French, if the locale is not set the system will expect Dec 2022
-        instead of Déc 2022"""
-        print('locale_string', locale_string)
-        import locale
-        locale.setlocale(locale.LC_ALL, locale_string)
-        loc = locale.getlocale()
-        print(loc)
-        from babel import Locale
-        locale_ar = Locale('ar', 'SA')
-        locale_fr = Locale('fr', 'CA')
-
-        print('%s territories ar ',  locale_ar.date_formats['short'])
-        print('%s territories fr ',  locale_fr.date_formats['short'])
-

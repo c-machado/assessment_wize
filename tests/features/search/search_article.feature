@@ -28,7 +28,7 @@ Feature: As a user, I would like to search content within the blog within an art
             | كأس            | /intl/ar-mena/  |
 
 
-    @search_suggestions_special_char_business_critical
+    @search_suggestions_special_char_regression
     Scenario Outline: Test the search suggestions in an article page using special characters
         Given a user is at the <keyword> site
         And the user clicks on the hero article
@@ -74,7 +74,7 @@ Feature: As a user, I would like to search content within the blog within an art
             | intelligente   | /intl/it-it/     |
             | المحتوى        | /intl/ar-mena/|
 
-    @search_results_page_special_char_business_critical
+    @search_results_page_special_char_regression
     Scenario Outline: Test search results in an article page using special characters
         Given a user is at the <keyword> site
         And the user clicks on the hero article

@@ -128,8 +128,8 @@ Feature: As a user, I want to search for content in the article progress bar
         Then the system shows suggestions per <text_to_search> in <keyword> page
 
      Examples:
-            | text_to_search    | keyword                       |
-            | español           | /perspectives/sundar-pichai/  |
+            | text_to_search    | keyword                  |
+            | español           | /authors/sundar-pichai/  |
 
     @search_article_progress_bar
     Scenario Outline: Test search suggestions in a perspectives article page progress bar
@@ -140,8 +140,8 @@ Feature: As a user, I want to search for content in the article progress bar
         Then the system shows suggestions per <text_to_search> in <keyword> page
 
      Examples:
-            | text_to_search | keyword                      |
-            | google         | /perspectives/sundar-pichai/ |
+            | text_to_search | keyword                 |
+            | google         | /authors/sundar-pichai/ |
 
 
     @search_article_progress_bar
@@ -155,8 +155,8 @@ Feature: As a user, I want to search for content in the article progress bar
         Then the system shows results per <text_to_search> in <keyword> page
 
      Examples:
-            | text_to_search | keyword                      |
-            | google         | /perspectives/sundar-pichai/ |
+            | text_to_search | keyword                 |
+            | google         | /authors/sundar-pichai/ |
 
 
     @search_article_progress_bar
@@ -170,8 +170,8 @@ Feature: As a user, I want to search for content in the article progress bar
         Then the system shows results per <text_to_search> in <keyword> page
 
      Examples:
-            | text_to_search  | keyword                      |
-            | Valentine's     | /perspectives/sundar-pichai/ |
+            | text_to_search  | keyword                 |
+            | Valentine's     | /authors/sundar-pichai/ |
 
 
     @search_article_progress_bar
@@ -185,5 +185,5 @@ Feature: As a user, I want to search for content in the article progress bar
         Then the system shows msg per <text_to_search> in corresponding <language>
 
      Examples:
-            | text_to_search   | keyword                         | language |
-            | zwischen         | /perspectives/sundar-pichai/    | en       |
+            | text_to_search   | keyword                    | language |
+            | zwischen         | /authors/sundar-pichai/    | en       |

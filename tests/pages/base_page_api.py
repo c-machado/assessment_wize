@@ -28,14 +28,6 @@ class BasePageAPI(object):
             self.logger.info('%s api_url_suggestions', api_const.SEARCH_SUGGESTIONS_API[locale_api_url])
             return api_const.SEARCH_SUGGESTIONS_API[locale_api_url]
 
-    def get_total_count_articles(self, keyword_url):
-        """:return count of articles"""
-        self.logger.info(keyword_url)
-        api_url = self.get_api_url(keyword_url, api_const.LATEST_FEED)
-        self.logger.info(api_url)
-        result = self.get_results_in_api(Constants.BASE_URL + api_url)
-        return result['meta']
-
     def get_article_dates_in_latest_api(self, keyword_url):
         """:return a list with the article dates in the API format e.g. 2021-11-15
         If the current date is minor than the published date, it means the article is not
@@ -136,6 +128,7 @@ class BasePageAPI(object):
         self.logger.info('%s BASE_URL + api_url_with_txt_to_search', Constants.BASE_URL + api_url_with_txt_to_search)
         result = self.get_results_in_api(Constants.BASE_URL + api_url_with_txt_to_search)
         for article in result['results']:
+            # if len(article_results_suggestions) <= 3:
             headline = article['headline'].replace(u'\xa0', u' ')
             article_results_suggestions.append(headline)
             self.logger.info('%s article[headline] in api', headline)

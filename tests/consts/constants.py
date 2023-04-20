@@ -4,13 +4,13 @@ from dataclasses import dataclass
 @dataclass
 class Constants:
     # BASE_URL = 'https://blog.google'
-    # BASE_URL = 'https://gweb-uniblog-publish-prod.appspot.com'
+    BASE_URL = 'https://gweb-uniblog-publish-prod.appspot.com'
     SEARCH_URL = "search/?query="
-    BASE_URL = 'https://gweb-uniblog-publish-stage.appspot.com'
+    # BASE_URL = 'https://gweb-uniblog-publish-stage.appspot.com'
     # BASE_URL = 'https://gweb-uniblog-publish-dev.appspot.com'
     # BASE_URL = 'https://gweb-uniblog-author-dev.appspot.com/admin'
     PROD_URL = 'blog.google'
-    CHROME_PROFILE = '/Users/machadoca/Documents/chrome_huge_inc'
+    CHROME_PROFILE = '/Users/cmachado/Documents/chrome_huge_inc'
     CHROME_PROFILE_APJ = '/Users/pieschaconjoya/Documents/Chrome_Profile'
     CHROME_PROFILE_DZ = '/Users/luisdavid/Documents/automation/keyword/chrome_profile'
     #CHROME_PROFILE_LINUX = '/usr/local/google/home/machadoca/Documents/chrome_google'
@@ -19,18 +19,14 @@ class Constants:
     COOKIE_BANNER_TXT = {
         "en": "Google serves cookies to analyze traffic to this site. Information about your use of our site is "
               "shared with Google for that purpose.",
-        "de": "Google verwendet Cookies, um Zugriffe auf diese Website zu analysieren. " 
-              "Informationen zu deiner Nutzung dieser Website werden deshalb mit Google geteilt.",
-        "fr": "Google utilise des cookies pour analyser le trafic vers ce site. "
-              "Les informations relatives à votre utilisation de notre site sont partagées avec Google à cette fin.",
-        "pt": "O Google usa cookies para analisar o tráfego para este site. As informações sobre seu uso do nosso site "
-              "são compartilhadas com o Google para esse fim.",
-        "es": "Google utiliza cookies para analizar el tráfico a este sitio. La información sobre tu uso "
-              "de nuestro sitio se comparte con Google para ese propósito.",
-        "it": "Google utilizza i cookie per analizzare il traffico su questo sito. Le informazioni sulla "
-              "tua visita sono condivise con Google per questo scopo.",
-        "ar": "تستخدم Google ملفات تعريف الارتباط لتحليل عدد الزيارات إلى هذا "
-                   "الموقع الإلكتروني. ولهذا الغرض، تتم مشاركة المعلومات حول استخدامك للموقع الإلكتروني مع Google."
+        "de": "Auf dieser Website werden Google eigene Cookies verwendet, um Google-Dienste bereitzustellen, "
+              "deren Qualität zu verbessern und Datenverkehr zu analysieren.",
+        "fr": "Ce site utilise des cookies provenant de Google afin de fournir ses services, d'en améliorer "
+              "la qualité et d'analyser le trafic.",
+        "pt": "Este site usa cookies do Google para prestar serviços e melhorar a qualidade deles, além de analisar o tráfego.",
+        "es": "Este sitio usa cookies de Google para ofrecer y mejorar la calidad de sus servicios y analizar el tráfico.",
+        "it": "Questo sito utilizza i cookie di Google per erogare i propri servizi, migliorarne la qualità e analizzare il traffico.",
+        "ar": "يستخدم هذا الموقع الإلكتروني ملفات تعريف ارتباط من Google لتقديم خدماته وتحسين جودتها وتحليل عدد الزيارات."
     }
 
     CHROME_WINDOWS_SIZE = {
@@ -44,41 +40,57 @@ class Constants:
     # %m: Returns the month as a number
     DATE_FORMAT_IN_RSS = '%d %b %Y'
     DATE_FORMAT_IN_API = '%Y-%m-%d'
-    DATE_FORMAT_IN_FEED_PER_LOCALE = {
-        'en_US': '%b %d',
-        'de_DE': '%d. %b.',
-        'en_AU': '%b %d',
-        'en_GB': '%d %b',
-        'fr_CA': '%d %b',
-        'en_CA': '%b %d',
-        'pt_BR': '%d %b',
-        'es_ES': '%b %d',
-        'it_IT': '%d %b',
-        'ar_MENA': '%d %b'
+
+    DATE_FORMAT_BABEL_IN_FEED_PER_LOCALE = {
+        'en_US': 'MMM dd',
+        'de_DE': 'dd. MMM.',
+        'en_AU': 'MMM dd',
+        'en_GB': 'dd MMM',
+        'fr_CA': 'dd MMM',
+        'en_CA': 'MMM dd',
+        'pt_BR': 'dd MMM',
+        'es_ES': 'MMM dd',
+        'it_IT': 'dd MMM',
+        'ar_MENA': 'dd MMM',
+        'en_africa': 'dd MMM'
     }
-    DATE_FORMAT_IN_FEED_PAST_YEAR_PER_LOCALE = {
-        'en_US': '%b %Y',
-        'de_DE': '%b %Y',
-        'en_AU': '%b %Y',
-        'en_GB': '%b %Y',
-        'fr_CA': '%b %Y',
-        'en_CA': '%b %Y',
-        'pt_BR': '%b %Y',
-        'es_ES': '%b %Y',
-        'it_IT': '%b %Y',
-        'ar_MENA': '%b %Y'
+    DATE_FORMAT_BABEL_IN_FEED_PAST_YEAR_PER_LOCALE = {
+        'en_US': 'MMM yyyy',
+        'de_DE': 'MMM yyyy',
+        'en_AU': 'MMM yyyy',
+        'en_GB': 'MMM yyyy',
+        'fr_CA': 'MMM yyyy',
+        'en_CA': 'MMM yyyy',
+        'pt_BR': 'MMM yyyy',
+        'es_ES': 'MMM yyyy',
+        'it_IT': 'MMM yyyy',
+        'ar_MENA': 'MMM yyyy',
+        'en_africa': 'MMM yyyy'
     }
     DATE_FORMAT_PER_LOCALE = {
         'en_US': '%b %d, %Y',
         'de_DE': '%d.%b.%Y',
         'en_AU': '%b %d, %Y',
         'en_GB': '%d %b, %Y',
+        'en_IN': '%d %b, %Y',
         'pt_BR': '%d %b, %Y',
         'en_CA': '%b %d, %Y',
         'fr_CA': '%d %b, %Y',
         'es_ES': '%b %d, %Y',
         'it_IT': '%d %b, %Y',
-        'ar_MENA': '%d %b, %Y'
+        'ar_MENA': '%b, %Y %d'
+    }
+    DATE_FORMAT_PER_LOCALE_BABEL = {
+        'en_US': 'MMM dd, yyyy',
+        'de_DE': 'dd.MMM.yyyy',
+        'en_AU': 'MMM dd, yyyy',
+        'en_GB': 'dd MMM, yyyy',
+        'pt_BR': 'dd MMM, yyyy',
+        'en_CA': 'MMM dd, yyyy',
+        'fr_CA': 'dd MMM, yyyy',
+        'es_ES': 'MMM dd, yyyy',
+        'it_IT': 'dd MMM, yyyy',
+        'ar_MENA': 'dd MMM, yyyy'
     }
     DESKTOP_PLATFORMS = [
         'WIN10',
@@ -277,7 +289,6 @@ class Constants:
     NEWSLETTER_CONFIRMATION = 'Done. Just one step more.Check your inbox to confirm your subscription.'
     NEWSLETTER_CONFIRMATION_STICKY = 'Done. Just one step more. Check your inbox to confirm your subscription.'
     NEWSLETTER_CONFIRMATION_MOBILE = 'Done. Just one step more.\nCheck your inbox to confirm your subscription.'
-    # NEWSLETTER_CONFIRMATION = 'OK, take me to the homepage'
     PLATFORM_IOS = 'IOS'
     PLATFORM_MAC = 'MAC'
     PLATFORM_WIN = "WIN"

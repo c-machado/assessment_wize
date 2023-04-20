@@ -10,26 +10,9 @@ scenarios("../features/search_desktop/search_bar.feature")
 scenarios("../features/search/search_global.feature")
 
 
-
-@given("a user is at the <keyword> site")
-def at_the_blog(keyword, driver, get_web_browser, get_viewport):
-    print('keyword url', Constants.BASE_URL + keyword)
-    print('get_web_browser', get_web_browser)
-    print('get_viewport', get_viewport)
-    driver.start(get_web_browser, get_viewport)
-    driver.go_to_URL(Constants.BASE_URL + keyword)
-    driver.wait_for_page_load()
-
-
 @when("the user clicks the search icon")
 def user_clicks_search(search):
     search.click_search_icon_in_nav_bar()
-
-
-# @given("the user clicks on the hero article")
-# def user_clicks_hero_article(homepage, get_viewport):
-#     homepage.click_to_read_more_article(get_viewport)
-
 
 @when("the user clicks the magnifying glass")
 def user_clicks_magnifying_glass(search):

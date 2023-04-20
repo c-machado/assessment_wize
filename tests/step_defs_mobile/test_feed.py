@@ -11,35 +11,24 @@ scenarios("../features/feed_latest_news/feed_load_more_stories.feature",
           "../features/feed_latest_news/feed_date_format.feature",
           "../features/feed_latest_news/feed_tagging_validation.feature")
 
-
-@when(parsers.parse("the user in {keyword} {locale} check the date in the feed"))
+@when(parsers.parse("the user confirm the format date in the feed corresponding to {keyword} {locale}"))
 def user_check_date_in_feed(keyword, locale, feed, driver, base_page):
     driver.wait_for_page_load()
     driver.wait_for_feed_to_load(*PageLocators.feed_articles_list)
     time.sleep(1)
-    """date that appears in the feed list"""
+    """article_date_in_feed: date that appears in the latest_news component"""
     article_date_in_feed = feed.get_date_article_in_feed()
-    """date expected according to format per locale and published_date in api"""
+    """expected_date_in_feed: published_date in api according to locale format date"""
     date_article_in_api = feed.get_date_from_article_in_feed_in_latest_api(keyword)
-    expected_date_in_feed = feed.get_date_format_in_feed_per_locale(locale, date_article_in_api)
-    # feed.get_date_format(locale, date_article_in_api)
+    expected_date_in_feed = feed.get_date_article_in_feed_per_locale_and_year_babel(locale, date_article_in_api)
     assert article_date_in_feed == expected_date_in_feed
 
-
-@then(parsers.parse("the date is according to the {locale} format"))
-def validate_date_format_in_article(article, locale, feed, base_page):
-    time.sleep(1)
-    date_in_article = article.get_date_in_article().get_attribute("innerHTML")
-    date_format_expected = base_page.get_date_format_per_locale(locale, Constants.DATE_FORMAT_PER_LOCALE)
-    assert base_page.is_date_format_correct(date_in_article, date_format_expected, locale)
-
-
-@then("the date matches the <locale> format")
+@then(parsers.parse("the date matches the {locale} format"))
 def validate_date_matches_format_in_article(article, locale, feed, base_page):
     time.sleep(1)
     date_in_article = article.get_date_in_article().get_attribute("innerHTML")
-    date_format_expected = base_page.get_date_format(date_in_article, locale)
-    base_page.is_date_format_correct(date_in_article, date_format_expected, locale)
+    date_format_expected = feed.get_date_in_article_in_babel_format(locale)
+    assert date_format_expected == date_in_article
 
 
 @pytest.mark.flaky("Category page takes too long to load")
@@ -81,5 +70,3 @@ def scroll_to_feed_section(base_page, keyword, get_viewport):
 @then(parsers.parse("the system shows articles in the {keyword} locale"))
 def show_articles_in_feed_per_page(keyword, feed):
     assert feed.confirm_articles_in_feed_homepage(keyword)
-
-

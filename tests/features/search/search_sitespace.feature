@@ -16,7 +16,7 @@ Feature: As a user I want to be able to search content navigating within a sites
             | text_to_search | keyword  |
             | google         | /waze/   |
 
-    @search_suggestions_special_char_business_critical
+    @search_suggestions_special_char_regression
     Scenario Outline: Test search suggestions in a sitespace using special characters
         Given a user is at the <keyword> site
         When the user clicks the search icon
@@ -40,7 +40,7 @@ Feature: As a user I want to be able to search content navigating within a sites
             | text_to_search  | keyword   |
             | google          | /waze/    |
 
-    @search_results_page_special_char_business_critical
+    @search_results_page_special_char_regression
     Scenario Outline: Test search results in a sitespace using special characters
         Given a user is at the <keyword> site
         When the user clicks the search icon

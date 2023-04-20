@@ -14,8 +14,8 @@ Feature: As a user, I want to search content in the nav bar on a perspectives ar
         Then the system shows suggestions per <text_to_search> in <keyword> page
 
      Examples:
-            | text_to_search | keyword                      |
-            | google         | /perspectives/sundar-pichai/ |
+            | text_to_search | keyword                 |
+            | google         | /authors/sundar-pichai/ |
 
     @search_suggestions_special_char_regression
     Scenario Outline: Test the search suggestions in a perspective's article using special characters
@@ -26,8 +26,8 @@ Feature: As a user, I want to search content in the nav bar on a perspectives ar
         Then the system shows suggestions per <text_to_search> in <keyword> page
 
      Examples:
-            | text_to_search    | keyword                       |
-            | español           | /perspectives/sundar-pichai/  |
+            | text_to_search    | keyword                  |
+            | español           | /authors/sundar-pichai/  |
 
 
     @search_results_page_regression
@@ -40,8 +40,8 @@ Feature: As a user, I want to search content in the nav bar on a perspectives ar
         Then the system shows results per <text_to_search> in <keyword> page
 
      Examples:
-            | text_to_search | keyword                      |
-            | google         | /perspectives/sundar-pichai/ |
+            | text_to_search | keyword                 |
+            | google         | /authors/sundar-pichai/ |
 
 
     @search_results_page_special_char_regression
@@ -54,8 +54,8 @@ Feature: As a user, I want to search content in the nav bar on a perspectives ar
         Then the system shows results per <text_to_search> in <keyword> page
 
      Examples:
-            | text_to_search  | keyword                      |
-            | Valentine's     | /perspectives/sundar-pichai/ |
+            | text_to_search  | keyword                 |
+            | Valentine's     | /authors/sundar-pichai/ |
 
 
     @search_no_results_regression
@@ -68,8 +68,8 @@ Feature: As a user, I want to search content in the nav bar on a perspectives ar
         Then the system shows msg per <text_to_search> in corresponding <language>
 
      Examples:
-            | text_to_search   | keyword                         | language |
-            | zwischen         | /perspectives/sundar-pichai/    | en       |
+            | text_to_search   | keyword                    | language |
+            | zwischen         | /authors/sundar-pichai/    | en       |
 
 
 

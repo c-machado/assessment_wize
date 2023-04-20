@@ -14,7 +14,7 @@ Feature: As a user, I would like to search for the content while navigating the 
 
      Examples:
             | text_to_search | keyword         |
-            | google         | /               |
+            | Ways           | /               |
             | sicherer       | /intl/de-de/    |
             | digital        | /intl/en-in/    |
             | australians    | /intl/en-au/    |
@@ -26,7 +26,7 @@ Feature: As a user, I would like to search for the content while navigating the 
             | intelligente   | /intl/it-it/    |
             | الأشخاص         | /intl/ar-mena/  |
 
-    @search_suggestions_special_char_business_critical
+    @search_suggestions_special_char_regression
     Scenario Outline: Test search suggestions on the homepage using special characters
         Given a user is at the <keyword> site
         When the user clicks the search icon
@@ -58,7 +58,7 @@ Feature: As a user, I would like to search for the content while navigating the 
 
      Examples:
             | text_to_search | keyword         |
-            | google         | /               |
+            | Ways           | /               |
             | sicherer       | /intl/de-de/    |
             | digital        | /intl/en-in/    |
             | australians    | /intl/en-au/    |
@@ -71,7 +71,7 @@ Feature: As a user, I would like to search for the content while navigating the 
             | الأشخاص         | /intl/ar-mena/  |
 
     # TODO: Error with texts with special characters in the wrong format. https://hugeinc.atlassian.net/browse/UNI-6398
-    @search_results_page_special_char_business_critical
+    @search_results_page_special_char_regression
     Scenario Outline: Test search results on the homepage using special characters
         Given a user is at the <keyword> site
         When the user clicks the search icon

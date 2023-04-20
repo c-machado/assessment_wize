@@ -49,7 +49,7 @@ Feature: As a user, I want to be able to search for content within the blog
          |/intl/ar-mena/    |
 
 
-#    @search_nav_business_critical
+    @search_nav_business_critical
     Scenario Outline: Test the results page
         Given a user is at the <keyword> site
         When the user clicks the search icon

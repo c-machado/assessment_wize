@@ -1,16 +1,15 @@
 # Created by machadoca at 17/01/22
 Feature: As a user, I want to confirm dates are showing according to the expected format
 
-
-    @feed-article-date-format
+    @feed-article-date-format2
     Scenario Outline: Confirm article's date is in the correct format in homepage feed
         Given a user is at the <keyword> site
         And the user chooses a random article
-        When the user in <keyword> <locale> check the date in the feed
+        When the user confirm the format date in the feed corresponding to <keyword> <locale>
         And the user opens the selected random article in <keyword> feed
-        Then the date is according to the <locale> format
+        Then the date matches the <locale> format
         Examples:
-            | locale    | keyword      |
+            | locale    | keyword        |
             | en_US     | /            |
             | de_DE     | /intl/de-de/ |
             | en_AU     | /intl/en-au/ |
@@ -20,29 +19,17 @@ Feature: As a user, I want to confirm dates are showing according to the expecte
             | pt_BR     | /intl/pt-br/ |
             | es_ES     | /intl/es-419/|
             | it_IT     | /intl/it-it/ |
-            | ar_MENA    | /intl/ar-mena/ |
-#            TODO: Update locale code date format
+            | ar_MENA   | /intl/ar-mena/ |
             | en_US     | /intl/en-africa/ |
 
-#    @feed-article-date-format
-#    Scenario Outline: Confirm article's date is in the correct format in homepage feed
-#        Given a user is at the <keyword> site
-#        And the user chooses a random article
-#        When the user in <keyword> <locale> check the date in the feed
-#        And the user opens the selected random article in <keyword> feed
-#        Then the date matches the <locale> format
-#        Examples:
-#            | locale    | keyword        |
-#            | ar_IL     | /intl/ar-mena/ |
-#
-#
-    @feed-article-date-format
+
+    @feed-article-date-format2
     Scenario Outline: Confirm article's date is in the correct format in category page feed
         Given a user is at the <keyword> site
         And the user chooses a random article
-        When the user in <keyword> <locale> check the date in the feed
+        When the user confirm the format date in the feed corresponding to <keyword> <locale>
         And the user opens the selected random article in <keyword> feed
-        Then the date is according to the <locale> format
+        Then the date matches the <locale> format
         Examples:
             | locale    | keyword                                               |
             | en_US     | /outreach-initiatives/                                |
@@ -56,49 +43,50 @@ Feature: As a user, I want to confirm dates are showing according to the expecte
             | it_IT     | /intl/it-it/prodotti/devices-services/#pixel                  |
             | en_US     | /intl/en-africa/products/android-chrome-play/#googleplay      |
 
+
     #Add subcategory pages for other locales if the content gets updated
-    @feed-article-date-format
+    @feed-article-date-format2
     Scenario Outline: Confirm article's date is in the correct format in the subcategory page feed
         Given a user is at the <keyword> site
         And the user chooses a random article
-        When the user in <keyword> <locale> check the date in the feed
+        When the user confirm the format date in the feed corresponding to <keyword> <locale>
         And the user opens the selected random article in <keyword> feed
-        Then the date is according to the <locale> format
+        Then the date matches the <locale> format
         Examples:
             | locale    | keyword               |
             | en_US     | /products/android/    |
 
 
-    @feed-article-date-format
+    @feed-article-date-format2
     Scenario Outline: Confirm article's date is in the correct format in series page feed
         Given a user is at the <keyword> site
         And the user chooses a random article
-        When the user in <keyword> <locale> check the date in the feed
+        When the user confirm the format date in the feed corresponding to <keyword> <locale>
         And the user opens the selected random article in <keyword> feed
-        Then the date is according to the <locale> format
+        Then the date matches the <locale> format
         Examples:
             | locale    | keyword                             |
             | en_US     | /inside-google/googlers/she-word/   |
 
 
-    @feed-article-date-format
+    @feed-article-date-format2
     Scenario Outline: Confirm article's date is in the correct format in the perspective page feed
         Given a user is at the <keyword> site
         And the user chooses a random article
-        When the user in <keyword> <locale> check the date in the feed
+        When the user confirm the format date in the feed corresponding to <keyword> <locale>
         And the user opens the selected random article in <keyword> feed
-        Then the date is according to the <locale> format
+        Then the date matches the <locale> format
         Examples:
             | locale    | keyword                       |
-            | en_US     | /perspectives/sundar-pichai/  |
+            | en_US     | /authors/sundar-pichai/  |
 
-    @feed-article-date-format
+    @feed-article-date-format2
     Scenario Outline: Confirm article's date is in the correct format in the sitespace feed
         Given a user is at the <keyword> site
         And the user chooses a random article
-        When the user in <keyword> <locale> check the date in the feed
+        When the user confirm the format date in the feed corresponding to <keyword> <locale>
         And the user opens the selected random article in <keyword> feed
-        Then the date is according to the <locale> format
+        Then the date matches the <locale> format
         Examples:
             | locale    | keyword   |
             | en_US     | /waze/    |

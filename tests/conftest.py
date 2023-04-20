@@ -181,6 +181,12 @@ def redirect_to_url_new_tab(base_page, url):
     assert actual_url.__contains__(url)
 
 
+@then(parsers.parse("the user is redirected in a new tab to {url}"))
+def redirect_to_url_new_tab(base_page, url):
+    actual_url = base_page.get_current_page()
+    assert actual_url.__contains__(url)
+
+
 @when("the user clicks the Google logo")
 def user_clicks_google_logo(footer):
     footer.close_cookie_banner()
