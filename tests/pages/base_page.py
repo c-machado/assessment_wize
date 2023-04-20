@@ -140,7 +140,6 @@ class BasePage(object):
         if re.search(str1, str2):
             return True
 
-
     def get_date_babel_format(self, date_string, date_format, locale_string):
         from datetime import datetime
         self.logger.info('%s date_format', date_format)
@@ -236,6 +235,14 @@ class BasePage(object):
             return clean_text
         else:
             return clean_text
+
+    @staticmethod
+    def set_locale(locale_string):
+        print('locale_string', locale_string)
+        import locale
+        locale.setlocale(locale.LC_ALL, locale_string)
+        loc = locale.getlocale()
+        print(loc)
 
     def scroll_to_bottom(self):
         self.driver.wait_for_page_load()

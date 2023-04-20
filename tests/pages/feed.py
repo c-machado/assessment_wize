@@ -212,26 +212,17 @@ class Feed(BasePage, BasePageAPI):
                 time.sleep(2)
                 article_list[article_index].click()
                 time.sleep(2)
-                # locator = self.get_locator_to_click(keyword, self.random_article)
-                # print('locator to click', locator)
-                # element = self.driver.find_element(By.CSS_SELECTOR, locator)
-                # time.sleep(3)
-                # # self.driver.move_to_element(element)
-                # element.click()
-                # self.driver.execute_script_locator('arguments[0].click();', element)
 
     def click_load_more_stories_in_feed(self, keyword):
         self.driver.wait_for_feed_to_load(*PageLocators.feed_articles_list)
         self.scroll_to_bottom()
         length_list = len(self.get_articles_in_feed_list())
-        # api_feed_total_count = self.get_total_count_articles(keyword)
         assert length_list >= 1
         if length_list >= 3:
             self.driver.click_to_element(PageLocators.feed_load_more)
             self.logger.info('%s feed cta text',
                              self.driver.find_element(*PageLocators.feed_load_more_text).get_attribute("innerHTML"))
             self.driver.wait_for_element_visible(PageLocators.feed_load_more_text)
-            # time.sleep(2)
             if len(self.get_articles_in_feed_list()) >= length_list + 1:
                 self.logger.info('%s length list', len(self.get_articles_in_feed_list()))
                 return True

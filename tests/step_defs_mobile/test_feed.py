@@ -27,13 +27,7 @@ def user_check_date_in_feed(keyword, locale, feed, driver, base_page):
 def validate_date_matches_format_in_article(article, locale, feed, base_page):
     time.sleep(1)
     date_in_article = article.get_date_in_article().get_attribute("innerHTML")
-    # date_tr = datetime.datetime.strptime(date_in_article, Constants.DATE_FORMAT_PER_LOCALE[locale])
-    format_expected = Constants.DATE_FORMAT_PER_LOCALE_BABEL[locale]
     date_format_expected = feed.get_date_in_article_in_babel_format(locale)
-    # date_format_expected = base_page.get_date_babel_format(date_in_article, format_expected, locale)
-    # date_format_expected = format_date(date_tr, format=format_expected, locale=locale)
-    print('date_format_expected', date_format_expected)
-    print('date_format_expected type', type(date_format_expected))
     assert date_format_expected == date_in_article
 
 
@@ -76,5 +70,3 @@ def scroll_to_feed_section(base_page, keyword, get_viewport):
 @then(parsers.parse("the system shows articles in the {keyword} locale"))
 def show_articles_in_feed_per_page(keyword, feed):
     assert feed.confirm_articles_in_feed_homepage(keyword)
-
-
