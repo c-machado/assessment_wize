@@ -137,7 +137,6 @@ def pytest_html_report_title(report):
 
 @given(parsers.parse("a user is at the {keyword} site"))
 def at_the_blog(keyword, driver, get_web_browser, get_viewport):
-    print(get_web_browser)
     driver.start(get_web_browser, get_viewport)
     driver.go_to_URL(Constants.BASE_URL + keyword)
     driver.wait_for_page_load()

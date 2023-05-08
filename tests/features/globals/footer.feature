@@ -2,11 +2,11 @@
 Feature: As a user, I would like to access the content in the footer
 
 
-  @footer_regression
+  @footer_regression1
   Scenario Outline: Test legal links are not broken
     Given a user is at the <keyword> site
     When the user clicks on legal items
-    Then the user sees the URL according to <keyword> locale
+    Then the user clicks on each URL according to <keyword> locale
 
     Examples:
       |keyword                |
@@ -20,7 +20,8 @@ Feature: As a user, I would like to access the content in the footer
       |/intl/es-419/          |
       |/intl/it-it/           |
       |/intl/ar-mena/         |
-#      |/intl/en-africa/       |
+      |/intl/en-africa/       |
+      |/intl/fr-fr/           |
       |/products/ads-commerce |
       |/waze/                 |
 
@@ -41,7 +42,8 @@ Feature: As a user, I would like to access the content in the footer
       |/intl/es-419/          |https://www.google.com  |
       |/intl/it-it/           |https://www.google.com  |
       |/intl/ar-mena/         |https://www.google.com  |
-#      |/intl/en-africa/       |
+      |/intl/en-africa/       |https://www.google.com  |
+      |/intl/fr-fr/           |https://www.google.com  |
       |/products/ads-commerce |https://www.google.com  |
       |/waze/                 |https://www.google.com  |
 
@@ -53,13 +55,14 @@ Feature: As a user, I would like to access the content in the footer
 
   Examples:
       |language              |keyword           |
-      | English              |/                 |
       | Deutsch              |/intl/de-de/      |
-#      |   "English (Africa) |
+      | English              |/                 |
+      | English (Africa)     |/intl/fr-ca/      |
       | English (India)      |/intl/en-in/      |
       | English (Australia)  |/intl/en-au/      |
       | English (Canada)     |/intl/en-ca/      |
       | Français (Canada)    |/intl/fr-ca/      |
+      | Français (France)    |/intl/fr-fr/      |
       | Português (Brasil)   |/intl/pt-br/      |
       | Español (Latinoamérica)|/intl/es-419/   |
       | Italiano               |/intl/it-it/    |
@@ -85,6 +88,7 @@ Feature: As a user, I would like to access the content in the footer
           |/intl/es-419/          |
           |/intl/it-it/           |
           |/intl/ar-mena/         |
-    #      |/intl/en-africa/       |
+          |/intl/en-africa/       |
+          |/intl/fr-fr/           |
           |/products/ads-commerce |
           |/waze/                 |

@@ -9,6 +9,7 @@ class Constants:
     # BASE_URL = 'https://gweb-uniblog-publish-stage.appspot.com'
     # BASE_URL = 'https://gweb-uniblog-publish-dev.appspot.com'
     # BASE_URL = 'https://gweb-uniblog-author-dev.appspot.com/admin'
+    # BASE_URL = 'https://no-release-dot-gweb-uniblog-publish-dev.appspot.com'
     PROD_URL = 'blog.google'
     CHROME_PROFILE = '/Users/cmachado/Documents/chrome_huge_inc'
     CHROME_PROFILE_APJ = '/Users/pieschaconjoya/Documents/Chrome_Profile'
@@ -111,9 +112,11 @@ class Constants:
         "rss_en": "RSS feed",
         "rss_de": "RSS-Feed",
         "rss_ar_mena": "خلاصة RSS",
+        "rss_fr_fr": "Flux RSS",
         "press_en": "Press corner",
         "press_de": "Pressezentrum",
         "press_fr_ca": "Salle de presse",
+        "press_fr_fr": "Presse",
         "press_pt_br": "Imprensa",
         "press_es_419": "Prensa",
         "press_it_it": "Stampa",
@@ -221,6 +224,13 @@ class Constants:
             "منتجات Google": "https://about.google/products/",
             "مساعدة": "https://support.google.com/?hl=ar"
         },
+        '/intl/fr-fr/': {
+            "Confidentialité": "https://policies.google.com/privacy?hl=fr-FR",
+            "Conditions": "https://policies.google.com/terms?hl=fr-FR",
+            "À propos de Google": "https://about.google/",
+            "Produits Google": "https://about.google/products/",
+            "Aide": "https://support.google.com/?hl=fr"
+        },
         '/products/ads-commerce': {
             "Privacy": "https://policies.google.com/privacy",
             "Terms": "https://policies.google.com/terms",
@@ -234,7 +244,8 @@ class Constants:
             "About Google": "https://about.google/",
             "Google Products": "https://about.google/products/",
             "Help": "https://support.google.com/"
-        }
+        },
+
     }
     LEGAL_LINKS_ABOUT_THE_BLOG_COPY = {
         "/": "About the Keyword",
@@ -247,7 +258,8 @@ class Constants:
         '/intl/pt-br/': "Sobre o blog",
         '/intl/es-419/': "Sobre el blog",
         '/intl/it-it/': "Il blog",
-        '/intl/ar-mena/': "لمحة عن المدونة"
+        '/intl/ar-mena/': "لمحة عن المدونة",
+        '/intl/fr-fr/': "À propos du blog"
         }
     LEGAL_LINKS_ABOUT_THE_BLOG_URL = {
         "/": "/inside-google/company-announcements/about/",
@@ -260,7 +272,9 @@ class Constants:
         '/intl/pt-br/': "/intl/pt-br/sobre-o-blog",
         '/intl/es-419/': "/intl/es-419/sobre-el-blog",
         '/intl/it-it/': "/intl/it-it/sul-blog",
-        '/intl/ar-mena/': "/intl/ar-mena/about"
+        '/intl/ar-mena/': "/intl/ar-mena/about",
+        '/intl/fr-fr/': "/intl/fr-fr/a-propos",
+
     }
 
     CATEGORY_HORIZONTAL = [

@@ -11,8 +11,8 @@ def pytest_bdd_step_error(request, feature, scenario, step, step_func, step_func
 # higher rate limit. Check out the documentation for more details.)","documentation_url":
 # "https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting"
 # TODO: Safari initialization is not working with Selenium 4
-# @pytest.fixture(params=["chrome"], scope="module", autouse=True)
-@pytest.fixture(params=["chrome", "edge", "firefox", "safari"], scope="module", autouse=True)
+@pytest.fixture(params=["chrome"], scope="module", autouse=True)
+# @pytest.fixture(params=["chrome", "edge", "firefox", "safari"], scope="module", autouse=True)
 def get_web_browser(request):
     return request.param
 

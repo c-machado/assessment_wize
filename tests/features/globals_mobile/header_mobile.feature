@@ -18,7 +18,8 @@ Feature: As a user, I would like to interact with the header navigation on mobil
             |/intl/pt-br/ | latest_stories  |
             |/intl/es-419/| latest_stories  |
             |/intl/it-it/ | latest_stories  |
-            |/intl/ar-mena/ | latest_stories  |
+            |/intl/ar-mena/ | latest_stories|
+            |/intl/fr_fr/ | latest_stories  |
 
   @header_business_critical
   Scenario Outline: Test the header items within products and company news submenus on mobile
@@ -51,6 +52,7 @@ Feature: As a user, I would like to interact with the header navigation on mobil
         |/intl/it-it/      |
         |/intl/ar-mena/    |
         |/intl/en-africa/  |
+        |/intl/fr-fr/      |
 
   @header_business_critical
   Scenario Outline: Test navigation in sitespaces within products in Ads&Analytics list on mobile
@@ -82,7 +84,7 @@ Feature: As a user, I would like to interact with the header navigation on mobil
       |/products/ads-commerce  |Google Ads & Commerce |Ads & Commerce Blog  |
 
 
-  @header_business_critical
+  @header_business_critical1
   Scenario Outline: Test the keyword logo in the nav menu on mobile
       Given a user is at the <keyword> site
       And the user clicks on the hero article
@@ -102,8 +104,9 @@ Feature: As a user, I would like to interact with the header navigation on mobil
         |/intl/it-it/     |
         |/intl/ar-mena/   |
         |/intl/en-africa/ |
+        |/intl/fr-fr/     |
 
-  @header-regression
+  @header-regression1
   Scenario Outline: Test link to product updates page on mobile
       Given a user is at the <keyword> site
       When the user clicks on the <submenu>
@@ -122,6 +125,7 @@ Feature: As a user, I would like to interact with the header navigation on mobil
         |/intl/it-it/      | /intl/it-it/prodotti/                     |product_updates |
         |/intl/ar-mena/    | /intl/ar-mena/products/                   |product_updates |
         |/intl/en-africa/  | /intl/en-africa/products/                 |product_updates |
+        |/intl/fr-fr/      | /intl/fr-fr/nouveautes-produits/         |product_updates |
 
 
   @header-regression

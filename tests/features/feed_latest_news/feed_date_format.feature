@@ -1,7 +1,7 @@
 # Created by machadoca at 17/01/22
 Feature: As a user, I want to confirm dates are showing according to the expected format
 
-    @feed-article-date-format2
+    @feed-article-date-format
     Scenario Outline: Confirm article's date is in the correct format in homepage feed
         Given a user is at the <keyword> site
         And the user chooses a random article
@@ -23,7 +23,7 @@ Feature: As a user, I want to confirm dates are showing according to the expecte
             | en_US     | /intl/en-africa/ |
 
 
-    @feed-article-date-format2
+    @feed-article-date-format
     Scenario Outline: Confirm article's date is in the correct format in category page feed
         Given a user is at the <keyword> site
         And the user chooses a random article
@@ -45,7 +45,7 @@ Feature: As a user, I want to confirm dates are showing according to the expecte
 
 
     #Add subcategory pages for other locales if the content gets updated
-    @feed-article-date-format2
+    @feed-article-date-format
     Scenario Outline: Confirm article's date is in the correct format in the subcategory page feed
         Given a user is at the <keyword> site
         And the user chooses a random article
@@ -57,7 +57,7 @@ Feature: As a user, I want to confirm dates are showing according to the expecte
             | en_US     | /products/android/    |
 
 
-    @feed-article-date-format2
+    @feed-article-date-format
     Scenario Outline: Confirm article's date is in the correct format in series page feed
         Given a user is at the <keyword> site
         And the user chooses a random article
@@ -69,7 +69,7 @@ Feature: As a user, I want to confirm dates are showing according to the expecte
             | en_US     | /inside-google/googlers/she-word/   |
 
 
-    @feed-article-date-format2
+    @feed-article-date-format
     Scenario Outline: Confirm article's date is in the correct format in the perspective page feed
         Given a user is at the <keyword> site
         And the user chooses a random article
@@ -80,7 +80,7 @@ Feature: As a user, I want to confirm dates are showing according to the expecte
             | locale    | keyword                       |
             | en_US     | /authors/sundar-pichai/  |
 
-    @feed-article-date-format2
+    @feed-article-date-format
     Scenario Outline: Confirm article's date is in the correct format in the sitespace feed
         Given a user is at the <keyword> site
         And the user chooses a random article

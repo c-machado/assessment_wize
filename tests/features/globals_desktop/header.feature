@@ -20,7 +20,7 @@ Feature: As a user, I would like to interact with the header navigation on deskt
             |/intl/es-419/  | latest_stories  |
             |/intl/it-it/   | latest_stories  |
             |/intl/ar-mena/ | latest_stories  |
-            |/intl/en-africa/ | latest_stories  |
+            |/intl/en-africa/ | latest_stories|
             |/intl/fr-fr/   | latest_stories  |
 
       @header_business_critical
@@ -54,7 +54,9 @@ Feature: As a user, I would like to interact with the header navigation on deskt
             |/intl/es-419/ | rss          |
             |/intl/it-it/  | rss          |
             |/intl/ar-mena/| rss          |
-            |/intl/en-africa/ | rss      |
+            |/intl/en-africa/ | rss       |
+            |/intl/fr-fr/  | rss          |
+
 
       @header_business_critical
       Scenario Outline: Test the keyword logo in the nav menu
@@ -76,6 +78,7 @@ Feature: As a user, I would like to interact with the header navigation on deskt
             |/intl/it-it/ |
             |/intl/ar-mena/|
             |/intl/en-africa/|
+            |/intl/fr-fr/    |
 
       @header_business_critical
       Scenario Outline: Test navigation in sitespaces within products in Ads&Analytics list
@@ -106,7 +109,6 @@ Feature: As a user, I would like to interact with the header navigation on deskt
           |keyword                 |sitespace_tag         |sitespace_title      |
           |/products/ads-commerce  |Google Ads & Commerce |Ads & Commerce Blog  |
 
-    #TODO: separate US which is the unique locale that contains the 'see all' CTA
       @header-regression
       Scenario Outline: Test link to product updates page
           Given a user is at the <keyword> site
@@ -114,7 +116,7 @@ Feature: As a user, I would like to interact with the header navigation on deskt
           And the user on <keyword> clicks the CTA See all product updates
           Then the user is redirected to <url>
           Examples:
-            |keyword           |url                                        |submenu         |
+            |keyword           | url                                       |submenu         |
             |/                 | /products/                                |product_updates |
             |/intl/de-de/      | /intl/de-de/produkte/                     |product_updates |
             |/intl/en-au/      | /intl/en-au/products/                     |product_updates |
@@ -126,6 +128,7 @@ Feature: As a user, I would like to interact with the header navigation on deskt
             |/intl/it-it/      | /intl/it-it/prodotti/                     |product_updates |
             |/intl/ar-mena/    | /intl/ar-mena/products/                   |product_updates |
             |/intl/en-africa/  | /intl/en-africa/products/                 |product_updates |
+            |/intl/fr-fr/      | /intl/fr-fr/products/                     |product_updates |
 
 
       @header-regression
@@ -164,7 +167,9 @@ Feature: As a user, I would like to interact with the header navigation on deskt
             |/intl/es-419/| press        | es_419   |
             |/intl/it-it/ | rss          | en       |
             |/intl/it-it/ | press        | it_it    |
-            |/intl/ar-mena/ | rss        | ar_mena   |
-            |/intl/ar-mena/ | press      | ar_mena   |
+            |/intl/ar-mena/ | rss        | ar_mena  |
+            |/intl/ar-mena/ | press      | ar_mena  |
             |/intl/en-africa/  | rss     | en       |
             |/intl/en-africa/  | press   | en       |
+            |/intl/fr-fr/      | rss     | fr_fr    |
+            |/intl/fr-fr/      | press   | fr_fr    |
