@@ -11,6 +11,7 @@ LATEST_FEED = {
     '/intl/ar-mena/': '/api/v2/latest?author_ids=&category=&date_start=&date_stop=&hero_template=heroArticleItem&is_main_hero=&paginate=6&show_hero=True&site_id=17&tags=',
     # dev '/intl/en-africa/': '/api/v2/latest?author_ids=&category=&date_start=&date_stop=&hero_template=heroArticleItem&is_main_hero=&paginate=6&show_hero=True&site_id=20&tags=',
     '/intl/en-africa/': '/api/v2/latest?author_ids=&category=&date_start=&date_stop=&hero_template=heroArticleItem&image_format=webp&is_main_hero=&paginate=6&show_hero=True&site_id=19&tags=',
+    '/intl/fr-fr/': '/api/v2/latest?author_ids=&category=&date_start=&date_stop=&hero_template=heroArticleItem&image_format=webp&is_main_hero=&paginate=9&show_hero=True&site_id=16&tags=',
      '/authors/sundar-pichai/': '/api/v2/latest?author_ids=9906,9906,9906,9906,9906,9906,9906&category=&date_start=&date_stop=&hero_template=heroArticleItem&image_format=webp&is_main_hero=&paginate=6&show_hero=True&site_id=2&tags=',
     '/outreach-initiatives/': '/api/v2/latest?author_ids=&category=&date_start=&date_stop=&hero_template=heroArticleItem&image_format=webp&is_main_hero=True&paginate=6&show_hero=True&site_id=2&tags=accessibility,arts-and-culture,civics,digital-wellbeing,diversity-and-inclusion,education,entrepreneurs,google-news-initiative,googleorg,grow-with-google,nonprofits,public-policy,small-business,topics-student-programs,sustainability',
     '/technology/': '/api/v2/latest?author_ids=&category=&date_start=&date_stop=&hero_template=heroArticleItem&is_main_hero=True&paginate=9&show_hero=True&site_id=2&tags=ai,area-120,design,developers,families,health,next-billion-users,safety-and-security',
@@ -46,6 +47,7 @@ SEARCH_API = {
     '/intl/es-419/': '/api/v2/search?paginate=12&order=relevance&site_id=13&query=text_to_search',
     '/intl/it-it/': '/api/v2/search?paginate=12&order=relevance&site_id=15&query=text_to_search',
     '/intl/ar-mena/': '/api/v2/search?paginate=12&order=relevance&site_id=17&query=text_to_search',
+    '/intl/fr-fr/': '/api/v2/search?paginate=12&order=relevance&site_id=16&query=text_to_search',
     #  dev'/intl/en-africa/': '/api/v2/search?paginate=12&order=relevance&site_id=20&query=text_to_search',
     '/intl/en-africa/': '/api/v2/search?paginate=12&order=relevance&site_id=19&query=text_to_search',
     '/authors/sundar-pichai/': '/api/v2/search?paginate=12&order=relevance&site_id=2&query=text_to_search',
@@ -63,6 +65,7 @@ SEARCH_SUGGESTIONS_API = {
     '/intl/es-419/': '/api/v2/search-suggestions/?query=text_to_search&site_id=13&format=json',
     '/intl/it-it/': '/api/v2/search-suggestions/?query=text_to_search&site_id=15&format=json',
     '/intl/ar-mena/': '/api/v2/search-suggestions/?query=text_to_search&site_id=17&format=json',
+    '/intl/fr-fr/': '/api/v2/search-suggestions/?query=text_to_search&site_id=16&format=json',
     # dev '/intl/en-africa/': '/api/v2/search-suggestions/?query=text_to_search&site_id=20&format=json',
     '/intl/en-africa/': '/api/v2/search-suggestions/?query=text_to_search&site_id=19&format=json',
     '/authors/sundar-pichai/': '/api/v2/search-suggestions/?query=text_to_search&site_id=2&format=json'
@@ -77,5 +80,3 @@ PRESS_ASSETS_PER_TYPE_AND_TAG_API = {
     '/': '/api/v2/press-asset/?paginate=12&locale=en-us&pageId=774&type=type_filter&tag=tag_filter',
     '/intl/en-in/': '/api/v2/press-asset/?paginate=12&locale=en-in&pageId=50365&type=text_to_search&tag=tag_to_search'
 }
-
-BASE_URI = 'https://blog.google/api/v2/latest?tags=android'

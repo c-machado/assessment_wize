@@ -10,7 +10,7 @@ def click_on_legal_links(footer):
         assert response.status_code == 200
 
 
-@then(parsers.parse("the user sees the URL according to {keyword} locale"))
+@then(parsers.parse("the user clicks on each URL according to {keyword} locale"))
 def confirm_legal_urls(footer, keyword):
     legal_items_dict = footer.get_legal_links()
     expected_links = footer.get_expected_legal_links_per_locale(keyword)

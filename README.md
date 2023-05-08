@@ -105,10 +105,9 @@ $ pipenv install
 ```
 $ pipenv run python3 -m pytest 
 ```
-Within the test file, you need to specified the feature file and the scenario to run, e.g:
+Within the test file, you need to specify the feature file and the scenario to run, e.g:
 ```
-@scenario("../features/file_name.feature", "Download Chrome") or
-@scenarios("../features/")
+@scenarios("../features/file_name.feature")
 ```
 1. Run tests for a specific tag
 ```

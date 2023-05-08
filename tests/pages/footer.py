@@ -101,7 +101,7 @@ class Footer(BasePage):
 
     def get_expected_legal_links_per_locale(self, locale):
         """:return two dictionaries (legal links and about) joined
-        about_link needs to be a different dictionary because the url changes based on the domain where
+         about_link needs to be a different dictionary because the url changes based on the domain where
          the tests are run"""
         about_link = self.get_about_blog_legal_links_expected_per_locale(locale)
         legal_links_expected = {}

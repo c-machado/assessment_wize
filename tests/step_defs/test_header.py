@@ -15,7 +15,13 @@ def user_clicks_to_submenu(header, submenu, get_viewport):
 @then(parsers.parse("the user is redirected to {keyword}"))
 def redirected_to_page(keyword, base_page, driver):
     assert base_page.get_status_redirect() == 200
-    assert driver.current_url().__contains__(keyword)
+    assert driver.current_url() == Constants.BASE_URL+keyword
+
+
+@then(parsers.parse("the user is redirected to {url}"))
+def redirected_to_page(url, base_page, driver):
+    assert base_page.get_status_redirect() == 200
+    assert driver.current_url() == Constants.BASE_URL+url
 
 
 @pytest.mark.flaky(reruns=1, reruns_delay=0.5, reason="requests.exceptions.ConnectionError: ('Connection aborted.',"
@@ -71,12 +77,6 @@ def user_sees_nav_sitespace_in_article(sitespace_title, header):
 @when(parsers.parse("the user on {keyword} clicks the CTA See all product updates"))
 def click_on_cta_all_product_updates(header, keyword, get_viewport):
     header.click_cta_all_product_updates(keyword, get_viewport)
-
-
-@then(parsers.parse("the user is redirected to {url}"))
-def redirected_to_page(url, base_page, driver):
-    assert base_page.get_status_redirect() == 200
-    assert driver.current_url().__contains__(url)
 
 
 @then("every 'see all' CTA selected return an http 200")

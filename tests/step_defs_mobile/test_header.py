@@ -23,13 +23,13 @@ def user_clicks_keyword_logo(header):
 @then(parsers.parse("the user is redirected to {keyword}"))
 def redirected_to_page(keyword, base_page, driver):
     assert base_page.get_status_redirect() == 200
-    assert driver.current_url().__contains__(keyword)
+    assert driver.current_url() == Constants.BASE_URL+keyword
 
 
 @then(parsers.parse("the user is redirected to {url}"))
 def redirected_to_page(url, base_page, driver):
     assert base_page.get_status_redirect() == 200
-    assert driver.current_url().__contains__(url)
+    assert driver.current_url() == Constants.BASE_URL+url
 
 
 @when(parsers.parse("the user clicks on each list in the {submenu}"))
