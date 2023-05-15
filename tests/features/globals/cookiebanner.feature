@@ -6,7 +6,7 @@ Feature: As a user, I want to interact with the cookie banner
         Given a user is at the <keyword> site
         And the system displays the cookie banner per <language>
         When the user clicks on see details CTA
-        Then the user is redirected in a new tab to <url>
+        Then the user is redirected to <url> in a new tab
 
         Examples:
           |keyword           | url                                                        | language |
@@ -29,7 +29,7 @@ Feature: As a user, I want to interact with the cookie banner
         And the user clicks on the hero article
         And the system displays the cookie banner per <language>
         When the user clicks on see details CTA
-        Then the user is redirected in a new tab to <url>
+        Then the user is redirected to <url> in a new tab
 
         Examples:
           |keyword           | url                                                        | language |

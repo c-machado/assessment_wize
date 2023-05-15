@@ -18,5 +18,3 @@ class DriverDecorator(IDriver):
     @staticmethod
     def findElement(self):
         pass
-
-
