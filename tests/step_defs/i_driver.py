@@ -1,5 +1,4 @@
-from abc import abstractmethod, ABCMeta
-
+from abc import ABCMeta, abstractmethod
 
 """
     COMPONENT
@@ -10,36 +9,35 @@ from abc import abstractmethod, ABCMeta
 
 
 class IDriver(metaclass=ABCMeta):
-
     @staticmethod
     @abstractmethod
     def start(self, platform, web_browser):
-        raise NotImplementedError@staticmethod
+        raise NotImplementedError @ staticmethod
 
     @staticmethod
     @abstractmethod
     def go_to_URL(self, url):
-        raise NotImplementedError@staticmethod
+        raise NotImplementedError @ staticmethod
 
     @staticmethod
     @abstractmethod
     def quit_browser(self):
-        raise NotImplementedError@staticmethod
+        raise NotImplementedError @ staticmethod
 
     @staticmethod
     @abstractmethod
     def find_element(self, *locator):
-        raise NotImplementedError@staticmethod
+        raise NotImplementedError @ staticmethod
 
     @staticmethod
     @abstractmethod
     def click_to_element(self, clickable_element):
-        raise NotImplementedError@staticmethod
+        raise NotImplementedError @ staticmethod
 
     @staticmethod
     @abstractmethod
     def current_url(self):
-        raise NotImplementedError@staticmethod
+        raise NotImplementedError @ staticmethod
 
     @staticmethod
     @abstractmethod
@@ -48,7 +46,9 @@ class IDriver(metaclass=ABCMeta):
 
     @staticmethod
     @abstractmethod
-    def __contains__(self, item):
+    def __contains__(
+        self, item
+    ):  # pylint: disable=unexpected-special-method-signature
         raise NotImplementedError @ staticmethod
 
     @staticmethod

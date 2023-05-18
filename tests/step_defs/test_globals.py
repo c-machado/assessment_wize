@@ -1,15 +1,11 @@
-import random
-import time
-
 import pytest
 import requests
-from pytest_bdd import scenarios, given, when, then, parsers
+from pytest_bdd import given, parsers, scenarios, then, when
 
 from tests.consts.constants import Constants
 from tests.pages.locators import PageLocators
 
 # scenarios("../features/globals/")
-
 
 # @when("the user clicks on every <social_media> item")
 # def click_on_social_item(footer, cookie_banner, social_media):

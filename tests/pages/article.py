@@ -1,20 +1,18 @@
 import datetime
-import time
-import random
 import logging
+import time
+
 import bs4
 import requests
 from selenium.common.exceptions import WebDriverException
+from selenium.webdriver.common.by import By
 
 from tests.consts.constants import Constants
 from tests.pages.base_page import BasePage
 from tests.pages.locators import PageLocators
 
-from selenium.webdriver.common.by import By
-
 
 class ArticlePage(BasePage):
-
     def __init__(self, driver):
         super().__init__(driver)
         self.driver = driver
@@ -53,8 +51,10 @@ class ArticlePage(BasePage):
             assert response.status_code != 404
 
     def get_current_time_video(self):
-        current_time = self.driver.find_element(*PageLocators.article_current_time)
-        time_formatted = current_time.get_attribute("innerHTML").split(':')[1]
+        current_time = self.driver.find_element(
+            *PageLocators.article_current_time
+        )
+        time_formatted = current_time.get_attribute('innerHTML').split(':')[1]
         return int(time_formatted)
 
     def get_date_in_article(self):
@@ -62,32 +62,46 @@ class ArticlePage(BasePage):
 
     def get_date_in_related_article_in_babel_format(self, feed, date, locale):
         self.set_locale(locale)
-        date_in_article = datetime.datetime.strptime(date, Constants.DATE_FORMAT_PER_LOCALE[locale])
+        date_in_article = datetime.datetime.strptime(
+            date, Constants.DATE_FORMAT_PER_LOCALE[locale]
+        )
         year = self.get_year_in_given_date_babel_format(date_in_article, locale)
         current_year = str(datetime.datetime.now().year)
         if year == current_year:
-            return feed.get_date_in_article_current_year(locale, date_in_article)
+            return feed.get_date_in_article_current_year(
+                locale, date_in_article
+            )
         else:
-            return feed.get_date_in_article_previous_year(locale, date_in_article)
+            return feed.get_date_in_article_previous_year(
+                locale, date_in_article
+            )
 
     def get_list_dates_in_related_articles(self):
-        article_dates = self.driver.find_elements(*PageLocators.article_related_stories_published_at)
+        article_dates = self.driver.find_elements(
+            *PageLocators.article_related_stories_published_at
+        )
         article_dates_list = []
         for element in article_dates:
-            article_dates_list.append(element.get_attribute("innerHTML").strip())
+            article_dates_list.append(
+                element.get_attribute('innerHTML').strip()
+            )
         return article_dates_list
 
     def get_secondary_tags_in_article_api_format(self):
-        secondary_tags_list = self.driver.find_elements(*PageLocators.article_secondary_tags)
+        secondary_tags_list = self.driver.find_elements(
+            *PageLocators.article_secondary_tags
+        )
         tags_in_article = []
         for element in secondary_tags_list:
-            tag_string = element.get_attribute("innerHTML")
+            tag_string = element.get_attribute('innerHTML')
             tag = self.replace_space(tag_string)
             tags_in_article.append(tag.lower())
         return tags_in_article
 
     def get_primary_tag_in_article(self):
-        return self.driver.find_element(*PageLocators.article_primary_tag).get_attribute("innerHTML")
+        return self.driver.find_element(
+            *PageLocators.article_primary_tag
+        ).get_attribute('innerHTML')
 
     def get_urls_params(self):
         elements = self.driver.find_elements(*PageLocators.article_inline_links)
@@ -95,13 +109,26 @@ class ArticlePage(BasePage):
         index = 0
         for element in elements:
             index += 1
-            print('href', element.get_attribute("href"))
-            print('target', element.get_attribute("target"))
-            if element.get_attribute("href") is not None and element.get_attribute("target") is None or element.get_attribute("target") == '':
-                urls_dict.setdefault(index, []).append(element.get_attribute("href"))
-            elif element.get_attribute("href") is not None and element.get_attribute("target") is not None:
-                urls_dict.setdefault(index, []).append(element.get_attribute("href"))
-                urls_dict.setdefault(index, []).append(element.get_attribute("target"))
+            print('href', element.get_attribute('href'))
+            print('target', element.get_attribute('target'))
+            if (
+                element.get_attribute('href') is not None
+                and element.get_attribute('target') is None
+                or element.get_attribute('target') == ''
+            ):
+                urls_dict.setdefault(index, []).append(
+                    element.get_attribute('href')
+                )
+            elif (
+                element.get_attribute('href') is not None
+                and element.get_attribute('target') is not None
+            ):
+                urls_dict.setdefault(index, []).append(
+                    element.get_attribute('href')
+                )
+                urls_dict.setdefault(index, []).append(
+                    element.get_attribute('target')
+                )
         return urls_dict
 
     def validate_inline_links_in_article(self):
@@ -109,18 +136,24 @@ class ArticlePage(BasePage):
         flag_target = True
         for param in href_and_target_params.values():
             self.logger.info('%s url + target', param)
-            if len(param) > 1 and param[0].startswith("https://blog.google"):
+            if len(param) > 1 and param[0].startswith('https://blog.google'):
                 flag_target = False
         return flag_target
 
     def click_on_carousel_dot(self, index):
-        index = "% s" % index
-        self.driver.find_element(By.CSS_SELECTOR,
-                                 '.uni-related-articles-cards__pagination :nth-child(' + index + ')').click()
-        self.driver.wait_for_element_visible(By.CSS_SELECTOR,
-                                             '.uni-related-articles-cards__wrap > li:nth-child(' + index + ')')
-        self.driver.wait_for_element_clickable(By.CSS_SELECTOR,
-                                               '.uni-related-articles-cards__wrap > li:nth-child(' + index + ')')
+        index = '% s' % index
+        self.driver.find_element(
+            By.CSS_SELECTOR,
+            '.uni-related-articles-cards__pagination :nth-child(' + index + ')',
+        ).click()
+        self.driver.wait_for_element_visible(
+            By.CSS_SELECTOR,
+            '.uni-related-articles-cards__wrap > li:nth-child(' + index + ')',
+        )
+        self.driver.wait_for_element_clickable(
+            By.CSS_SELECTOR,
+            '.uni-related-articles-cards__wrap > li:nth-child(' + index + ')',
+        )
 
     def validate_tags_in_related_stories(self):
         formatted_tags = self.find_tags_in_related_stories()
@@ -129,17 +162,27 @@ class ArticlePage(BasePage):
         self.logger.info('%s tags_in_article', tags_in_article)
         for index, tag in enumerate(formatted_tags):
             if tag not in tags_in_article:
-                self.validate_secondary_tags_in_related_articles(index + 1, tags_in_article)
+                self.validate_secondary_tags_in_related_articles(
+                    index + 1, tags_in_article
+                )
         if set(formatted_tags) & set(tags_in_article):
-            self.logger.info('%s matching tags', set(formatted_tags) & set(tags_in_article))
+            self.logger.info(
+                '%s matching tags', set(formatted_tags) & set(tags_in_article)
+            )
             return True
 
     def find_tags_in_related_stories(self):
-        list_of_tags = self.driver.find_elements(*PageLocators.article_related_stories_category_tags)
-        return [tag.get_attribute("innerHTML") for tag in list_of_tags]
+        list_of_tags = self.driver.find_elements(
+            *PageLocators.article_related_stories_category_tags
+        )
+        return [tag.get_attribute('innerHTML') for tag in list_of_tags]
 
-    def validate_secondary_tags_in_related_articles(self, index, tags_in_article):
-        secondary_tags_in_related_article = self.find_secondary_tags_in_related_stories_articles(index)
+    def validate_secondary_tags_in_related_articles(
+        self, index, tags_in_article
+    ):
+        secondary_tags_in_related_article = (
+            self.find_secondary_tags_in_related_stories_articles(index)
+        )
         if set(secondary_tags_in_related_article) & set(tags_in_article):
             return True
         else:
@@ -148,16 +191,26 @@ class ArticlePage(BasePage):
     def find_secondary_tags_in_related_stories_articles(self, index):
         self.click_on_carousel_dot(index)
         time.sleep(1)
-        index = "% s" % index
-        element = self.driver.find_element(By.CSS_SELECTOR, '.uni-related-articles-cards__wrap > li:nth-child(' + index + ')')
+        index = '% s' % index
+        element = self.driver.find_element(
+            By.CSS_SELECTOR,
+            '.uni-related-articles-cards__wrap > li:nth-child(' + index + ')',
+        )
         self.driver.wait_for_element_visible(element)
         element.click()
         secondary_tags_related_article = self.get_secondary_tags_in_article()
         self.driver.go_back_to_url()
         time.sleep(1)
-        self.logger.info('%s secondary_tags_related_article', secondary_tags_related_article)
+        self.logger.info(
+            '%s secondary_tags_related_article', secondary_tags_related_article
+        )
         return secondary_tags_related_article
 
     def get_secondary_tags_in_article(self):
-        secondary_tags_list = self.driver.find_elements(*PageLocators.article_secondary_tags)
-        return [element.get_attribute("innerHTML").strip() for element in secondary_tags_list]
+        secondary_tags_list = self.driver.find_elements(
+            *PageLocators.article_secondary_tags
+        )
+        return [
+            element.get_attribute('innerHTML').strip()
+            for element in secondary_tags_list
+        ]

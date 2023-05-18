@@ -7,10 +7,14 @@ verify_ssl = true
 
 [packages]
 
+assertpy = "*"
 babel = ">=2.12.1"
 beautifulsoup4 = ">=4.11.2"
-py = ">=1.10.0"
+#docker-compose = "*"
+lxml = ">=4.7.1"
 psutil = ">=5.8.0"
+py = ">=1.10.0"
+#pylint = "*"
 pytest = ">=7.2.1"
 pytest-bdd = ">=6.1.1"
 pytest-docker = "*"
@@ -20,12 +24,8 @@ pytest-parallel = ">=0.1.0"
 pytest-rerunfailures = ">=11.0"
 pytest-xdist = ">=3.2.0"
 selenium = ">=4.8.0"
-#docker-compose = "*"
-webdriver-manager = ">=3.8.5"
-#pylint = "*"
 w3lib = ""
-assertpy = "*"
-lxml = ">=4.7.1"
+webdriver-manager = ">=3.8.5"
 
 
 [requires]

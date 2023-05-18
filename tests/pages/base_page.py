@@ -1,12 +1,11 @@
+import datetime
 import logging
 import random
-import time
 import re
+import time
+
 import pytest
 import requests
-
-import datetime
-
 from babel.dates import format_date
 from bs4 import BeautifulSoup
 
@@ -14,8 +13,7 @@ from tests.consts.constants import Constants
 from tests.pages.locators import PageLocators
 
 
-class BasePage(object):
-
+class BasePage:
     # It takes in the browser, which will be stage in from the test case
     def __init__(self, driver):
         # Set my local self.browser variable to be whatever browser it's stage in
@@ -34,8 +32,12 @@ class BasePage(object):
 
     def close_bar(self, locator):
         self.driver.wait_for_page_load()
-        self.logger.info('%s local storage',
-                         self.driver.execute_script("window.localStorage.getItem('cookieConsent');"))
+        self.logger.info(
+            '%s local storage',
+            self.driver.execute_script(
+                "window.localStorage.getItem('cookieConsent');"
+            ),
+        )
         if Constants.PROD_URL not in self.driver.current_url():
             self.clear_local_storage()
             self.driver.click_to_element(locator)
@@ -43,7 +45,7 @@ class BasePage(object):
             self.driver.click_to_element(locator)
 
     def clear_local_storage(self):
-        self.driver.execute_script("window.localStorage.clear();")
+        self.driver.execute_script('window.localStorage.clear();')
         self.driver.refresh()
 
     def get_current_page(self):
@@ -78,7 +80,9 @@ class BasePage(object):
         """Now, formatting datetime object into any date format.
         We can convert any datetime object to nearly any representation
         of date format using strftime() method."""
-        return datetime.datetime.strptime(date, format_date).strftime(Constants.DATE_FORMAT_IN_API)
+        return datetime.datetime.strptime(date, format_date).strftime(
+            Constants.DATE_FORMAT_IN_API
+        )
 
     def get_item_selector(self, item, locators):
         for item_id, locator_item in locators.items():
@@ -93,7 +97,11 @@ class BasePage(object):
         element_list_length = len(element_list)
         self.logger.info('%s length list in random', element_list_length)
         try:
-            self.random_article = random.randint(0, element_list_length - 1) if get_viewport == 'desktop' else 0
+            self.random_article = (
+                random.randint(0, element_list_length - 1)
+                if get_viewport == 'desktop'
+                else 0
+            )
         except Exception as e:
             print(e)
         return self.random_article
@@ -101,27 +109,38 @@ class BasePage(object):
     def get_scroll_locator(self, url, random_article):
         if self.is_category_page_horizontal(url) and random_article == 0:
             random_articlem_index = random_article + 1
-            locator = re.sub("index_to_scroll", str(random_articlem_index), Constants.SCROLL_TO_CATEGORY_HORIZONTAL_FEED)
+            locator = re.sub(
+                'index_to_scroll',
+                str(random_articlem_index),
+                Constants.SCROLL_TO_CATEGORY_HORIZONTAL_FEED,
+            )
             self.logger.info('%s locator cat horizontal', locator)
             return locator
         elif random_article >= 0:
             random_index = random_article + 1
-            locator = re.sub("index_to_scroll", str(random_index), Constants.SCROLL_TO_HOME_FEED)
+            locator = re.sub(
+                'index_to_scroll',
+                str(random_index),
+                Constants.SCROLL_TO_HOME_FEED,
+            )
             self.logger.info('%s locator feed starts at 1', locator)
             return locator
 
     @staticmethod
     def get_text_from_span(element):
-        soup = BeautifulSoup(element.get_attribute("outerHTML"), 'xml')
+        soup = BeautifulSoup(element.get_attribute('outerHTML'), 'xml')
         return soup.find('span').text
 
     def get_status_redirect(self):
-        return self.driver.execute_script("var xhr = new XMLHttpRequest();"
-                                          "xhr.open('GET', window.location, false);"
-                                          "xhr.send(null);" "return xhr.status")
+        return self.driver.execute_script(
+            'var xhr = new XMLHttpRequest();'
+            "xhr.open('GET', window.location, false);"
+            'xhr.send(null);'
+            'return xhr.status'
+        )
 
     def go_back_previous_page(self):
-        return self.driver.execute_script("window.history.go(-1)")
+        return self.driver.execute_script('window.history.go(-1)')
 
     def click_to_load_more_articles_in_feed(self):
         self.driver.click_to_element(PageLocators.feed_load_more)
@@ -142,6 +161,7 @@ class BasePage(object):
 
     def get_date_babel_format(self, date_string, date_format, locale_string):
         from datetime import datetime
+
         self.logger.info('%s date_format', date_format)
         date = datetime.strptime(date_string, Constants.DATE_FORMAT_IN_API)
         self.logger.info('%s date_tr', date)
@@ -151,9 +171,13 @@ class BasePage(object):
 
     @staticmethod
     def order_list_by_date_desc(article_dates_list):
-        for index in range(len(article_dates_list)-2):
-            article_current_date = datetime.datetime.strptime(article_dates_list[index], Constants.DATE_FORMAT_IN_API)
-            article_next_date = datetime.datetime.strptime(article_dates_list[index+1], Constants.DATE_FORMAT_IN_API)
+        for index in range(len(article_dates_list) - 2):
+            article_current_date = datetime.datetime.strptime(
+                article_dates_list[index], Constants.DATE_FORMAT_IN_API
+            )
+            article_next_date = datetime.datetime.strptime(
+                article_dates_list[index + 1], Constants.DATE_FORMAT_IN_API
+            )
             if article_current_date < article_next_date:
                 return False
             return True
@@ -166,42 +190,46 @@ class BasePage(object):
     def replace_space(self, string):
         string_without_special_chars = string
         if self.contains_ampersand_char(string):
-            string_without_special_chars = re.sub("&amp;", "and", string)
+            string_without_special_chars = re.sub('&amp;', 'and', string)
         pattern = re.compile(r'\s+')
-        string_no_spaces_no_special_chars = re.sub(pattern, '-', string_without_special_chars.strip())
+        string_no_spaces_no_special_chars = re.sub(
+            pattern, '-', string_without_special_chars.strip()
+        )
         return string_no_spaces_no_special_chars
 
     @staticmethod
     def format_ampersand_in_url(string):
         string_without_special_chars = string
-        if re.compile("&"):
-            string_without_special_chars = re.sub("&", "and", string)
+        if re.compile('&'):
+            string_without_special_chars = re.sub('&', 'and', string)
         pattern = re.compile(r'\s+')
-        string_no_spaces_no_special_chars = re.sub(pattern, '-', string_without_special_chars.strip())
+        string_no_spaces_no_special_chars = re.sub(
+            pattern, '-', string_without_special_chars.strip()
+        )
         return string_no_spaces_no_special_chars
 
     @staticmethod
     def format_ampersand_in_type_url(string):
         string_without_special_chars = string
-        if re.compile("&"):
-            string_without_special_chars = re.sub("&", "and", string)
+        if re.compile('&'):
+            string_without_special_chars = re.sub('&', 'and', string)
         return string_without_special_chars
 
     @staticmethod
     def contains_ampersand_char(string):
-        regexp = re.compile("&amp;")
+        regexp = re.compile('&amp;')
         if regexp.search(string):
             return True
 
     @staticmethod
     def contains_hyphen_char(string):
-        regexp = re.compile("–&nbsp;")
+        regexp = re.compile('–&nbsp;')
         if regexp.search(string):
             return True
 
     @staticmethod
     def contains_space_char(string):
-        regexp = re.compile("&nbsp;")
+        regexp = re.compile('&nbsp;')
         if regexp.search(string):
             return True
 
@@ -217,13 +245,13 @@ class BasePage(object):
 
     def replace_ampersand_char(self, string):
         if self.contains_ampersand_char(string):
-            return re.sub("&amp;", "&", string)
+            return re.sub('&amp;', '&', string)
         else:
             return string
 
     def replace_hyphen_char(self, string):
         if self.contains_hyphen_char(string):
-            return re.sub("–&nbsp;", "– ", string)
+            return re.sub('–&nbsp;', '– ', string)
         else:
             return string
 
@@ -240,37 +268,47 @@ class BasePage(object):
     def set_locale(locale_string):
         print('locale_string', locale_string)
         import locale
+
         locale.setlocale(locale.LC_ALL, locale_string)
         loc = locale.getlocale()
         print(loc)
 
     def scroll_to_bottom(self):
         self.driver.wait_for_page_load()
-        self.driver.execute_script("window.scroll({"
-                                   "top: (document.body.scrollHeight), "
-                                   "left: 0,"
-                                   "behavior: 'smooth'});")
+        self.driver.execute_script(
+            'window.scroll({'
+            'top: (document.body.scrollHeight), '
+            'left: 0,'
+            "behavior: 'smooth'});"
+        )
         time.sleep(1)
 
     def scroll_to_fifty_percent(self):
-        self.driver.execute_script("window.scroll({"
-                                   "top: (document.body.scrollHeight/2), "
-                                   "left: 0,"
-                                   "behavior: 'smooth'});")
+        self.driver.execute_script(
+            'window.scroll({'
+            'top: (document.body.scrollHeight/2), '
+            'left: 0,'
+            "behavior: 'smooth'});"
+        )
 
     def scroll_to_content(self):
-        self.driver.execute_script("window.scroll({"
-                                   "top: document.getElementById('footer-standard'),"
-                                   "left: 0,"
-                                   " behavior: 'smooth'});")
+        self.driver.execute_script(
+            'window.scroll({'
+            "top: document.getElementById('footer-standard'),"
+            'left: 0,'
+            " behavior: 'smooth'});"
+        )
         time.sleep(1)
 
     def scroll_to_feed_mobile(self):
-        self.driver.execute_script("document.querySelector('.article-list__feed').scrollIntoView();")
+        self.driver.execute_script(
+            "document.querySelector('.article-list__feed').scrollIntoView();"
+        )
 
     def scroll_to_feed(self, random_article, keyword_url, get_viewport):
-        self.scroll_to_feed_desktop(random_article, keyword_url) if get_viewport == 'desktop' else \
-            self.scroll_to_feed_mobile()
+        self.scroll_to_feed_desktop(
+            random_article, keyword_url
+        ) if get_viewport == 'desktop' else self.scroll_to_feed_mobile()
 
     def scroll_to_feed_desktop(self, random_article, keyword_url):
         self.scroll_to_bottom()
@@ -278,7 +316,9 @@ class BasePage(object):
         locator = self.get_scroll_locator(keyword_url, random_article)
         print('locator', locator)
         from selenium.webdriver.common.by import By
+
         element = self.driver.find_element(By.CSS_SELECTOR, locator)
         from selenium.webdriver import Keys
+
         element.send_keys(Keys.PAGE_DOWN)
         time.sleep(1)

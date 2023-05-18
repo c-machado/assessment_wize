@@ -1,6 +1,4 @@
 import logging
-import re
-import time
 
 import requests
 
@@ -10,7 +8,6 @@ from tests.pages.locators import PageLocators
 
 
 class Footer(BasePage):
-
     def __init__(self, driver):
         super().__init__(driver)
         self.driver = driver
@@ -20,17 +17,21 @@ class Footer(BasePage):
         self.logger = logging.getLogger(__name__)
 
     def click_social_media_item(self, social_media):
-        self.driver.click_to_element(PageLocators.social_media_locators[social_media])
+        self.driver.click_to_element(
+            PageLocators.social_media_locators[social_media]
+        )
 
     def click_google_logo(self):
         self.driver.click_to_element(PageLocators.footer_google_logo)
 
     def click_to_each_language_in_selector(self):
         self.close_cookie_banner()
-        languages = self.driver.get_select_options(PageLocators.language_selector)
+        languages = self.driver.get_select_options(
+            PageLocators.language_selector
+        )
         is_status_valid = True
         for opt in languages.options:
-            url = Constants.BASE_URL + opt.get_attribute("value")
+            url = Constants.BASE_URL + opt.get_attribute('value')
             response = requests.get(url)
             if response.status_code != 200:
                 is_status_valid = False
@@ -39,12 +40,14 @@ class Footer(BasePage):
 
     def click_to_language_in_selector(self, language):
         self.close_cookie_banner()
-        languages = self.driver.get_select_options(PageLocators.language_selector)
+        languages = self.driver.get_select_options(
+            PageLocators.language_selector
+        )
         for lang in languages.options:
-            if lang.get_attribute("label") == language:
+            if lang.get_attribute('label') == language:
                 self.logger.info('%s language', language)
-                self.language_url = lang.get_attribute("value")
-                self.language_label = lang.get_attribute("label")
+                self.language_url = lang.get_attribute('value')
+                self.language_label = lang.get_attribute('label')
                 response = requests.get(Constants.BASE_URL + self.language_url)
                 if response.status_code != 200:
                     return False
@@ -54,7 +57,7 @@ class Footer(BasePage):
         social_media_items = self.get_social_media_items()
         is_status_valid = True
         for social_item in social_media_items:
-            response = requests.get(social_item.get_attribute("href"))
+            response = requests.get(social_item.get_attribute('href'))
             if response.status_code == 404:
                 is_status_valid = False
         return is_status_valid
@@ -72,7 +75,7 @@ class Footer(BasePage):
         social_media_items = self.get_social_media_items()
         is_target_valid = True
         for socialItem in social_media_items:
-            target = socialItem.get_attribute("target")
+            target = socialItem.get_attribute('target')
             if target != '_blank':
                 is_target_valid = False
         return is_target_valid
@@ -83,8 +86,8 @@ class Footer(BasePage):
         for social_item in social_media_items:
             # valid_url = re.compile("http[s]?:", social_item.get_attribute("href"))
             # print('valid_url', valid_url)
-            social_item_url = social_item.get_attribute("href")
-            if not social_item_url.startswith("https://"):
+            social_item_url = social_item.get_attribute('href')
+            if not social_item_url.startswith('https://'):
                 self.logger.error(social_item_url)
                 is_url_secure = False
         return is_url_secure
@@ -93,16 +96,20 @@ class Footer(BasePage):
         return self.driver.find_elements(*PageLocators.social_media_list)
 
     def get_legal_links(self):
-        legal_links = self.driver.get_elements_list(PageLocators.legal_links_list)
+        legal_links = self.driver.get_elements_list(
+            PageLocators.legal_links_list
+        )
         legal_items_urls_dic = {}
         for legal_item in legal_links:
-            legal_items_urls_dic[legal_item.text] = legal_item.get_attribute("href")
+            legal_items_urls_dic[legal_item.text] = legal_item.get_attribute(
+                'href'
+            )
         return legal_items_urls_dic
 
     def get_expected_legal_links_per_locale(self, locale):
         """:return two dictionaries (legal links and about) joined
-         about_link needs to be a different dictionary because the url changes based on the domain where
-         the tests are run"""
+        about_link needs to be a different dictionary because the url changes based on the domain where
+        the tests are run"""
         about_link = self.get_about_blog_legal_links_expected_per_locale(locale)
         legal_links_expected = {}
         for locale_legal_items in Constants.LEGAL_LINKS.items():
@@ -115,21 +122,31 @@ class Footer(BasePage):
 
     @staticmethod
     def get_about_blog_legal_links_expected_per_locale(locale):
-        about_blog_legal_links = {**Constants.LEGAL_LINKS_ABOUT_THE_BLOG_URL,
-                                  **Constants.LEGAL_LINKS_ABOUT_THE_BLOG_COPY}
+        about_blog_legal_links = {
+            **Constants.LEGAL_LINKS_ABOUT_THE_BLOG_URL,
+            **Constants.LEGAL_LINKS_ABOUT_THE_BLOG_COPY,
+        }
         locale_legal_about = {}
         for key, value in about_blog_legal_links.items():
-            if key in Constants.LEGAL_LINKS_ABOUT_THE_BLOG_URL and key in Constants.LEGAL_LINKS_ABOUT_THE_BLOG_COPY:
+            if (
+                key in Constants.LEGAL_LINKS_ABOUT_THE_BLOG_URL
+                and key in Constants.LEGAL_LINKS_ABOUT_THE_BLOG_COPY
+            ):
                 if key == locale:
-                    locale_legal_about[value] = Constants.BASE_URL + Constants.LEGAL_LINKS_ABOUT_THE_BLOG_URL[key]
+                    locale_legal_about[value] = (
+                        Constants.BASE_URL
+                        + Constants.LEGAL_LINKS_ABOUT_THE_BLOG_URL[key]
+                    )
                     return locale_legal_about
 
     def go_to_footer(self):
         self.scroll_to_bottom()
 
     def target_media_url(self, social_media):
-        social_items_list = self.driver.get_elements_list(PageLocators.social_media_list)
+        social_items_list = self.driver.get_elements_list(
+            PageLocators.social_media_list
+        )
         for social_item in social_items_list:
-            item = social_item.get_attribute("aria-label")
+            item = social_item.get_attribute('aria-label')
             if item == social_media:
-                return social_item.get_attribute("href")
+                return social_item.get_attribute('href')

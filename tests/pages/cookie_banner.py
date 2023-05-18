@@ -1,20 +1,17 @@
-import time
-
 from tests.consts.constants import Constants
 from tests.pages.base_page import BasePage
 from tests.pages.locators import PageLocators
 
 
 class CookieBanner(BasePage):
-
     def __init__(self, driver):
         super().__init__(driver)
         self.driver = driver
 
     def click_to_read_more_article(self, viewport):
-        if viewport == "mobile":
+        if viewport == 'mobile':
             self.driver.click_to_element(PageLocators.article_read_more_mobile)
-        elif viewport == "desktop":
+        elif viewport == 'desktop':
             self.driver.click_to_element(PageLocators.article_read_more_cta)
 
     def close_cookie_banner(self):
