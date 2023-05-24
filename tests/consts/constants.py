@@ -121,18 +121,6 @@ class Constants:
         'press_it_it': 'Stampa',
         'press_ar_mena': 'ركن الصحافة',
     }
-    LANGUAGE_SELECTOR = {
-        'English',
-        'Deutsch',
-        'English (Africa)',
-        'English (India)',
-        'English (Australia)',
-        'English (Canada)',
-        'Français (Canada)',
-        'Português (Brasil)',
-        'Español (Latinoamérica)',
-        'Italiano',
-    }
     LANGUAGE_SELECTOR_URLS = {
         'English': '/',
         'Deutsch': '/intl/de-de/',

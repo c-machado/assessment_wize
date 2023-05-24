@@ -15,67 +15,30 @@ class PageLocators:
         "section[data-component='uni-featured-article']",
     )
     # article_read_more_mobile = (By.CSS_SELECTOR, ".featured-article__image--full-width.uni-click-tracker:nth-child(1)")
-    article_read_more_mobile = (
-        By.CSS_SELECTOR,
-        '.featured-article__image--full-width',
-    )
-    article_read_more_cta = (By.CSS_SELECTOR, 'a.featured-article__link')
-    article_related_stories_category_tags = (
-        By.CSS_SELECTOR,
-        '.uni-related-articles-cards__category',
-    )
-    article_related_stories_cards = (
-        By.CSS_SELECTOR,
-        '.uni-related-articles-cards__link',
-    )
-    article_related_stories_published_at = (
-        By.CSS_SELECTOR,
-        '.uni-related-articles-cards__date',
-    )
-    article_secondary_tags = (By.CSS_SELECTOR, '.uni-blog-article-tags-value')
-    article_see_subtitles = (By.CSS_SELECTOR, '.ytp-subtitles-button')
-    article_video_hero_frame = (
-        By.CSS_SELECTOR,
-        '.uni-article-video--hero > div> iframe',
-    )
-    article_video_body_frame = (
-        By.CSS_SELECTOR,
-        '.uni-article-video--body > div> iframe',
-    )
-    collection_data_analytics = (By.CSS_SELECTOR, '.page-analytics-data')
-    cookie_banner_ok_cta = (By.CSS_SELECTOR, '.cookieBarConsentButton')
-    cookie_banner_bar = (By.ID, 'cookieBar')
-    cookie_see_details_cta = (By.CSS_SELECTOR, '.cookieBarMoreButton')
-    feed_articles_list = (By.CSS_SELECTOR, '.feed-article.ng-scope')
-    feed_articles_list_top = (
-        By.CSS_SELECTOR,
-        '.feed-article.ng-scope:nth-child(1)',
-    )
-    feed_articles_list_scroll_to = (
-        By.CSS_SELECTOR,
-        '.feed-article.ng-scope:nth-child(index_to_scroll)',
-    )
-    feed_articles_category_horizontal_top = (
-        By.CSS_SELECTOR,
-        '.feed-article.ng-scope:nth-child(2)',
-    )
-    feed_articles_category_horizontal_scroll_to = (
-        By.CSS_SELECTOR,
-        '.feed-article.ng-scope:nth-child(index_to_scroll)',
-    )
-    feed_article_dates_list = (
-        By.CSS_SELECTOR,
-        '.feed-article.ng-scope .eyebrow__date time',
-    )
-    feed_article_titles_list = (By.CSS_SELECTOR, '.feed-article__title')
-    feed_load_more = (By.CSS_SELECTOR, '.article-list__load-more--cards')
-    feed_load_more_text = (By.CSS_SELECTOR, '.article-list__loader-text')
-    footer_google_logo = (By.CSS_SELECTOR, '.h-c-footer__logo')
-    hamburger_menu = (By.CSS_SELECTOR, '.uni-header__hamburguer-button')
-    hamburger_menu_rss = (
-        By.CSS_SELECTOR,
-        'ul.uni-header__kebab-menu--mobile > li:nth-child(2) > a',
-    )
+    article_read_more_mobile = (By.CSS_SELECTOR, ".featured-article__image--full-width")
+    article_read_more_cta = (By.CSS_SELECTOR, "a.featured-article__link")
+    article_related_stories_category_tags = (By.CSS_SELECTOR, ".uni-related-articles-cards__category")
+    article_related_stories_cards = (By.CSS_SELECTOR, ".uni-related-articles-cards__link")
+    article_secondary_tags = (By.CSS_SELECTOR, ".uni-blog-article-tags-value")
+    article_see_subtitles = (By.CSS_SELECTOR, ".ytp-subtitles-button")
+    article_video_hero_frame = (By.CSS_SELECTOR, ".uni-article-video--hero > div> iframe")
+    article_video_body_frame = (By.CSS_SELECTOR, ".uni-article-video--body > div> iframe")
+    collection_data_analytics = (By.CSS_SELECTOR, ".page-analytics-data")
+    cookie_banner_ok_cta = (By.CSS_SELECTOR, ".cookieBarConsentButton")
+    cookie_banner_bar = (By.ID, "cookieBar")
+    cookie_see_details_cta = (By.CSS_SELECTOR, ".cookieBarMoreButton")
+    feed_articles_list = (By.CSS_SELECTOR, ".feed-article.ng-scope")
+    feed_articles_list_top = (By.CSS_SELECTOR, ".feed-article.ng-scope:nth-child(1)")
+    feed_articles_list_scroll_to = (By.CSS_SELECTOR, ".feed-article.ng-scope:nth-child(index_to_scroll)")
+    feed_articles_category_horizontal_top = (By.CSS_SELECTOR, ".feed-article.ng-scope:nth-child(2)")
+    feed_articles_category_horizontal_scroll_to = (By.CSS_SELECTOR, ".feed-article.ng-scope:nth-child(index_to_scroll)")
+    feed_article_dates_list = (By.CSS_SELECTOR, ".feed-article.ng-scope .eyebrow__date time")
+    feed_article_titles_list = (By.CSS_SELECTOR, ".feed-article__title")
+    feed_load_more = (By.CSS_SELECTOR, ".article-list__load-more--cards")
+    feed_load_more_text = (By.CSS_SELECTOR, ".article-list__loader-text")
+    footer_google_logo = (By.CSS_SELECTOR, ".h-c-footer__logo")
+    hamburger_menu = (By.CSS_SELECTOR, ".uni-header__hamburguer-button")
+    hamburger_menu_rss = (By.CSS_SELECTOR, "ul.uni-header__kebab-menu--mobile > li:nth-child(2) > a")
     kebab_toggle = (By.CSS_SELECTOR, '.uni-header__kebab-toggle')
     kebab__options_locators = {
         'rss': (

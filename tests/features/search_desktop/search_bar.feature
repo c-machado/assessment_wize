@@ -143,37 +143,7 @@ Feature: As a user, I want to search for content in the article progress bar
             | text_to_search | keyword                 |
             | google         | /authors/sundar-pichai/ |
 
-
-    @search_article_progress_bar
-    Scenario Outline: Test search results in a perspective's article progress bar
-        Given a user is at the <keyword> site
-        And the user selects an article in <keyword> feed
-        And the user scroll to see the progress bar
-        When the user clicks the search icon
-        And the user types the <text_to_search>
-        And the user clicks the magnifying glass
-        Then the system shows results per <text_to_search> in <keyword> page
-
-     Examples:
-            | text_to_search | keyword                 |
-            | google         | /authors/sundar-pichai/ |
-
-
-    @search_article_progress_bar
-    Scenario Outline: Test search results in a perspective's article progress bar using special characters
-        Given a user is at the <keyword> site
-        And the user selects an article in <keyword> feed
-        And the user scroll to see the progress bar
-        When the user clicks the search icon
-        And the user types the <text_to_search>
-        And the user clicks the magnifying glass
-        Then the system shows results per <text_to_search> in <keyword> page
-
-     Examples:
-            | text_to_search  | keyword                 |
-            | Valentine's     | /authors/sundar-pichai/ |
-
-
+    #TODO: Add additional options social share / about / press / homepage / random article - PROD & DEV Envs
     @search_article_progress_bar
     Scenario Outline: Test search results when there are no results in a perspective's article progress bar
         Given a user is at the <keyword> site

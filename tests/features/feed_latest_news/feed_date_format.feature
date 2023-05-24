@@ -9,7 +9,7 @@ Feature: As a user, I want to confirm dates are showing according to the expecte
         And the user opens the selected random article in <keyword> feed
         Then the date matches the <locale> format
         Examples:
-            | locale    | keyword        |
+            | locale    | keyword      |
             | en_US     | /            |
             | de_DE     | /intl/de-de/ |
             | en_AU     | /intl/en-au/ |
@@ -20,7 +20,8 @@ Feature: As a user, I want to confirm dates are showing according to the expecte
             | es_ES     | /intl/es-419/|
             | it_IT     | /intl/it-it/ |
             | ar_MENA   | /intl/ar-mena/ |
-            | en_US     | /intl/en-africa/ |
+            # en-africa show the date in the same format than en-us
+            | en_US     | /intl/en-africa/|
 
 
     @feed-article-date-format

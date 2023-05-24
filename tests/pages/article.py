@@ -1,13 +1,8 @@
 import datetime
-import logging
 import time
-
-import bs4
+import logging
 import requests
-from selenium.common.exceptions import WebDriverException
-from selenium.webdriver.common.by import By
 
-from tests.consts.constants import Constants
 from tests.pages.base_page import BasePage
 from tests.pages.locators import PageLocators
 
@@ -59,33 +54,6 @@ class ArticlePage(BasePage):
 
     def get_date_in_article(self):
         return self.driver.find_element(*PageLocators.article_published_at)
-
-    def get_date_in_related_article_in_babel_format(self, feed, date, locale):
-        self.set_locale(locale)
-        date_in_article = datetime.datetime.strptime(
-            date, Constants.DATE_FORMAT_PER_LOCALE[locale]
-        )
-        year = self.get_year_in_given_date_babel_format(date_in_article, locale)
-        current_year = str(datetime.datetime.now().year)
-        if year == current_year:
-            return feed.get_date_in_article_current_year(
-                locale, date_in_article
-            )
-        else:
-            return feed.get_date_in_article_previous_year(
-                locale, date_in_article
-            )
-
-    def get_list_dates_in_related_articles(self):
-        article_dates = self.driver.find_elements(
-            *PageLocators.article_related_stories_published_at
-        )
-        article_dates_list = []
-        for element in article_dates:
-            article_dates_list.append(
-                element.get_attribute('innerHTML').strip()
-            )
-        return article_dates_list
 
     def get_secondary_tags_in_article_api_format(self):
         secondary_tags_list = self.driver.find_elements(
@@ -156,6 +124,7 @@ class ArticlePage(BasePage):
         )
 
     def validate_tags_in_related_stories(self):
+        """return True if the list of article in related articles section match the tagging in the current article"""
         formatted_tags = self.find_tags_in_related_stories()
         self.logger.info('%s formatted_tags in stories related', formatted_tags)
         tags_in_article = self.get_secondary_tags_in_article()

@@ -1,10 +1,8 @@
 import time
 
 import pytest
-from babel.dates import format_date
-from pytest_bdd import given, parsers, scenarios, then, when
+from pytest_bdd import scenarios, given, when, then, parsers
 
-from tests.consts.constants import Constants
 from tests.pages.locators import PageLocators
 
 scenarios(
@@ -83,3 +81,4 @@ def scroll_to_feed_section(base_page, keyword, get_viewport):
 @then(parsers.parse('the system shows articles in the {keyword} locale'))
 def show_articles_in_feed_per_page(keyword, feed):
     assert feed.confirm_articles_in_feed_homepage(keyword)
+    time.sleep(10)

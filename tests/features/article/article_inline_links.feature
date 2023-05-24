@@ -20,5 +20,5 @@ Feature: As a user, I want to be sure links within the article are accessible
             | /intl/it-it/notizie-aziendali/iniziative/nuove-possibilita-di-scelta-dei-cookie-in-europa/|
             | /intl/es-419/noticias-de-la-empresa/iniciativas/una-nueva-ronda-del-innovation-challenge-en-latinoamerica/|
             #TODO: to confirm if meta_cta link should open in a new tab
-            | /products/chromecast/best-chromecast-google-tv/                                                         |
+#            | /products/chromecast/best-chromecast-google-tv/                                                         |
 

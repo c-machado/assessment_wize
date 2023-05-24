@@ -2,7 +2,7 @@
 Feature: As a user, I would like to access the content in the footer
 
 
-  @footer_regression1
+  @footer_regression
   Scenario Outline: Test legal links are not broken
     Given a user is at the <keyword> site
     When the user clicks on legal items

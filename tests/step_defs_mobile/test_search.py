@@ -1,4 +1,3 @@
-from pytest_bdd import given, parsers, scenarios, then, when
 
 from tests.consts.constants import Constants
 from tests.pages.locators import PageLocators

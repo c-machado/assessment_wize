@@ -1,7 +1,6 @@
 import logging
 import time
 
-import requests
 from bs4 import BeautifulSoup
 
 from tests.consts.constants import Constants
