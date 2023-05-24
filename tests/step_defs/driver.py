@@ -103,8 +103,6 @@ class Driver(IDriver):
         # height = self.get_win_height(viewport, Constants.FF_WINDOWS_HEIGHT)
         # options.add_argument(width)
         # options.add_argument(height)
-        #
-
         # options.set_preference('profile', Constants.FIREFOX_PROFILE)
         options.add_argument("-profile")
         options.add_argument(Constants.FIREFOX_PROFILE)

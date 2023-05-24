@@ -2,8 +2,6 @@ import logging
 import datetime
 import time
 from babel.dates import format_date
-from selenium.webdriver.common.by import By
-from soupsieve.util import lower
 
 from tests.consts import api_const
 from tests.consts.constants import Constants

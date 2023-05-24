@@ -1,6 +1,7 @@
 import requests
-from pytest_bdd import when, then, parsers
+from pytest_bdd import when, then, parsers, scenarios
 
+scenarios("../features/globals/footer.feature")
 
 @when("the user clicks on legal items")
 def click_on_legal_links(footer):

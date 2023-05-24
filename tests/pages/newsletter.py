@@ -1,6 +1,5 @@
 import time
 
-from tests.consts.constants import Constants
 from tests.pages.base_page import BasePage
 from tests.pages.locators import PageLocators
 

@@ -1,6 +1,7 @@
 import json
 import logging
 import re
+import time
 import urllib.parse
 from datetime import date, timedelta
 
@@ -68,6 +69,7 @@ class BasePageAPI(object):
         article_headlines = []
         api_url = self.get_api_url(keyword_url, api_const.LATEST_FEED)
         result = self.get_results_in_api(Constants.BASE_URL + api_url)
+        time.sleep(10)
         for article in result['results']:
             if self.is_the_article_published(article):
                 article_headlines.append(article['headline'])

@@ -3,6 +3,8 @@
 #Suggestions: Look for the content that matches the article's title.
 #Results page: Look within the article's content.
 #The results appeared order by relevance, that may cause the oldest content be shown at the top.
+
+
 Feature: As a user, I would like to search content within the blog within an article page
 
     @search_suggestions_business_critical

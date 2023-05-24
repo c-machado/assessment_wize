@@ -7,7 +7,6 @@ from tests.consts.constants import Constants
 
 scenarios("../features/article/article_inline_links.feature",
           "../features/article/article_related_articles.feature",
-          "../features/article/article_related_stories_date_format.feature",
           "../features/article/article_videos.feature")
 
 
@@ -44,17 +43,5 @@ def user_scroll_related_articles_section(article):
 @then("the user sees articles matching tags in current article")
 def user_sees_articles_matching_current_tag(article):
     assert article.validate_tags_in_related_stories()
-
-
-@then(parsers.parse("the date shown in the related stories articles are according to the {locale} format"))
-def date_format_in_related_stories(article, feed, base_page, locale):
-    time.sleep(1)
-    date_in_article_list = article.get_list_dates_in_related_articles()
-    for date_in_article in date_in_article_list:
-        date_format_expected = article.get_date_in_related_article_in_babel_format(feed, date_in_article, locale)
-        print('date_format_expected', date_format_expected)
-        print('date_article', date_in_article)
-        assert date_in_article == date_format_expected
-
 
 

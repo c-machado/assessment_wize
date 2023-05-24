@@ -4,7 +4,6 @@ import time
 import pytest
 from pytest_bdd import scenarios, given, when, then, parsers
 
-from tests.consts.constants import Constants
 from tests.pages.locators import PageLocators
 
 scenarios("../features/feed_latest_news/feed_load_more_stories.feature",

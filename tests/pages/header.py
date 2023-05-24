@@ -1,8 +1,6 @@
 import logging
 import time
 
-import requests
-
 from bs4 import BeautifulSoup
 
 from tests.pages.base_page_api import BasePageAPI
