@@ -1,11 +1,7 @@
-import json
-
 import requests
 from assertpy.assertpy import assert_that
 
 from tests.consts.api_const import BASE_URI
-from utils.print_helpers import pretty_print
-
 
 
 def test_get_tag_android_articles():

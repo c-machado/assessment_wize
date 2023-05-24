@@ -1,23 +1,20 @@
 import logging
-import os
-import time
 import warnings
 
 import selenium
-from selenium.common.exceptions import TimeoutException
-from selenium.webdriver.support.select import Select
-
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions
 from selenium import webdriver
 from selenium.common import exceptions
-
-from selenium.webdriver.safari.service import Service
-from selenium.webdriver.edge.options import Options
-from selenium.webdriver.edge.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
+from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.firefox.options import Options
+# from selenium.webdriver.edge.options import Options
+# from selenium.webdriver.edge.service import Service
+# from selenium.webdriver.firefox.options import Options
+# from selenium.webdriver.safari.service import Service
+from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.support.select import Select
+from selenium.webdriver.support.wait import WebDriverWait
+from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
 from webdriver_manager.microsoft import IEDriverManager
 
@@ -30,7 +27,6 @@ from tests.step_defs.i_driver import IDriver
 
 
 class Driver(IDriver):
-
     def __init__(self):
         self.driver = None
         self.web_element = None
@@ -43,7 +39,7 @@ class Driver(IDriver):
             self.build_driver_for_local(web_browser, viewport)
 
     def build_driver_for_local(self, web_browser, viewport):
-        if web_browser == "chrome":
+        if web_browser == 'chrome':
             # self.build_chrome_driver(ChromeDriverManager("104.0.5112.20").install(), viewport)
             self.build_chrome_driver(ChromeDriverManager().install(), viewport)
         # elif web_browser == "firefox":
@@ -52,7 +48,9 @@ class Driver(IDriver):
         # #     self.build_safari_driver(viewport)
         # elif web_browser == "edge":
         #     self.build_edge_driver(viewport)
-        warnings.filterwarnings(action="ignore", message="unclosed", category=ResourceWarning)
+        warnings.filterwarnings(
+            action='ignore', message='unclosed', category=ResourceWarning
+        )
         return self.driver
 
     def build_driver_with_user_agent(self, web_browser, viewport):
@@ -60,37 +58,45 @@ class Driver(IDriver):
             if browser_id == web_browser:
                 print('viewport en main', viewport, web_browser)
                 self.set_chrome_ua(ua, viewport)
-                warnings.filterwarnings(action="ignore", message="unclosed", category=ResourceWarning)
+                warnings.filterwarnings(
+                    action='ignore',
+                    message='unclosed',
+                    category=ResourceWarning,
+                )
                 return self.driver
 
     def set_chrome_ua(self, ua, viewport):
         self.build_chrome_driver(ChromeDriverManager().install(), viewport)
-        self.driver.execute_cdp_cmd('Network.setUserAgentOverride', {"userAgent": ua})
+        self.driver.execute_cdp_cmd(
+            'Network.setUserAgentOverride', {'userAgent': ua}
+        )
 
     def build_chrome_driver(self, driver_path, viewport):
         options = webdriver.ChromeOptions()
-        options.add_experimental_option("excludeSwitches", ['enable-automation'])
+        options.add_experimental_option(
+            'excludeSwitches', ['enable-automation']
+        )
         size_viewport = self.get_window_size(viewport)
         options.add_argument(size_viewport)
         # options.add_argument("user-data-dir=selenium")
-        options.set_capability("acceptInsecureCerts", True)
+        options.set_capability('acceptInsecureCerts', True)
         options.add_argument('--start-maximized')
         options.add_argument('--headless')
         options.add_argument('--no-sandbox')
-        options.add_argument("--disable-dev-shm-usage")
+        options.add_argument('--disable-dev-shm-usage')
         # options.add_argument("--remote-debugging-port=9222")
         # chrome://inspect/#devices
         # options.add_argument(r'--user-data-dir='+Constants.CHROME_PROFILE)  # your chrome user data directory
         # options.add_argument(r'--profile-directory=Person 2')  # the profile with the extensions loaded
         # options.add_argument(r'--profile-directory=Person 1')  # the profile in LINUX
         s = Service(driver_path)
-        self.driver = webdriver.Chrome(service=s,
-                                       options=options)
+        self.driver = webdriver.Chrome(service=s, options=options)
 
     def build_edge_driver(self, viewport):
         from selenium.webdriver.edge.options import Options as EdgeOptions
+
         options = EdgeOptions()
-        options.set_capability("acceptInsecureCerts", True)
+        options.set_capability('acceptInsecureCerts', True)
         # options.add_argument('--headless')
         self.driver = webdriver.Edge(options=options)
 
@@ -104,23 +110,22 @@ class Driver(IDriver):
         # options.add_argument(width)
         # options.add_argument(height)
         # options.set_preference('profile', Constants.FIREFOX_PROFILE)
-        options.add_argument("-profile")
+        options.add_argument('-profile')
         options.add_argument(Constants.FIREFOX_PROFILE)
 
-        options.set_preference("dom.webdriver.enabled", False)
+        options.set_preference('dom.webdriver.enabled', False)
         options.set_preference('useAutomationExtension', False)
 
         s = Service(driver_path)
-        self.driver = webdriver.Firefox(service=s,
-                                        options=options)
+        self.driver = webdriver.Firefox(service=s, options=options)
 
     # DeprecationWarning: port has been deprecated, please set it via the service class
     def build_safari_driver(self, viewport):
         options = Options()
         # options.set_capability('port', 0)
         # options.add_argument('acceptInsecureCerts=True')
-        width = self.get_win_width(viewport, Constants.SAFARI_WINDOWS_WIDTH)
-        height = self.get_win_height(viewport, Constants.SAFARI_WINDOWS_HEIGHT)
+        self.get_win_width(viewport, Constants.SAFARI_WINDOWS_WIDTH)
+        self.get_win_height(viewport, Constants.SAFARI_WINDOWS_HEIGHT)
         # options.add_argument(width)
         # options.add_argument(height)
         self.driver = webdriver.Safari(options)
@@ -192,7 +197,7 @@ class Driver(IDriver):
         elements = self.driver.find_elements(*locator)
         urls = []
         for element in elements:
-            urls.append(element.get_attribute("href"))
+            urls.append(element.get_attribute('href'))
         return urls
 
     @staticmethod
@@ -218,6 +223,7 @@ class Driver(IDriver):
 
     def move_to_element(self, to_element):
         from selenium.webdriver.common.action_chains import ActionChains
+
         action = ActionChains(self.driver)
         # action.move_to_element(to_element).perform()
         action.move_to_element(to_element).release().perform()
@@ -250,10 +256,10 @@ class Driver(IDriver):
     def wait_for_page_load(self):
         wait = WebDriverWait(self.driver, 20)
         try:
-            js_ready = self.execute_script("return document.readyState")
-            wait.until(lambda x: js_ready == "complete")
+            js_ready = self.execute_script('return document.readyState')
+            wait.until(lambda x: js_ready == 'complete')
         except Exception as e:
-            self.logger.exception("page does not load")
+            self.logger.exception('page does not load')
             print(e)
 
     def wait_for_feed_to_load(self, *locator):
@@ -262,41 +268,51 @@ class Driver(IDriver):
             length_list = len(self.driver.find_elements(*locator))
             wait.until(lambda x: length_list > 0)
         except Exception as e:
-            self.logger.exception("feed does not load")
+            self.logger.exception('feed does not load')
             print(e)
 
     def wait_for_element_clickable(self, *locator):
         wait = WebDriverWait(self.driver, 20)
         try:
             if locator.__len__() == 2:
-                return wait.until(expected_conditions.element_to_be_clickable(locator))
+                return wait.until(
+                    expected_conditions.element_to_be_clickable(locator)
+                )
         except Exception as e:
-            self.logger.exception("element not clickable")
+            self.logger.exception('element not clickable')
             print(e)
 
     def wait_for_element_visible(self, *locator):
         wait = WebDriverWait(self.driver, 20)
         try:
             if locator.__len__() == 2:
-                return wait.until(expected_conditions.visibility_of_element_located(locator))
+                return wait.until(
+                    expected_conditions.visibility_of_element_located(locator)
+                )
         except Exception as e:
-            self.logger.exception("element not visible")
+            self.logger.exception('element not visible')
             print(e)
 
     def wait_for_all_elements_visible(self, *locator):
         wait = WebDriverWait(self.driver, 20)
         try:
             if locator.__len__() == 2:
-                return wait.until(expected_conditions.visibility_of_all_elements_located(locator))
+                return wait.until(
+                    expected_conditions.visibility_of_all_elements_located(
+                        locator
+                    )
+                )
         except Exception as e:
-            self.logger.exception("elements visible")
+            self.logger.exception('elements visible')
             print(e)
 
     def wait_for_element_not_visible(self, *locator):
         wait = WebDriverWait(self.driver, 20)
         try:
             if locator.__len__() == 2:
-                return wait.until(expected_conditions.invisibility_of_element_located(locator))
+                return wait.until(
+                    expected_conditions.invisibility_of_element_located(locator)
+                )
         except Exception as e:
-            self.logger.exception("element visible")
+            self.logger.exception('element visible')
             print(e)
