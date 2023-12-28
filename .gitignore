@@ -11,3 +11,5 @@ server.log
 bmp.log
 .editorconfig
 .DS_Store
+test.py
+latest_test_.py

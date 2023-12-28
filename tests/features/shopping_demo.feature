@@ -10,6 +10,7 @@ Feature: As a user I want to confirm the shopping workflow works as expected
     #     And the user clicks on the CTA to apply the coupon
     #     Then the system applies the coupon
 
+    @checkout
     Scenario: Complete cart checkout
         Given a user is a the homepage
         And a user adds a product to the cart

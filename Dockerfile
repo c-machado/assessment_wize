@@ -38,7 +38,6 @@ COPY tests/consts/* consts/
 COPY tests/features/* features/
 COPY tests/pages/* pages/
 COPY tests/step_defs/* step_defs/
-COPY tests/step_defs_mobile/* step_defs_mobile/
 COPY tests/__init__.py .
 COPY tests/conftest.py .
 COPY tests/pytest.ini .

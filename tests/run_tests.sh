@@ -2,6 +2,5 @@
 
 printf "STARTING DOCKER TEST:\n"
 
-pytest tests/ -m "feed-article-date-format1" --html=reports/blog/feed-date-format.html # GABO
-#pytest tests/ -m "press1" --html=reports/blog/press.html
+pytest tests/ -m "feed-article-date-format1" --html=reports/blog/feed-date-format.html
 
