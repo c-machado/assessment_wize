@@ -3,13 +3,13 @@ from dataclasses import dataclass
 
 @dataclass
 class Constants:
-    # BASE_URL = 'https://blog.google'
-    BASE_URL = 'https://gweb-uniblog-publish-prod.appspot.com'
+    BASE_URL = 'https://demos.bellatrix.solutions/'
+    # BASE_URL = 'https://blog.google/'
+    CART_URL = 'cart'
+    COUPON_CODE = 'happybirthday'
+    COUPON_MSG = 'Coupon code applied successfully.'
+    PRODUCT_NAME = "Falcon 9"
     SEARCH_URL = 'search/?query='
-    # BASE_URL = 'https://gweb-uniblog-publish-stage.appspot.com'
-    # BASE_URL = 'https://gweb-uniblog-publish-dev.appspot.com'
-    # BASE_URL = 'https://gweb-uniblog-author-dev.appspot.com/admin'
-    # BASE_URL = 'https://no-release-dot-gweb-uniblog-publish-dev.appspot.com'
     PROD_URL = 'blog.google'
     CHROME_PROFILE = '/Users/cmachado/Documents/chrome_huge_inc'
     CHROME_PROFILE_APJ = '/Users/pieschaconjoya/Documents/Chrome_Profile'

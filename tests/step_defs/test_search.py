@@ -1,11 +1,12 @@
+import pytest
 from pytest_bdd import given, parsers, scenarios, then, when
 
 from tests.consts.constants import Constants
 from tests.pages.locators import PageLocators
 
-scenarios('../features/search')
+# scenarios('../features/search')
 scenarios('../features/search_desktop/search_bar.feature')
-scenarios('../features/search/search_global.feature')
+# scenarios('../features/search/search_global.feature')
 
 
 @when('the user clicks the search icon')

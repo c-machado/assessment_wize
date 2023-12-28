@@ -6,6 +6,12 @@ import pytest
 from py.xml import html
 from pytest_bdd import given, parsers, then, when
 
+from tests.pages.home_shopping import HomepageShopping
+from tests.pages.shopping_cart import Cart
+from tests.pages.shopping_checkout import Checkout
+
+from tests.pages.amazon_search import searchAmazon
+
 from tests.consts.constants import Constants
 from tests.pages.article import ArticlePage
 from tests.pages.base_page import BasePage
@@ -54,6 +60,21 @@ def my_cooler_session_finish(request):
     session = request.session
     print('session_finish', session)
 
+@pytest.fixture
+def home_shopping(driver):
+    return HomepageShopping(driver)
+
+@pytest.fixture
+def shopping_cart(driver):
+    return Cart(driver)
+
+@pytest.fixture
+def shopping_checkout(driver):
+    return Checkout(driver)
+
+@pytest.fixture
+def amazon_search(driver):
+    return searchAmazon(driver)
 
 @pytest.fixture
 def footer(driver):
