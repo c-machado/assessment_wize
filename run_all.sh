@@ -3,6 +3,6 @@
 
 printf "STARTING TESTS:\n"
 
-pytest tests/ -m "checkout" --html=reports/checkout.html
+pytest tests/ -m "wizeline" --html=reports/checkout.html
 
 

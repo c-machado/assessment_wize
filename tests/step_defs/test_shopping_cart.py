@@ -45,6 +45,11 @@ def fills_out_user_details(name, shopping_checkout):
     shopping_checkout.fill_out_user(name)
 
 
+@when(parsers.parse("the user chooses their {country}"))
+def choose_country(country, shopping_checkout):
+    shopping_checkout.click_to_choose_country(country)
+
+
 @then("the system applies the coupon")
 def apply_coupon_code(shopping_cart):
     actual_msg = shopping_cart.confirm_coupon_message()

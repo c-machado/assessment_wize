@@ -3,8 +3,12 @@ from dataclasses import dataclass
 
 @dataclass
 class Constants:
-    BASE_URL = 'https://demos.bellatrix.solutions/'
-    # BASE_URL = 'https://blog.google/'
+    BASE_URL = 'https://www.saucedemo.com/'
+    USERNAME = 'standard_user'
+    PASSWORD = 'secret_sauce'
+    TITLE = 'Sauce Labs Onesie'
+    DESCRIPTION = "Rib snap infant onesie for the junior automation engineer in development. Reinforced 3-snap bottom closure, two-needle hemmed sleeved and bottom won't unravel."
+    QUANTITY = '1'
     CART_URL = 'cart'
     COUPON_CODE = 'happybirthday'
     COUPON_MSG = 'Coupon code applied successfully.'

@@ -4,8 +4,11 @@ from datetime import datetime
 
 import pytest
 from py.xml import html
+from tests.pages.checkout import CheckoutSauce
+from tests.pages.home_sauce import Home
 
 from tests.pages.home_shopping import HomepageShopping
+from tests.pages.login import Login
 from tests.pages.shopping_cart import Cart
 from tests.pages.shopping_checkout import Checkout
 from tests.pages.locators import PageLocators
@@ -38,6 +41,18 @@ def my_cooler_session_finish(request):
     # you can access the session from the injected 'request':
     session = request.session
     print('session_finish', session)
+
+@pytest.fixture
+def login_page(driver):
+    return Login(driver)
+
+@pytest.fixture
+def home_sauce(driver):
+    return Home(driver)
+
+@pytest.fixture
+def cart_sauce(driver):
+    return CheckoutSauce(driver)
 
 @pytest.fixture
 def home_shopping(driver):
